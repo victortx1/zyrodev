@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZyroDev | Aula</title>
+
+<style>
+:root{
+    --primary:#000000;
+    --sidebar:#0b1220;
+    --card:#000000;
+    --accent:#2563eb;
+    --secondary:#6d28d9;
+    --gray:#94a3b8;
+    --white:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:var(--primary);
+    color:var(--white);
+    display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:220px;
+    background:var(--sidebar);
+    height:100vh;
+    padding:30px 20px;
+    position:fixed;
+}
+
+.sidebar h2{
+    margin-bottom:30px;
+}
+
+.sidebar a{
+    display:block;
+    color:var(--gray);
+    text-decoration:none;
+    margin-bottom:15px;
+}
+
+.sidebar a:hover{
+    color:var(--white);
+}
+
+/* MAIN */
+.javascript.main{
+    margin-left:220px;
+    display:flex;
+    width:100%;
+    height:100vh;
+}
+
+/* VIDEO AREA */
+.video-area{
+    flex:2;
+    padding:40px;
+}
+
+.video-container{
+    background:var(--card);
+    border-radius:15px;
+    overflow:hidden;
+}
+
+#videoPlayer{
+    width:100%;
+    height:500px;
+}
+
+.course-title{
+    margin-top:20px;
+    font-size:22px;
+}
+
+/* RIGHT PANEL */
+.javascript-panel{
+    flex:1;
+    background:var(--card);
+    padding:30px;
+    overflow-y:auto;
+}
+
+.progress{
+    background:#111827;
+    border-radius:20px;
+    height:10px;
+    margin-bottom:20px;
+}
+
+.progress-bar{
+    background:var(--accent);
+    height:100%;
+    width:0%;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+.lesson{
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:10px;
+    cursor:pointer;
+    background:#111827;
+}
+
+.lesson.locked{
+    opacity:0.4;
+    cursor:not-allowed;
+}
+
+.lesson.active{
+    background:var(--secondary);
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>ZyroDev 💦</h2>
+    <a href="index.html" class="btn">Voltar ao inicio</a>
+    <a href="cursos.html" class="btn">Voltar aos Cursos</a>
+    <a href="creditos.html" class="btn">Créditos aos professores</a>
+    <a href="https://www.google.com" class="btn">Sair</a>
+</div>
+
+<div class="javascript main">
+
+    <div class="video-area">
+        <div class="video-container">
+            <div id="videoPlayer"></div>
+        </div>
+        <h3 class="course-title">Aula 01 - Lógica de Programação</h3>
+    </div>
+
+    <div class="javascript-panel">
+
+        <h3>Seu progresso</h3>
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="lesson active">Aula 01 - Hello World + Constantes - Lógica de programação - Javascript - Aula 1</div>
+        <div class="lesson locked">Aula 02 - Tipos de dados - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 03 - Entrada de dados - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 04 - Concatenação de string - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 05 - If/else + Operadores lógicos - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 06 - If/else + Operadores lógicos - Parte 2 - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 07 - If/else + Operadores lógicos - Parte 3 - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 08 - If/else + let + Operações matemáticas - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 09 - Laço de repetição for - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 10 - Laço de repetição for + Calculando Fatorial - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 11 - Laço de repetição for + Identificando maior número - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 12 - Laço de repetição for + Par ou ímpar - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 13 - Laço de repetição for + Calculando média - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 14 - Laço de repetição for + Números primos - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 15 - Array - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 16 - Array - Parte 2 - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 17 - Array - Calculando múltiplos - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 18 - Array - Ordenando Arrays - Lógica de programação - Javascript</div>
+        <div class="lesson locked">Aula 19 - Curso  de JavaScript Moderno</div>
+        <div class="lesson locked">Aula 20 - Conhecendo o JavaScript</div>
+        <div class="lesson locked">Aula 21 - O que o JavaScript é capaz de fazer?</div>
+        <div class="lesson locked">Aula 22 - JavaScript: como chegamos até aqui?</div>
+        <div class="lesson locked">Aula 23 - Dando os primeiros passos</div>
+        <div class="lesson locked">Aula 24 - Criando o seu primeiro script</div>
+        <div class="lesson locked">Aula 25 - Módulo B - Comandos Básicos do JavaScript</div>
+        <div class="lesson locked">Aula 26 - Variáveis e Tipos Primitivos</div>
+        <div class="lesson locked">Aula 27 - Tratamento de dados</div>
+        <div class="lesson locked">Aula 28 - Operadores (Parte1)</div>
+        <div class="lesson locked">Aula 29 - Operadores (Parte 2)</div>
+        <div class="lesson locked">Aula 30 - Módulo C - Entendendo o DOM</div>
+        <div class="lesson locked">Aula 31 - Introdução ao DOM</div>
+        <div class="lesson locked">Aula 32 - Eventos DOM</div>
+        <div class="lesson locked">Aula 33 - Módulo D - Condições em JavaScript</div>
+        <div class="lesson locked">Aula 34 - Condições (Parte 1) - Curso JavaScript</div>
+        <div class="lesson locked">Aula 35 - Condições (Parte 2) - Curso JavaScript</div>
+        <div class="lesson locked">Aula 36 - Exercícios JavaScript (Parte 1) - Curso JavaScript</div>
+        <div class="lesson locked">Aula 37 - Exercícios JavaScript (Parte 2) - Curso JavaScript</div>
+        <div class="lesson locked">Aula 38 - Exercícios JavaScript (Parte 3) - Curso JavaScript</div>
+        <div class="lesson locked">Aula 39 - Módulo E - Repetições em JavaScript</div>
+        <div class="lesson locked">Aula 40 - Repetições (Parte 1) - Curso JavaScript</div>
+        <div class="lesson locked">Aula 41 - Repetições (Parte 2) - Curso JavaScript</div>
+        <div class="lesson locked">Aula 42 - Exercícios JavaScript (Parte 4) - Curso JavaScript</div>
+        <div class="lesson locked">Aula 43 - Exercícios JavaScript (Parte 5) - Curso JavaScript</div>
+        <div class="lesson locked">Aula 44 - Exercícios JavaScript (Parte 6) - Curso JavaScript</div>
+        <div class="lesson locked">Aula 45 - Módulo F - Avançando os estudos em JavaScript</div>
+        <div class="lesson locked">Aula 46 - Variáveis Compostas - Curso JavaScript</div>
+        <div class="lesson locked">Aula 47 - Funções - Curso JavaScript</div>
+        <div class="lesson locked">Aula 48 - Exercícios JavaScript (Parte 7) - Curso JavaScript</div>
+        <div class="lesson locked">Aula 49 - Exercícios JavaScript (Parte 8) - Curso JavaScript</div>
+
+
+
+    </div>
+
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let player;
+let currentIndex = 0;
+
+const lessons = document.querySelectorAll(".lesson");
+const progressBar = document.getElementById("progressBar");
+const courseTitle = document.querySelector(".course-title");
+
+const videos = [
+    { title:"Aula 01 - Hello World + Constantes - Lógica de programação - Javascript - Aula 1", id:"FzNUNvYdxds" },
+    { title:"Aula 02 - Tipos de dados - Lógica de programação - Javascript", id:"k9s7cGHTIqk" },
+    { title:"Aula 03 - Entrada de dados - Lógica de programação - JavascriptProjeto", id:"6s4yb95QpJ0" },
+    { title:"Aula 04 - Concatenação de string - Lógica de programação - Javascript", id:"5GZdImqKLVw" },
+    { title:"Aula 05 - If/else + Operadores lógicos - Lógica de programação - Javascript", id:"ZM5YqMsJS00" },
+    { title:"Aula 06 - If/else + Operadores lógicos - Parte 2 - Lógica de programação - Javascript", id:"7aezQWbr8xY" },
+    { title:"Aula 07 - If/else + Operadores lógicos - Parte 3 - Lógica de programação - Javascript", id:"fTWXQqcZRj0" },
+    { title:"Aula 08 - If/else + let + Operações matemáticas - Lógica de programação - Javascript", id:"7TpzXi2ilzA" },
+    { title:"Aula 09 - Laço de repetição for - Lógica de programação - Javascript", id:"UplJVbPjy4s" },
+    { title:"Aula 10 - Laço de repetição for + Calculando Fatorial - Lógica de programação - Javascript", id:"mHQZi8akoZs" },
+    { title:"Aula 11 - Laço de repetição for + Identificando maior número - Lógica de programação - Javascript", id:"boKENW6-mD0" },
+    { title:"Aula 12 - Laço de repetição for + Par ou ímpar - Lógica de programação - Javascript", id:"qfQZcZKO2Bc" },
+    { title:"Aula 13 - Laço de repetição for + Calculando média - Lógica de programação - Javascript", id:"WNFJ0wE3pq0" },
+    { title:"Aula 14 - Laço de repetição for + Números primos - Lógica de programação - Javascript", id:"VheVJktBRAk" },
+    { title:"Aula 15 - Array - Lógica de programação - Javascript", id:"BqFZSU0q384" },
+    { title:"Aula 16 - Array - Parte 2 - Lógica de programação - Javascript", id:"Kmhl6em_9-c" },
+    { title:"Aula 17 - Array - Calculando múltiplos - Lógica de programação - Javascript", id:"zOBtw_00_SA" },
+    { title:"Aula 18 - Array - Ordenando Arrays - Lógica de programação - Javascript", id:"9lqv9onNFNA" },
+    { title:"Aula 19 - Curso  de JavaScript Moderno", id:"BXqUH86F-kA" },
+    { title:"Aula 20 - Conhecendo o JavaScript", id:"uzEhd3Lugik" },
+    { title:"Aula 21 - O que o JavaScript é capaz de fazer?", id:"Ptbk2af68e8" },
+    { title:"Aula 22 - JavaScript: como chegamos até aqui?", id:"rUTKomc2gG8" },
+    { title:"Aula 23 - Dando os primeiros passos", id:"FdePtO5JSd0" },
+    { title:"Aula 24 - t", id:"OmmJBfcMJA8" },
+    { title:"Aula 24 - Criando o seu primeiro script", id:"FjT97HVT5g8" },
+    { title:"Aula 25 - Módulo B - Comandos Básicos do JavaScript", id:"Vbabsye7mWo" },
+    { title:"Aula 26 - Variáveis e Tipos Primitivos - Curso JavaScript", id:"OJgu_KCCUSY" },
+    { title:"Aula 27 - Tratamento de dados", id:"hZG9ODUdxHo" },
+    { title:"Aula 28 - Operadores (Parte1)", id:"BP63NhITvao" },
+    { title:"Aula 29 - Operadores (Parte 2)", id:"H80nCKs9c2k" },
+    { title:"Aula 30 - Módulo C - Entendendo o DOM", id:"WWZX8RWLxIk" },
+    { title:"Aula 31 - Introdução ao DOM", id:"wWnBB-mZIvY" },
+    { title:"Aula 32 - Eventos DOM", id:"uPFasdmZHJc" },
+    { title:"Aula 33 - Módulo D - Condições em JavaScript", id:"cOdG4eACN2A" },
+    { title:"Aula 34 - Condições (Parte 1) - Curso JavaScript", id:"EEStcIe8rAM" },
+    { title:"Aula 35 - Condições (Parte 2) - Curso JavaScript", id:"b2K7eo5Jdj8" },
+    { title:"Aula 36 - Exercícios JavaScript (Parte 1) - Curso JavaScript", id:"UXSWgnbSHxs" },
+    { title:"Aula 37 - Exercícios JavaScript (Parte 2) - Curso JavaScript", id:"f5es-PpaUI8" },
+    { title:"Aula 38 - Exercícios JavaScript (Parte 3) - Curso JavaScript", id:"3emz6rpcJyA" },
+    { title:"Aula 39 - Módulo E - Repetições em JavaScript", id:"5rZqYPKIwkY" },
+    { title:"Aula 40 - Repetições (Parte 1) - Curso JavaScript", id:"eX-lkN_Zahc" },
+    { title:"Aula 41 - Repetições (Parte 2) - Curso JavaScript", id:"6tyHypeY4-8" },
+    { title:"Aula 42 - Exercícios JavaScript (Parte 4) - Curso JavaScript", id:"oMNbc_LFz8w" },
+    { title:"Aula 43 - Exercícios JavaScript (Parte 5) - Curso JavaScript", id:"mfHAQ-4Rspw" },
+    { title:"Aula 44 - Exercícios JavaScript (Parte 6) - Curso JavaScript", id:"5m4UhZd-Les" },
+    { title:"Aula 45 - Módulo F - Avançando os estudos em JavaScript", id:"XdkW62tkAgU" },
+    { title:"Aula 46 - Variáveis Compostas - Curso JavaScript", id:"mc3TKp2XzhI" },
+    { title:"Aula 47 - Funções - Curso JavaScript", id:"vEOEZ03ZyiE" },
+    { title:"Aula 48 - Exercícios JavaScript (Parte 7) - Curso JavaScript", id:"slLoLLCd-k0" },
+    { title:"Aula 49 - Exercícios JavaScript (Parte 8) - Curso JavaScript", id:"roP93FA-NgU" },
+];
+
+// Carregar progresso salvo
+let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
+
+// Inicializa player
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('videoPlayer', {
+        videoId: videos[0].id
+    });
+}
+
+// Clique nas aulas
+lessons.forEach((lesson, index) => {
+    lesson.classList.remove("locked");
+
+    lesson.addEventListener("click", () => {
+        currentIndex = index;
+
+        lessons.forEach(l => l.classList.remove("active"));
+        lesson.classList.add("active");
+
+        player.loadVideoById(videos[index].id);
+        courseTitle.innerText = videos[index].title;
+    });
+});
+
+// Criar botão marcar como concluído
+const completeButton = document.createElement("button");
+completeButton.innerText = "Marcar como concluída ✅";
+completeButton.style.marginTop = "20px";
+completeButton.style.padding = "10px 20px";
+completeButton.style.background = "#2563eb";
+completeButton.style.color = "white";
+completeButton.style.border = "none";
+completeButton.style.borderRadius = "8px";
+completeButton.style.cursor = "pointer";
+
+document.querySelector(".video-area").appendChild(completeButton);
+
+// Evento marcar como concluído
+completeButton.addEventListener("click", () => {
+    if (!completedLessons.includes(currentIndex)) {
+        completedLessons.push(currentIndex);
+        localStorage.setItem("completedLessons", JSON.stringify(completedLessons));
+        lessons[currentIndex].style.background = "#16a34a";
+        updateProgress();
+    }
+});
+
+// Atualizar progresso
+function updateProgress(){
+    let percent = (completedLessons.length / videos.length) * 100;
+    progressBar.style.width = percent + "%";
+}
+
+// Carregar progresso visual ao abrir
+completedLessons.forEach(index => {
+    if(lessons[index]){
+        lessons[index].style.background = "#16a34a";
+    }
+});
+
+updateProgress();
+</script>
+
+</body>
+</html>

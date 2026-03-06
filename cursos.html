@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZyroDev Cursos</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#020617;
+color:rgb(255, 255, 255);
+overflow-x:hidden;
+}
+
+/* PARTICULAS FUNDO */
+
+#particles{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:30px 60px;
+}
+
+.logo{
+font-size:26px;
+font-weight:bold;
+background:linear-gradient(90deg,#2563eb,#00e1ff);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+/* PERFIL */
+
+.profile{
+display:flex;
+align-items:center;
+gap:10px;
+background:rgba(255,255,255,0.05);
+padding:8px 15px;
+border-radius:30px;
+}
+
+.profile img{
+width:35px;
+height:35px;
+border-radius:50%;
+}
+
+/* TITULO */
+
+.title{
+text-align:center;
+margin-top:40px;
+}
+
+.title h1{
+font-size:45px;
+}
+
+/* GRID */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+/* CARD */
+
+.card{
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+overflow:hidden;
+transition:0.3s;
+transform-style:preserve-3d;
+backdrop-filter:blur(12px);
+position:relative;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+/* IMAGEM */
+
+.card img{
+width:100%;
+height:160px;
+object-fit:cover;
+}
+
+/* CONTEUDO */
+
+.card-content{
+padding:20px;
+text-align:center;
+}
+
+.card-content h3{
+margin-bottom:10px;
+}
+
+/* PROGRESSO */
+
+.progress{
+width:100%;
+height:8px;
+background:#111;
+border-radius:10px;
+margin:10px 0;
+}
+
+.progress span{
+display:block;
+height:100%;
+background:linear-gradient(90deg,#2563eb,#9333ea);
+border-radius:10px;
+}
+
+/* BOTAO */
+
+.btn{
+display:inline-block;
+margin-top:10px;
+padding:10px 22px;
+background:#2563eb;
+border-radius:10px;
+text-decoration:none;
+color:white;
+transition:0.3s;
+}
+
+.btn:hover{
+background:#00a2ff;
+box-shadow:
+0 0 10px #00a2ff,
+0 0 20px #00a2ff,
+0 0 40px #00a2ff;
+}
+
+/* SCROLL ANIMATION */
+
+.card{
+opacity:0;
+transform:translateY(60px);
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+transition:1s;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<header>
+
+<div class="logo">ZyroDev 💦</div>
+
+<div class="profile">
+<img src="/fotos/ZYRODEV.png">
+<span>Aluno</span>
+</div>
+
+</header>
+
+<div class="title">
+<h1>🎓 Cursos Disponíveis</h1>
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<img src="/fotos/Gemini_Generated_Image_k38mv3k38mv3k38m.png">
+
+<div class="card-content">
+
+<h3>Curso de Lógica de <br>Programação <br>  #15 Aulas</h3>
+
+<div class="progress">
+<span style="width:40%"></span>
+</div>
+
+<a href="logicadeprogramaçao.html" class="btn">Assistir</a>
+
+</div>
+</div>
+
+<div class="card">
+
+<img src="/fotos/htmlecss.png">
+
+<div class="card-content">
+
+<h3>Curso HTML e CSS <br>#41 Aulas</h3>
+
+<div class="progress">
+<span style="width:40%"></span>
+</div>
+
+<a href="cursohtmlecss.html" class="btn">Assistir</a>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<img src="/fotos/javascript.png">
+
+<div class="card-content">
+
+<h3>Curso JavaScript <br>#49 Aulas</h3>
+
+<div class="progress">
+<span style="width:20%"></span>
+</div>
+
+<a href="javascript.html" class="btn">Assistir</a>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<img src="/fotos/python.png">
+
+<div class="card-content">
+
+<h3>Curso Python <br>#47 Aulas</h3>
+
+<div class="progress">
+<span style="width:10%"></span>
+</div>
+
+<a href="python.html" class="btn">Assistir</a>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<img src="/fotos/php.png">
+
+<div class="card-content">
+
+<h3>Curso PHP <br>#44 Aulas</h3>
+
+<div class="progress">
+<span style="width:0%"></span>
+</div>
+
+<a href="php.html" class="btn">Assistir</a>
+
+</div>
+</div>
+
+</div>
+
+
+<script>
+
+/* PARTICULAS FUNDO */
+
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+dx:(Math.random()-0.5),
+dy:(Math.random()-0.5)
+})
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach(p=>{
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="#2563eb";
+ctx.fill();
+
+p.x+=p.dx;
+p.y+=p.dy;
+
+})
+
+requestAnimationFrame(animate)
+
+}
+
+animate()
+
+
+/* ANIMAÇÃO SCROLL */
+
+const cards=document.querySelectorAll(".card");
+
+window.addEventListener("scroll",()=>{
+
+cards.forEach(card=>{
+
+const top=card.getBoundingClientRect().top;
+
+if(top < window.innerHeight-100){
+card.classList.add("show");
+}
+
+})
+
+})
+
+
+/* CARD 3D */
+
+cards.forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+let rect=card.getBoundingClientRect();
+
+let x=e.clientX-rect.left;
+let y=e.clientY-rect.top;
+
+let centerX=rect.width/2;
+let centerY=rect.height/2;
+
+let rotateX=(y-centerY)/20;
+let rotateY=(centerX-x)/20;
+
+card.style.transform=
+`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+})
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.transform="rotateX(0) rotateY(0)";
+
+})
+
+})
+
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZyroDev | Aula</title>
+
+<style>
+:root{
+    --primary:#000000;
+    --sidebar:#0b1220;
+    --card:#000000;
+    --accent:#2563eb;
+    --secondary:#6d28d9;
+    --gray:#94a3b8;
+    --white:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:var(--primary);
+    color:var(--white);
+    display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:220px;
+    background:var(--sidebar);
+    height:100vh;
+    padding:30px 20px;
+    position:fixed;
+}
+
+.sidebar h2{
+    margin-bottom:30px;
+}
+
+.sidebar a{
+    display:block;
+    color:var(--gray);
+    text-decoration:none;
+    margin-bottom:15px;
+}
+
+.sidebar a:hover{
+    color:var(--white);
+}
+
+/* MAIN */
+.main{
+    margin-left:220px;
+    display:flex;
+    width:100%;
+    height:100vh;
+}
+
+/* VIDEO AREA */
+.video-area{
+    flex:2;
+    padding:40px;
+}
+
+.video-container{
+    background:var(--card);
+    border-radius:15px;
+    overflow:hidden;
+}
+
+#videoPlayer{
+    width:100%;
+    height:500px;
+}
+
+.course-title{
+    margin-top:20px;
+    font-size:22px;
+}
+
+/* RIGHT PANEL */
+.right-panel{
+    flex:1;
+    background:var(--card);
+    padding:30px;
+    overflow-y:auto;
+}
+
+.progress{
+    background:#111827;
+    border-radius:20px;
+    height:10px;
+    margin-bottom:20px;
+}
+
+.progress-bar{
+    background:var(--accent);
+    height:100%;
+    width:0%;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+.lesson{
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:10px;
+    cursor:pointer;
+    background:#111827;
+}
+
+.lesson.locked{
+    opacity:0.4;
+    cursor:not-allowed;
+}
+
+.lesson.active{
+    background:var(--secondary);
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>ZyroDev 💦</h2>
+    <a href="index.html" class="btn">Voltar ao inicio</a>
+    <a href="cursos.html" class="btn">Voltar aos Cursos</a>
+    <a href="creditos.html" class="btn">Créditos aos professores</a>
+    <a href="https://www.google.com" class="btn">Sair</a>
+</div>
+
+<div class="main">
+
+    <div class="video-area">
+        <div class="video-container">
+            <div id="videoPlayer"></div>
+        </div>
+        <h3 class="course-title">Aula 01 - Lógica de Programação</h3>
+    </div>
+
+    <div class="right-panel">
+
+        <h3>Seu progresso</h3>
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="lesson active">Aula 01 - Curso Python #01 - Seja um Programador</div>
+        <div class="lesson locked">Aula 02 - Curso Python #02 - Para que serve o Python?</div>
+        <div class="lesson locked">Aula 03 - Curso Python #03 - Instalando o Python3 e o IDLE</div>
+        <div class="lesson locked">Aula 04 - Curso Python #04 - Primeiros comandos em Python3</div>
+        <div class="lesson locked">Aula 05 - Curso Python #05 - Instalando o PyCharm e o QPython3</div>
+        <div class="lesson locked">Aula 06 - PyCharm mudou! Saiba como treinar Python no PC, celular e tablet</div>
+        <div class="lesson locked">Aula 07 - Exercício Python #001 - Deixando tudo pronto</div>
+        <div class="lesson locked">Aula 08 - Exercício Python #002 - Respondendo ao Usuário</div>
+        <div class="lesson locked">Aula 09 - Curso Python #06 - Tipos Primitivos e Saída de Dados</div>
+        <div class="lesson locked">Aula 10 - Exercício Python #003 - Somando dois números</div>
+        <div class="lesson locked">Aula 11 - Exercício Python #004 - Dissecando uma Variável</div>
+        <div class="lesson locked">Aula 12 - Curso Python #07 - Operadores Aritméticos</div>
+        <div class="lesson locked">Aula 13 - Exercício Python #005 - Antecessor e Sucessor</div>
+        <div class="lesson locked">Aula 14 - Exercício Python #006 - Dobro, Triplo, Raiz Quadrada</div>
+        <div class="lesson locked">Aula 15 - Exercício Python #007 - Média Aritmética</div>
+        <div class="lesson locked">Aula 16 - Exercício Python #008 - Conversor de Medidas</div>
+        <div class="lesson locked">Aula 17 - Exercício Python #009 - Tabuada</div>
+        <div class="lesson locked">Aula 18 - Exercício Python #010 - Conversor de Moedas</div>
+        <div class="lesson locked">Aula 19 - Exercício Python #011 - Pintando Parede</div>
+        <div class="lesson locked">Aula 20 - Exercício Python #012 - Calculando Descontos</div>
+        <div class="lesson locked">Aula 21 - Exercício Python #013 - Reajuste Salarial</div>
+        <div class="lesson locked">Aula 22 - Exercício Python #014 - Conversor de Temperaturas</div>
+        <div class="lesson locked">Aula 23 - Exercício Python #015 - Aluguel de Carros</div>
+        <div class="lesson locked">Aula 24 - Curso Python #08 - Utilizando Módulos</div>
+        <div class="lesson locked">Aula 25 - Exercício Python #016 - Quebrando um número</div>
+        <div class="lesson locked">Aula 26 - Exercício Python #017 - Catetos e Hipotenusa</div>
+        <div class="lesson locked">Aula 27 - Exercício Python #018 - Seno, Cosseno e Tangente</div>
+        <div class="lesson locked">Aula 28 - Exercício Python #019 - Sorteando um item na lista</div>
+        <div class="lesson locked">Aula 29 - Exercício Python #020 - Sorteando uma ordem na lista</div>
+        <div class="lesson locked">Aula 30 - Exercício Python #021 - Tocando um MP3</div>
+        <div class="lesson locked">Aula 31 - Curso Python #09 - Manipulando Texto</div>
+        <div class="lesson locked">Aula 32 - Exercício Python #022 - Analisador de Textos</div>
+        <div class="lesson locked">Aula 33 - Exercício Python #023 - Separando dígitos de um número</div>
+        <div class="lesson locked">Aula 34 - Exercício Python #024 - Verificando as primeiras letras de um texto</div>
+        <div class="lesson locked">Aula 35 - Exercício Python #025 - Procurando uma string dentro de outra</div>
+        <div class="lesson locked">Aula 36 - Exercício Python #026 - Primeira e última ocorrência de uma string</div>
+        <div class="lesson locked">Aula 37 - Exercício Python #027 - Primeiro e último nome de uma pessoa</div>
+        <div class="lesson locked">Aula 38 - Curso Python #10 - Condições (Parte 1)</div>
+        <div class="lesson locked">Aula 39 - Exercício Python #028 - Jogo da Adivinhação v.1.0</div>
+        <div class="lesson locked">Aula 40 - Exercício Python #029 - Radar eletrônico</div>
+        <div class="lesson locked">Aula 41 - Exercício Python #030 - Par ou Ímpar?</div>
+        <div class="lesson locked">Aula 42 - Exercício Python #031 - Custo da Viagem</div>
+        <div class="lesson locked">Aula 43 - Exercício Python #032 - Ano Bissexto</div>
+        <div class="lesson locked">Aula 44 - Exercício Python #033 - Maior e menor valores</div>
+        <div class="lesson locked">Aula 45 - Exercício Python #034 - Aumentos múltiplos</div>
+        <div class="lesson locked">Aula 46 - Exercício Python #035 - Analisando Triângulo v1.0</div>
+        <div class="lesson locked">Aula 47 - Curso Python #11 - Cores no Terminal</div>
+
+
+    </div>
+
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let player;
+let currentIndex = 0;
+
+const lessons = document.querySelectorAll(".lesson");
+const progressBar = document.getElementById("progressBar");
+const courseTitle = document.querySelector(".course-title");
+
+const videos = [
+    { title:"Aula 01 - Curso Python #01 - Seja um Programador", id:"S9uPNppGsGo" },
+    { title:"Aula 02 - Curso Python #02 - Para que serve o Python?", id:"Mp0vhMDI7fA" },
+    { title:"Aula 03 - Curso Python #03 - Instalando o Python3 e o IDLE", id:"VuKvR1J2LQE" },
+    { title:"Aula 04 - Curso Python #04 - Primeiros comandos em Python3", id:"31llNGKWDdo" },
+    { title:"Aula 05 - Curso Python #05 - Instalando o PyCharm e o QPython3", id:"ElRd0cbXIv4" },
+    { title:"Aula 06 - PyCharm mudou! Saiba como treinar Python no PC, celular e tablet", id:"XND4VeMMzqg" },
+    { title:"Aula 07 - Exercício Python #001 - Deixando tudo pronto", id:"nIHq1MtJaKs" },
+    { title:"Aula 08 - Exercício Python #002 - Respondendo ao Usuário", id:"FNqdV5Zb_5Q" },
+    { title:"Aula 09 - Curso Python #06 - Tipos Primitivos e Saída de Dados", id:"hdDHg1p3YVc" },
+    { title:"Aula 10 - Exercício Python #003 - Somando dois números", id:"PB254Cfjlyk" },
+    { title:"Aula 11 - Exercício Python #004 - Dissecando uma Variável", id:"tHYxjJxtJko" },
+    { title:"Aula 12 - Curso Python #07 - Operadores Aritméticos", id:"Vw6gLypRKmY" },
+    { title:"Aula 13 - Exercício Python #005 - Antecessor e Sucessor", id:"664e0G_S9nU" },
+    { title:"Aula 14 - Exercício Python #006 - Dobro, Triplo, Raiz Quadrada", id:"mqcNw_dhl8I" },
+    { title:"Aula 15 - Exercício Python #007 - Média Aritmética", id:"_QfISzy0IKs" },
+    { title:"Aula 16 - Exercício Python #008 - Conversor de Medidas", id:"KjcdG05EAZc" },
+    { title:"Aula 17 - Exercício Python #009 - Tabuada", id:"qajq3SI0QQs" },
+    { title:"Aula 18 - Exercício Python #010 - Conversor de Moedas", id:"xM4AX3Lp2mo" },
+    { title:"Aula 19 - Exercício Python #011 - Pintando Parede", id:"mzSJpn9ldt4" },
+    { title:"Aula 20 - Exercício Python #012 - Calculando Descontos", id:"4MAmKOT9FeU" },
+    { title:"Aula 21 - Exercício Python #013 - Reajuste Salarial", id:"cTkivN8XcJ0" },
+    { title:"Aula 22 - Exercício Python #014 - Conversor de Temperaturas", id:"9l_Gay8BuAw" },
+    { title:"Aula 23 - Exercício Python #015 - Aluguel de Carros", id:"I4NYUeetLAc" },
+    { title:"Aula 24 - Curso Python #08 - Utilizando Módulos", id:"oOUyhGNib2Q" },
+    { title:"Aula 25 - Exercício Python #016 - Quebrando um número", id:"-iSbDpl5Jhw" },
+    { title:"Aula 26 - Exercício Python #017 - Catetos e Hipotenusa", id:"vmPW9iWsYkY" },
+    { title:"Aula 27 - Exercício Python #018 - Seno, Cosseno e Tangente", id:"9GvsphwW26k" },
+    { title:"Aula 28 - Exercício Python #019 - Sorteando um item na lista", id:"_Nk02-mfB5I" },
+    { title:"Aula 29 - Exercício Python #020 - Sorteando uma ordem na lista", id:"OPh0nngbBSY" },
+    { title:"Aula 30 - Exercício Python #021 - Tocando um MP3", id:"9FiEji_fzvk" },
+    { title:"Aula 31 - Curso Python #09 - Manipulando Texto", id:"a7DH88vk2Sk" },
+    { title:"Aula 32 - Exercício Python #022 - Analisador de Textos", id:"EQQt-6QqXOs" },
+    { title:"Aula 33 - Exercício Python #023 - Separando dígitos de um número", id:"wD2aerLMBWA" },
+    { title:"Aula 34 - Exercício Python #024 - Verificando as primeiras letras de um texto", id:"QroT8cZMRnc" },
+    { title:"Aula 35 - Exercício Python #025 - Procurando uma string dentro de outra", id:"WHWGz2Dy1ZU" },
+    { title:"Aula 36 - Exercício Python #026 - Primeira e última ocorrência de uma string", id:"23UOVEetNPY" },
+    { title:"Aula 37 - Exercício Python #027 - Primeiro e último nome de uma pessoa", id:"SifYYsXhLM8" },
+    { title:"Aula 38 - Curso Python #10 - Condições (Parte 1)", id:"K10u3XIf1-Q" },
+    { title:"Aula 39 - Exercício Python #028 - Jogo da Adivinhação v.1.0", id:"kchC5KLZSZ4" },
+    { title:"Aula 40 - Exercício Python #029 - Radar eletrônico", id:"hgJ_ETNGSj8" },
+    { title:"Aula 41 - Exercício Python #030 - Par ou Ímpar?", id:"4vFCzKuHOn4" },
+    { title:"Aula 42 - Exercício Python #031 - Custo da Viagem", id:"PGqHyzWoagc" },
+    { title:"Aula 43 - Exercício Python #032 - Ano Bissexto", id:"cyGY_83m4Xw" },
+    { title:"Aula 44 - Exercício Python #033 - Maior e menor valores", id:"a_8FbW5oH6I" },
+    { title:"Aula 45 - Exercício Python #034 - Aumentos múltiplos", id:"Sfadj_AzKHw" },
+    { title:"Aula 46 - Exercício Python #035 - Analisando Triângulo v1.0", id:"NZiNphKkxhg" },
+    { title:"Aula 47 - Curso Python #11 - Cores no Terminal", id:"0hBIhkcA8O8" },
+
+];
+
+// Carregar progresso salvo
+let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
+
+// Inicializa player
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('videoPlayer', {
+        videoId: videos[0].id
+    });
+}
+
+// Clique nas aulas
+lessons.forEach((lesson, index) => {
+    lesson.classList.remove("locked");
+
+    lesson.addEventListener("click", () => {
+        currentIndex = index;
+
+        lessons.forEach(l => l.classList.remove("active"));
+        lesson.classList.add("active");
+
+        player.loadVideoById(videos[index].id);
+        courseTitle.innerText = videos[index].title;
+    });
+});
+
+// Criar botão marcar como concluído
+const completeButton = document.createElement("button");
+completeButton.innerText = "Marcar como concluída ✅";
+completeButton.style.marginTop = "20px";
+completeButton.style.padding = "10px 20px";
+completeButton.style.background = "#2563eb";
+completeButton.style.color = "white";
+completeButton.style.border = "none";
+completeButton.style.borderRadius = "8px";
+completeButton.style.cursor = "pointer";
+
+document.querySelector(".video-area").appendChild(completeButton);
+
+// Evento marcar como concluído
+completeButton.addEventListener("click", () => {
+    if (!completedLessons.includes(currentIndex)) {
+        completedLessons.push(currentIndex);
+        localStorage.setItem("completedLessons", JSON.stringify(completedLessons));
+        lessons[currentIndex].style.background = "#16a34a";
+        updateProgress();
+    }
+});
+
+// Atualizar progresso
+function updateProgress(){
+    let percent = (completedLessons.length / videos.length) * 100;
+    progressBar.style.width = percent + "%";
+}
+
+// Carregar progresso visual ao abrir
+completedLessons.forEach(index => {
+    if(lessons[index]){
+        lessons[index].style.background = "#16a34a";
+    }
+});
+
+updateProgress();
+</script>
+
+</body>
+</html>

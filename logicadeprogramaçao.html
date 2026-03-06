@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZyroDev | Aula</title>
+
+    <style>
+        :root {
+            --primary: #000000;
+            --sidebar: #0b1220;
+            --card: #000000;
+            --accent: #2563eb;
+            --secondary: #6d28d9;
+            --gray: #94a3b8;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--primary);
+            color: var(--white);
+            display: flex;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 220px;
+            background: var(--sidebar);
+            height: 100vh;
+            padding: 30px 20px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: var(--gray);
+            text-decoration: none;
+            margin-bottom: 15px;
+        }
+
+        .sidebar a:hover {
+            color: var(--white);
+        }
+
+        /* MAIN */
+        .main {
+            margin-left: 220px;
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* VIDEO AREA */
+        .video-area {
+            flex: 2;
+            padding: 40px;
+        }
+
+        .video-container {
+            background: var(--card);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        #videoPlayer {
+            width: 100%;
+            height: 500px;
+        }
+
+        .course-title {
+            margin-top: 20px;
+            font-size: 22px;
+        }
+
+        /* RIGHT PANEL */
+        .right-panel {
+            flex: 1;
+            background: var(--card);
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .progress {
+            background: #111827;
+            border-radius: 20px;
+            height: 10px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            background: var(--accent);
+            height: 100%;
+            width: 0%;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .lesson {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background: #111827;
+        }
+
+        .lesson.locked {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .lesson.active {
+            background: var(--secondary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>ZyroDev 💦</h2>
+        <a href="index.html" class="btn">Voltar ao inicio</a>
+        <a href="cursos.html" class="btn">Voltar aos Cursos</a>
+        <a href="creditos.html" class="btn">Créditos aos professores</a>
+        <a href="https://www.google.com" class="btn">Sair</a>
+    </div>
+
+    <div class="main">
+
+        <div class="video-area">
+            <div class="video-container">
+                <div id="videoPlayer"></div>
+            </div>
+            <h3 class="course-title">Aula 01 - Lógica de Programação</h3>
+        </div>
+
+        <div class="right-panel">
+
+            <h3>Seu progresso</h3>
+            <div class="progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="lesson active">Aula 00 - Introdução à Lógica de Programação</div>
+            <div class="lesson locked">Aula 01 - Entenda LÓGICA DE PROGRAMAÇÃO e ALGORITMOS</div>
+            <div class="lesson locked">Aula 02 - Qual LINGUAGEM começar a PROGRAMAR?</div>
+            <div class="lesson locked">Aula 03 - VARIÁVEIS e CONSTANTES</div>
+            <div class="lesson locked">Aula 04 - O que é CamelCase, e quando utilizar? </div>
+            <div class="lesson locked">Aula 05 - TIPOS de DADOS</div>
+            <div class="lesson locked">Aula 06 - OPERADORES ARITMÉTICOS | Lógica de Programação</div>
+            <div class="lesson locked">Aula 07 - OPERADORES RELACIONAIS | Lógica de Programação</div>
+            <div class="lesson locked">Aula 08 - Estrutura de Decisão IF / ELSE | Lógica de Programação</div>
+            <div class="lesson locked">Aula 09 - Estrutura de Decisão SWITCH / CASE | Lógica de Programação</div>
+            <div class="lesson locked">Aula 10 - Estrutura de Repetição PARA ( FOR ) | Lógica de Programação</div>
+            <div class="lesson locked">Aula 11 - Estrutura de Repetição ENQUANTO ( WHILE ) | Lógica de Programação</div>
+            <div class="lesson locked">Aula 12 - Estrutura de Repetição REPITA ATÉ ( DO WHILE ) | Lógica de Programação</div>
+            <div class="lesson locked">Aula 13 - Vetores (ARRAYS) | Lógica de Programação</div>
+            <div class="lesson locked">Aula 14 - MATRIZES (ARRAYS) | Lógica de Programação</div>
+            <div class="lesson locked">Aula 15 - Estrutura de Repetição FOREACH | Lógica de Programação</div>
+
+
+        </div>
+
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+        let player;
+        let currentIndex = 0;
+
+        const lessons = document.querySelectorAll(".lesson");
+        const progressBar = document.getElementById("progressBar");
+        const courseTitle = document.querySelector(".course-title");
+
+        const videos = [
+            { title: "Aula 00 - Introdução à Lógica de Programação", id: "jBIPvXHRYpg" },
+            { title: "Aula 01 - Entenda LÓGICA DE PROGRAMAÇÃO e ALGORITMOS", id: "JaTf3dhx464" },
+            { title: "Aula 02 - Qual LINGUAGEM começar a PROGRAMAR?", id: "i4gzTpOadd4" },
+            { title: "Aula 03 - VARIÁVEIS e CONSTANTES", id: "FmTO2EPatZQ" },
+            { title: "Aula 04 - O que é CamelCase, e quando utilizar?", id: "7Da-DUTqNiw" },
+            { title: "Aula 05 - TIPOS de DADOS", id: "2ckX4M3ocdQ" },
+            { title: "Aula 06 - OPERADORES ARITMÉTICOS | Lógica de Programação", id: "DMiAvs2qCtY" },
+            { title: "Aula 07 - OPERADORES RELACIONAIS | Lógica de Programação", id: "dbnAeLjzetY" },
+            { title: "Aula 08 - Estrutura de Decisão IF / ELSE | Lógica de Programação", id: "juQgzKcbnuQ" },
+            { title: "Aula 09 - Estrutura de Decisão SWITCH / CASE | Lógica de Programação", id: "v2H1MNSkE_s" },
+            { title: "Aula 10 - Estrutura de Repetição PARA ( FOR ) | Lógica de Programação", id: "rRWDVXFj0gk" },
+            { title: "Aula 11 - Estrutura de Repetição ENQUANTO ( WHILE ) | Lógica de Programação", id: "tfAh284O04w" },
+            { title: "Aula 12 - PEstrutura de Repetição REPITA ATÉ ( DO WHILE ) | Lógica de Programação", id: "uJnjcZMd4dQ" },
+            { title: "Aula 13 - Vetores (ARRAYS) | Lógica de Programação", id: "NwIIouSVKN4" },
+            { title: "Aula 14 - MATRIZES (ARRAYS) | Lógica de Programação", id: "qfC1CqhtNOI" },
+            { title: "Aula 15 - Estrutura de Repetição FOREACH | Lógica de Programação", id: "IFfdJi8-FHE" },
+        ];
+
+        // Carregar progresso salvo
+        let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
+
+        // Inicializa player
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('videoPlayer', {
+                videoId: videos[0].id
+            });
+        }
+
+        // Clique nas aulas
+        lessons.forEach((lesson, index) => {
+            lesson.classList.remove("locked");
+
+            lesson.addEventListener("click", () => {
+                currentIndex = index;
+
+                lessons.forEach(l => l.classList.remove("active"));
+                lesson.classList.add("active");
+
+                player.loadVideoById(videos[index].id);
+                courseTitle.innerText = videos[index].title;
+            });
+        });
+
+        // Criar botão marcar como concluído
+        const completeButton = document.createElement("button");
+        completeButton.innerText = "Marcar como concluída ✅";
+        completeButton.style.marginTop = "20px";
+        completeButton.style.padding = "10px 20px";
+        completeButton.style.background = "#2563eb";
+        completeButton.style.color = "white";
+        completeButton.style.border = "none";
+        completeButton.style.borderRadius = "8px";
+        completeButton.style.cursor = "pointer";
+
+        document.querySelector(".video-area").appendChild(completeButton);
+
+        // Evento marcar como concluído
+        completeButton.addEventListener("click", () => {
+            if (!completedLessons.includes(currentIndex)) {
+                completedLessons.push(currentIndex);
+                localStorage.setItem("completedLessons", JSON.stringify(completedLessons));
+                lessons[currentIndex].style.background = "#16a34a";
+                updateProgress();
+            }
+        });
+
+        // Atualizar progresso
+        function updateProgress() {
+            let percent = (completedLessons.length / videos.length) * 100;
+            progressBar.style.width = percent + "%";
+        }
+
+        // Carregar progresso visual ao abrir
+        completedLessons.forEach(index => {
+            if (lessons[index]) {
+                lessons[index].style.background = "#16a34a";
+            }
+        });
+
+        updateProgress();
+    </script>
+
+</body>
+
+</html>

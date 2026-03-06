@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZyroDev | Aula</title>
+
+<style>
+:root{
+    --primary:#000000;
+    --sidebar:#0b1220;
+    --card:#000000;
+    --accent:#2563eb;
+    --secondary:#6d28d9;
+    --gray:#94a3b8;
+    --white:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:var(--primary);
+    color:var(--white);
+    display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:220px;
+    background:var(--sidebar);
+    height:100vh;
+    padding:30px 20px;
+    position:fixed;
+}
+
+.sidebar h2{
+    margin-bottom:30px;
+}
+
+.sidebar a{
+    display:block;
+    color:var(--gray);
+    text-decoration:none;
+    margin-bottom:15px;
+}
+
+.sidebar a:hover{
+    color:var(--white);
+}
+
+/* MAIN */
+.main{
+    margin-left:220px;
+    display:flex;
+    width:100%;
+    height:100vh;
+}
+
+/* VIDEO AREA */
+.video-area{
+    flex:2;
+    padding:40px;
+}
+
+.video-container{
+    background:var(--card);
+    border-radius:15px;
+    overflow:hidden;
+}
+
+#videoPlayer{
+    width:100%;
+    height:500px;
+}
+
+.course-title{
+    margin-top:20px;
+    font-size:22px;
+}
+
+/* RIGHT PANEL */
+.right-panel{
+    flex:1;
+    background:var(--card);
+    padding:30px;
+    overflow-y:auto;
+}
+
+.progress{
+    background:#111827;
+    border-radius:20px;
+    height:10px;
+    margin-bottom:20px;
+}
+
+.progress-bar{
+    background:var(--accent);
+    height:100%;
+    width:0%;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+.lesson{
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:10px;
+    cursor:pointer;
+    background:#111827;
+}
+
+.lesson.locked{
+    opacity:0.4;
+    cursor:not-allowed;
+}
+
+.lesson.active{
+    background:var(--secondary);
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>ZyroDev 💦</h2>
+    <a href="index.html" class="btn">Voltar ao inicio</a>
+    <a href="cursos.html" class="btn">Voltar aos Cursos</a>
+    <a href="creditos.html" class="btn">Créditos aos professores</a>
+    <a href="https://www.google.com" class="btn">Sair</a>
+</div>
+
+<div class="main">
+
+    <div class="video-area">
+        <div class="video-container">
+            <div id="videoPlayer"></div>
+        </div>
+        <h3 class="course-title">Aula 01 - Lógica de Programação</h3>
+    </div>
+
+    <div class="right-panel">
+
+        <h3>Seu progresso</h3>
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="lesson active">Aula 01 - Começa aqui seu curso de PHP Moderno de PHP</div>
+        <div class="lesson locked">Aula 02 - Esse curso de PHP serve pra mim? - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 03 - Lista TOP 6 livros de PHP - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 04 - A evolução do PHP - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 05 - Por que um elefante é o mascote do PHP? - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 06 - As versões do PHP e seus recursos - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 07 - O PHP vai morrer? Vale a pena estudar PHP? - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 08 - Como funciona o PHP? - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 09 - É possível criar qualquer coisa com PHP? - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 10 - Como transformar seu computador em servidor PHP - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 11 - É possível treinar PHP no smartphone - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 12 - Seu servidor PHP no Windows - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 13 - Seu servidor PHP no Linux - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 14 - Seu servidor PHP no MacOS - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 15 - Configurações importantes para VS Code - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 16 - Melhores extensões para VS Code - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 17 - Primeiro programa em PHP - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 18 - O PHP por dentro - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 19 - Como configurar o php.ini - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 20 - Variáveis e constantes em PHP - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 21 - Tipos primitivos do PHP - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 22 - Manipulação de strings com PHP - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 23 - Obtendo dados de formulários com PHP (parte 1) - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 24 - Obtendo dados de formulários com PHP (parte 2) - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 25 - Expressões Aritméticas com PHP - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 26 - Funções Aritméticas do PHP - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 27 - Operadores Aritméticos do PHP - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 28 - Cinco desafios PHP para iniciantes - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 29 - Desafio 001: Antecessor e Sucessor - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 30 - Desafio 002: Sorteador de números - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 31 - Desafio 003: Conversor de Moedas básico - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 32 - Desafio 004: Conversor de Moedas avançado - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 33 - Desafio 005: Analisando um número Real - @CursoemVideo de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 34 - Superglobais no PHP de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 35 - Formulários retroalimentados de PHP - Gustavo Guanabara</div>
+        <div class="lesson locked">Aula 36 - Oito desafios PHP para iniciantes de PHP</div>
+        <div class="lesson locked">Aula 37 - Desafio 006: A anatomia de uma divisão  de PHP</div>
+        <div class="lesson locked">Aula 38 - Desafio 007: Salário Mínimo com PHP de PHP</div>
+        <div class="lesson locked">Aula 39 - Desafio 008: Exercício das Raízes de PHP</div>
+        <div class="lesson locked">Aula 40 - Desafio 009: Entendendo as Médias de PHP</div>
+        <div class="lesson locked">Aula 41 - Desafio 010: Máquina do Tempo de PHP</div>
+        <div class="lesson locked">Aula 42 - Desafio 011: Reajustar Preços de PHP</div>
+        <div class="lesson locked">Aula 43 - Desafio 012: Calculadora de Tempo de PHP</div>
+        <div class="lesson locked">Aula 44 - Desafio 013: Simulando um Caixa Eletrônico de PHP</div>
+
+
+    </div>
+
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let player;
+let currentIndex = 0;
+
+const lessons = document.querySelectorAll(".lesson");
+const progressBar = document.getElementById("progressBar");
+const courseTitle = document.querySelector(".course-title");
+
+const videos = [
+    { title:"Aula 01 - Começa aqui seu curso de PHP Moderno de PHP", id:"TfsO0BGvGn0" },
+    { title:"Aula 02 - Esse curso de PHP serve pra mim? - @CursoemVideo de PHP - Gustavo Guanabara", id:"dLHlHTsFqvk" },
+    { title:"Aula 03 - Lista TOP 6 livros de PHP - @CursoemVideo de PHP - Gustavo Guanabara", id:"fvbOFIduMoI" },
+    { title:"Aula 04 - A evolução do PHP - @CursoemVideo de PHP - Gustavo Guanabara", id:"TwNmvk-F7E8" },
+    { title:"Aula 05 - Por que um elefante é o mascote do PHP? - @CursoemVideo de PHP - Gustavo Guanabara", id:"4kSJOJEi0aQ" },
+    { title:"Aula 06 - As versões do PHP e seus recursos - @CursoemVideo de PHP - Gustavo Guanabara", id:"cGiB7D9mCAM" },
+    { title:"Aula 07 - O PHP vai morrer? Vale a pena estudar PHP? - @CursoemVideo de PHP - Gustavo GuanabaraP", id:"xaaTLxyJrLA" },
+    { title:"Aula 08 - Como funciona o PHP? - @CursoemVideo de PHP - Gustavo Guanabara", id:"qFLWokqyYb4" },
+    { title:"Aula 09 - É possível criar qualquer coisa com PHP? - @CursoemVideo de PHP - Gustavo Guanabara", id:"TF8OSlQ9HAk" },
+    { title:"Aula 10 - Como transformar seu computador em servidor PHP - @CursoemVideo de PHP - Gustavo Guanabara", id:"9jWACl9_k54" },
+    { title:"Aula 11 - É possível treinar PHP no smartphone - @CursoemVideo de PHP - Gustavo Guanabara", id:"TFQhW3Iddlk" },
+    { title:"Aula 12 - Seu servidor PHP no Windows - @CursoemVideo de PHP - Gustavo Guanabara", id:"0Y9OZ0vc1SU" },
+    { title:"Aula 13 - Seu servidor PHP no Linux - @CursoemVideo de PHP - Gustavo Guanabara", id:"aUN0j5Q9quQ" },
+    { title:"Aula 14 - Seu servidor PHP no MacOS - @CursoemVideo de PHP - Gustavo Guanabara", id:"bUqOgDrcsm4" },
+    { title:"Aula 15 - Configurações importantes para VS Code - @CursoemVideo de PHP - Gustavo Guanabara", id:"kKDbH6aKg48" },
+    { title:"Aula 16 - Melhores extensões para VS Code - @CursoemVideo de PHP - Gustavo Guanabara", id:"fsD5NF03MPc" },
+    { title:"Aula 17 - Primeiro programa em PHP - @CursoemVideo de PHP - Gustavo Guanabara", id:"yK7bXIqLk9Q" },
+    { title:"Aula 18 - O PHP por dentro - @CursoemVideo de PHP - Gustavo Guanabara", id:"p9DVWhe5Euw" },
+    { title:"Aula 19 - Como configurar o php.ini - @CursoemVideo de PHP - Gustavo Guanabara", id:"xFdiSh8KQ94" },
+    { title:"Aula 20 - Variáveis e constantes em PHP - @CursoemVideo de PHP - Gustavo Guanabara", id:"eC42d9Rsz3g" },
+    { title:"Aula 21 - Tipos primitivos do PHP - @CursoemVideo de PHP - Gustavo Guanabara", id:"JFEelabfc1o" },
+    { title:"Aula 22 - Manipulação de strings com PHP - @CursoemVideo de PHP - Gustavo Guanabara", id:"Vn1PGAfnG_s" },
+    { title:"Aula 23 - Obtendo dados de formulários com PHP (parte 1) - @CursoemVideo de PHP - Gustavo Guanabara", id:"tZf2mIAXTLw" },
+    { title:"Aula 24 - Obtendo dados de formulários com PHP (parte 2) - @CursoemVideo de PHP - Gustavo Guanabara", id:"1prWS9IpZLU" },
+    { title:"Aula 25 - Expressões Aritméticas com PHP - @CursoemVideo de PHP - Gustavo Guanabara", id:"3cEqVqriass" },
+    { title:"Aula 26 - Funções Aritméticas do PHP - @CursoemVideo de PHP - Gustavo GuanabaraP", id:"wwwDeZwEIr0" },
+    { title:"Aula 27 - Operadores Aritméticos do PHP - @CursoemVideo de PHP - Gustavo Guanabara", id:"99ITnUFCzRU" },
+    { title:"Aula 28 - Cinco desafios PHP para iniciantes de PHP", id:"kgVRAoDgiHY" },
+    { title:"Aula 29 - Desafio 001: Antecessor e Sucessor de PHP", id:"0oztg9RSpOo" },
+    { title:"Aula 30 - Desafio 002: Sorteador de números de PHP", id:"AvcUHrpGh8w" },
+    { title:"Aula 31 - Desafio 003: Conversor de Moedas básico de PHP", id:"483Koc7TLu8" },
+    { title:"Aula 32 - Desafio 004: Conversor de Moedas avançado de PHP", id:"01fQmB7aR5s" },
+    { title:"Aula 33 - Desafio 005: Analisando um número Real de PHP", id:"xPDsdZl42Rw" },
+    { title:"Aula 34 - Superglobais no PHP de PHP - Gustavo Guanabara", id:"Sa0geI71RgA" },
+    { title:"Aula 35 - Formulários retroalimentados de PHP - Gustavo Guanabara", id:"TuNj2zXQuOw" },
+    { title:"Aula 36 - Oito desafios PHP para iniciantes de PHP", id:"Hej55j-NbHQ" },
+    { title:"Aula 37 - Desafio 006: A anatomia de uma divisão  de PHP", id:"UMA9uQpzq1c" },
+    { title:"Aula 38 - Desafio 007: Salário Mínimo com PHP de PHP", id:"OBKv_wGIbM4" },
+    { title:"Aula 39 - Desafio 008: Exercício das Raízes de PHP", id:"lyr7wObMVuU" },
+    { title:"Aula 40 - Desafio 009: Entendendo as Médias de PHP", id:"vRWCYYLqb2E" },
+    { title:"Aula 41 - Desafio 010: Máquina do Tempo de PHP", id:"GhmV3JJkJSQ" },
+    { title:"Aula 42 - Desafio 011: Reajustar Preços de PHP", id:"I2htLQc7wkU" },
+    { title:"Aula 43 - Desafio 012: Calculadora de Tempo de PHP", id:"qEsWGf_Es3A" },
+    { title:"Aula 44 - Desafio 013: Simulando um Caixa Eletrônico de PHP", id:"zi5a-FGzdZI" },
+
+];
+
+// Carregar progresso salvo
+let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
+
+// Inicializa player
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('videoPlayer', {
+        videoId: videos[0].id
+    });
+}
+
+// Clique nas aulas
+lessons.forEach((lesson, index) => {
+    lesson.classList.remove("locked");
+
+    lesson.addEventListener("click", () => {
+        currentIndex = index;
+
+        lessons.forEach(l => l.classList.remove("active"));
+        lesson.classList.add("active");
+
+        player.loadVideoById(videos[index].id);
+        courseTitle.innerText = videos[index].title;
+    });
+});
+
+// Criar botão marcar como concluído
+const completeButton = document.createElement("button");
+completeButton.innerText = "Marcar como concluída ✅";
+completeButton.style.marginTop = "20px";
+completeButton.style.padding = "10px 20px";
+completeButton.style.background = "#2563eb";
+completeButton.style.color = "white";
+completeButton.style.border = "none";
+completeButton.style.borderRadius = "8px";
+completeButton.style.cursor = "pointer";
+
+document.querySelector(".video-area").appendChild(completeButton);
+
+// Evento marcar como concluído
+completeButton.addEventListener("click", () => {
+    if (!completedLessons.includes(currentIndex)) {
+        completedLessons.push(currentIndex);
+        localStorage.setItem("completedLessons", JSON.stringify(completedLessons));
+        lessons[currentIndex].style.background = "#16a34a";
+        updateProgress();
+    }
+});
+
+// Atualizar progresso
+function updateProgress(){
+    let percent = (completedLessons.length / videos.length) * 100;
+    progressBar.style.width = percent + "%";
+}
+
+// Carregar progresso visual ao abrir
+completedLessons.forEach(index => {
+    if(lessons[index]){
+        lessons[index].style.background = "#16a34a";
+    }
+});
+
+updateProgress();
+</script>
+
+</body>
+</html>

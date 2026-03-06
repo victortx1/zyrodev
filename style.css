@@ -1,0 +1,122 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    color:white;
+
+    /* FUNDO BONITO */
+    background: radial-gradient(circle at top, #1e3a8a, #0f172a, #020617);
+    min-height:100vh;
+}
+
+/* BOTÃO DISCORD */
+.discord-btn{
+    position:absolute;
+    top:20px;
+    right:40px;
+    background:#111827;
+    padding:12px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    color:white;
+    font-size:14px;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    transition:0.3s;
+}
+
+.discord-btn:hover{
+    background:#2563eb;
+    transform:scale(1.05);
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    padding-left:8%;
+    position:relative;
+
+    background:
+    linear-gradient(rgba(2,6,23,0.85), rgba(2,6,23,0.9)),
+    radial-gradient(circle at top left,#2563eb,#020617);
+
+    background-size:cover;
+    background-position:center;
+}
+
+/* Conteúdo */
+.hero-content{
+    max-width:600px;
+}
+
+.hero h1{
+    font-size:56px;
+    font-weight:700;
+    margin-bottom:20px;
+
+    background:linear-gradient(90deg,#60a5fa,#a78bfa);
+    color:transparent;
+}
+
+.hero p{
+    color:#cbd5e1;
+    margin-bottom:40px;
+    line-height:1.6;
+}
+
+/* BOTÃO GOTA */
+.btn-slide{
+    width:70px;
+    height:70px;
+    background:linear-gradient(90deg,#2563eb,#6d28d9);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    position:relative;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+.btn-slide:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 20px rgba(99,102,241,0.6);
+}
+
+.gota{
+    font-size:26px;
+    transition:transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* Animação ao clicar */
+.btn-slide:active .gota{
+    transform:translateX(80px);
+    opacity:0;
+}
+
+/* PACMAN */
+.pacman-area{
+    position:absolute;
+    bottom:20px;
+    right:40px;
+}
+
+.pacman{
+    width:120px;
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0px);}
+}
