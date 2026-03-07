@@ -381,6 +381,142 @@ font-size:13px;
 
 }
 
+.cookie-box{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%) translateY(120px);
+background:rgba(15,23,42,0.95);
+backdrop-filter:blur(12px);
+padding:20px 30px;
+border-radius:16px;
+display:flex;
+align-items:center;
+gap:20px;
+box-shadow:0 10px 40px rgba(0,0,0,0.5);
+border:1px solid rgba(255,255,255,0.08);
+z-index:9999;
+opacity:0;
+transition:0.6s;
+}
+
+.cookie-box.show{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+
+.cookie-text{
+font-size:14px;
+color:#cbd5f5;
+max-width:400px;
+}
+
+.cookie-btn{
+padding:10px 18px;
+border:none;
+border-radius:8px;
+background:linear-gradient(90deg,#2563eb,#9333ea);
+color:white;
+font-weight:500;
+cursor:pointer;
+transition:0.3s;
+}
+
+.cookie-btn:hover{
+transform:scale(1.05);
+box-shadow:
+0 0 10px #2563eb,
+0 0 20px #9333ea;
+}
+
+#welcomeOverlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(8px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+animation:fadeIn 1s;
+}
+
+@keyframes fadeIn{
+from{opacity:0}
+to{opacity:1}
+}
+
+.welcomeBox{
+background:linear-gradient(135deg,#020617,#0f172a);
+padding:40px;
+border-radius:20px;
+text-align:center;
+width:420px;
+color:white;
+box-shadow:
+0 0 20px #2563eb,
+0 0 40px #2563eb40;
+animation:pop 0.7s ease;
+position:relative;
+}
+
+@keyframes pop{
+0%{transform:scale(0.6);opacity:0}
+100%{transform:scale(1);opacity:1}
+}
+
+.welcomeBox h1{
+font-size:28px;
+margin-bottom:10px;
+background:linear-gradient(90deg,#2563eb,#00e1ff);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.welcomeBox p{
+margin:15px 0;
+font-size:16px;
+color:#cbd5f5;
+}
+
+.lucky{
+font-size:40px;
+font-weight:bold;
+margin:10px 0;
+color:#00e1ff;
+text-shadow:
+0 0 10px #00e1ff,
+0 0 20px #2563eb;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{transform:scale(1)}
+to{transform:scale(1.08)}
+}
+
+.closeBtn{
+margin-top:20px;
+padding:12px 30px;
+border:none;
+border-radius:10px;
+background:linear-gradient(90deg,#2563eb,#9333ea);
+color:white;
+font-size:15px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.closeBtn:hover{
+transform:scale(1.1);
+box-shadow:
+0 0 10px #2563eb,
+0 0 20px #9333ea;
+} 
+
 </style>
 </head>
 
@@ -409,6 +545,77 @@ Discord
 </a>
 
 </div>
+
+<div id="welcomeOverlay">
+
+<div class="welcomeBox">
+
+<h1>🚀 Bem-vindo ao ZyroDev</h1>
+
+<div class="lucky">
+TOP 20
+</div>
+
+<p>
+Parabéns! Você foi uma das <b>20 primeiras pessoas</b> que conseguiram acessar o site hoje.
+</p>
+
+<p>
+Aproveite os cursos gratuitos de programação e evolua como desenvolvedor.
+</p>
+
+<button class="closeBtn" onclick="closeWelcome()">
+Entrar no Site
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+function closeWelcome(){
+
+document.getElementById("welcomeOverlay").style.display="none";
+
+}
+
+</script>
+
+<div class="cookie-box" id="cookieBox">
+
+<div class="cookie-text">
+🍪 Este site utiliza cookies para melhorar sua experiência no <b>ZyroDev</b>.
+</div>
+
+<button class="cookie-btn" onclick="acceptCookies()">
+Aceitar
+</button>
+
+</div>
+
+
+<script>
+
+const cookieBox = document.getElementById("cookieBox");
+
+if(!localStorage.getItem("zyro_cookie")){
+setTimeout(()=>{
+cookieBox.classList.add("show")
+},1500)
+}
+
+function acceptCookies(){
+
+localStorage.setItem("zyro_cookie","true");
+
+cookieBox.style.transform="translateX(-50%) translateY(120px)";
+cookieBox.style.opacity="0";
+
+}
+
+</script>
 
 <!-- HERO -->
 
