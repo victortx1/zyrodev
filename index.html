@@ -517,19 +517,84 @@ box-shadow:
 0 0 20px #9333ea;
 } 
 
+#launchScreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#020617;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:99999;
+}
+
+.launchBox{
+text-align:center;
+background:#0f172a;
+padding:50px;
+border-radius:20px;
+box-shadow:0 0 40px rgba(37,99,235,0.5);
+}
+
+#contadorTempo{
+font-size:50px;
+margin-top:20px;
+color:#38bdf8;
+font-weight:bold;
+}
+
 </style>
 </head>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E6W5V869QD"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
 
-gtag('config', 'G-E6W5V869QD');
+const lancamento = new Date();
+lancamento.setHours(19,0,0,0);
+
+const contador = document.getElementById("contadorTempo");
+const tela = document.getElementById("launchScreen");
+
+setInterval(() => {
+
+const agora = new Date().getTime();
+const distancia = lancamento - agora;
+
+const horas = Math.floor((distancia % (1000*60*60*24)) / (1000*60*60));
+const minutos = Math.floor((distancia % (1000*60*60)) / (1000*60));
+const segundos = Math.floor((distancia % (1000*60)) / 1000);
+
+contador.innerHTML =
+String(horas).padStart(2,'0') + ":" +
+String(minutos).padStart(2,'0') + ":" +
+String(segundos).padStart(2,'0');
+
+if(distancia < 0){
+
+tela.style.display="none";
+
+}
+
+},1000);
+
 </script>
 
 <body>
+
+<!-- TELA DE LANÇAMENTO -->
+
+<div id="launchScreen">
+
+<div class="launchBox">
+<h1>🚀 ZyroDev está quase no ar</h1>
+<p>O site será liberado às <b>19:00</b></p>
+
+<div id="contadorTempo">00:00:00</div>
+
+</div>
+
+</div>
 
 <!-- NAVBAR -->
 
@@ -544,7 +609,7 @@ gtag('config', 'G-E6W5V869QD');
 <a href="#rodape">Sobre</a>
 </div>
 <h2>
-👨‍💻 Alunos: <span id="contador">0</span>/20  
+👨‍💻 Alunos: <span id="contadorAlunos">0</span>/20  
 <br>
 🔥 Vagas restantes: <span id="vagas">20</span>
 </h2>
