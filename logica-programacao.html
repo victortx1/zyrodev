@@ -123,6 +123,98 @@
         .lesson.active {
             background: var(--secondary);
         }
+
+/* =========================
+RESPONSIVIDADE CELULAR
+========================= */
+
+@media (max-width:900px){
+
+body{
+flex-direction:column;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+padding:20px;
+text-align:center;
+}
+
+.sidebar h2{
+width:100%;
+margin-bottom:10px;
+}
+
+.sidebar a{
+margin:5px 10px;
+}
+
+/* MAIN */
+
+.main{
+margin-left:0;
+flex-direction:column;
+height:auto;
+}
+
+/* VIDEO AREA */
+
+.video-area{
+padding:20px;
+}
+
+#videoPlayer{
+height:300px;
+}
+
+/* RIGHT PANEL */
+
+.right-panel{
+padding:20px;
+height:auto;
+}
+
+.lesson{
+font-size:14px;
+}
+
+.course-title{
+font-size:18px;
+}
+
+}
+
+/* CELULARES PEQUENOS */
+
+@media (max-width:500px){
+
+#videoPlayer{
+height:220px;
+}
+
+.lesson{
+padding:12px;
+font-size:13px;
+}
+
+.sidebar{
+flex-direction:column;
+}
+
+.sidebar a{
+width:100%;
+}
+
+}
+
     </style>
 </head>
 
@@ -164,7 +256,8 @@
             <div class="lesson locked">Aula 09 - Estrutura de Decisão SWITCH / CASE | Lógica de Programação</div>
             <div class="lesson locked">Aula 10 - Estrutura de Repetição PARA ( FOR ) | Lógica de Programação</div>
             <div class="lesson locked">Aula 11 - Estrutura de Repetição ENQUANTO ( WHILE ) | Lógica de Programação</div>
-            <div class="lesson locked">Aula 12 - Estrutura de Repetição REPITA ATÉ ( DO WHILE ) | Lógica de Programação</div>
+            <div class="lesson locked">Aula 12 - Estrutura de Repetição REPITA ATÉ ( DO WHILE ) | Lógica de Programação
+            </div>
             <div class="lesson locked">Aula 13 - Vetores (ARRAYS) | Lógica de Programação</div>
             <div class="lesson locked">Aula 14 - MATRIZES (ARRAYS) | Lógica de Programação</div>
             <div class="lesson locked">Aula 15 - Estrutura de Repetição FOREACH | Lógica de Programação</div>

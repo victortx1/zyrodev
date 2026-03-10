@@ -204,14 +204,14 @@ color:#60a5fa;
 font-weight:600;
 font-size:18px;
 opacity:0;
-animation:subir 4s linear forwards;
+animation:subir 2s linear forwards;
 }
 
 @keyframes subir{
 
 0%{
 opacity:0;
-transform:translateY(20px);
+transform:translateY(10px);
 }
 
 20%{
@@ -430,57 +430,108 @@ box-shadow:
 0 0 20px #9333ea;
 }
 
-#welcomeOverlay{
+#updatePopup{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.75);
-backdrop-filter:blur(8px);
+background:rgba(0,0,0,0.8);
 display:flex;
 align-items:center;
 justify-content:center;
 z-index:9999;
-animation:fadeIn 1s;
+animation:fadeIn 0.5s;
 }
 
-@keyframes fadeIn{
-from{opacity:0}
-to{opacity:1}
-}
-
-.welcomeBox{
-background:linear-gradient(135deg,#020617,#0f172a);
-padding:40px;
-border-radius:20px;
+.popup-box{
+background:#0f172a;
+padding:35px;
+max-width:520px;
+border-radius:18px;
 text-align:center;
-width:420px;
 color:white;
-box-shadow:
-0 0 20px #2563eb,
-0 0 40px #2563eb40;
-animation:pop 0.7s ease;
-position:relative;
+box-shadow:0 0 40px #2563eb66;
+animation:popup 0.6s ease;
 }
 
-@keyframes pop{
-0%{transform:scale(0.6);opacity:0}
-100%{transform:scale(1);opacity:1}
-}
-
-.welcomeBox h1{
-font-size:28px;
+.popup-box h2{
+font-size:26px;
 margin-bottom:10px;
-background:linear-gradient(90deg,#2563eb,#00e1ff);
+background:linear-gradient(90deg,#2563eb,#9333ea);
 -webkit-background-clip:text;
 color:transparent;
 }
 
-.welcomeBox p{
-margin:15px 0;
-font-size:16px;
-color:#cbd5f5;
+.subtitle{
+margin-bottom:15px;
+opacity:.9;
+}
+
+.update-list{
+text-align:left;
+margin-top:15px;
+margin-bottom:20px;
+}
+
+.update-list ul{
+padding-left:20px;
+}
+
+.update-list li{
+margin-bottom:8px;
+font-size:14px;
+}
+
+.footerText{
+margin-top:10px;
+opacity:.9;
+}
+
+.popup-box button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:20px;
+background:linear-gradient(90deg,#2563eb,#9333ea);
+color:white;
+font-size:14px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.popup-box button:hover{
+transform:scale(1.05);
+box-shadow:0 0 15px #2563eb;
+}
+
+.closePopup{
+position:absolute;
+right:20px;
+top:15px;
+cursor:pointer;
+font-size:18px;
+opacity:.7;
+}
+
+.closePopup:hover{
+opacity:1;
+}
+
+@keyframes popup{
+from{
+transform:scale(0.8);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 .lucky{
@@ -518,6 +569,115 @@ box-shadow:
 0 0 20px #9333ea;
 } 
 
+/* =========================
+RESPONSIVIDADE CELULAR
+========================= */
+
+@media (max-width: 900px){
+
+.navbar{
+flex-direction:column;
+gap:15px;
+padding:20px;
+text-align:center;
+}
+
+.nav-links{
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.hero{
+flex-direction:column;
+justify-content:center;
+text-align:center;
+padding:120px 20px;
+}
+
+.hero h1{
+font-size:38px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+.pacman-area{
+position:relative;
+right:auto;
+bottom:auto;
+margin-top:40px;
+}
+
+.pacman{
+width:90px;
+}
+
+.stats{
+flex-direction:column;
+gap:30px;
+}
+
+.features{
+grid-template-columns:1fr;
+}
+
+.footer-container{
+flex-direction:column;
+text-align:center;
+align-items:center;
+}
+
+.footer-links{
+align-items:center;
+}
+
+.social-icons{
+justify-content:center;
+}
+
+.cookie-box{
+flex-direction:column;
+text-align:center;
+gap:10px;
+width:90%;
+}
+
+.welcomeBox{
+width:90%;
+padding:30px 20px;
+}
+
+}
+
+/* TELAS MUITO PEQUENAS */
+
+@media (max-width:500px){
+
+.hero h1{
+font-size:30px;
+}
+
+.logo{
+font-size:18px;
+}
+
+.discord-btn{
+font-size:12px;
+padding:8px 12px;
+}
+
+.stat h2{
+font-size:32px;
+}
+
+.stat p{
+font-size:13px;
+}
+
+}
+
 </style>
 </head>
 
@@ -543,11 +703,7 @@ gtag('config', 'G-E6W5V869QD');
 <a href="creditos.html">Creditos</a>
 <a href="#rodape">Sobre</a>
 </div>
-<h2>
-👨‍💻 Alunos: <span id="contadorAlunos">0</span>/20  
-<br>
-🔥 Vagas restantes: <span id="vagas">20</span>
-</h2>
+
 <a href="https://discord.gg/AJkeUcN47e" target="_blank" class="discord-btn">
 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" width="18">
 Discord
@@ -555,27 +711,43 @@ Discord
 
 </div>
 
-<div id="welcomeOverlay">
+<!-- ANÚNCIO DE ATUALIZAÇÃO ZYRODEV -->
 
-<div class="welcomeBox">
+<div id="updatePopup">
 
-<h1>🚀 Bem-vindo ao ZyroDev</h1>
+<div class="popup-box">
 
-<div class="lucky">
-TOP 20
+<span class="closePopup" onclick="fecharPopup()">✖</span>
+
+<h2>🚀 Atualização da Plataforma</h2>
+
+<p class="subtitle">🌙 Atualização realizada nesta madrugada!</p>
+
+<p>
+A plataforma <b>ZyroDev</b> passou por uma nova atualização para melhorar ainda mais a experiência dos alunos.
+</p>
+
+<div class="update-list">
+
+<p>✨ <b>O que foi atualizado:</b></p>
+
+<ul>
+<li>🧹 Limpeza completa de cache para melhorar a velocidade do site</li>
+<li>📱 Todas as páginas agora são 100% responsivas para celular</li>
+<li>⚡ Otimização de carregamento das aulas e vídeos</li>
+<li>🎨 Melhorias visuais na interface da plataforma</li>
+<li>🧠 Correções de pequenos bugs encontrados pelos usuários</li>
+<li>🔒 Melhorias de estabilidade e segurança do sistema</li>
+<li>📚 Organização das aulas para facilitar o aprendizado</li>
+</ul>
+
 </div>
 
-<p>
-Parabéns! Você foi uma das <b>20 primeiras pessoas</b> que conseguiram acessar o site hoje.
+<p class="footerText">
+Nosso objetivo é tornar a <b>ZyroDev</b> uma plataforma cada vez melhor para quem quer aprender programação gratuitamente.
 </p>
 
-<p>
-Aproveite os cursos gratuitos de programação e evolua como desenvolvedor.
-</p>
-
-<button class="closeBtn" onclick="closeWelcome()">
-Entrar no Site
-</button>
+<button onclick="fecharPopup()">Continuar</button>
 
 </div>
 
@@ -584,9 +756,18 @@ Entrar no Site
 
 <script>
 
-function closeWelcome(){
+function fecharPopup(){
+document.getElementById("updatePopup").style.display="none";
+localStorage.setItem("updateZyroDev","visto");
+}
 
-document.getElementById("welcomeOverlay").style.display="none";
+window.onload = function(){
+
+let visto = localStorage.getItem("updateZyroDev");
+
+if(visto === "visto"){
+document.getElementById("updatePopup").style.display="none";
+}
 
 }
 
@@ -807,80 +988,7 @@ A ZyroDev reúne os melhores conteúdos da internet para transformar iniciantes 
 
 </footer>
 
-<script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, doc, getDoc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "zyrodev-58fed.firebaseapp.com",
-  projectId: "zyrodev-58fed",
-  storageBucket: "zyrodev-58fed.firebasestorage.app",
-  messagingSenderId: "579084406897",
-  appId: "1:579084406897:web:3eddd503744d9965790bd0"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const ref = doc(db,"contador","alunos");
-
-async function entrarNoSite(){
-
-let visitou = localStorage.getItem("visitou");
-
-const snap = await getDoc(ref);
-let total = snap.data()?.total || 0;
-
-if(total >= 20){
-
-document.body.innerHTML = `
-<div style="
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-background:#020617;
-color:white;
-font-family:Inter;
-">
-
-<h1>🚫 Turma Lotada</h1>
-<p>As 20 vagas iniciais já foram preenchidas.</p>
-
-</div>
-`;
-
-return;
-
-}
-
-if(!visitou){
-
-await updateDoc(ref,{
-total: total + 1
-});
-
-localStorage.setItem("visitou","true");
-
-}
-
-}
-
-entrarNoSite();
-
-onSnapshot(ref,(doc)=>{
-
-let total = doc.data().total;
-
-document.getElementById("contador").innerText = total;
-document.getElementById("vagas").innerText = 20 - total;
-
-});
-
-</script>
 
 </body>
 </html>

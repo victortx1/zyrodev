@@ -123,6 +123,98 @@
         .lesson.active {
             background: var(--secondary);
         }
+
+/* =========================
+RESPONSIVIDADE CELULAR
+========================= */
+
+@media (max-width:900px){
+
+body{
+flex-direction:column;
+}
+
+/* SIDEBAR */
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+padding:20px;
+text-align:center;
+}
+
+.sidebar h2{
+width:100%;
+margin-bottom:10px;
+}
+
+.sidebar a{
+margin:5px 10px;
+}
+
+/* MAIN */
+.main{
+margin-left:0;
+flex-direction:column;
+height:auto;
+}
+
+/* VIDEO AREA */
+.video-area{
+padding:20px;
+}
+
+#videoPlayer{
+height:320px;
+}
+
+/* RIGHT PANEL */
+.right-panel{
+padding:20px;
+height:auto;
+}
+
+.lesson{
+font-size:14px;
+}
+
+.course-title{
+font-size:18px;
+}
+
+}
+
+/* CELULARES PEQUENOS */
+
+@media (max-width:500px){
+
+#videoPlayer{
+height:220px;
+}
+
+.lesson{
+padding:12px;
+font-size:13px;
+}
+
+.sidebar{
+flex-direction:column;
+}
+
+.sidebar a{
+width:100%;
+}
+
+.course-title{
+font-size:16px;
+}
+
+}
+
     </style>
 </head>
 
