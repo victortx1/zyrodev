@@ -4,7 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="./fotos/favicon.svg.png">
+<link rel="icon" href="./fotos/favicon.png.png">
+<link rel="icon" type="image/x-icon" href="./fotos/favicon.png.png">
 
 <title>ZyroDev - Evolua Como Desenvolvedor</title>
 
@@ -678,6 +679,98 @@ font-size:13px;
 
 }
 
+/* notificaçoes temporaria */ 
+#ideaHint{
+
+position:fixed;
+
+top:110px;
+right:500px;
+
+background:#e5e1d8;
+
+color:#000;
+
+padding:12px 20px;
+
+border-radius:12px;
+
+font-size:14px;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+
+opacity:0;
+
+transform:translateY(-10px);
+
+transition:0.4s;
+
+z-index:999;
+
+}
+
+#ideaHint.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+/* SINO DE NOTIFICAÇÕES */
+
+.notification-wrapper{
+position:fixed;
+top:27px;
+right:170px;
+z-index:999;
+}
+
+.bell-button{
+font-size:20px;
+cursor:pointer;
+position:relative;
+color:white;
+}
+
+.notification-count{
+position:absolute;
+top:-6px;
+right:-8px;
+background:red;
+color:white;
+font-size:11px;
+padding:2px 6px;
+border-radius:50%;
+}
+
+.notification-box{
+position:absolute;
+top:35px;
+right:0;
+width:280px;
+background:#0f172a;
+border:1px solid #1e293b;
+border-radius:10px;
+padding:15px;
+display:none;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+.notification-box h3{
+color:white;
+margin-bottom:10px;
+}
+
+.notification-item{
+background:#020617;
+padding:10px;
+border-radius:8px;
+margin-bottom:8px;
+font-size:13px;
+color:#cbd5e1;
+}
+
 </style>
 </head>
 
@@ -702,7 +795,92 @@ gtag('config', 'G-E6W5V869QD');
 <a href="#stat">Info</a>
 <a href="creditos.html">Creditos</a>
 <a href="#rodape">Sobre</a>
+<a href="ideias.html">Ideias</a>
 </div>
+
+<div class="notification-wrapper">
+
+<div class="bell-button" onclick="toggleNotifications()">
+🔔
+<span class="notification-count">4</span>
+</div>
+
+<div class="notification-box" id="notificationBox">
+
+<h3>Notificações Test</h3>
+
+<div class="notification-item">
+<b>🚀 Atualização</b><br>
+Nova ideia para voce nos
+<br>falar oque quer no na zyrodev💦.
+</div>
+
+<div class="notification-item">
+<b>⚙️ Correção</b><br>
+Corrigimos o erro de
+rolagem na aba cursos.
+</div>
+
+<div class="notification-item">
+<b>🔥 Novidade</b><br>
+Logo vai ter videos novos.
+</div>
+
+<div class="notification-item">
+<b>❤ Agradecimento</b><br>
+3 mil acessos em 24h
+no pre lançamento.
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function toggleNotifications(){
+
+const box = document.getElementById("notificationBox");
+
+if(box.style.display === "block"){
+box.style.display = "none";
+}else{
+box.style.display = "block";
+}
+
+}
+
+</script>
+
+<!-- notificação temporaria-->
+<div id="ideaHint">
+Clique em "Ideias" 👆
+<br>e me fale sua ideia 💡
+</div>
+
+<script>
+
+const hint = document.getElementById("ideaHint");
+
+function showHint(){
+
+hint.classList.add("show");
+
+setTimeout(()=>{
+
+hint.classList.remove("show");
+
+},5000);
+
+}
+
+setInterval(showHint,20000);
+
+showHint();
+
+
+
+</script>
 
 <a href="https://discord.gg/AJkeUcN47e" target="_blank" class="discord-btn">
 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" width="18">
@@ -711,67 +889,6 @@ Discord
 
 </div>
 
-<!-- ANÚNCIO DE ATUALIZAÇÃO ZYRODEV -->
-
-<div id="updatePopup">
-
-<div class="popup-box">
-
-<span class="closePopup" onclick="fecharPopup()">✖</span>
-
-<h2>🚀 Atualização da Plataforma</h2>
-
-<p class="subtitle">🌙 Atualização realizada nesta madrugada!</p>
-
-<p>
-A plataforma <b>ZyroDev</b> passou por uma nova atualização para melhorar ainda mais a experiência dos alunos.
-</p>
-
-<div class="update-list">
-
-<p>✨ <b>O que foi atualizado:</b></p>
-
-<ul>
-<li>🧹 Limpeza completa de cache para melhorar a velocidade do site</li>
-<li>📱 Todas as páginas agora são 100% responsivas para celular</li>
-<li>⚡ Otimização de carregamento das aulas e vídeos</li>
-<li>🎨 Melhorias visuais na interface da plataforma</li>
-<li>🧠 Correções de pequenos bugs encontrados pelos usuários</li>
-<li>🔒 Melhorias de estabilidade e segurança do sistema</li>
-<li>📚 Organização das aulas para facilitar o aprendizado</li>
-</ul>
-
-</div>
-
-<p class="footerText">
-Nosso objetivo é tornar a <b>ZyroDev</b> uma plataforma cada vez melhor para quem quer aprender programação gratuitamente.
-</p>
-
-<button onclick="fecharPopup()">Continuar</button>
-
-</div>
-
-</div>
-
-
-<script>
-
-function fecharPopup(){
-document.getElementById("updatePopup").style.display="none";
-localStorage.setItem("updateZyroDev","visto");
-}
-
-window.onload = function(){
-
-let visto = localStorage.getItem("updateZyroDev");
-
-if(visto === "visto"){
-document.getElementById("updatePopup").style.display="none";
-}
-
-}
-
-</script>
 
 <div class="cookie-box" id="cookieBox">
 
@@ -972,6 +1089,7 @@ A ZyroDev reúne os melhores conteúdos da internet para transformar iniciantes 
 <a href="#stat">Informações</a>
 <a href="creditos.html">Creditos</a>
 <a href="https://bio.site/Delarotaldev">Info DELAR</a>
+<a href="admin.html">Creditos</a>
 
 </div>
 

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZyroDev | Ideias da Comunidade</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#020617,#0f172a,#020617);
+color:white;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px 20px;
+}
+
+/* CONTAINER */
+
+.ideas{
+max-width:900px;
+width:100%;
+background:rgba(255,255,255,0.03);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.05);
+border-radius:20px;
+padding:40px;
+box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* TITULO */
+
+.ideas h2{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.ideas p{
+opacity:0.7;
+margin-bottom:30px;
+}
+
+/* INPUT */
+
+.idea-input{
+display:flex;
+gap:10px;
+margin-bottom:30px;
+}
+
+.idea-input input{
+flex:1;
+padding:14px;
+border-radius:12px;
+border:none;
+background:#020617;
+color:white;
+font-size:15px;
+outline:none;
+border:1px solid rgba(255,255,255,0.05);
+}
+
+.idea-input input::placeholder{
+color:#94a3b8;
+}
+
+.idea-input button{
+padding:14px 22px;
+border:none;
+border-radius:12px;
+font-weight:600;
+cursor:pointer;
+background:linear-gradient(45deg,#6366f1,#22d3ee);
+color:white;
+transition:0.3s;
+}
+
+.idea-input button:hover{
+transform:scale(1.05);
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* LISTA */
+
+#ideasList{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+/* CARD */
+
+.idea-card{
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.05);
+padding:18px;
+border-radius:14px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+transition:0.25s;
+flex-direction:column;
+align-items:flex-start;
+gap:10px;
+}
+
+.idea-card:hover{
+transform:translateY(-3px);
+background:rgba(255,255,255,0.05);
+}
+
+/* TEXTO */
+
+.idea-text{
+font-size:16px;
+font-weight:600;
+}
+
+/* STATUS */
+
+.status{
+font-size:12px;
+padding:4px 8px;
+border-radius:6px;
+font-weight:600;
+}
+
+.aprovado{
+background:#16a34a;
+}
+
+.dev{
+background:#2563eb;
+}
+
+.analise{
+background:#f59e0b;
+}
+
+/* FOOTER DO CARD */
+
+.idea-footer{
+display:flex;
+justify-content:space-between;
+width:100%;
+align-items:center;
+}
+
+/* BOTÃO LIKE */
+
+.like-btn{
+background:#020617;
+border:1px solid rgba(255,255,255,0.05);
+padding:8px 14px;
+border-radius:10px;
+cursor:pointer;
+color:white;
+font-weight:600;
+transition:0.2s;
+}
+
+.like-btn:hover{
+background:#1e293b;
+transform:scale(1.1);
+}
+
+.idea-card{
+animation:fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(10px);
+}
+
+to{
+opacity:1;
+transform:translateY(0px);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<section class="ideas">
+
+<h2>💡 Ideias da Comunidade</h2>
+<p>Deixe sua sugestão para melhorar a ZyroDev.</p>
+
+<div class="idea-input">
+
+<input type="text" id="ideaText" placeholder="Digite sua ideia para melhorar a ZyroDev...">
+
+<button onclick="addIdea()">Enviar</button>
+
+</div>
+
+<div id="ideasList"></div>
+
+</section>
+
+<script>
+
+let ideas = JSON.parse(localStorage.getItem("ideas")) || [];
+
+function saveIdeas(){
+localStorage.setItem("ideas", JSON.stringify(ideas));
+}
+
+function renderIdeas(){
+
+const list = document.getElementById("ideasList");
+
+list.innerHTML="";
+
+ideas.sort((a,b)=>b.likes-a.likes);
+
+ideas.forEach((idea,index)=>{
+
+let statusClass="analise";
+
+if(idea.status==="Aprovado") statusClass="aprovado";
+if(idea.status==="Em desenvolvimento") statusClass="dev";
+
+list.innerHTML+=`
+
+<div class="idea-card">
+
+<div class="idea-text">${idea.text}</div>
+
+<div class="idea-footer">
+
+<span class="status ${statusClass}">
+${idea.status || "Em análise"}
+</span>
+
+<button class="like-btn" onclick="likeIdea(${index})">
+👍 ${idea.likes}
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+function addIdea(){
+
+const input=document.getElementById("ideaText");
+
+if(input.value.trim()==="") return;
+
+ideas.push({
+text:input.value,
+likes:0,
+status:"Em análise"
+});
+
+input.value="";
+
+saveIdeas();
+
+renderIdeas();
+
+}
+
+function likeIdea(index){
+
+ideas[index].likes++;
+
+saveIdeas();
+
+renderIdeas();
+
+}
+
+renderIdeas();
+
+</script>
+
+</body>
+</html>

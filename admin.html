@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Painel Admin | ZyroDev</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#020617;
+color:white;
+padding:40px;
+display:flex;
+justify-content:center;
+}
+
+.container{
+max-width:900px;
+width:100%;
+}
+
+h1{
+margin-bottom:20px;
+}
+
+.login{
+text-align:center;
+}
+
+input{
+padding:12px;
+border:none;
+border-radius:8px;
+background:#0f172a;
+color:white;
+margin:10px 0;
+width:100%;
+}
+
+button{
+padding:10px;
+border:none;
+border-radius:8px;
+background:#6366f1;
+color:white;
+cursor:pointer;
+}
+
+.idea{
+background:#0f172a;
+padding:15px;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.controls{
+margin-top:10px;
+display:flex;
+gap:10px;
+}
+
+select{
+background:#1e293b;
+border:none;
+color:white;
+padding:5px;
+border-radius:5px;
+}
+
+.delete{
+background:#dc2626;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="loginBox" class="login">
+
+<h1>Painel Admin</h1>
+
+<input type="password" id="password" placeholder="Digite a senha">
+
+<button onclick="login()">Entrar</button>
+
+</div>
+
+<div id="adminPanel" style="display:none;">
+
+<h1>Controle de Ideias</h1>
+
+<div id="ideasList"></div>
+
+</div>
+
+</div>
+
+<script>
+
+const senha="Jesusocriador";
+
+let ideas = JSON.parse(localStorage.getItem("ideas")) || [];
+
+function login(){
+
+const pass=document.getElementById("password").value;
+
+if(pass===senha){
+
+document.getElementById("loginBox").style.display="none";
+
+document.getElementById("adminPanel").style.display="block";
+
+render();
+
+}else{
+
+alert("Senha incorreta");
+
+}
+
+}
+
+function save(){
+
+localStorage.setItem("ideas",JSON.stringify(ideas));
+
+}
+
+function render(){
+
+const list=document.getElementById("ideasList");
+
+list.innerHTML="";
+
+ideas.forEach((idea,index)=>{
+
+list.innerHTML+=`
+
+<div class="idea">
+
+<strong>${idea.text}</strong>
+
+<p>👤 ${idea.user}</p>
+
+<p>👍 ${idea.likes}</p>
+
+<div class="controls">
+
+<select onchange="changeStatus(${index},this.value)">
+
+<option ${idea.status=="Em análise"?"selected":""}>Em análise</option>
+
+<option ${idea.status=="Em desenvolvimento"?"selected":""}>Em desenvolvimento</option>
+
+<option ${idea.status=="Aprovado"?"selected":""}>Aprovado</option>
+
+</select>
+
+<button class="delete" onclick="deleteIdea(${index})">Excluir</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+function changeStatus(i,status){
+
+ideas[i].status=status;
+
+save();
+
+render();
+
+}
+
+function deleteIdea(i){
+
+ideas.splice(i,1);
+
+save();
+
+render();
+
+}
+
+</script>
+
+</body>
+
+</html>
