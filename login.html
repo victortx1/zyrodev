@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | ZyroDev</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0b1020, #09142f, #111827);
+      color: white;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 32px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #cbd5e1;
+      margin-bottom: 24px;
+    }
+
+    #btnGoogle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border: none;
+      border-radius: 999px;
+      background: white;
+      color: #111827;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    #btnGoogle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255,255,255,0.15);
+    }
+
+    .erro {
+      color: #f87171;
+      margin-top: 16px;
+      font-size: 14px;
+      min-height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Entrar</h1>
+    <p>Faça login com sua conta Google para acessar seu perfil.</p>
+
+    <button id="btnGoogle">
+      Continuar com o Google
+    </button>
+
+    <div class="erro" id="erroLogin"></div>
+  </div>
+
+  <script type="module" src="./login.js"></script>
+</body>
+</html>

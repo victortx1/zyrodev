@@ -2,1115 +2,1753 @@
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="./fotos/favicon.png.png">
-<title>Zyro Dev 💦</title>
-<link rel="icon" type="image/png" href="./fotos/favicon2.png" />
-<meta property="og:title" content="Zyro Dev 💦">
-<meta property="og:description" content="Site do Zyro Dev - Programador">
-<meta property="og:image" content="/preview.png">
-
-<title>ZyroDev - Evolua Como Desenvolvedor</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-html{
-scroll-behavior:smooth;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-font-family:'Inter',sans-serif;
-color:white;
-background:#020617;
-overflow-x:hidden;
-}
-
-/* NAVBAR */
-
-.navbar{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 40px;
-background:rgba(2,6,23,0.6);
-backdrop-filter:blur(10px);
-z-index:1000;
-}
-
-.logo{
-font-weight:700;
-font-size:22px;
-}
-
-.nav-links{
-display:flex;
-gap:30px;
-}
-
-.nav-links a{
-color:#cbd5e1;
-text-decoration:none;
-font-size:14px;
-transition:0.3s;
-}
-
-.nav-links a:hover{
-color:#60a5fa;
-}
-
-/* HERO */
-
-.hero{
-height:100vh;
-display:flex;
-align-items:center;
-padding:120px 8%;
-position:relative;
-background:radial-gradient(circle at top,#2563eb,#020617 60%);
-}
-
-.hero::before{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background-image:
-linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-background-size:40px 40px;
-top:0;
-left:0;
-}
-
-.hero-content{
-max-width:600px;
-z-index:2;
-}
-
-.hero h1{
-font-size:60px;
-font-weight:700;
-margin-bottom:20px;
-background:linear-gradient(90deg,#60a5fa,#a78bfa);
--webkit-background-clip:text;
-color:transparent;
-}
-
-.hero p{
-color:#cbd5e1;
-margin-bottom:40px;
-line-height:1.6;
-font-size:17px;
-}
-
-/* BOTÃO */
-
-.btn-slide{
-width:70px;
-height:70px;
-background:linear-gradient(90deg,#2563eb,#6d28d9);
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-text-decoration:none;
-transition:0.3s;
-}
-
-.btn-slide:hover{
-transform:scale(1.15);
-box-shadow:0 0 25px rgba(99,102,241,0.6);
-}
-
-/* DISCORD */
-
-.discord-btn{
-background:#111827;
-padding:10px 16px;
-border-radius:8px;
-text-decoration:none;
-color:white;
-font-size:13px;
-display:flex;
-align-items:center;
-gap:8px;
-transition:0.3s;
-}
-
-.discord-btn:hover{
-background:#2563eb;
-}
-
-/* PACMAN */
-
-.pacman-area{
-position:absolute;
-bottom:20px;
-right:40px;
-}
-
-.pacman{
-width:120px;
-animation:float 3s ease-in-out infinite;
-}
-
-@keyframes float{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-12px);}
-100%{transform:translateY(0px);}
-}
-
-/* STATS */
-
-.stats{
-display:flex;
-justify-content:center;
-gap:60px;
-padding:80px 20px;
-}
-
-.stat{
-text-align:center;
-}
-
-.stat h2{
-font-size:40px;
-color:#60a5fa;
-}
-
-.stat p{
-color:#94a3b8;
-}
-
-/* FRASES MOTIVACIONAIS */
-
-.motivacao-area{
-height:150px;
-position:relative;
-overflow:hidden;
-}
-
-.palavra{
-position:absolute;
-color:#60a5fa;
-font-weight:600;
-font-size:18px;
-opacity:0;
-animation:subir 2s linear forwards;
-}
-
-@keyframes subir{
-
-0%{
-opacity:0;
-transform:translateY(10px);
-}
-
-20%{
-opacity:1;
-}
-
-80%{
-opacity:1;
-}
-
-100%{
-opacity:0;
-transform:translateY(-20px);
-}
-
-}
-
-/* FEATURES */
-
-.features{
-padding:100px 8%;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:40px;
-}
-
-.feature-card{
-background:#0f172a;
-padding:30px;
-border-radius:12px;
-transition:0.3s;
-}
-
-.feature-card:hover{
-transform:translateY(-10px);
-background:#111827;
-}
-
-.feature-card h3{
-margin-bottom:10px;
-color:#60a5fa;
-}
-
-.feature-card p{
-color:#94a3b8;
-font-size:14px;
-}
-
-/* FOOTER */
-
-.footer{
-
-background:#020617;
-padding-top:60px;
-margin-top:120px;
-border-top:1px solid #0f172a;
-
-}
-
-.footer-top{
-
-height:3px;
-width:100%;
-background:linear-gradient(90deg,#2563eb,#6d28d9,#2563eb);
-background-size:200% 100%;
-animation:linha 6s linear infinite;
-
-}
-
-@keyframes linha{
-
-0%{background-position:0%}
-100%{background-position:200%}
-
-}
-
-.footer-container{
-
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-gap:50px;
-padding:60px 8%;
-
-}
-
-.footer-brand{
-
-max-width:350px;
-
-}
-
-.footer-brand h2{
-
-color:#60a5fa;
-margin-bottom:15px;
-
-}
-
-.footer-brand p{
-
-color:#94a3b8;
-font-size:14px;
-line-height:1.6;
-
-}
-
-.footer-social h3,
-.footer-links h3{
-
-margin-bottom:15px;
-color:#60a5fa;
-
-}
-
-.social-icons{
-
-display:flex;
-gap:15px;
-
-}
-
-.social-icons img{
-
-width:28px;
-transition:0.3s;
-
-}
-
-.social-icons img:hover{
-
-transform:scale(1.2);
-filter:drop-shadow(0 0 8px #60a5fa);
-
-}
-
-.footer-links{
-
-display:flex;
-flex-direction:column;
-gap:10px;
-
-}
-
-.footer-links a{
-
-text-decoration:none;
-color:#94a3b8;
-font-size:14px;
-transition:0.3s;
-
-}
-
-.footer-links a:hover{
-
-color:#60a5fa;
-transform:translateX(5px);
-
-}
-
-.footer-bottom{
-
-text-align:center;
-padding:25px;
-border-top:1px solid #0f172a;
-color:#64748b;
-font-size:13px;
-
-}
-
-.cookie-box{
-position:fixed;
-bottom:30px;
-left:50%;
-transform:translateX(-50%) translateY(120px);
-background:rgba(15,23,42,0.95);
-backdrop-filter:blur(12px);
-padding:20px 30px;
-border-radius:16px;
-display:flex;
-align-items:center;
-gap:20px;
-box-shadow:0 10px 40px rgba(0,0,0,0.5);
-border:1px solid rgba(255,255,255,0.08);
-z-index:9999;
-opacity:0;
-transition:0.6s;
-}
-
-.cookie-box.show{
-opacity:1;
-transform:translateX(-50%) translateY(0);
-}
-
-.cookie-text{
-font-size:14px;
-color:#cbd5f5;
-max-width:400px;
-}
-
-.cookie-btn{
-padding:10px 18px;
-border:none;
-border-radius:8px;
-background:linear-gradient(90deg,#2563eb,#9333ea);
-color:white;
-font-weight:500;
-cursor:pointer;
-transition:0.3s;
-}
-
-.cookie-btn:hover{
-transform:scale(1.05);
-box-shadow:
-0 0 10px #2563eb,
-0 0 20px #9333ea;
-}
-
-#updatePopup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.8);
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:9999;
-animation:fadeIn 0.5s;
-}
-
-.popup-box{
-background:#0f172a;
-padding:35px;
-max-width:520px;
-border-radius:18px;
-text-align:center;
-color:white;
-box-shadow:0 0 40px #2563eb66;
-animation:popup 0.6s ease;
-}
-
-.popup-box h2{
-font-size:26px;
-margin-bottom:10px;
-background:linear-gradient(90deg,#2563eb,#9333ea);
--webkit-background-clip:text;
-color:transparent;
-}
-
-.subtitle{
-margin-bottom:15px;
-opacity:.9;
-}
-
-.update-list{
-text-align:left;
-margin-top:15px;
-margin-bottom:20px;
-}
-
-.update-list ul{
-padding-left:20px;
-}
-
-.update-list li{
-margin-bottom:8px;
-font-size:14px;
-}
-
-.footerText{
-margin-top:10px;
-opacity:.9;
-}
-
-.popup-box button{
-margin-top:20px;
-padding:12px 25px;
-border:none;
-border-radius:20px;
-background:linear-gradient(90deg,#2563eb,#9333ea);
-color:white;
-font-size:14px;
-cursor:pointer;
-transition:0.3s;
-}
-
-.popup-box button:hover{
-transform:scale(1.05);
-box-shadow:0 0 15px #2563eb;
-}
-
-.closePopup{
-position:absolute;
-right:20px;
-top:15px;
-cursor:pointer;
-font-size:18px;
-opacity:.7;
-}
-
-.closePopup:hover{
-opacity:1;
-}
-
-@keyframes popup{
-from{
-transform:scale(0.8);
-opacity:0;
-}
-to{
-transform:scale(1);
-opacity:1;
-}
-}
-
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
-}
-
-.lucky{
-font-size:40px;
-font-weight:bold;
-margin:10px 0;
-color:#00e1ff;
-text-shadow:
-0 0 10px #00e1ff,
-0 0 20px #2563eb;
-animation:glow 2s infinite alternate;
-}
-
-@keyframes glow{
-from{transform:scale(1)}
-to{transform:scale(1.08)}
-}
-
-.closeBtn{
-margin-top:20px;
-padding:12px 30px;
-border:none;
-border-radius:10px;
-background:linear-gradient(90deg,#2563eb,#9333ea);
-color:white;
-font-size:15px;
-cursor:pointer;
-transition:0.3s;
-}
-
-.closeBtn:hover{
-transform:scale(1.1);
-box-shadow:
-0 0 10px #2563eb,
-0 0 20px #9333ea;
-} 
-
-/* =========================
-RESPONSIVIDADE CELULAR
-========================= */
-
-@media (max-width: 900px){
-
-.navbar{
-flex-direction:column;
-gap:15px;
-padding:20px;
-text-align:center;
-}
-
-.nav-links{
-flex-wrap:wrap;
-justify-content:center;
-gap:15px;
-}
-
-.hero{
-flex-direction:column;
-justify-content:center;
-text-align:center;
-padding:120px 20px;
-}
-
-.hero h1{
-font-size:38px;
-}
-
-.hero p{
-font-size:15px;
-}
-
-.pacman-area{
-position:relative;
-right:auto;
-bottom:auto;
-margin-top:40px;
-}
-
-.pacman{
-width:90px;
-}
-
-.stats{
-flex-direction:column;
-gap:30px;
-}
-
-.features{
-grid-template-columns:1fr;
-}
-
-.footer-container{
-flex-direction:column;
-text-align:center;
-align-items:center;
-}
-
-.footer-links{
-align-items:center;
-}
-
-.social-icons{
-justify-content:center;
-}
-
-.cookie-box{
-flex-direction:column;
-text-align:center;
-gap:10px;
-width:90%;
-}
-
-.welcomeBox{
-width:90%;
-padding:30px 20px;
-}
-
-}
-
-/* TELAS MUITO PEQUENAS */
-
-@media (max-width:500px){
-
-.hero h1{
-font-size:30px;
-}
-
-.logo{
-font-size:18px;
-}
-
-.discord-btn{
-font-size:12px;
-padding:8px 12px;
-}
-
-.stat h2{
-font-size:32px;
-}
-
-.stat p{
-font-size:13px;
-}
-
-}
-
-/* notificaçoes temporaria */ 
-#ideaHint{
-
-position:fixed;
-
-top:110px;
-right:500px;
-
-background:#e5e1d8;
-
-color:#000;
-
-padding:12px 20px;
-
-border-radius:12px;
-
-font-size:14px;
-
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-
-opacity:0;
-
-transform:translateY(-10px);
-
-transition:0.4s;
-
-z-index:999;
-
-}
-
-#ideaHint.show{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-/* SINO DE NOTIFICAÇÕES */
-
-.notification-wrapper{
-position:fixed;
-top:27px;
-right:170px;
-z-index:999;
-}
-
-.bell-button{
-font-size:20px;
-cursor:pointer;
-position:relative;
-color:white;
-}
-
-.notification-count{
-position:absolute;
-top:-6px;
-right:-8px;
-background:red;
-color:white;
-font-size:11px;
-padding:2px 6px;
-border-radius:50%;
-}
-
-.notification-box{
-position:absolute;
-top:35px;
-right:0;
-width:280px;
-background:#0f172a;
-border:1px solid #1e293b;
-border-radius:10px;
-padding:15px;
-display:none;
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
-}
-
-.notification-box h3{
-color:white;
-margin-bottom:10px;
-}
-
-.notification-item{
-background:#020617;
-padding:10px;
-border-radius:8px;
-margin-bottom:8px;
-font-size:13px;
-color:#cbd5e1;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./fotos/favicon.png.png">
+    <title>Zyro Dev 💦</title>
+    <link rel="icon" type="image/png" href="./fotos/favicon2.png" />
+    <meta property="og:title" content="Zyro Dev 💦">
+    <meta property="og:description" content="Site do Zyro Dev - Programador">
+    <meta property="og:image" content="/preview.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: white;
+            background: #020617;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(2, 6, 23, 0.6);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #60a5fa;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 8%;
+            position: relative;
+            background: radial-gradient(circle at top, #2563eb, #020617 60%);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            top: 0;
+            left: 0;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: #cbd5e1;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            font-size: 17px;
+        }
+
+        .btn-slide {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(90deg, #2563eb, #6d28d9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn-slide:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.6);
+        }
+
+        .discord-btn {
+            background: #111827;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .discord-btn:hover {
+            background: #2563eb;
+        }
+
+        .pacman-area {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+        }
+
+        .pacman {
+            width: 120px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 80px 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat h2 {
+            font-size: 40px;
+            color: #60a5fa;
+        }
+
+        .stat p {
+            color: #94a3b8;
+        }
+
+        .motivacao-area {
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .palavra {
+            position: absolute;
+            color: #60a5fa;
+            font-weight: 600;
+            font-size: 18px;
+            opacity: 0;
+            animation: subir 2s linear forwards;
+        }
+
+        @keyframes subir {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        .features {
+            padding: 100px 8%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: #0f172a;
+            padding: 30px;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: #111827;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            color: #60a5fa;
+        }
+
+        .feature-card p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .footer {
+            background: #020617;
+            padding-top: 60px;
+            margin-top: 120px;
+            border-top: 1px solid #0f172a;
+        }
+
+        .footer-top {
+            height: 3px;
+            width: 100%;
+            background: linear-gradient(90deg, #2563eb, #6d28d9, #2563eb);
+            background-size: 200% 100%;
+            animation: linha 6s linear infinite;
+        }
+
+        @keyframes linha {
+            0% {
+                background-position: 0%
+            }
+
+            100% {
+                background-position: 200%
+            }
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 50px;
+            padding: 60px 8%;
+        }
+
+        .footer-brand {
+            max-width: 350px;
+        }
+
+        .footer-brand h2 {
+            color: #60a5fa;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-social h3,
+        .footer-links h3 {
+            margin-bottom: 15px;
+            color: #60a5fa;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons img {
+            width: 28px;
+            transition: 0.3s;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 8px #60a5fa);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #60a5fa;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid #0f172a;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .cookie-box {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 20px 30px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 9999;
+            opacity: 0;
+            transition: 0.6s;
+        }
+
+        .cookie-box.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .cookie-text {
+            font-size: 14px;
+            color: #cbd5f5;
+            max-width: 400px;
+        }
+
+        .cookie-btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #2563eb, #9333ea);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cookie-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #2563eb, 0 0 20px #9333ea;
+        }
+
+        #ideaHint {
+            position: fixed;
+            top: 110px;
+            right: 500px;
+            background: #e5e1d8;
+            color: #000;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: 0.4s;
+            z-index: 999;
+        }
+
+        #ideaHint.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .notification-wrapper {
+            position: fixed;
+            top: 27px;
+            right: 170px;
+            z-index: 999;
+        }
+
+        .bell-button {
+            font-size: 20px;
+            cursor: pointer;
+            position: relative;
+            color: white;
+        }
+
+        .notification-count {
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            background: red;
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        .notification-box {
+            position: absolute;
+            top: 35px;
+            right: 0;
+            width: 280px;
+            max-height: 420px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 15px;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .notification-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .notification-box::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .notification-box::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+
+        .notification-box::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        .notification-box h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .notification-item {
+            background: #020617;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 12px;
+            transition: 0.2s;
+            min-width: 0;
+            max-width: 220px;
+        }
+
+        .user-profile:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        #headerFoto {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: none;
+        }
+
+        #headerNome {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 120px;
+            display: inline-block;
+        }
+
+        .google-popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 99999;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.35s ease;
+        }
+
+        .google-popup-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .google-popup-box {
+            width: 100%;
+            max-width: 480px;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.98));
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 24px;
+            padding: 32px 24px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+            position: relative;
+            transform: scale(0.92) translateY(20px);
+            transition: 0.35s ease;
+        }
+
+        .google-popup-overlay.show .google-popup-box {
+            transform: scale(1) translateY(0);
+        }
+
+        .google-popup-close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            background: transparent;
+            border: none;
+            color: #cbd5e1;
+            font-size: 26px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .google-popup-close:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .google-popup-badge {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.16);
+            color: #93c5fd;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border: 1px solid rgba(96, 165, 250, 0.25);
+        }
+
+        .google-popup-box h2 {
+            font-size: 32px;
+            margin-bottom: 14px;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .google-popup-box p {
+            color: #cbd5e1;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .google-popup-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .google-popup-btn {
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            padding: 13px 20px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.25s;
+        }
+
+        .google-popup-btn-main {
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            color: white;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+        }
+
+        .google-popup-btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(99, 102, 241, 0.38);
+        }
+
+        .google-popup-btn-secondary {
+            background: rgba(255, 255, 255, 0.07);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        .google-popup-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        #preloader {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #050816, #0b1026, #111936);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            overflow: hidden;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #preloader.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-bg {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 200, 0.15), transparent 25%),
+                radial-gradient(circle at 80% 30%, rgba(100, 150, 255, 0.18), transparent 30%),
+                radial-gradient(circle at 50% 80%, rgba(255, 0, 150, 0.12), transparent 25%);
+            animation: bgMove 12s linear infinite;
+            filter: blur(20px);
+        }
+
+        @keyframes bgMove {
+            0% {
+                transform: translate(-10%, -10%) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(5%, 5%) rotate(180deg);
+            }
+
+            100% {
+                transform: translate(-10%, -10%) rotate(360deg);
+            }
+        }
+
+        .loader-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 30px;
+            width: 90%;
+            max-width: 420px;
+            animation: fadeUp 1s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-loader {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            animation: spin 3s linear infinite;
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.25);
+        }
+
+        .ring1 {
+            width: 130px;
+            height: 130px;
+            border-top: 3px solid #00ffd5;
+            border-left: 3px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .ring2 {
+            width: 95px;
+            height: 95px;
+            border-right: 3px solid #6ea8ff;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.35);
+            animation-direction: reverse;
+            animation-duration: 2.4s;
+        }
+
+        .ring3 {
+            width: 60px;
+            height: 60px;
+            border-top: 3px solid #ff4fd8;
+            border-right: 3px solid rgba(255, 255, 255, 0.35);
+            animation-duration: 1.8s;
+        }
+
+        .logo-center {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ffd5, #6ea8ff, #ff4fd8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 26px;
+            font-weight: 800;
+            box-shadow: 0 0 30px rgba(110, 168, 255, 0.4);
+            animation: pulseGlow 1.8s infinite ease-in-out;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 25px rgba(110, 168, 255, 0.35);
+            }
+
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 0 40px rgba(0, 255, 213, 0.55);
+            }
+        }
+
+        .loader-title {
+            color: #ffffff;
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            animation: textGlow 2s ease-in-out infinite;
+        }
+
+        .loader-subtitle {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        @keyframes textGlow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.08);
+            }
+
+            50% {
+                text-shadow: 0 0 18px rgba(0, 255, 213, 0.35);
+            }
+        }
+
+        .progress-wrapper {
+            width: 100%;
+            height: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 10px;
+            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.08);
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #00ffd5, #6ea8ff, #ff4fd8);
+            box-shadow: 0 0 18px rgba(0, 255, 213, 0.45);
+            transition: width 0.15s linear;
+            position: relative;
+        }
+
+        .progress-bar::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -20px;
+            width: 40px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            filter: blur(8px);
+        }
+
+        .progress-text {
+            margin-top: 15px;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.navbar {
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    white-space: nowrap;
+}
+
+.nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hero {
+    min-height: 100vh;
+}
+
+.hero-content {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    word-break: break-word;
+}
+
+.hero p {
+    max-width: 700px;
+}
+
+.features {
+    width: 100%;
+}
+
+.feature-card {
+    min-width: 0;
+}
+
+.stats {
+    flex-wrap: wrap;
+}
+
+.footer-container {
+    width: 100%;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.close-notifications {
+    cursor: pointer;
+    font-size: 18px;
+    color: #94a3b8;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+.close-notifications:hover {
+    color: white;
+}
+
+@media (max-width: 1100px) {
+    .navbar {
+        padding: 18px 24px;
+    }
+
+    .nav-links {
+        gap: 18px;
+    }
+
+    .hero {
+        padding: 130px 5% 80px;
+    }
+
+    .hero h1 {
+        font-size: 52px;
+    }
+
+    .notification-wrapper {
+        top: 24px;
+        right: 145px;
+    }
+
+    #ideaHint {
+        top: 105px;
+        right: 20px;
+    }
+
+    .pacman-area {
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .pacman {
+        width: 100px;
+    }
+
+    .stats {
+        gap: 30px;
+    }
+
+    .footer-container {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 18px 16px;
+        gap: 14px;
+        text-align: center;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .notification-wrapper {
+        position: relative;
+        top: auto;
+        right: auto;
+        order: 4;
+    }
+
+    .notification-box {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: min(320px, calc(100vw - 24px));
+        max-height: 60vh;
+    }
+
+    #ideaHint {
+        top: auto;
+        left: 50%;
+        right: auto;
+        bottom: 20px;
+        transform: translateX(-50%) translateY(10px);
+        width: min(320px, calc(100vw - 24px));
+        text-align: center;
+    }
+
+    #ideaHint.show {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .user-profile {
+        order: 3;
+        justify-content: center;
+        max-width: 100%;
+    }
+
+    #headerNome {
+        max-width: 160px;
+    }
+
+    .discord-btn {
+        order: 5;
+    }
+
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 220px 20px 80px;
+        min-height: auto;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+        line-height: 1.1;
+    }
+
+    .hero p {
+        font-size: 15px;
+        margin-bottom: 28px;
+    }
+
+    .btn-slide {
+        width: 64px;
+        height: 64px;
+    }
+
+    .pacman-area {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin-top: 40px;
+    }
+
+    .pacman {
+        width: 90px;
+    }
+
+    .stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 60px 20px;
+    }
+
+    .stat h2 {
+        font-size: 34px;
+    }
+
+    .motivacao-area {
+        height: 120px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        padding: 70px 20px;
+        gap: 20px;
+    }
+
+    .footer {
+        margin-top: 80px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding: 40px 20px;
+    }
+
+    .footer-brand {
+        max-width: 100%;
+    }
+
+    .footer-links {
+        align-items: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .cookie-box {
+        width: calc(100vw - 24px);
+        max-width: 500px;
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+        padding: 18px;
+        bottom: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 16px 12px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .nav-links {
+        gap: 10px 14px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .user-profile {
+        padding: 6px 10px;
+        gap: 8px;
+    }
+
+    #headerFoto {
+        width: 32px;
+        height: 32px;
+    }
+
+    #headerNome {
+        max-width: 120px;
+        font-size: 14px;
+    }
+
+    .discord-btn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .bell-button {
+        font-size: 22px;
+    }
+
+    .notification-box {
+        width: calc(100vw - 20px);
+        max-height: 58vh;
+        padding: 12px;
+    }
+
+    .notification-item {
+        font-size: 12px;
+        padding: 9px;
+    }
+
+    .hero {
+        padding: 230px 16px 60px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .btn-slide {
+        width: 58px;
+        height: 58px;
+    }
+
+    .pacman {
+        width: 76px;
+    }
+
+    .stat h2 {
+        font-size: 30px;
+    }
+
+    .stat p {
+        font-size: 13px;
+    }
+
+    .palavra {
+        font-size: 15px;
+    }
+
+    .feature-card {
+        padding: 22px;
+    }
+
+    .feature-card h3 {
+        font-size: 17px;
+    }
+
+    .feature-card p {
+        font-size: 13px;
+    }
+
+    .footer-brand p,
+    .footer-links a,
+    .footer-bottom {
+        font-size: 13px;
+    }
+
+    .cookie-text {
+        font-size: 13px;
+    }
+
+    .cookie-btn {
+        width: 100%;
+    }
+
+    #ideaHint {
+        width: calc(100vw - 20px);
+        bottom: 14px;
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    .google-popup-box {
+        padding: 28px 18px;
+        border-radius: 20px;
+    }
+
+    .google-popup-box h2 {
+        font-size: 25px;
+    }
+
+    .google-popup-box p {
+        font-size: 14px;
+    }
+
+    .google-popup-buttons {
+        flex-direction: column;
+    }
+
+    .google-popup-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero {
+        padding: 240px 14px 50px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 13px;
+    }
+
+    .btn-slide {
+        width: 54px;
+        height: 54px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    #headerNome {
+        max-width: 90px;
+    }
+
+    .notification-box {
+        width: calc(100vw - 16px);
+    }
+
+    .feature-card {
+        padding: 18px;
+    }
+
+    .footer-container {
+        padding: 32px 16px;
+    }
+}
+    </style>
 </head>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E6W5V869QD"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-E6W5V869QD');
-</script>
-
 <body>
+    <div id="preloader">
+        <div class="loader-bg"></div>
 
-<!-- NAVBAR -->
+        <div class="loader-content">
+            <div class="logo-loader">
+                <div class="logo-ring ring1"></div>
+                <div class="logo-ring ring2"></div>
+                <div class="logo-ring ring3"></div>
+                <div class="logo-center">Z</div>
+            </div>
 
-<div class="navbar">
+            <h1 class="loader-title">Carregando Zyrodev 💦...</h1>
+            <p class="loader-subtitle">Aguarde um instante ✨</p>
 
-<div class="logo">ZyroDev 💦</div>
+            <div class="progress-wrapper">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
 
-<div class="nav-links">
-<a href="#hero-content">Inicio</a>
-<a href="#stat">Info</a>
-<a href="creditos.html">Creditos</a>
-<a href="#rodape">Sobre</a>
-<a href="ideias.html">Ideias</a>
-</div>
+            <div class="progress-text" id="progressText">0%</div>
+        </div>
+    </div>
 
-<div class="notification-wrapper">
+    <div id="googlePopup" class="google-popup-overlay">
+        <div class="google-popup-box">
+            <button class="google-popup-close" id="fecharGooglePopup">×</button>
 
-<div class="bell-button" onclick="toggleNotifications()">
-🔔
-<span class="notification-count">4</span>
-</div>
+            <div class="google-popup-badge">🚀 Novidade</div>
 
-<div class="notification-box" id="notificationBox">
+            <h2>Crie sua conta Google</h2>
 
-<h3>Notificações Test</h3>
+            <p>
+                Entre com sua conta para acessar seu perfil, salvar suas informações
+                e aproveitar melhor a experiência na <b>ZyroDev</b>.
+            </p>
 
-<div class="notification-item">
-<b>🚀 Atualização</b><br>
-Nova ideia para voce nos
-<br>falar oque quer no na zyrodev💦.
-</div>
+            <div class="google-popup-buttons">
+                <a href="login.html" class="google-popup-btn google-popup-btn-main">
+                    Entrar com Google
+                </a>
 
-<div class="notification-item">
-<b>⚙️ Correção</b><br>
-Corrigimos o erro de
-rolagem na aba cursos.
-</div>
+                <button id="agoraNaoGooglePopup" class="google-popup-btn google-popup-btn-secondary">
+                    Agora não
+                </button>
+            </div>
+        </div>
+    </div>
 
-<div class="notification-item">
-<b>🔥 Novidade</b><br>
-Logo vai ter videos novos.
-</div>
+    <div class="navbar">
+        <div class="logo">ZyroDev 💦</div>
 
-<div class="notification-item">
-<b>❤ Agradecimento</b><br>
-3 mil acessos em 24h
-no pre lançamento.
-</div>
+        <div class="nav-links">
+            <a href="#hero-content">Inicio</a>
+            <a href="#stat">Info</a>
+            <a href="creditos.html">Creditos</a>
+            <a href="#rodape">Sobre</a>
+        </div>
 
-</div>
+        <div class="notification-wrapper">
+            <div class="bell-button" onclick="toggleNotifications()">
+                🔔
+                <span class="notification-count">4</span>
+            </div>
 
-</div>
+            <div class="notification-box" id="notificationBox">
 
-<script>
+    <div class="notification-header">
+        <h3>Notificações</h3>
+        <span class="close-notifications" onclick="fecharNotifications()">✕</span>
+    </div>
 
-function toggleNotifications(){
+                <div class="notification-item">
+                    <b>🚀 Atualização</b><br>
+                    Colocamos agora para você poder conectar sua conta Google e salvar seu progresso.
+                </div>
 
-const box = document.getElementById("notificationBox");
+                <div class="notification-item">
+                    <b>⚙️ Correção</b><br>
+                    Corrigimos todos os bugs que tinha no site; agora está mais fluido e rápido.
+                </div>
 
-if(box.style.display === "block"){
-box.style.display = "none";
-}else{
-box.style.display = "block";
+                <div class="notification-item">
+                    <b>🔥 Novidade</b><br>
+                    Incorpore no seu perfil apenas as pessoas que acessarem nos próximos 15 dias e fizerem login com sua
+                    conta Google.
+                </div>
+
+                <div class="notification-item">
+                    <b>❤ Agradecimento</b><br>
+                    Aos 10 mil acessos na primeira semana de lançamento.
+                </div>
+
+                <div class="notification-item">
+                    <b>❌ Remoção</b><br>
+                    Removemos a funcionalidade de comentários.
+                </div>
+
+                <div class="notification-item">
+                    <b>☕ Novo curso</b><br>
+                    Lançamos nosso novo curso de Java.
+                </div>
+
+                <div class="notification-item">
+                    <b>💦 Perfil 100% editável</b><br>
+                    Você pode personalizar completamente seu perfil.
+                </div>
+            </div>
+        </div>
+
+        <a href="login.html" class="user-profile" id="perfilLink">
+            <img src="" id="headerFoto" alt="Foto do perfil">
+            <span id="headerNome">Entrar</span>
+        </a>
+
+        <a href="https://discord.gg/AJkeUcN47e" target="_blank" class="discord-btn">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" width="18" alt="Discord">
+            Discord
+        </a>
+    </div>
+
+    <div id="ideaHint">
+        Clique em "Ideias" 👆
+        <br>e me fale sua ideia 💡
+    </div>
+
+    <div class="cookie-box" id="cookieBox">
+        <div class="cookie-text">
+            🍪 Este site utiliza cookies para melhorar sua experiência no <b>ZyroDev</b>.
+        </div>
+
+        <button class="cookie-btn" onclick="acceptCookies()">
+            Aceitar
+        </button>
+    </div>
+
+    <section id="hero-content" class="hero">
+        <div class="hero-content">
+            <h1>Desbloqueie Seu<br>Próximo Nível<br>Como Dev</h1>
+
+            <p>
+                A ZyroDev reúne os melhores conteúdos gratuitos da internet
+                para acelerar sua evolução na programação.
+                <br><br>
+                Aperte na gota e avance.
+            </p>
+
+            <a href="cursos.html" class="btn-slide">💦</a>
+        </div>
+
+        <div class="pacman-area">
+            <img src="/fotos/download__22_-removebg-preview.png" class="pacman" alt="Mascote">
+        </div>
+    </section>
+
+    <section id="stat" class="stats">
+        <div class="stat">
+            <h2>+150</h2>
+            <p>Vídeos de Programação<br>com atualizações constantes</p>
+        </div>
+
+        <div class="stat">
+            <h2>+20</h2>
+            <p>Tecnologias</p>
+        </div>
+
+        <div class="stat">
+            <h2>100%</h2>
+            <p>Conteúdo Gratuito</p>
+        </div>
+    </section>
+
+    <section class="motivacao-area">
+        <div id="palavras"></div>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <h3>📚 Conteúdo Organizado</h3>
+            <p>Cursos organizados para facilitar sua evolução na programação.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🚀 Evolução Rápida</h3>
+            <p>Aprenda com os melhores conteúdos gratuitos da internet.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>💬 Comunidade</h3>
+            <p>Entre no Discord da ZyroDev e evolua junto com outros devs.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-top"></div>
+
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h2>ZyroDev 💦</h2>
+                <p>
+                    Aprenda programação gratuitamente e evolua junto com a comunidade.
+                    A ZyroDev reúne os melhores conteúdos da internet para transformar iniciantes em desenvolvedores.
+                </p>
+            </div>
+
+            <div id="rodape" class="footer-social">
+                <h3>Redes Sociais</h3>
+
+                <div class="social-icons">
+                    <a href="https://youtube.com/@delarotaldev?si=yPCHouUNscxSGSlk" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+                    </a>
+                    <a href="https://www.instagram.com/delarotaldev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                        target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram">
+                    </a>
+                    <a href="https://discord.gg/AJkeUcN47e" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord">
+                    </a>
+                    <a href="https://github.com/victortx1" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="GitHub">
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h3>Links</h3>
+                <a href="#hero-content">Inicio</a>
+                <a href="#stat">Informações</a>
+                <a href="creditos.html">Creditos</a>
+                <a href="https://bio.site/Delarotaldev">Info DELAR</a>
+                <a href="admin.html">Admin</a>
+                <a href="/admin.html" id="adminLink" style="display:none;">Painel Admin</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 ZyroDev💦 • Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        import { auth, db } from "./firebase.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const adminLink = document.getElementById("adminLink");
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) return;
+
+            const userRef = doc(db, "usuarios", user.uid);
+            const userSnap = await getDoc(userRef);
+
+            if (userSnap.exists() && userSnap.data().admin === true) {
+                adminLink.style.display = "inline-block";
+            }
+        });
+    </script>
+
+    <script>
+        function toggleNotifications() {
+            const box = document.getElementById("notificationBox");
+            box.style.display = box.style.display === "block" ? "none" : "block";
+        }
+    </script>
+
+    <script>
+        const hint = document.getElementById("ideaHint");
+
+        function showHint() {
+            hint.classList.add("show");
+
+            setTimeout(() => {
+                hint.classList.remove("show");
+            }, 5000);
+        }
+
+        setInterval(showHint, 20000);
+        showHint();
+    </script>
+
+    <script>
+        const cookieBox = document.getElementById("cookieBox");
+
+        if (!localStorage.getItem("zyro_cookie")) {
+            setTimeout(() => {
+                cookieBox.classList.add("show");
+            }, 1500);
+        }
+
+        function acceptCookies() {
+            localStorage.setItem("zyro_cookie", "true");
+            cookieBox.style.transform = "translateX(-50%) translateY(120px)";
+            cookieBox.style.opacity = "0";
+        }
+    </script>
+
+    <script>
+        const frases = [
+            "Nunca pare de aprender 🚀",
+            "Todo dev já foi iniciante 💻",
+            "Erros também ensinam 🧠",
+            "Pratique todos os dias 🔥",
+            "Seu futuro depende do hoje ⚡",
+            "Persistência cria mestres 🏆",
+            "Código muda vidas 🌍",
+            "Programar é resolver problemas 🧩",
+            "Grandes devs começaram do zero 👨‍💻",
+            "Construa. Erre. Aprenda. Repita 🔁",
+            "💥 Quebra código de dia, arruma de madrugada",
+            "☕ Movido a café"
+        ];
+
+        function criarPalavra() {
+            const container = document.getElementById("palavras");
+            const palavra = document.createElement("div");
+
+            palavra.classList.add("palavra");
+            palavra.innerText = frases[Math.floor(Math.random() * frases.length)];
+            palavra.style.left = Math.random() * 90 + "%";
+            palavra.style.top = Math.random() * 80 + "%";
+
+            container.appendChild(palavra);
+
+            setTimeout(() => {
+                palavra.remove();
+            }, 2000);
+        }
+
+        setInterval(criarPalavra, 1000);
+    </script>
+
+    <script type="module">
+        import { auth } from "./firebase.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { buscarDadosUsuario } from "./temporada-service.js";
+
+        const headerNome = document.getElementById("headerNome");
+        const headerFoto = document.getElementById("headerFoto");
+        const perfilLink = document.getElementById("perfilLink");
+        const popup = document.getElementById("googlePopup");
+        const fecharBtn = document.getElementById("fecharGooglePopup");
+        const agoraNaoBtn = document.getElementById("agoraNaoGooglePopup");
+
+        function fecharPopup() {
+            popup?.classList.remove("show");
+        }
+
+        fecharBtn?.addEventListener("click", fecharPopup);
+        agoraNaoBtn?.addEventListener("click", fecharPopup);
+
+        popup?.addEventListener("click", function (e) {
+            if (e.target === popup) fecharPopup();
+        });
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                try {
+                    const dados = await buscarDadosUsuario(user.uid);
+
+                    if (headerNome) {
+                        headerNome.textContent = dados?.nome || user.displayName || user.email || "Perfil";
+                    }
+
+                    if (headerFoto) {
+                        const foto = dados?.foto || user.photoURL || "";
+
+                        if (foto) {
+                            headerFoto.src = foto;
+                            headerFoto.style.display = "block";
+                        } else {
+                            headerFoto.style.display = "none";
+                        }
+                    }
+
+                    if (perfilLink) perfilLink.href = "perfil.html";
+                    fecharPopup();
+                } catch (error) {
+                    console.error("Erro ao carregar usuário no header:", error);
+
+                    if (headerNome) headerNome.textContent = user.displayName || user.email || "Perfil";
+
+                    if (headerFoto && user.photoURL) {
+                        headerFoto.src = user.photoURL;
+                        headerFoto.style.display = "block";
+                    }
+
+                    if (perfilLink) perfilLink.href = "perfil.html";
+                    fecharPopup();
+                }
+            } else {
+                if (headerNome) headerNome.textContent = "Entrar";
+                if (headerFoto) headerFoto.style.display = "none";
+                if (perfilLink) perfilLink.href = "login.html";
+                popup?.classList.add("show");
+            }
+        });
+    </script>
+
+    <script>
+        window.addEventListener("load", () => {
+            const preloader = document.getElementById("preloader");
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+
+            const jaViuLoader = sessionStorage.getItem("loaderJaMostrado");
+
+            if (jaViuLoader) {
+                preloader.style.display = "none";
+                return;
+            }
+
+            let progress = 0;
+
+            const interval = setInterval(() => {
+                progress++;
+                progressBar.style.width = progress + "%";
+                progressText.textContent = progress + "%";
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+
+                    setTimeout(() => {
+                        preloader.classList.add("hide");
+                        sessionStorage.setItem("loaderJaMostrado", "true");
+                    }, 500);
+                }
+            }, 18);
+        });
+    </script>
+
+<script>function fecharNotifications(){
+    const box = document.getElementById("notificationBox");
+    box.style.display = "none";
 }
-
-}
-
 </script>
-
-<!-- notificação temporaria-->
-<div id="ideaHint">
-Clique em "Ideias" 👆
-<br>e me fale sua ideia 💡
-</div>
-
-<script>
-
-const hint = document.getElementById("ideaHint");
-
-function showHint(){
-
-hint.classList.add("show");
-
-setTimeout(()=>{
-
-hint.classList.remove("show");
-
-},5000);
-
-}
-
-setInterval(showHint,20000);
-
-showHint();
-
-
-
-</script>
-
-<a href="https://discord.gg/AJkeUcN47e" target="_blank" class="discord-btn">
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" width="18">
-Discord
-</a>
-
-</div>
-
-
-<div class="cookie-box" id="cookieBox">
-
-<div class="cookie-text">
-🍪 Este site utiliza cookies para melhorar sua experiência no <b>ZyroDev</b>.
-</div>
-
-<button class="cookie-btn" onclick="acceptCookies()">
-Aceitar
-</button>
-
-</div>
-
-
-<script>
-
-const cookieBox = document.getElementById("cookieBox");
-
-if(!localStorage.getItem("zyro_cookie")){
-setTimeout(()=>{
-cookieBox.classList.add("show")
-},1500)
-}
-
-function acceptCookies(){
-
-localStorage.setItem("zyro_cookie","true");
-
-cookieBox.style.transform="translateX(-50%) translateY(120px)";
-cookieBox.style.opacity="0";
-
-}
-
-</script>
-
-<!-- HERO -->
-
-<section id="hero-content" class="hero">
-
-<div class="hero-content">
-
-<h1>Desbloqueie Seu<br>Próximo Nível<br>Como Dev</h1>
-
-<p>
-A ZyroDev reúne os melhores conteúdos gratuitos da internet
-para acelerar sua evolução na programação.
-<br><br>
-Aperte na gota e avance.
-</p>
-
-<a href="cursos.html" class="btn-slide">💦</a>
-
-</div>
-
-<div class="pacman-area">
-<img src="/fotos/download__22_-removebg-preview.png" class="pacman">
-</div>
-
-</section>
-
-<!-- STATS -->
-
-<section id="stat" class="stats">
-
-<div class="stat">
-<h2>+150</h2>
-<p>Vídeos de Programação<br>com atualizações constantes</p>
-</div>
-
-<div class="stat">
-<h2>+20</h2>
-<p>Tecnologias</p>
-</div>
-
-<div class="stat">
-<h2>100%</h2>
-<p>Conteúdo Gratuito</p>
-</div>
-
-</section>
-
-<!-- FRASES -->
-
-<section class="motivacao-area">
-<div id="palavras"></div>
-</section>
-
-<!-- FEATURES -->
-
-<section class="features">
-
-<div class="feature-card">
-<h3>📚 Conteúdo Organizado</h3>
-<p>Cursos organizados para facilitar sua evolução na programação.</p>
-</div>
-
-<div class="feature-card">
-<h3>🚀 Evolução Rápida</h3>
-<p>Aprenda com os melhores conteúdos gratuitos da internet.</p>
-</div>
-
-<div class="feature-card">
-<h3>💬 Comunidade</h3>
-<p>Entre no Discord da ZyroDev e evolua junto com outros devs.</p>
-</div>
-
-</section>
-
-<script>
-
-const frases = [
-
-"Nunca pare de aprender 🚀",
-"Todo dev já foi iniciante 💻",
-"Erros também ensinam 🧠",
-"Pratique todos os dias 🔥",
-"Seu futuro depende do hoje ⚡",
-"Persistência cria mestres 🏆",
-"Código muda vidas 🌍",
-"Programar é resolver problemas 🧩",
-"Grandes devs começaram do zero 👨‍💻",
-"Construa. Erre. Aprenda. Repita 🔁"
-
-]
-
-function criarPalavra(){
-
-const container = document.getElementById("palavras")
-
-const palavra = document.createElement("div")
-
-palavra.classList.add("palavra")
-
-palavra.innerText = frases[Math.floor(Math.random()*frases.length)]
-
-palavra.style.left = Math.random()*90+"%"
-palavra.style.top = Math.random()*80+"%"
-
-container.appendChild(palavra)
-
-setTimeout(()=>{
-palavra.remove()
-},4000)
-
-}
-
-setInterval(criarPalavra,1000)
-
-</script>
-
-<footer class="footer">
-
-<div class="footer-top"></div>
-
-<div class="footer-container">
-
-<div class="footer-brand">
-
-<h2>ZyroDev 💦</h2>
-
-<p>
-Aprenda programação gratuitamente e evolua junto com a comunidade.
-A ZyroDev reúne os melhores conteúdos da internet para transformar iniciantes em desenvolvedores.
-</p>
-
-</div>
-
-
-<div id="rodape" class="footer-social">
-
-<h3>Redes Sociais</h3>
-
-<div class="social-icons">
-
-<a href="https://youtube.com/@delarotaldev?si=yPCHouUNscxSGSlk" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
-</a>
-<a href="https://www.instagram.com/delarotaldev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png">
-</a>
-<a href="https://discord.gg/AJkeUcN47e" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
-</a>
-<a href="https://github.com/victortx1" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/174/174857.png">
-</a>
-
-</div>
-
-</div>
-
-
-<div class="footer-links">
-
-<h3>Links</h3>
-
-<a href="#hero-content">Inicio</a>
-<a href="#stat">Informações</a>
-<a href="creditos.html">Creditos</a>
-<a href="https://bio.site/Delarotaldev">Info DELAR</a>
-<a href="admin.html">Creditos</a>
-
-</div>
-
-</div>
-
-
-<div class="footer-bottom">
-
-<p>
-© 2026 ZyroDev💦 • Todos os direitos reservados.
-</p>
-
-</div>
-
-</footer>
-
-
 
 </body>
+
 </html>

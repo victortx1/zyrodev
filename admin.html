@@ -1,213 +1,284 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Admin | ZyroDev</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.25), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.25), transparent 30%),
+        linear-gradient(135deg, #020617, #0f172a);
+      color: white;
+      padding: 30px;
+    }
 
-<title>Painel Admin | ZyroDev</title>
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    .topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
 
-<style>
+    .topo h1 {
+      font-size: 2rem;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
+    .btn {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border: none;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
 
-body{
-background:#020617;
-color:white;
-padding:40px;
-display:flex;
-justify-content:center;
-}
+    .btn:hover {
+      transform: scale(1.03);
+      opacity: 0.95;
+    }
 
-.container{
-max-width:900px;
-width:100%;
-}
+    .painel-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
 
-h1{
-margin-bottom:20px;
-}
+    .card-info {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      padding: 18px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
 
-.login{
-text-align:center;
-}
+    .card-info h3 {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+    }
 
-input{
-padding:12px;
-border:none;
-border-radius:8px;
-background:#0f172a;
-color:white;
-margin:10px 0;
-width:100%;
-}
+    .card-info p {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
 
-button{
-padding:10px;
-border:none;
-border-radius:8px;
-background:#6366f1;
-color:white;
-cursor:pointer;
-}
+    .barra {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
 
-.idea{
-background:#0f172a;
-padding:15px;
-border-radius:10px;
-margin-bottom:10px;
-}
+    .barra input {
+      flex: 1;
+      min-width: 260px;
+      padding: 12px 14px;
+      border: none;
+      outline: none;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+    }
 
-.controls{
-margin-top:10px;
-display:flex;
-gap:10px;
-}
+    .usuarios-grid {
+      display: grid;
+      gap: 15px;
+    }
 
-select{
-background:#1e293b;
-border:none;
-color:white;
-padding:5px;
-border-radius:5px;
-}
+    .usuario-card {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      align-items: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 18px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.20);
+    }
 
-.delete{
-background:#dc2626;
-}
+    .usuario-card img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.12);
+    }
 
-</style>
+    .usuario-topo {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
 
+    .usuario-topo h2 {
+      font-size: 1.1rem;
+    }
+
+    .usuario-topo span {
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+
+    .usuario-dados {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 12px;
+      color: #e2e8f0;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      background: rgba(59,130,246,0.18);
+      border: 1px solid rgba(59,130,246,0.35);
+      color: #bfdbfe;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+    }
+
+    .acoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+
+    .btn-warning {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .btn-green {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .status {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .status-admin {
+      background: rgba(16,185,129,0.18);
+      color: #6ee7b7;
+      border: 1px solid rgba(16,185,129,0.35);
+    }
+
+    .status-banido {
+      background: rgba(239,68,68,0.18);
+      color: #fca5a5;
+      border: 1px solid rgba(239,68,68,0.35);
+    }
+
+    .mensagem {
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      display: none;
+    }
+
+    .mensagem.show {
+      display: block;
+    }
+
+    .erro {
+      background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.35);
+      color: #fecaca;
+    }
+
+    .ok {
+      background: rgba(16,185,129,0.15);
+      border: 1px solid rgba(16,185,129,0.35);
+      color: #bbf7d0;
+    }
+
+    @media (max-width: 700px) {
+      .usuario-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .usuario-card img {
+        margin: 0 auto;
+      }
+
+      .acoes, .badges {
+        justify-content: center;
+      }
+
+      .usuario-topo {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="container">
+    <div class="topo">
+      <h1>Painel Administrativo</h1>
+      <a href="/index.html"><button class="btn">Voltar ao site</button></a>
+    </div>
 
-<div class="container">
+    <div id="mensagem" class="mensagem"></div>
 
-<div id="loginBox" class="login">
+    <div class="painel-info">
+      <div class="card-info">
+        <h3>Total de usuários</h3>
+        <p id="totalUsuarios">0</p>
+      </div>
+      <div class="card-info">
+        <h3>Admins</h3>
+        <p id="totalAdmins">0</p>
+      </div>
+      <div class="card-info">
+        <h3>Banidos</h3>
+        <p id="totalBanidos">0</p>
+      </div>
+    </div>
 
-<h1>Painel Admin</h1>
+    <div class="barra">
+      <input type="text" id="busca" placeholder="Buscar por nome ou email..." />
+      <button class="btn" id="btnAtualizar">Atualizar</button>
+    </div>
 
-<input type="password" id="password" placeholder="Digite a senha">
+    <div id="usuariosGrid" class="usuarios-grid"></div>
+  </div>
 
-<button onclick="login()">Entrar</button>
-
-</div>
-
-<div id="adminPanel" style="display:none;">
-
-<h1>Controle de Ideias</h1>
-
-<div id="ideasList"></div>
-
-</div>
-
-</div>
-
-<script>
-
-const senha="Jesusocriador";
-
-let ideas = JSON.parse(localStorage.getItem("ideas")) || [];
-
-function login(){
-
-const pass=document.getElementById("password").value;
-
-if(pass===senha){
-
-document.getElementById("loginBox").style.display="none";
-
-document.getElementById("adminPanel").style.display="block";
-
-render();
-
-}else{
-
-alert("Senha incorreta");
-
-}
-
-}
-
-function save(){
-
-localStorage.setItem("ideas",JSON.stringify(ideas));
-
-}
-
-function render(){
-
-const list=document.getElementById("ideasList");
-
-list.innerHTML="";
-
-ideas.forEach((idea,index)=>{
-
-list.innerHTML+=`
-
-<div class="idea">
-
-<strong>${idea.text}</strong>
-
-<p>👤 ${idea.user}</p>
-
-<p>👍 ${idea.likes}</p>
-
-<div class="controls">
-
-<select onchange="changeStatus(${index},this.value)">
-
-<option ${idea.status=="Em análise"?"selected":""}>Em análise</option>
-
-<option ${idea.status=="Em desenvolvimento"?"selected":""}>Em desenvolvimento</option>
-
-<option ${idea.status=="Aprovado"?"selected":""}>Aprovado</option>
-
-</select>
-
-<button class="delete" onclick="deleteIdea(${index})">Excluir</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-function changeStatus(i,status){
-
-ideas[i].status=status;
-
-save();
-
-render();
-
-}
-
-function deleteIdea(i){
-
-ideas.splice(i,1);
-
-save();
-
-render();
-
-}
-
-</script>
-
+  <script type="module" src="./admin.js"></script>
 </body>
-
 </html>

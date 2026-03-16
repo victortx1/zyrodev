@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Editar perfil | ZyroDev</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.35), transparent 35%),
+        linear-gradient(135deg, #020617, #0f172a);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 560px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      padding: 32px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 14px;
+    }
+
+    .sub {
+      color: #cbd5e1;
+      margin-bottom: 26px;
+      line-height: 1.5;
+    }
+
+    .foto-area {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .foto-preview {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.18);
+      background: #111827;
+    }
+
+    label {
+      display: block;
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #e2e8f0;
+    }
+
+    .input,
+    .textarea {
+      width: 100%;
+      background: rgba(2, 6, 23, 0.85);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 16px 18px;
+      outline: none;
+      margin-bottom: 22px;
+      font-size: 16px;
+    }
+
+    .textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: bold;
+      transition: .25s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .status {
+      margin-top: 14px;
+      min-height: 22px;
+      font-size: 14px;
+      color: #93c5fd;
+    }
+
+    .erro {
+      color: #f87171;
+    }
+
+    .sucesso {
+      color: #86efac;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Editar Perfil</h1>
+    <p class="sub">Atualize seu nome, sua bio e sua foto para deixar seu perfil com a sua cara.</p>
+
+    <div class="foto-area">
+      <img id="fotoPreview" class="foto-preview" src="" alt="Prévia da foto">
+      <div>
+        <label for="fotoInput">Trocar foto</label>
+        <input type="file" id="fotoInput" accept="image/*">
+      </div>
+    </div>
+
+    <label for="nomeInput">Seu nome</label>
+    <input type="text" id="nomeInput" class="input" placeholder="Digite seu nome">
+
+    <label for="bioInput">Sua bio</label>
+    <textarea id="bioInput" class="textarea" placeholder="Fale um pouco sobre você"></textarea>
+
+    <div class="acoes">
+      <button id="btnSalvar" class="btn btn-primary">Salvar alterações</button>
+      <a href="perfil.html" class="btn btn-secondary">Voltar ao perfil</a>
+    </div>
+
+    <div id="statusMsg" class="status"></div>
+  </div>
+
+  <script type="module" src="./editar-perfil.js"></script>
+</body>
+</html>

@@ -1,458 +1,527 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ZyroDev Cursos</title>
+    <title>ZyroDev Cursos</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-<style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+        body {
+            background: #020617;
+            color: rgb(255, 255, 255);
+            overflow-x: hidden;
+        }
 
-body{
-background:#020617;
-color:rgb(255, 255, 255);
-overflow-x:hidden;
-}
+        /* PARTICULAS FUNDO */
 
-/* PARTICULAS FUNDO */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
-#particles{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
-}
+        /* HEADER */
 
-/* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 60px;
+        }
 
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:30px 60px;
-}
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #2563eb, #00e1ff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-.logo{
-font-size:26px;
-font-weight:bold;
-background:linear-gradient(90deg,#2563eb,#00e1ff);
--webkit-background-clip:text;
-color:transparent;
-}
+        /* PERFIL */
 
-/* PERFIL */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border-radius: 30px;
+        }
 
-.profile{
-display:flex;
-align-items:center;
-gap:10px;
-background:rgba(255,255,255,0.05);
-padding:8px 15px;
-border-radius:30px;
-}
+        .profile img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
 
-.profile img{
-width:35px;
-height:35px;
-border-radius:50%;
-}
+        /* TITULO */
 
-/* TITULO */
+        .title {
+            text-align: center;
+            margin-top: 40px;
+        }
 
-.title{
-text-align:center;
-margin-top:40px;
-}
+        .title h1 {
+            font-size: 45px;
+        }
 
-.title h1{
-font-size:45px;
-}
+        /* GRID */
 
-/* GRID */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
 
-.container{
-max-width:1200px;
-margin:auto;
-padding:40px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
-}
+        /* CARD */
 
-/* CARD */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.3s;
+            transform-style: preserve-3d;
+            backdrop-filter: blur(12px);
+            position: relative;
+        }
 
-.card{
-background:rgba(255,255,255,0.05);
-border-radius:20px;
-overflow:hidden;
-transition:0.3s;
-transform-style:preserve-3d;
-backdrop-filter:blur(12px);
-position:relative;
-}
+        .card:hover {
+            transform: scale(1.05);
+        }
 
-.card:hover{
-transform:scale(1.05);
-}
+        /* IMAGEM */
 
-/* IMAGEM */
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
 
-.card img{
-width:100%;
-height:160px;
-object-fit:cover;
-}
+        /* CONTEUDO */
 
-/* CONTEUDO */
+        .card-content {
+            padding: 20px;
+            text-align: center;
+        }
 
-.card-content{
-padding:20px;
-text-align:center;
-}
+        .card-content h3 {
+            margin-bottom: 10px;
+        }
 
-.card-content h3{
-margin-bottom:10px;
-}
+        /* PROGRESSO */
 
-/* PROGRESSO */
+        .progress {
+            width: 100%;
+            height: 8px;
+            background: #111;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
 
-.progress{
-width:100%;
-height:8px;
-background:#111;
-border-radius:10px;
-margin:10px 0;
-}
+        .progress span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #9333ea);
+            border-radius: 10px;
+        }
 
-.progress span{
-display:block;
-height:100%;
-background:linear-gradient(90deg,#2563eb,#9333ea);
-border-radius:10px;
-}
+        /* BOTAO */
 
-/* BOTAO */
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 22px;
+            background: #2563eb;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
 
-.btn{
-display:inline-block;
-margin-top:10px;
-padding:10px 22px;
-background:#2563eb;
-border-radius:10px;
-text-decoration:none;
-color:white;
-transition:0.3s;
-}
-
-.btn:hover{
-background:#00a2ff;
-box-shadow:
-0 0 10px #00a2ff,
-0 0 20px #00a2ff,
-0 0 40px #00a2ff;
-}
+        .btn:hover {
+            background: #00a2ff;
+            box-shadow:
+                0 0 10px #00a2ff,
+                0 0 20px #00a2ff,
+                0 0 40px #00a2ff;
+        }
 
 
-/* =========================
+        /* =========================
 RESPONSIVIDADE CELULAR
 ========================= */
 
-@media (max-width:900px){
+        @media (max-width:900px) {
 
-header{
-flex-direction:column;
-gap:15px;
-padding:25px 20px;
-text-align:center;
-}
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 25px 20px;
+                text-align: center;
+            }
 
-.title h1{
-font-size:32px;
-}
+            .title h1 {
+                font-size: 32px;
+            }
 
-.container{
-padding:20px;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
+            .container {
+                padding: 20px;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 20px;
+            }
 
-.card img{
-height:140px;
-}
+            .card img {
+                height: 140px;
+            }
 
-.card-content h3{
-font-size:16px;
-}
+            .card-content h3 {
+                font-size: 16px;
+            }
 
-.btn{
-padding:9px 18px;
-font-size:14px;
-}
+            .btn {
+                padding: 9px 18px;
+                font-size: 14px;
+            }
 
-.profile{
-padding:6px 12px;
-}
+            .profile {
+                padding: 6px 12px;
+            }
 
-.profile img{
-width:30px;
-height:30px;
-}
+            .profile img {
+                width: 30px;
+                height: 30px;
+            }
 
-}
+        }
 
-/* CELULARES PEQUENOS */
+        /* CELULARES PEQUENOS */
 
-@media (max-width:500px){
+        @media (max-width:500px) {
 
-.logo{
-font-size:22px;
-}
+            .logo {
+                font-size: 22px;
+            }
 
-.title h1{
-font-size:26px;
-}
+            .title h1 {
+                font-size: 26px;
+            }
 
-.container{
-grid-template-columns:1fr;
-}
+            .container {
+                grid-template-columns: 1fr;
+            }
 
-.card img{
-height:130px;
-}
+            .card img {
+                height: 130px;
+            }
 
-.card-content{
-padding:16px;
-}
+            .card-content {
+                padding: 16px;
+            }
 
-.btn{
-width:100%;
-}
+            .btn {
+                width: 100%;
+            }
 
-}
+        }
 
-</style>
+        /* BARRA DE PESQUISA */
+
+        .search-box {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .search-box input {
+            width: 320px;
+            max-width: 90%;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+
+        .search-box input::placeholder {
+            color: #aaa;
+        }
+
+        .search-box input:focus {
+            box-shadow: 0 0 10px #2563eb;
+        }
+    </style>
 
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
+    <canvas id="particles"></canvas>
 
-<header>
+    <header>
 
-<div class="logo">ZyroDev</div>
+        <div class="logo">ZyroDev</div>
 
-<div class="profile">
-<img src="fotos/ZYRODEV.png">
-<span>Aluno</span>
-</div>
+        <div class="profile">
+            <img src="fotos/ZYRODEV.png">
+            <span>Aluno</span>
+        </div>
 
-</header>
+    </header>
 
-<div class="title">
-<h1>🎓 Cursos Disponíveis</h1>
-</div>
+    <div class="title">
+        <h1>🎓 Cursos Disponíveis</h1>
+    </div>
 
-<div class="container">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="🔍 Buscar curso..." onkeyup="searchCourses()">
+    </div>
 
-<div class="card">
+    <div class="container">
 
-<img src="fotos/logica.png">
+        <div class="card">
 
-<div class="card-content">
+            <img src="fotos/logica.png">
 
-<h3>Curso de Lógica de <br>Programação <br>  #15 Aulas</h3>
+            <div class="card-content">
 
-<div class="progress">
-<span style="width:40%"></span>
-</div>
+                <h3>Curso de Lógica de <br>Programação <br> #15 Aulas</h3>
 
-<a href="logica-programacao.html" class="btn">Assistir</a>
+                <div class="progress">
+                    <span style="width:40%"></span>
+                </div>
 
-</div>
-</div>
+                <a href="logica-programacao.html" class="btn">Assistir</a>
 
-<div class="card">
+            </div>
+        </div>
 
-<img src="fotos/htmlcss.png">
+        <div class="card">
 
-<div class="card-content">
+            <img src="fotos/htmlcss.png">
 
-<h3>Curso HTML e CSS <br>#41 Aulas</h3>
+            <div class="card-content">
 
-<div class="progress">
-<span style="width:40%"></span>
-</div>
+                <h3>Curso HTML e CSS <br>#41 Aulas</h3>
 
-<a href="cursohtmlecss.html" class="btn">Assistir</a>
+                <div class="progress">
+                    <span style="width:40%"></span>
+                </div>
 
-</div>
-</div>
+                <a href="cursohtmlecss.html" class="btn">Assistir</a>
 
+            </div>
+        </div>
 
-<div class="card">
 
-<img src="fotos/javascript.png">
+        <div class="card">
 
-<div class="card-content">
+            <img src="fotos/javascript.png">
 
-<h3>Curso JavaScript <br>#49 Aulas</h3>
+            <div class="card-content">
 
-<div class="progress">
-<span style="width:20%"></span>
-</div>
+                <h3>Curso JavaScript <br>#49 Aulas</h3>
 
-<a href="javascript.html" class="btn">Assistir</a>
+                <div class="progress">
+                    <span style="width:20%"></span>
+                </div>
 
-</div>
-</div>
+                <a href="javascript.html" class="btn">Assistir</a>
 
+            </div>
+        </div>
 
-<div class="card">
 
-<img src="fotos/python.png">
+        <div class="card">
 
-<div class="card-content">
+            <img src="fotos/python.png">
 
-<h3>Curso Python <br>#47 Aulas</h3>
+            <div class="card-content">
 
-<div class="progress">
-<span style="width:10%"></span>
-</div>
+                <h3>Curso Python <br>#47 Aulas</h3>
 
-<a href="python.html" class="btn">Assistir</a>
+                <div class="progress">
+                    <span style="width:10%"></span>
+                </div>
 
-</div>
-</div>
+                <a href="python.html" class="btn">Assistir</a>
 
+            </div>
+        </div>
 
-<div class="card">
 
-<img src="fotos/php.png">
+        <div class="card">
 
-<div class="card-content">
+            <img src="fotos/php.png">
 
-<h3>Curso PHP <br>#44 Aulas</h3>
+            <div class="card-content">
 
-<div class="progress">
-<span style="width:0%"></span>
-</div>
+                <h3>Curso PHP <br>#44 Aulas</h3>
 
-<a href="php.html" class="btn">Assistir</a>
+                <div class="progress">
+                    <span style="width:0%"></span>
+                </div>
 
-</div>
-</div>
+                <a href="php.html" class="btn">Assistir</a>
 
-</div>
+            </div>
+        </div>
 
+        <div class="card">
 
-<script>
+            <img src="fotos/java.png">
 
-/* PARTICULAS FUNDO */
+            <div class="card-content">
 
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
+                <h3>Curso de Java<br>#30 Aulas</h3>
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+                <div class="progress">
+                    <span style="width:0%"></span>
+                </div>
 
-let particles=[];
+                <a href="java.html" class="btn">Assistir</a>
 
-for(let i=0;i<80;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2,
-dx:(Math.random()-0.5),
-dy:(Math.random()-0.5)
-})
-}
+            </div>
+        </div>
 
-function animate(){
+    </div>
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
 
-particles.forEach(p=>{
+    <script>
 
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle="#2563eb";
-ctx.fill();
+        /* PARTICULAS FUNDO */
 
-p.x+=p.dx;
-p.y+=p.dy;
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
 
-})
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-requestAnimationFrame(animate)
+        let particles = [];
 
-}
+        for (let i = 0; i < 80; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 2,
+                dx: (Math.random() - 0.5),
+                dy: (Math.random() - 0.5)
+            })
+        }
 
-animate()
+        function animate() {
 
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-/* ANIMAÇÃO SCROLL */
+            particles.forEach(p => {
 
-const cards=document.querySelectorAll(".card");
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = "#2563eb";
+                ctx.fill();
 
-window.addEventListener("scroll",()=>{
+                p.x += p.dx;
+                p.y += p.dy;
 
-cards.forEach(card=>{
+            })
 
-const top=card.getBoundingClientRect().top;
+            requestAnimationFrame(animate)
 
-if(top < window.innerHeight-100){
-card.classList.add("show");
-}
+        }
 
-})
+        animate()
 
-})
 
+        /* ANIMAÇÃO SCROLL */
 
-/* CARD 3D */
+        const cards = document.querySelectorAll(".card");
 
-cards.forEach(card=>{
+        window.addEventListener("scroll", () => {
 
-card.addEventListener("mousemove",(e)=>{
+            cards.forEach(card => {
 
-let rect=card.getBoundingClientRect();
+                const top = card.getBoundingClientRect().top;
 
-let x=e.clientX-rect.left;
-let y=e.clientY-rect.top;
+                if (top < window.innerHeight - 100) {
+                    card.classList.add("show");
+                }
 
-let centerX=rect.width/2;
-let centerY=rect.height/2;
+            })
 
-let rotateX=(y-centerY)/20;
-let rotateY=(centerX-x)/20;
+        })
 
-card.style.transform=
-`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
-})
+        /* CARD 3D */
 
-card.addEventListener("mouseleave",()=>{
+        cards.forEach(card => {
 
-card.style.transform="rotateX(0) rotateY(0)";
+            card.addEventListener("mousemove", (e) => {
 
-})
+                let rect = card.getBoundingClientRect();
 
-})
+                let x = e.clientX - rect.left;
+                let y = e.clientY - rect.top;
 
-</script>
+                let centerX = rect.width / 2;
+                let centerY = rect.height / 2;
+
+                let rotateX = (y - centerY) / 20;
+                let rotateY = (centerX - x) / 20;
+
+                card.style.transform =
+                    `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+            })
+
+            card.addEventListener("mouseleave", () => {
+
+                card.style.transform = "rotateX(0) rotateY(0)";
+
+            })
+
+        })
+
+        function searchCourses() {
+
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let cards = document.querySelectorAll(".card");
+
+            cards.forEach(card => {
+
+                let text = card.innerText.toLowerCase();
+
+                if (text.includes(input)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+
+            });
+
+        }
+
+    </script>
 
 </body>
-</html> 
+
+</html>

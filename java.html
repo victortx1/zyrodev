@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZyroDev | Aula</title>
+
+    <style>
+        :root {
+            --primary: #000000;
+            --sidebar: #0b1220;
+            --card: #000000;
+            --accent: #2563eb;
+            --secondary: #6d28d9;
+            --gray: #94a3b8;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--primary);
+            color: var(--white);
+            display: flex;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 220px;
+            background: var(--sidebar);
+            height: 100vh;
+            padding: 30px 20px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: var(--gray);
+            text-decoration: none;
+            margin-bottom: 15px;
+        }
+
+        .sidebar a:hover {
+            color: var(--white);
+        }
+
+        /* MAIN */
+        .main {
+            margin-left: 220px;
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* VIDEO AREA */
+        .video-area {
+            flex: 2;
+            padding: 40px;
+        }
+
+        .video-container {
+            background: var(--card);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        #videoPlayer {
+            width: 100%;
+            height: 500px;
+        }
+
+        .course-title {
+            margin-top: 20px;
+            font-size: 22px;
+        }
+
+        /* RIGHT PANEL */
+        .right-panel {
+            flex: 1;
+            background: var(--card);
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .progress {
+            background: #111827;
+            border-radius: 20px;
+            height: 10px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            background: var(--accent);
+            height: 100%;
+            width: 0%;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .lesson {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background: #111827;
+        }
+
+        .lesson.locked {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .lesson.active {
+            background: var(--secondary);
+        }
+
+/* =========================
+RESPONSIVIDADE CELULAR
+========================= */
+
+@media (max-width:900px){
+
+body{
+flex-direction:column;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+padding:20px;
+text-align:center;
+}
+
+.sidebar h2{
+width:100%;
+margin-bottom:10px;
+}
+
+.sidebar a{
+margin:5px 10px;
+}
+
+/* MAIN */
+
+.main{
+margin-left:0;
+flex-direction:column;
+height:auto;
+}
+
+/* VIDEO AREA */
+
+.video-area{
+padding:20px;
+}
+
+#videoPlayer{
+height:300px;
+}
+
+/* RIGHT PANEL */
+
+.right-panel{
+padding:20px;
+height:auto;
+}
+
+.lesson{
+font-size:14px;
+}
+
+.course-title{
+font-size:18px;
+}
+
+}
+
+/* CELULARES PEQUENOS */
+
+@media (max-width:500px){
+
+#videoPlayer{
+height:220px;
+}
+
+.lesson{
+padding:12px;
+font-size:13px;
+}
+
+.sidebar{
+flex-direction:column;
+}
+
+.sidebar a{
+width:100%;
+}
+
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>ZyroDev 💦</h2>
+        <a href="index.html" class="btn">Voltar ao inicio</a>
+        <a href="cursos.html" class="btn">Voltar aos Cursos</a>
+        <a href="creditos.html" class="btn">Créditos aos professores</a>
+        <a href="https://www.google.com" class="btn">Sair</a>
+    </div>
+
+    <div class="main">
+
+        <div class="video-area">
+            <div class="video-container">
+                <div id="videoPlayer"></div>
+            </div>
+            <h3 class="course-title">Aula 01 - Lógica de Programação</h3>
+        </div>
+
+        <div class="right-panel">
+
+            <h3>Seu progresso</h3>
+            <div class="progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="lesson active">Aula 01 - Curso de Java #01 - História do Java - Gustavo Guanabara</div>
+            <div class="lesson locked">Aula 02 - Exercícios de Java #01 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 03 - Curso de Java #02 - Como Funciona o Java - Gustavo Guanabara</div>
+            <div class="lesson locked">Aula 04 - Exercícios de Java #02 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 05 - Curso de Java #03 - Instalando o JDK no seu Computador - Gustavo Guanabara</div>
+            <div class="lesson locked">Aula 06 - Exercícios de Java #03 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 07 - Curso de Java #04 - Primeiro Programa em Java</div>
+            <div class="lesson locked">Aula 08 - Exercícios de Java #04 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 09 - Curso de Java #05 - Variáveis e Tipos de Dados</div>
+            <div class="lesson locked">Aula 10 - Exercícios de Java #05 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 11 - Curso de Java #06 - Operadores em Java</div>
+            <div class="lesson locked">Aula 12 - Exercícios de Java #06 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 13 - Curso de Java #07 - Estruturas Condicionais</div>
+            <div class="lesson locked">Aula 14 - Exercícios de Java #07 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 15 - Curso de Java #08 - Estruturas de Repetição (Parte 1)</div>
+            <div class="lesson locked">Aula 16 - Exercícios de Java #08 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 17 - Curso de Java #09 - Métodos</div>
+            <div class="lesson locked">Aula 18 - Exercícios de Java #09 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 19 - Curso de Java #10 - Classes e Objetos</div>
+            <div class="lesson locked">Aula 20 - Exercícios de Java #10 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 21 - Curso de Java #11 - Herança</div>
+            <div class="lesson locked">Aula 22 - Exercícios de Java #11 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 23 - Curso de Java #12 - Polimorfismo</div>
+            <div class="lesson locked">Aula 24 - Exercícios de Java #12 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 25 - Curso de Java #13 - Interfaces</div>
+            <div class="lesson locked">Aula 26 - Exercícios de Java #13 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 27 - Curso de Java #14 - Tratamento de Exceções</div>
+            <div class="lesson locked">Aula 28 - Exercícios de Java #14 - Curso de Java para Iniciantes</div>
+            <div class="lesson locked">Aula 29 - Curso de Java #15 - Coleções</div>
+            <div class="lesson locked">Aula 30 - Exercícios de Java #15 - Curso de Java para Iniciantes</div>
+
+
+
+        </div>
+
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+        let player;
+        let currentIndex = 0;
+
+        const lessons = document.querySelectorAll(".lesson");
+        const progressBar = document.getElementById("progressBar");
+        const courseTitle = document.querySelector(".course-title");
+
+        const videos = [
+            { title: "Aula 01 - Curso de Java #01 - História do Java - Gustavo Guanabara", id: "sTX0UEplF54" },
+            { title: "Aula 02 - Exercícios de Java #01 - Curso de Java para Iniciantes", id: "ZBKxhnqX-Q0" },
+            { title: "Aula 03 - Curso de Java #02 - Como Funciona o Java - Gustavo Guanabara", id: "v_ZCtgwbS3o" },
+            { title: "Aula 04 - Exercícios de Java #02 - Curso de Java para Iniciantes", id: "bIXDystGxj0" },
+            { title: "Aula 05 - Curso de Java #03 - Instalando o JDK no seu Computador - Gustavo Guanabara", id: "yWU5bm_pZzY" },
+            { title: "Aula 06 - Exercícios de Java #03 - Curso de Java para Iniciantes", id: "gsp1H0-FVGI" },
+            { title: "Aula 07 - Curso de Java #04 - Primeiro Programa em Java - Gustavo Guanabara", id: "ijXXaIYsVx4" },
+            { title: "Aula 08 - Exercícios de Java #04 - Curso de Java", id: "H7Qpt8NRpDw" },
+            { title: "Aula 09 - Curso de Java #05 - Introdução ao Swing e JavaFX", id: "cYMruFKwqf0" },
+            { title: "Aula 10 - Exercícios de Java #05 - Curso de Java", id: "UaTZTP50i08" },
+            { title: "Aula 11 - Curso de Java #06 - Tipos Primitivos e Manipulação de Dados", id: "JEAQeT7YGs4" },
+            { title: "Aula 12 - Exercícios de Java #06 - Curso de Java", id: "7XPR-v1Fzjw" },
+            { title: "Aula 13 - Curso de Java #07 - Operadores Aritméticos e Classe Math", id: "W9V5wtOOZHs" },
+            { title: "Aula 14 - Exercícios de Java #07 - Curso de Java", id: "dEuQBmHXRnY" },
+            { title: "Aula 15 - Curso de Java #08 - Operadores Lógicos e Relacionais", id: "xHgnlic7fj8" },
+            { title: "Aula 16 - Exercícios de Java #08 - Curso de Java", id: "LNECh9RplE0" },
+            { title: "Aula 17 - Curso de Java #09 - Estruturas Condicionais (Parte 1)", id: "wW3eve4vTMc" },
+            { title: "Aula 18 - Exercícios de Java #09 - Curso de Java", id: "mGgd1f66kWE" },
+            { title: "Aula 19 - Curso de Java #10 - Estruturas Condicionais (Parte 2)", id: "oNSrBld06qs" },
+            { title: "Aula 20 - Exercícios de Java #10 - Curso de Java", id: "d-2E7c2Kfcc" },
+            { title: "Aula 21 - Curso de Java #11 - Estruturas de Repetição (Parte 1)", id: "2fawKjR8d4c" },
+            { title: "Aula 22 - Exercícios de Java #11 - Curso de Java", id: "vdAArHfOS9k" },
+            { title: "Aula 23 - Curso de Java #12 - Estruturas de Repetição (Parte 2)", id: "ojLALwmvQIU" },
+            { title: "Aula 24 - Exercício de Java #12", id: "sUSnoHiTZ8E" },
+            { title: "Aula 25 - Curso de Java #13 - Estruturas de Repetição (Parte 3)", id: "XLqPZh6n8IA" },
+            { title: "Aula 26 - Exercícios de Java #13 - Curso de Java", id: "ZYvGz1h_2MU" },
+            { title: "Aula 27 - Curso de Java #14 - Vetores - Gustavo Guanabara", id: "KAS94-Lcboc" },
+            { title: "Aula 28 - Exercícios de Java #14 - Curso de Java", id: "6YxJOIxJyKo" },
+            { title: "Aula 29 - Curso de Java #15 - Métodos", id: "EuxmbXZCFVQ" },
+            { title: "Aula 30 - Exercícios de Java #15 - Curso de Java", id: "Fh5s0RUjhmQ" },
+        ];
+
+        // Carregar progresso salvo
+        let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
+
+        // Inicializa player
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('videoPlayer', {
+                videoId: videos[0].id
+            });
+        }
+
+        // Clique nas aulas
+        lessons.forEach((lesson, index) => {
+            lesson.classList.remove("locked");
+
+            lesson.addEventListener("click", () => {
+                currentIndex = index;
+
+                lessons.forEach(l => l.classList.remove("active"));
+                lesson.classList.add("active");
+
+                player.loadVideoById(videos[index].id);
+                courseTitle.innerText = videos[index].title;
+            });
+        });
+
+        // Criar botão marcar como concluído
+        const completeButton = document.createElement("button");
+        completeButton.innerText = "Marcar como concluída ✅";
+        completeButton.style.marginTop = "20px";
+        completeButton.style.padding = "10px 20px";
+        completeButton.style.background = "#2563eb";
+        completeButton.style.color = "white";
+        completeButton.style.border = "none";
+        completeButton.style.borderRadius = "8px";
+        completeButton.style.cursor = "pointer";
+
+        document.querySelector(".video-area").appendChild(completeButton);
+
+        // Evento marcar como concluído
+        completeButton.addEventListener("click", () => {
+            if (!completedLessons.includes(currentIndex)) {
+                completedLessons.push(currentIndex);
+                localStorage.setItem("completedLessons", JSON.stringify(completedLessons));
+                lessons[currentIndex].style.background = "#16a34a";
+                updateProgress();
+            }
+        });
+
+        // Atualizar progresso
+        function updateProgress() {
+            let percent = (completedLessons.length / videos.length) * 100;
+            progressBar.style.width = percent + "%";
+        }
+
+        // Carregar progresso visual ao abrir
+        completedLessons.forEach(index => {
+            if (lessons[index]) {
+                lessons[index].style.background = "#16a34a";
+            }
+        });
+
+        updateProgress();
+    </script>
+
+</body>
+
+</html>
