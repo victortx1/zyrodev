@@ -852,463 +852,463 @@
         }
 
         img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-body {
-    overflow-x: hidden;
-}
-
-.navbar {
-    gap: 18px;
-    flex-wrap: wrap;
-}
-
-.logo {
-    white-space: nowrap;
-}
-
-.nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.hero {
-    min-height: 100vh;
-}
-
-.hero-content {
-    width: 100%;
-    position: relative;
-    z-index: 2;
-}
-
-.hero h1 {
-    word-break: break-word;
-}
-
-.hero p {
-    max-width: 700px;
-}
-
-.features {
-    width: 100%;
-}
-
-.feature-card {
-    min-width: 0;
-}
-
-.stats {
-    flex-wrap: wrap;
-}
-
-.footer-container {
-    width: 100%;
-}
-
-.notification-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 10px;
-}
-
-.close-notifications {
-    cursor: pointer;
-    font-size: 18px;
-    color: #94a3b8;
-    transition: 0.2s;
-    flex-shrink: 0;
-}
-
-.close-notifications:hover {
-    color: white;
-}
-
-@media (max-width: 1100px) {
-    .navbar {
-        padding: 18px 24px;
-    }
-
-    .nav-links {
-        gap: 18px;
-    }
-
-    .hero {
-        padding: 130px 5% 80px;
-    }
-
-    .hero h1 {
-        font-size: 52px;
-    }
-
-    .notification-wrapper {
-        top: 24px;
-        right: 145px;
-    }
-
-    #ideaHint {
-        top: 105px;
-        right: 20px;
-    }
-
-    .pacman-area {
-        right: 20px;
-        bottom: 20px;
-    }
-
-    .pacman {
-        width: 100px;
-    }
-
-    .stats {
-        gap: 30px;
-    }
-
-    .footer-container {
-        gap: 30px;
-    }
-}
-
-@media (max-width: 900px) {
-    .navbar {
-        flex-direction: column;
-        align-items: center;
-        padding: 18px 16px;
-        gap: 14px;
-        text-align: center;
-    }
-
-    .nav-links {
-        width: 100%;
-        justify-content: center;
-        gap: 14px;
-    }
-
-    .notification-wrapper {
-        position: relative;
-        top: auto;
-        right: auto;
-        order: 4;
-    }
-
-    .notification-box {
-        position: absolute;
-        top: 40px;
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        width: min(320px, calc(100vw - 24px));
-        max-height: 60vh;
-    }
-
-    #ideaHint {
-        top: auto;
-        left: 50%;
-        right: auto;
-        bottom: 20px;
-        transform: translateX(-50%) translateY(10px);
-        width: min(320px, calc(100vw - 24px));
-        text-align: center;
-    }
-
-    #ideaHint.show {
-        transform: translateX(-50%) translateY(0);
-    }
-
-    .user-profile {
-        order: 3;
-        justify-content: center;
-        max-width: 100%;
-    }
-
-    #headerNome {
-        max-width: 160px;
-    }
-
-    .discord-btn {
-        order: 5;
-    }
-
-    .hero {
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        padding: 220px 20px 80px;
-        min-height: auto;
-    }
-
-    .hero-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hero h1 {
-        font-size: 42px;
-        line-height: 1.1;
-    }
-
-    .hero p {
-        font-size: 15px;
-        margin-bottom: 28px;
-    }
-
-    .btn-slide {
-        width: 64px;
-        height: 64px;
-    }
-
-    .pacman-area {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        margin-top: 40px;
-    }
-
-    .pacman {
-        width: 90px;
-    }
-
-    .stats {
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        padding: 60px 20px;
-    }
-
-    .stat h2 {
-        font-size: 34px;
-    }
-
-    .motivacao-area {
-        height: 120px;
-    }
-
-    .features {
-        grid-template-columns: 1fr;
-        padding: 70px 20px;
-        gap: 20px;
-    }
-
-    .footer {
-        margin-top: 80px;
-    }
-
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-        padding: 40px 20px;
-    }
-
-    .footer-brand {
-        max-width: 100%;
-    }
-
-    .footer-links {
-        align-items: center;
-    }
-
-    .social-icons {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .cookie-box {
-        width: calc(100vw - 24px);
-        max-width: 500px;
-        flex-direction: column;
-        text-align: center;
-        gap: 12px;
-        padding: 18px;
-        bottom: 16px;
-    }
-}
-
-@media (max-width: 600px) {
-    .navbar {
-        padding: 16px 12px;
-    }
-
-    .logo {
-        font-size: 18px;
-    }
-
-    .nav-links {
-        gap: 10px 14px;
-    }
-
-    .nav-links a {
-        font-size: 13px;
-    }
-
-    .user-profile {
-        padding: 6px 10px;
-        gap: 8px;
-    }
-
-    #headerFoto {
-        width: 32px;
-        height: 32px;
-    }
-
-    #headerNome {
-        max-width: 120px;
-        font-size: 14px;
-    }
-
-    .discord-btn {
-        font-size: 12px;
-        padding: 8px 12px;
-    }
-
-    .bell-button {
-        font-size: 22px;
-    }
-
-    .notification-box {
-        width: calc(100vw - 20px);
-        max-height: 58vh;
-        padding: 12px;
-    }
-
-    .notification-item {
-        font-size: 12px;
-        padding: 9px;
-    }
-
-    .hero {
-        padding: 230px 16px 60px;
-    }
-
-    .hero h1 {
-        font-size: 34px;
-    }
-
-    .hero p {
-        font-size: 14px;
-        line-height: 1.5;
-    }
-
-    .btn-slide {
-        width: 58px;
-        height: 58px;
-    }
-
-    .pacman {
-        width: 76px;
-    }
-
-    .stat h2 {
-        font-size: 30px;
-    }
-
-    .stat p {
-        font-size: 13px;
-    }
-
-    .palavra {
-        font-size: 15px;
-    }
-
-    .feature-card {
-        padding: 22px;
-    }
-
-    .feature-card h3 {
-        font-size: 17px;
-    }
-
-    .feature-card p {
-        font-size: 13px;
-    }
-
-    .footer-brand p,
-    .footer-links a,
-    .footer-bottom {
-        font-size: 13px;
-    }
-
-    .cookie-text {
-        font-size: 13px;
-    }
-
-    .cookie-btn {
-        width: 100%;
-    }
-
-    #ideaHint {
-        width: calc(100vw - 20px);
-        bottom: 14px;
-        padding: 10px 14px;
-        font-size: 13px;
-    }
-
-    .google-popup-box {
-        padding: 28px 18px;
-        border-radius: 20px;
-    }
-
-    .google-popup-box h2 {
-        font-size: 25px;
-    }
-
-    .google-popup-box p {
-        font-size: 14px;
-    }
-
-    .google-popup-buttons {
-        flex-direction: column;
-    }
-
-    .google-popup-btn {
-        width: 100%;
-    }
-}
-
-@media (max-width: 400px) {
-    .hero {
-        padding: 240px 14px 50px;
-    }
-
-    .hero h1 {
-        font-size: 28px;
-    }
-
-    .hero p {
-        font-size: 13px;
-    }
-
-    .btn-slide {
-        width: 54px;
-        height: 54px;
-    }
-
-    .nav-links a {
-        font-size: 12px;
-    }
-
-    #headerNome {
-        max-width: 90px;
-    }
-
-    .notification-box {
-        width: calc(100vw - 16px);
-    }
-
-    .feature-card {
-        padding: 18px;
-    }
-
-    .footer-container {
-        padding: 32px 16px;
-    }
-}
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero {
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            word-break: break-word;
+        }
+
+        .hero p {
+            max-width: 700px;
+        }
+
+        .features {
+            width: 100%;
+        }
+
+        .feature-card {
+            min-width: 0;
+        }
+
+        .stats {
+            flex-wrap: wrap;
+        }
+
+        .footer-container {
+            width: 100%;
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .close-notifications {
+            cursor: pointer;
+            font-size: 18px;
+            color: #94a3b8;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+
+        .close-notifications:hover {
+            color: white;
+        }
+
+        @media (max-width: 1100px) {
+            .navbar {
+                padding: 18px 24px;
+            }
+
+            .nav-links {
+                gap: 18px;
+            }
+
+            .hero {
+                padding: 130px 5% 80px;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+
+            .notification-wrapper {
+                top: 24px;
+                right: 145px;
+            }
+
+            #ideaHint {
+                top: 105px;
+                right: 20px;
+            }
+
+            .pacman-area {
+                right: 20px;
+                bottom: 20px;
+            }
+
+            .pacman {
+                width: 100px;
+            }
+
+            .stats {
+                gap: 30px;
+            }
+
+            .footer-container {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                padding: 18px 16px;
+                gap: 14px;
+                text-align: center;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                gap: 14px;
+            }
+
+            .notification-wrapper {
+                position: relative;
+                top: auto;
+                right: auto;
+                order: 4;
+            }
+
+            .notification-box {
+                position: absolute;
+                top: 40px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                width: min(320px, calc(100vw - 24px));
+                max-height: 60vh;
+            }
+
+            #ideaHint {
+                top: auto;
+                left: 50%;
+                right: auto;
+                bottom: 20px;
+                transform: translateX(-50%) translateY(10px);
+                width: min(320px, calc(100vw - 24px));
+                text-align: center;
+            }
+
+            #ideaHint.show {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .user-profile {
+                order: 3;
+                justify-content: center;
+                max-width: 100%;
+            }
+
+            #headerNome {
+                max-width: 160px;
+            }
+
+            .discord-btn {
+                order: 5;
+            }
+
+            .hero {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding: 220px 20px 80px;
+                min-height: auto;
+            }
+
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+                line-height: 1.1;
+            }
+
+            .hero p {
+                font-size: 15px;
+                margin-bottom: 28px;
+            }
+
+            .btn-slide {
+                width: 64px;
+                height: 64px;
+            }
+
+            .pacman-area {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                margin-top: 40px;
+            }
+
+            .pacman {
+                width: 90px;
+            }
+
+            .stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                padding: 60px 20px;
+            }
+
+            .stat h2 {
+                font-size: 34px;
+            }
+
+            .motivacao-area {
+                height: 120px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                padding: 70px 20px;
+                gap: 20px;
+            }
+
+            .footer {
+                margin-top: 80px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                padding: 40px 20px;
+            }
+
+            .footer-brand {
+                max-width: 100%;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .cookie-box {
+                width: calc(100vw - 24px);
+                max-width: 500px;
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+                padding: 18px;
+                bottom: 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 16px 12px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .nav-links {
+                gap: 10px 14px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .user-profile {
+                padding: 6px 10px;
+                gap: 8px;
+            }
+
+            #headerFoto {
+                width: 32px;
+                height: 32px;
+            }
+
+            #headerNome {
+                max-width: 120px;
+                font-size: 14px;
+            }
+
+            .discord-btn {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            .bell-button {
+                font-size: 22px;
+            }
+
+            .notification-box {
+                width: calc(100vw - 20px);
+                max-height: 58vh;
+                padding: 12px;
+            }
+
+            .notification-item {
+                font-size: 12px;
+                padding: 9px;
+            }
+
+            .hero {
+                padding: 230px 16px 60px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .btn-slide {
+                width: 58px;
+                height: 58px;
+            }
+
+            .pacman {
+                width: 76px;
+            }
+
+            .stat h2 {
+                font-size: 30px;
+            }
+
+            .stat p {
+                font-size: 13px;
+            }
+
+            .palavra {
+                font-size: 15px;
+            }
+
+            .feature-card {
+                padding: 22px;
+            }
+
+            .feature-card h3 {
+                font-size: 17px;
+            }
+
+            .feature-card p {
+                font-size: 13px;
+            }
+
+            .footer-brand p,
+            .footer-links a,
+            .footer-bottom {
+                font-size: 13px;
+            }
+
+            .cookie-text {
+                font-size: 13px;
+            }
+
+            .cookie-btn {
+                width: 100%;
+            }
+
+            #ideaHint {
+                width: calc(100vw - 20px);
+                bottom: 14px;
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+
+            .google-popup-box {
+                padding: 28px 18px;
+                border-radius: 20px;
+            }
+
+            .google-popup-box h2 {
+                font-size: 25px;
+            }
+
+            .google-popup-box p {
+                font-size: 14px;
+            }
+
+            .google-popup-buttons {
+                flex-direction: column;
+            }
+
+            .google-popup-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero {
+                padding: 240px 14px 50px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 13px;
+            }
+
+            .btn-slide {
+                width: 54px;
+                height: 54px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            #headerNome {
+                max-width: 90px;
+            }
+
+            .notification-box {
+                width: calc(100vw - 16px);
+            }
+
+            .feature-card {
+                padding: 18px;
+            }
+
+            .footer-container {
+                padding: 32px 16px;
+            }
+        }
     </style>
 </head>
 
@@ -1378,10 +1378,10 @@ body {
 
             <div class="notification-box" id="notificationBox">
 
-    <div class="notification-header">
-        <h3>Notificações</h3>
-        <span class="close-notifications" onclick="fecharNotifications()">✕</span>
-    </div>
+                <div class="notification-header">
+                    <h3>Notificações</h3>
+                    <span class="close-notifications" onclick="fecharNotifications()">✕</span>
+                </div>
 
                 <div class="notification-item">
                     <b>🚀 Atualização</b><br>
@@ -1552,21 +1552,78 @@ body {
         </div>
     </footer>
 
-    <script>
+    <script type="module">
         import { auth, db } from "./firebase.js";
         import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
         import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { buscarDadosUsuario } from "./temporada-service.js";
 
         const adminLink = document.getElementById("adminLink");
+        const headerNome = document.getElementById("headerNome");
+        const headerFoto = document.getElementById("headerFoto");
+        const perfilLink = document.getElementById("perfilLink");
+        const popup = document.getElementById("googlePopup");
+        const fecharBtn = document.getElementById("fecharGooglePopup");
+        const agoraNaoBtn = document.getElementById("agoraNaoGooglePopup");
+
+        function fecharPopup() {
+            popup?.classList.remove("show");
+        }
+
+        fecharBtn?.addEventListener("click", fecharPopup);
+        agoraNaoBtn?.addEventListener("click", fecharPopup);
+
+        popup?.addEventListener("click", function (e) {
+            if (e.target === popup) fecharPopup();
+        });
 
         onAuthStateChanged(auth, async (user) => {
-            if (!user) return;
+            if (user) {
+                try {
+                    const userRef = doc(db, "usuarios", user.uid);
+                    const userSnap = await getDoc(userRef);
 
-            const userRef = doc(db, "usuarios", user.uid);
-            const userSnap = await getDoc(userRef);
+                    if (userSnap.exists() && userSnap.data().admin === true && adminLink) {
+                        adminLink.style.display = "inline-block";
+                    }
 
-            if (userSnap.exists() && userSnap.data().admin === true) {
-                adminLink.style.display = "inline-block";
+                    const dados = await buscarDadosUsuario(user.uid);
+
+                    if (headerNome) {
+                        headerNome.textContent = dados?.nome || user.displayName || user.email || "Perfil";
+                    }
+
+                    if (headerFoto) {
+                        const foto = dados?.foto || user.photoURL || "";
+
+                        if (foto) {
+                            headerFoto.src = foto;
+                            headerFoto.style.display = "block";
+                        } else {
+                            headerFoto.style.display = "none";
+                        }
+                    }
+
+                    if (perfilLink) perfilLink.href = "perfil.html";
+                    fecharPopup();
+                } catch (error) {
+                    console.error("Erro ao carregar usuário no header:", error);
+
+                    if (headerNome) headerNome.textContent = user.displayName || user.email || "Perfil";
+
+                    if (headerFoto && user.photoURL) {
+                        headerFoto.src = user.photoURL;
+                        headerFoto.style.display = "block";
+                    }
+
+                    if (perfilLink) perfilLink.href = "perfil.html";
+                    fecharPopup();
+                }
+            } else {
+                if (headerNome) headerNome.textContent = "Entrar";
+                if (headerFoto) headerFoto.style.display = "none";
+                if (perfilLink) perfilLink.href = "login.html";
+                popup?.classList.add("show");
             }
         });
     </script>
@@ -1644,73 +1701,6 @@ body {
         setInterval(criarPalavra, 1000);
     </script>
 
-    <script type="module">
-        import { auth } from "./firebase.js";
-        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { buscarDadosUsuario } from "./temporada-service.js";
-
-        const headerNome = document.getElementById("headerNome");
-        const headerFoto = document.getElementById("headerFoto");
-        const perfilLink = document.getElementById("perfilLink");
-        const popup = document.getElementById("googlePopup");
-        const fecharBtn = document.getElementById("fecharGooglePopup");
-        const agoraNaoBtn = document.getElementById("agoraNaoGooglePopup");
-
-        function fecharPopup() {
-            popup?.classList.remove("show");
-        }
-
-        fecharBtn?.addEventListener("click", fecharPopup);
-        agoraNaoBtn?.addEventListener("click", fecharPopup);
-
-        popup?.addEventListener("click", function (e) {
-            if (e.target === popup) fecharPopup();
-        });
-
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                try {
-                    const dados = await buscarDadosUsuario(user.uid);
-
-                    if (headerNome) {
-                        headerNome.textContent = dados?.nome || user.displayName || user.email || "Perfil";
-                    }
-
-                    if (headerFoto) {
-                        const foto = dados?.foto || user.photoURL || "";
-
-                        if (foto) {
-                            headerFoto.src = foto;
-                            headerFoto.style.display = "block";
-                        } else {
-                            headerFoto.style.display = "none";
-                        }
-                    }
-
-                    if (perfilLink) perfilLink.href = "perfil.html";
-                    fecharPopup();
-                } catch (error) {
-                    console.error("Erro ao carregar usuário no header:", error);
-
-                    if (headerNome) headerNome.textContent = user.displayName || user.email || "Perfil";
-
-                    if (headerFoto && user.photoURL) {
-                        headerFoto.src = user.photoURL;
-                        headerFoto.style.display = "block";
-                    }
-
-                    if (perfilLink) perfilLink.href = "perfil.html";
-                    fecharPopup();
-                }
-            } else {
-                if (headerNome) headerNome.textContent = "Entrar";
-                if (headerFoto) headerFoto.style.display = "none";
-                if (perfilLink) perfilLink.href = "login.html";
-                popup?.classList.add("show");
-            }
-        });
-    </script>
-
     <script>
         window.addEventListener("load", () => {
             const preloader = document.getElementById("preloader");
@@ -1743,11 +1733,12 @@ body {
         });
     </script>
 
-<script>function fecharNotifications(){
-    const box = document.getElementById("notificationBox");
-    box.style.display = "none";
-}
-</script>
+    <script>
+        function fecharNotifications() {
+            const box = document.getElementById("notificationBox");
+            box.style.display = "none";
+        }
+    </script>
 
 </body>
 
