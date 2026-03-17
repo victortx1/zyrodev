@@ -17,4 +17,16 @@
 <priority>0.8</priority>
 </url>
 
+<url>
+  <loc>https://zyrodev.vercel.app/login/login.html</loc>
+  <lastmod>2026-03-17</lastmod>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://zyrodev.vercel.app/login/perfil.html</loc>
+  <lastmod>2026-03-17</lastmod>
+  <priority>0.8</priority>
+</url>
+
 </urlset>
