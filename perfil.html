@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Perfil | ZyroDev</title>
+
   <style>
     * {
       margin: 0;
@@ -24,9 +25,12 @@
       justify-content: center;
       align-items: center;
       padding: 30px;
+      transition: 0.4s;
     }
 
     .card {
+      position: relative; /* 🔥 IMPORTANTE PRO BRILHO */
+      overflow: hidden;   /* 🔥 NÃO VAZAR EFEITO */
       width: 100%;
       max-width: 520px;
       background: rgba(255, 255, 255, 0.07);
@@ -35,6 +39,7 @@
       padding: 32px;
       backdrop-filter: blur(15px);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      transition: 0.4s;
     }
 
     .topo {
@@ -51,6 +56,7 @@
       object-fit: cover;
       border: 3px solid rgba(255, 255, 255, 0.2);
       background: #111827;
+      transition: 0.3s;
     }
 
     .info-topo {
@@ -78,7 +84,6 @@
 
     h1 {
       font-size: 32px;
-      margin: 0;
     }
 
     .email {
@@ -96,17 +101,17 @@
     }
 
     .badge-icon {
-  width: 42px;
-  height: 42px;
-  object-fit: contain;
-  margin-left: 6px;
-  filter: drop-shadow(0 0 6px rgba(255,215,0,0.6));
-  transition: transform 0.25s ease;
-}
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      margin-left: 6px;
+      filter: drop-shadow(0 0 6px rgba(255,215,0,0.6));
+      transition: transform 0.25s ease;
+    }
 
-.badge-icon:hover {
-  transform: scale(1.2);
-}
+    .badge-icon:hover {
+      transform: scale(1.2);
+    }
 
     .bio-box {
       background: rgba(15, 23, 42, 0.65);
@@ -147,10 +152,71 @@
       color: white;
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
+
+    /* ===== TEMA FUNDADOR ===== */
+
+    .tema-fundador {
+      background:
+        radial-gradient(circle at top, rgba(255, 215, 0, 0.25), transparent 40%),
+        radial-gradient(circle at bottom, rgba(255, 180, 0, 0.2), transparent 40%),
+        linear-gradient(135deg, #050505, #1a1200);
+    }
+
+    .tema-fundador .card {
+      border: 1px solid rgba(255, 215, 0, 0.5);
+      background: rgba(20, 15, 0, 0.75);
+      box-shadow:
+        0 0 30px rgba(255, 215, 0, 0.2),
+        0 0 80px rgba(255, 200, 0, 0.15);
+    }
+
+    .tema-fundador h1 {
+      background: linear-gradient(90deg, #fff3b0, #ffd700, #ffb700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tema-fundador .foto {
+      border: 3px solid gold;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    }
+
+    .tema-fundador .tag {
+      background: rgba(255, 215, 0, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      color: #ffd700;
+    }
+
+    .tema-fundador .bio-box {
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      background: rgba(20, 15, 0, 0.6);
+    }
+
+    .tema-fundador .btn-primary {
+      background: linear-gradient(90deg, #ffd700, #ffb700);
+      color: black;
+    }
+
+    .tema-fundador .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+      opacity: 0.2;
+      animation: brilho 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes brilho {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
   </style>
 </head>
 
-<body>
+<body id="bodyPerfil"> <!-- 🔥 ESSENCIAL -->
   <div class="card">
     <div class="topo">
       <img id="fotoPerfil" class="foto" src="" alt="Foto do perfil">
