@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil público | Zyro Dev</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      color: white;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.25), transparent 30%),
+        radial-gradient(circle at top right, rgba(168, 85, 247, 0.20), transparent 30%),
+        linear-gradient(135deg, #020617, #0f172a 50%, #111827);
+      padding: 24px 14px;
+      transition: 0.4s;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: white;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: rgba(255,255,255,0.10);
+      transform: translateY(-1px);
+    }
+
+    .profile-card {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(20, 27, 53, 0.92);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 28px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      position: relative;
+      transition: all 0.35s ease;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.10), rgba(168, 85, 247, 0.08));
+      pointer-events: none;
+    }
+
+    /* ===== TEMA FUNDADOR ===== */
+
+    body.tema-fundador {
+      background:
+        radial-gradient(circle at top, rgba(255, 215, 0, 0.25), transparent 40%),
+        radial-gradient(circle at bottom, rgba(255, 180, 0, 0.2), transparent 40%),
+        linear-gradient(135deg, #050505, #1a1200);
+    }
+
+    body.tema-fundador .back-btn {
+      background: rgba(255, 215, 0, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.16);
+      color: #fff3b0;
+    }
+
+    body.tema-fundador .back-btn:hover {
+      background: rgba(255, 215, 0, 0.14);
+    }
+
+    .profile-card.vip-fundador {
+      border: 1px solid rgba(255, 215, 0, 0.5);
+      background: rgba(20, 15, 0, 0.75);
+      box-shadow:
+        0 0 30px rgba(255, 215, 0, 0.2),
+        0 0 80px rgba(255, 200, 0, 0.15),
+        0 25px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .profile-card.vip-fundador::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+      opacity: 0.2;
+      animation: brilho 4s linear infinite;
+      pointer-events: none;
+    }
+
+    /* ===== TEMA SOCIO ===== */
+
+    body.tema-socio {
+      background:
+        radial-gradient(circle at top, rgba(255, 215, 0, 0.25), transparent 40%),
+        radial-gradient(circle at bottom, rgba(255, 180, 0, 0.2), transparent 40%),
+        linear-gradient(135deg, #050505, #1a1200);
+    }
+
+    body.tema-socio .back-btn {
+      background: rgba(255, 215, 0, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.16);
+      color: #fff3b0;
+    }
+
+    body.tema-socio .back-btn:hover {
+      background: rgba(255, 215, 0, 0.14);
+    }
+
+    .profile-card.vip-socio {
+      border: 1px solid rgba(255, 215, 0, 0.5);
+      background: rgba(20, 15, 0, 0.75);
+      box-shadow:
+        0 0 30px rgba(255, 215, 0, 0.2),
+        0 0 80px rgba(255, 200, 0, 0.15),
+        0 25px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .profile-card.vip-socio::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+      opacity: 0.2;
+      animation: brilho 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes brilho {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .profile-top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .profile-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.20);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      background: rgba(255,255,255,0.04);
+      transition: 0.3s;
+    }
+
+    .profile-card.vip-fundador .profile-avatar,
+    .profile-card.vip-socio .profile-avatar {
+      border: 3px solid gold;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    }
+
+    .profile-main {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .profile-name-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .profile-name {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .profile-card.vip-fundador .profile-name,
+    .profile-card.vip-socio .profile-name {
+      background: linear-gradient(90deg, #fff3b0, #ffd700, #ffb700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .badges-inline {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .badge-icon {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.45));
+      transition: transform 0.25s ease;
+    }
+
+    .badge-icon:hover {
+      transform: scale(1.14);
+    }
+
+    .profile-handle {
+      color: #94a3b8;
+      margin-bottom: 14px;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .profile-card.vip-fundador .profile-handle,
+    .profile-card.vip-socio .profile-handle {
+      color: #f4e2a0;
+    }
+
+    .profile-bio {
+      color: #dbeafe;
+      line-height: 1.6;
+      font-size: 0.98rem;
+      padding: 0;
+      border-radius: 16px;
+      white-space: pre-wrap;
+    }
+
+    .profile-card.vip-fundador .profile-bio,
+    .profile-card.vip-socio .profile-bio {
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      background: rgba(20, 15, 0, 0.6);
+      color: #fff4bf;
+      padding: 14px 16px;
+    }
+
+    .badges {
+      position: relative;
+      z-index: 2;
+      display: none;
+    }
+
+    .stats-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+      margin-bottom: 20px;
+    }
+
+    .stat-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .profile-card.vip-fundador .stat-box,
+    .profile-card.vip-socio .stat-box {
+      background: rgba(255, 215, 0, 0.06);
+      border: 1px solid rgba(255, 215, 0, 0.14);
+    }
+
+    .stat-label {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .profile-card.vip-fundador .stat-label,
+    .profile-card.vip-socio .stat-label {
+      color: #e7d58a;
+    }
+
+    .stat-value {
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .profile-card.vip-fundador .stat-value,
+    .profile-card.vip-socio .stat-value {
+      color: #fff3b0;
+    }
+
+    .links-box {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .social-link,
+    .empty-link-box {
+      text-decoration: none;
+      color: white;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 12px 15px;
+      border-radius: 16px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .social-link:hover {
+      background: rgba(255,255,255,0.10);
+      transform: translateY(-1px);
+    }
+
+    .profile-card.vip-fundador .social-link,
+    .profile-card.vip-fundador .empty-link-box,
+    .profile-card.vip-socio .social-link,
+    .profile-card.vip-socio .empty-link-box {
+      background: rgba(255, 215, 0, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.14);
+      color: #fff3b0;
+    }
+
+    .profile-card.vip-fundador .social-link:hover,
+    .profile-card.vip-socio .social-link:hover {
+      background: rgba(255, 215, 0, 0.14);
+    }
+
+    .like-area {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .like-btn {
+      border: none;
+      cursor: pointer;
+      padding: 14px 18px;
+      border-radius: 18px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: white;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
+      transition: 0.2s ease;
+    }
+
+    .like-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+    }
+
+    .like-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .profile-card.vip-fundador .like-btn,
+    .profile-card.vip-socio .like-btn {
+      background: linear-gradient(90deg, #ffd700, #ffb700);
+      color: black;
+      box-shadow: 0 10px 30px rgba(255, 200, 0, 0.25);
+    }
+
+    .profile-card.vip-fundador .like-btn:hover:not(:disabled),
+    .profile-card.vip-socio .like-btn:hover:not(:disabled) {
+      box-shadow: 0 14px 35px rgba(255, 200, 0, 0.32);
+    }
+
+    .like-status {
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    .profile-card.vip-fundador .like-status,
+    .profile-card.vip-socio .like-status {
+      color: #f4e2a0;
+    }
+
+    .message-box,
+    .loading-box {
+      text-align: center;
+      padding: 24px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #cbd5e1;
+    }
+
+    body.tema-fundador .message-box,
+    body.tema-fundador .loading-box,
+    body.tema-socio .message-box,
+    body.tema-socio .loading-box {
+      background: rgba(20, 15, 0, 0.55);
+      border: 1px solid rgba(255, 215, 0, 0.16);
+      color: #f4e2a0;
+    }
+
+    @media (max-width: 700px) {
+      .profile-card {
+        padding: 20px;
+      }
+
+      .profile-name {
+        font-size: 1.5rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .badge-icon {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  </style>
+</head>
+<body id="bodyPerfilPublico">
+  <div class="container">
+    <div class="top-bar">
+      <a href="./ranking.html" class="back-btn">← Voltar para o ranking</a>
+    </div>
+
+    <div id="loadingBox" class="loading-box">Carregando perfil...</div>
+    <div id="errorBox" class="message-box" style="display:none;"></div>
+
+    <div id="profileCard" class="profile-card" style="display:none;">
+      <div class="profile-top">
+        <img id="profileFoto" class="profile-avatar" src="" alt="Foto do perfil">
+
+        <div class="profile-main">
+          <div class="profile-name-line">
+            <div id="profileNome" class="profile-name">Usuário</div>
+            <span id="badgesInline" class="badges-inline"></span>
+          </div>
+
+          <div id="profileHandle" class="profile-handle">@usuario</div>
+          <div id="profileBio" class="profile-bio">Sem bio.</div>
+        </div>
+      </div>
+
+      <div id="badgesBox" class="badges"></div>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">Pontos</div>
+          <div id="profilePontos" class="stat-value">0</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-label">Likes recebidos</div>
+          <div id="profileLikes" class="stat-value">0</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-label">Perfil</div>
+          <div class="stat-value">Público</div>
+        </div>
+      </div>
+
+      <div id="linksBox" class="links-box"></div>
+
+      <div class="like-area">
+        <button id="likeBtn" class="like-btn">💜 Curtir perfil</button>
+        <div id="likeStatus" class="like-status"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { auth, db } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import {
+      doc,
+      getDoc,
+      runTransaction,
+      increment,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const bodyPerfilPublico = document.getElementById("bodyPerfilPublico");
+    const loadingBox = document.getElementById("loadingBox");
+    const errorBox = document.getElementById("errorBox");
+    const profileCard = document.getElementById("profileCard");
+
+    const profileFoto = document.getElementById("profileFoto");
+    const profileNome = document.getElementById("profileNome");
+    const profileHandle = document.getElementById("profileHandle");
+    const profileBio = document.getElementById("profileBio");
+    const profilePontos = document.getElementById("profilePontos");
+    const profileLikes = document.getElementById("profileLikes");
+    const badgesBox = document.getElementById("badgesBox");
+    const badgesInline = document.getElementById("badgesInline");
+    const linksBox = document.getElementById("linksBox");
+    const likeBtn = document.getElementById("likeBtn");
+    const likeStatus = document.getElementById("likeStatus");
+
+    const params = new URLSearchParams(window.location.search);
+    const perfilUid = params.get("uid");
+
+    let usuarioLogado = null;
+    let perfilData = null;
+
+    const BADGES_CONFIG = {
+      primeira_temporada: {
+        nome: "Primeira Temporada",
+        imagem: "./fotos/temporada1.png"
+      },
+      fundador: {
+        nome: "Fundador",
+        imagem: "./fotos/fundador.png"
+      },
+      socio: {
+        nome: "Sócio",
+        imagem: "./fotos/sociozyro.png"
+      }
+    };
+
+    function formatNumber(value) {
+      return Number(value || 0).toLocaleString("pt-BR");
+    }
+
+    function getHandle(email, nome) {
+      if (email && email.includes("@")) {
+        return "@" + email.split("@")[0];
+      }
+
+      if (nome) {
+        return "@" + nome.toLowerCase().replace(/\s+/g, "");
+      }
+
+      return "@usuario";
+    }
+
+    function hojeId() {
+      const agora = new Date();
+      const ano = agora.getFullYear();
+      const mes = String(agora.getMonth() + 1).padStart(2, "0");
+      const dia = String(agora.getDate()).padStart(2, "0");
+      return `${ano}-${mes}-${dia}`;
+    }
+
+    function showError(message) {
+      loadingBox.style.display = "none";
+      profileCard.style.display = "none";
+      errorBox.style.display = "block";
+      errorBox.textContent = message;
+    }
+
+    function aplicarEstiloEspecial(data) {
+      const badges = Array.isArray(data.badges) ? data.badges : [];
+
+      profileCard.classList.remove("vip-fundador", "vip-socio");
+      bodyPerfilPublico.classList.remove("tema-fundador", "tema-socio");
+
+      if (badges.includes("fundador")) {
+        profileCard.classList.add("vip-fundador");
+        bodyPerfilPublico.classList.add("tema-fundador");
+        return;
+      }
+
+      if (badges.includes("socio")) {
+        profileCard.classList.add("vip-socio");
+        bodyPerfilPublico.classList.add("tema-socio");
+      }
+    }
+
+    function formatarNomeBadge(badge) {
+      if (BADGES_CONFIG[badge]?.nome) return BADGES_CONFIG[badge].nome;
+      return String(badge).replace(/_/g, " ");
+    }
+
+    function criarBadgeIcon(badge) {
+      const config = BADGES_CONFIG[badge];
+      if (!config) return null;
+
+      const img = document.createElement("img");
+      img.src = config.imagem;
+      img.alt = config.nome;
+      img.title = config.nome;
+      img.className = "badge-icon";
+      return img;
+    }
+
+    function renderizarBadges(badges = []) {
+      badgesBox.innerHTML = "";
+      badgesInline.innerHTML = "";
+
+      if (!badges.length) return;
+
+      badges.forEach((badge) => {
+        const badgeIcon = criarBadgeIcon(badge);
+
+        if (badgeIcon) {
+          badgesInline.appendChild(badgeIcon);
+        } else {
+          const fallback = document.createElement("span");
+          fallback.style.fontWeight = "700";
+          fallback.style.fontSize = "0.95rem";
+          fallback.textContent = formatarNomeBadge(badge);
+          badgesInline.appendChild(fallback);
+        }
+      });
+    }
+
+    function renderProfile(data) {
+      profileFoto.src = data.foto || "https://via.placeholder.com/110x110.png?text=User";
+      profileNome.textContent = data.nome || "Usuário";
+      profileHandle.textContent = getHandle(data.email, data.nome);
+      profileBio.textContent = data.bio && data.bio.trim() ? data.bio : "Esse usuário ainda não adicionou uma bio.";
+      profilePontos.textContent = formatNumber(data.pontos || 0);
+      profileLikes.textContent = formatNumber(data.likesRecebidos || 0);
+
+      const badges = Array.isArray(data.badges) ? data.badges.filter(Boolean) : [];
+      renderizarBadges(badges);
+      aplicarEstiloEspecial(data);
+
+      linksBox.innerHTML = "";
+
+      if (data.instagram) {
+        linksBox.innerHTML += `<a class="social-link" href="${data.instagram}" target="_blank" rel="noopener noreferrer">Instagram</a>`;
+      }
+
+      if (data.github) {
+        linksBox.innerHTML += `<a class="social-link" href="${data.github}" target="_blank" rel="noopener noreferrer">GitHub</a>`;
+      }
+
+      if (!data.instagram && !data.github) {
+        linksBox.innerHTML = `<div class="empty-link-box">Sem redes sociais</div>`;
+      }
+
+      loadingBox.style.display = "none";
+      errorBox.style.display = "none";
+      profileCard.style.display = "block";
+    }
+
+    async function verificarStatusDoLike() {
+      likeStatus.textContent = "";
+
+      if (!usuarioLogado) {
+        likeBtn.disabled = true;
+        likeBtn.textContent = "Faça login para curtir";
+        likeStatus.textContent = "Entre na sua conta para apoiar esse perfil.";
+        return;
+      }
+
+      if (usuarioLogado.uid === perfilUid) {
+        likeBtn.disabled = true;
+        likeBtn.textContent = "Seu próprio perfil";
+        likeStatus.textContent = "Você não pode curtir o próprio perfil.";
+        return;
+      }
+
+      const likeDocId = `${usuarioLogado.uid}_${hojeId()}`;
+      const likeRef = doc(db, "usuarios", perfilUid, "likesDiarios", likeDocId);
+      const likeSnap = await getDoc(likeRef);
+
+      if (likeSnap.exists()) {
+        likeBtn.disabled = true;
+        likeBtn.textContent = "Like enviado hoje";
+        likeStatus.textContent = "Você já curtiu esse perfil hoje.";
+      } else {
+        likeBtn.disabled = false;
+        likeBtn.textContent = "💜 Curtir perfil";
+        likeStatus.textContent = "Você pode enviar 1 like hoje para esse perfil.";
+      }
+    }
+
+    async function carregarPerfil() {
+      if (!perfilUid) {
+        showError("Perfil não encontrado.");
+        return;
+      }
+
+      try {
+        const userRef = doc(db, "usuarios", perfilUid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+          showError("Esse perfil não existe.");
+          return;
+        }
+
+        perfilData = userSnap.data();
+        renderProfile(perfilData);
+        await verificarStatusDoLike();
+      } catch (error) {
+        console.error("Erro ao carregar perfil:", error);
+        showError("Erro ao carregar o perfil.");
+      }
+    }
+
+    async function curtirPerfil() {
+      if (!usuarioLogado) return;
+      if (usuarioLogado.uid === perfilUid) return;
+
+      likeBtn.disabled = true;
+
+      try {
+        const today = hojeId();
+        const likeDocId = `${usuarioLogado.uid}_${today}`;
+
+        const perfilRef = doc(db, "usuarios", perfilUid);
+        const likeRef = doc(db, "usuarios", perfilUid, "likesDiarios", likeDocId);
+
+        await runTransaction(db, async (transaction) => {
+          const perfilSnap = await transaction.get(perfilRef);
+          if (!perfilSnap.exists()) {
+            throw new Error("Perfil não existe.");
+          }
+
+          const likeSnap = await transaction.get(likeRef);
+          if (likeSnap.exists()) {
+            throw new Error("Você já curtiu esse perfil hoje.");
+          }
+
+          transaction.set(likeRef, {
+            deUid: usuarioLogado.uid,
+            paraUid: perfilUid,
+            data: today,
+            createdAt: serverTimestamp()
+          });
+
+          transaction.update(perfilRef, {
+            likesRecebidos: increment(1)
+          });
+        });
+
+        perfilData.likesRecebidos = Number(perfilData.likesRecebidos || 0) + 1;
+        profileLikes.textContent = formatNumber(perfilData.likesRecebidos);
+
+        likeBtn.textContent = "Like enviado hoje";
+        likeBtn.disabled = true;
+        likeStatus.textContent = "Você apoiou esse perfil com sucesso hoje.";
+      } catch (error) {
+        console.error("Erro ao curtir perfil:", error);
+
+        if (String(error.message).includes("já curtiu")) {
+          likeBtn.textContent = "Like enviado hoje";
+          likeBtn.disabled = true;
+          likeStatus.textContent = "Você já curtiu esse perfil hoje.";
+        } else {
+          likeBtn.disabled = false;
+          likeStatus.textContent = "Não foi possível enviar o like agora.";
+        }
+      }
+    }
+
+    likeBtn.addEventListener("click", curtirPerfil);
+
+    onAuthStateChanged(auth, async (user) => {
+      usuarioLogado = user || null;
+      await carregarPerfil();
+    });
+  </script>
+</body>
+</html>

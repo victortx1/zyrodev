@@ -14,29 +14,37 @@ const btnSair = document.getElementById("btnSair");
 
 /* ===== BADGES ===== */
 function renderizarBadges(badges = []) {
+  if (!badgesPerfil) return;
+
   badgesPerfil.innerHTML = "";
+
+    // FUNDADOR
+  if (badges.includes("fundador")) {
+    const badge = document.createElement("img");
+    badge.src = "./fotos/fundador.png";
+    badge.className = "badge-icon";
+    badge.title = "Fundador Zyro";
+    badge.alt = "Badge Fundador";
+    badgesPerfil.appendChild(badge);
+  }
 
   // PRIMEIRA TEMPORADA
   if (badges.includes("primeira_temporada")) {
     const badge = document.createElement("img");
-
     badge.src = "./fotos/temporada1.png";
     badge.className = "badge-icon";
     badge.title = "Conta da Primeira Temporada";
     badge.alt = "Badge Primeira Temporada";
-
     badgesPerfil.appendChild(badge);
   }
 
-  // FUNDADOR 👑
-  if (badges.includes("fundador")) {
+  // SOCIO
+  if (badges.includes("socio")) {
     const badge = document.createElement("img");
-
-    badge.src = "./fotos/fundador.png"; // coloca sua imagem aqui
+    badge.src = "./fotos/sociozyro.png";
     badge.className = "badge-icon";
-    badge.title = "Fundador Zyro";
-    badge.alt = "Badge Fundador";
-
+    badge.title = "Sócio Zyro";
+    badge.alt = "Badge Sócio";
     badgesPerfil.appendChild(badge);
   }
 }
@@ -44,10 +52,51 @@ function renderizarBadges(badges = []) {
 /* ===== TEMA ESPECIAL ===== */
 function aplicarTemaEspecial(badges = []) {
   const body = document.getElementById("bodyPerfil");
+  if (!body) return;
+
+  body.classList.remove("tema-fundador");
+  body.classList.remove("tema-socio");
 
   if (badges.includes("fundador")) {
     body.classList.add("tema-fundador");
   }
+
+  if (badges.includes("socio")) {
+    body.classList.add("tema-socio");
+  }
+}
+
+/* ===== RENDER PERFIL ===== */
+function renderizarPerfil(dadosBanco, userAuth) {
+  const fotoFinal =
+    dadosBanco?.foto && dadosBanco.foto.trim() !== ""
+      ? dadosBanco.foto
+      : userAuth?.photoURL || "https://via.placeholder.com/150";
+
+  const nomeFinal =
+    dadosBanco?.nome && dadosBanco.nome.trim() !== ""
+      ? dadosBanco.nome
+      : userAuth?.displayName || "Usuário";
+
+  const emailFinal =
+    dadosBanco?.email && dadosBanco.email.trim() !== ""
+      ? dadosBanco.email
+      : userAuth?.email || "Sem email";
+
+  const bioFinal =
+    dadosBanco?.bio && dadosBanco.bio.trim() !== ""
+      ? dadosBanco.bio
+      : "Sem bio ainda.";
+
+  const badges = Array.isArray(dadosBanco?.badges) ? dadosBanco.badges : [];
+
+  if (fotoPerfil) fotoPerfil.src = fotoFinal;
+  if (nomePerfil) nomePerfil.textContent = nomeFinal;
+  if (emailPerfil) emailPerfil.textContent = emailFinal;
+  if (bioPerfil) bioPerfil.textContent = bioFinal;
+
+  renderizarBadges(badges);
+  aplicarTemaEspecial(badges);
 }
 
 /* ===== AUTH ===== */
@@ -59,26 +108,10 @@ onAuthStateChanged(auth, async (user) => {
 
   try {
     const dados = await buscarDadosUsuario(user.uid);
-
-    const badges = dados?.badges || [];
-
-    fotoPerfil.src = dados?.foto || user.photoURL || "https://via.placeholder.com/150";
-    nomePerfil.textContent = dados?.nome || user.displayName || "Usuário";
-    emailPerfil.textContent = dados?.email || user.email || "Sem email";
-    bioPerfil.textContent = dados?.bio || "Sem bio ainda.";
-
-    renderizarBadges(badges);
-
-    // 🔥 AQUI QUE FALTAVA
-    aplicarTemaEspecial(badges);
-
+    renderizarPerfil(dados, user);
   } catch (error) {
     console.error("Erro ao carregar perfil:", error);
-
-    fotoPerfil.src = user.photoURL || "https://via.placeholder.com/150";
-    nomePerfil.textContent = user.displayName || "Usuário";
-    emailPerfil.textContent = user.email || "Sem email";
-    bioPerfil.textContent = "Sem bio ainda.";
+    renderizarPerfil(null, user);
   }
 });
 

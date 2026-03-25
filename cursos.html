@@ -2,526 +2,1118 @@
 <html lang="pt-BR">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZyroDev Cursos</title>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <title>ZyroDev Cursos</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-secondary: #0f172a;
+      --card: rgba(15, 23, 42, 0.72);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --muted: #94a3b8;
+      --primary: #2563eb;
+      --primary-light: #38bdf8;
+      --secondary: #8b5cf6;
+      --success: #22c55e;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+    }
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        body {
-            background: #020617;
-            color: rgb(255, 255, 255);
-            overflow-x: hidden;
-        }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(139, 92, 246, 0.14), transparent 25%),
+        radial-gradient(circle at bottom center, rgba(56, 189, 248, 0.10), transparent 28%),
+        linear-gradient(135deg, #020617 0%, #071126 45%, #020617 100%);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
 
-        /* PARTICULAS FUNDO */
+    #particles {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
 
-        #particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
+    .bg-blur {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.14), transparent 22%),
+        radial-gradient(circle at 80% 10%, rgba(139, 92, 246, 0.12), transparent 18%),
+        radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.08), transparent 20%);
+      filter: blur(40px);
+    }
 
-        /* HEADER */
+    .page {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 28px 24px 60px;
+    }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 60px;
-        }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 38px;
+      padding: 14px 0;
+    }
 
-        .logo {
-            font-size: 26px;
-            font-weight: bold;
-            background: linear-gradient(90deg, #2563eb, #00e1ff);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-        /* PERFIL */
+    .logo-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(139, 92, 246, 0.25));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      font-size: 22px;
+    }
 
-        .profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 8px 15px;
-            border-radius: 30px;
-        }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
 
-        .profile img {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-        }
+    .logo-text strong {
+      font-size: 26px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #60a5fa, #22d3ee, #a78bfa);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
 
-        /* TITULO */
+    .logo-text span {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
 
-        .title {
-            text-align: center;
-            margin-top: 40px;
-        }
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
 
-        .title h1 {
-            font-size: 45px;
-        }
+    .profile img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+    }
 
-        /* GRID */
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-        }
+    .profile-info strong {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+    }
 
-        /* CARD */
+    .profile-info span {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
 
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: 0.3s;
-            transform-style: preserve-3d;
-            backdrop-filter: blur(12px);
-            position: relative;
-        }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 26px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
 
-        .card:hover {
-            transform: scale(1.05);
-        }
+    .hero-card,
+    .stats-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
 
-        /* IMAGEM */
+    .hero-card {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .card img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-        }
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -70px;
+      top: -70px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.20), transparent 65%);
+      border-radius: 50%;
+    }
 
-        /* CONTEUDO */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.18);
+      color: #bfdbfe;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
 
-        .card-content {
-            padding: 20px;
-            text-align: center;
-        }
+    .hero-card h1 {
+      font-size: 44px;
+      line-height: 1.1;
+      font-weight: 800;
+      margin-bottom: 14px;
+      max-width: 620px;
+    }
 
-        .card-content h3 {
-            margin-bottom: 10px;
-        }
+    .hero-card p {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.8;
+    }
 
-        /* PROGRESSO */
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
 
-        .progress {
-            width: 100%;
-            height: 8px;
-            background: #111;
-            border-radius: 10px;
-            margin: 10px 0;
-        }
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      padding: 13px 20px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
 
-        .progress span {
-            display: block;
-            height: 100%;
-            background: linear-gradient(90deg, #2563eb, #9333ea);
-            border-radius: 10px;
-        }
+    .hero-btn.primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.28);
+    }
 
-        /* BOTAO */
+    .hero-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.40);
+    }
 
-        .btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 22px;
-            background: #2563eb;
-            border-radius: 10px;
-            text-decoration: none;
-            color: white;
-            transition: 0.3s;
-        }
+    .hero-btn.secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-        .btn:hover {
-            background: #00a2ff;
-            box-shadow:
-                0 0 10px #00a2ff,
-                0 0 20px #00a2ff,
-                0 0 40px #00a2ff;
-        }
+    .hero-btn.secondary:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.07);
+    }
 
+    .stats-card {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
 
-        /* =========================
-RESPONSIVIDADE CELULAR
-========================= */
+    .stat-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 18px;
+      padding: 20px;
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-        @media (max-width:900px) {
+    .stat-box strong {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
 
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 25px 20px;
-                text-align: center;
-            }
+    .stat-box span {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
 
-            .title h1 {
-                font-size: 32px;
-            }
+    .section-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin: 12px 0 22px;
+      flex-wrap: wrap;
+    }
 
-            .container {
-                padding: 20px;
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                gap: 20px;
-            }
+    .section-title h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
 
-            .card img {
-                height: 140px;
-            }
+    .section-title p {
+      color: var(--muted);
+      font-size: 14px;
+    }
 
-            .card-content h3 {
-                font-size: 16px;
-            }
+    .search-box {
+      position: relative;
+      min-width: 300px;
+      max-width: 420px;
+      width: 100%;
+    }
 
-            .btn {
-                padding: 9px 18px;
-                font-size: 14px;
-            }
+    .search-box input {
+      width: 100%;
+      padding: 14px 18px 14px 48px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      outline: none;
+      font-size: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      backdrop-filter: blur(12px);
+      transition: 0.25s ease;
+    }
 
-            .profile {
-                padding: 6px 12px;
-            }
+    .search-box input::placeholder {
+      color: #94a3b8;
+    }
 
-            .profile img {
-                width: 30px;
-                height: 30px;
-            }
+    .search-box input:focus {
+      border-color: rgba(96, 165, 250, 0.35);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
 
-        }
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #94a3b8;
+      pointer-events: none;
+    }
 
-        /* CELULARES PEQUENOS */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
 
-        @media (max-width:500px) {
+    .card {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(8, 15, 30, 0.88));
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.30);
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
 
-            .logo {
-                font-size: 22px;
-            }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 28%);
+      pointer-events: none;
+    }
 
-            .title h1 {
-                font-size: 26px;
-            }
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(96, 165, 250, 0.20);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.38);
+    }
 
-            .container {
-                grid-template-columns: 1fr;
-            }
+    .card-banner {
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+    }
 
-            .card img {
-                height: 130px;
-            }
+    .card-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.35s ease;
+    }
 
-            .card-content {
-                padding: 16px;
-            }
+    .card:hover .card-banner img {
+      transform: scale(1.08);
+    }
 
-            .btn {
-                width: 100%;
-            }
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.15));
+    }
 
-        }
+    .course-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: #e2e8f0;
+      font-size: 12px;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+    }
 
-        /* BARRA DE PESQUISA */
+    .card-content {
+      padding: 20px 20px 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
 
-        .search-box {
-            text-align: center;
-            margin-top: 25px;
-        }
+    .card-content h3 {
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 8px;
+      color: #fff;
+    }
 
-        .search-box input {
-            width: 320px;
-            max-width: 90%;
-            padding: 12px 20px;
-            border-radius: 30px;
-            border: none;
-            outline: none;
-            font-size: 16px;
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-            backdrop-filter: blur(10px);
-            transition: 0.3s;
-        }
+    .card-content p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
 
-        .search-box input::placeholder {
-            color: #aaa;
-        }
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
 
-        .search-box input:focus {
-            box-shadow: 0 0 10px #2563eb;
-        }
-    </style>
+    .meta-item {
+      font-size: 12px;
+      color: #cbd5e1;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
 
+    .progress-area {
+      margin-top: auto;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    .progress {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2563eb, #38bdf8, #8b5cf6);
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
+      transition: width 0.45s ease;
+    }
+
+    .progress-text {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+      min-height: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      transition: 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.28);
+    }
+
+    .empty-search {
+      display: none;
+      text-align: center;
+      padding: 36px 20px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 15px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    @media (max-width: 1100px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card h1 {
+        font-size: 38px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        padding: 20px 16px 45px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .profile {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .hero-card,
+      .stats-card {
+        border-radius: 22px;
+      }
+
+      .hero-card {
+        padding: 24px;
+      }
+
+      .hero-card h1 {
+        font-size: 30px;
+      }
+
+      .stats-card {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section-top {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box {
+        min-width: unset;
+        max-width: 100%;
+      }
+
+      .container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .logo-text strong {
+        font-size: 22px;
+      }
+
+      .hero-card h1 {
+        font-size: 26px;
+      }
+
+      .hero-card p {
+        font-size: 14px;
+      }
+
+      .stats-card {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .card-banner {
+        height: 170px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <canvas id="particles"></canvas>
+  <div class="bg-blur"></div>
 
-    <canvas id="particles"></canvas>
-
+  <div class="page">
     <header>
-
-        <div class="logo">ZyroDev</div>
-
-        <div class="profile">
-            <img src="fotos/ZYRODEV.png">
-            <span>Aluno</span>
+      <div class="logo-box">
+        <div class="logo-icon">⚡</div>
+        <div class="logo-text">
+          <strong>ZyroDev</strong>
+          <span>Plataforma de cursos</span>
         </div>
+      </div>
 
+      <div class="profile">
+        <img id="fotoPerfilTopo" src="fotos/ZYRODEV.png" alt="Perfil">
+        <div class="profile-info">
+          <strong id="nomePerfilTopo">Aluno</strong>
+          <span>Bem-vindo de volta</span>
+        </div>
+      </div>
     </header>
 
-    <div class="title">
-        <h1>🎓 Cursos Disponíveis</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <div class="tag">🚀 Evolua todo dia com a ZyroDev</div>
+        <h1>Aprenda programação de forma bonita, prática e organizada.</h1>
+        <p>
+          Escolha seu próximo curso, acompanhe seu progresso em tempo real e continue evoluindo
+          no seu ritmo com uma experiência mais moderna e profissional.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#cursos" class="hero-btn primary">Ver cursos</a>
+          <a href="#" class="hero-btn secondary">Continuar estudando</a>
+        </div>
+      </div>
+
+      <div class="stats-card">
+        <div class="stat-box">
+          <strong>6</strong>
+          <span>Cursos disponíveis para você estudar agora</span>
+        </div>
+
+        <div class="stat-box">
+          <strong>227</strong>
+          <span>Total de aulas entre todas as trilhas</span>
+        </div>
+
+        <div class="stat-box">
+          <strong id="cursosEmAndamento">0</strong>
+          <span>Cursos com progresso iniciado</span>
+        </div>
+
+        <div class="stat-box">
+          <strong id="progressoGeral">0%</strong>
+          <span>Progresso geral da sua jornada</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-top" id="cursos">
+      <div class="section-title">
+        <h2>🎓 Cursos Disponíveis</h2>
+        <p>Pesquise e continue exatamente de onde você parou.</p>
+      </div>
+
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Buscar curso...">
+      </div>
     </div>
 
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="🔍 Buscar curso..." onkeyup="searchCourses()">
+    <div class="container" id="cardsContainer">
+      <div class="card">
+        <div class="card-banner">
+          <span class="course-badge">Iniciante</span>
+          <img src="fotos/logica.png" alt="Curso de Lógica de Programação">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Curso de Lógica de Programação</h3>
+          <p>Aprenda a base do raciocínio lógico e dê os primeiros passos no mundo da programação.</p>
+
+          <div class="meta">
+            <span class="meta-item">📚 16 aulas</span>
+            <span class="meta-item">🧠 Base essencial</span>
+          </div>
+
+          <div class="progress-area">
+            <div class="progress-label">
+              <span>Seu progresso</span>
+              <span id="progress-logica-percent">0%</span>
+            </div>
+
+            <div class="progress">
+              <span id="progress-logica"></span>
+            </div>
+
+            <div class="progress-text" id="progress-logica-text">0/16 aulas • 0%</div>
+            <a href="logica-programacao.html" class="btn">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-banner">
+          <span class="course-badge">Muito pedido</span>
+          <img src="fotos/htmlcss.png" alt="Curso HTML e CSS">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Curso HTML e CSS</h3>
+          <p>Construa páginas bonitas, responsivas e com uma base sólida de front-end.</p>
+
+          <div class="meta">
+            <span class="meta-item">📚 41 aulas</span>
+            <span class="meta-item">🎨 Front-end</span>
+          </div>
+
+          <div class="progress-area">
+            <div class="progress-label">
+              <span>Seu progresso</span>
+              <span id="progress-htmlcss-percent">0%</span>
+            </div>
+
+            <div class="progress">
+              <span id="progress-htmlcss"></span>
+            </div>
+
+            <div class="progress-text" id="progress-htmlcss-text">0/41 aulas • 0%</div>
+            <a href="cursohtmlecss.html" class="btn">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-banner">
+          <span class="course-badge">Interatividade</span>
+          <img src="fotos/javascript.png" alt="Curso JavaScript">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Curso JavaScript</h3>
+          <p>Aprenda a deixar seus projetos vivos, dinâmicos e interativos com JavaScript.</p>
+
+          <div class="meta">
+            <span class="meta-item">📚 49 aulas</span>
+            <span class="meta-item">⚙️ Dinamismo</span>
+          </div>
+
+          <div class="progress-area">
+            <div class="progress-label">
+              <span>Seu progresso</span>
+              <span id="progress-javascript-percent">0%</span>
+            </div>
+
+            <div class="progress">
+              <span id="progress-javascript"></span>
+            </div>
+
+            <div class="progress-text" id="progress-javascript-text">0/49 aulas • 0%</div>
+            <a href="javascript.html" class="btn">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-banner">
+          <span class="course-badge">Popular</span>
+          <img src="fotos/python.png" alt="Curso Python">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Curso Python</h3>
+          <p>Uma linguagem poderosa e simples para automações, sistemas e muito mais.</p>
+
+          <div class="meta">
+            <span class="meta-item">📚 47 aulas</span>
+            <span class="meta-item">🐍 Versátil</span>
+          </div>
+
+          <div class="progress-area">
+            <div class="progress-label">
+              <span>Seu progresso</span>
+              <span id="progress-python-percent">0%</span>
+            </div>
+
+            <div class="progress">
+              <span id="progress-python"></span>
+            </div>
+
+            <div class="progress-text" id="progress-python-text">0/47 aulas • 0%</div>
+            <a href="python.html" class="btn">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-banner">
+          <span class="course-badge">Back-end</span>
+          <img src="fotos/php.png" alt="Curso PHP">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Curso PHP</h3>
+          <p>Desenvolva aplicações web mais completas e entenda melhor a lógica do servidor.</p>
+
+          <div class="meta">
+            <span class="meta-item">📚 44 aulas</span>
+            <span class="meta-item">🌐 Web</span>
+          </div>
+
+          <div class="progress-area">
+            <div class="progress-label">
+              <span>Seu progresso</span>
+              <span id="progress-php-percent">0%</span>
+            </div>
+
+            <div class="progress">
+              <span id="progress-php"></span>
+            </div>
+
+            <div class="progress-text" id="progress-php-text">0/44 aulas • 0%</div>
+            <a href="php.html" class="btn">Assistir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-banner">
+          <span class="course-badge">Estruturado</span>
+          <img src="fotos/java.png" alt="Curso Java">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Curso de Java</h3>
+          <p>Aprenda orientação a objetos e desenvolva uma base forte para sistemas maiores.</p>
+
+          <div class="meta">
+            <span class="meta-item">📚 30 aulas</span>
+            <span class="meta-item">☕ OOP</span>
+          </div>
+
+          <div class="progress-area">
+            <div class="progress-label">
+              <span>Seu progresso</span>
+              <span id="progress-java-percent">0%</span>
+            </div>
+
+            <div class="progress">
+              <span id="progress-java"></span>
+            </div>
+
+            <div class="progress-text" id="progress-java-text">0/30 aulas • 0%</div>
+            <a href="java.html" class="btn">Assistir</a>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="container">
-
-        <div class="card">
-
-            <img src="fotos/logica.png">
-
-            <div class="card-content">
-
-                <h3>Curso de Lógica de <br>Programação <br> #15 Aulas</h3>
-
-                <div class="progress">
-                    <span style="width:40%"></span>
-                </div>
-
-                <a href="logica-programacao.html" class="btn">Assistir</a>
-
-            </div>
-        </div>
-
-        <div class="card">
-
-            <img src="fotos/htmlcss.png">
-
-            <div class="card-content">
-
-                <h3>Curso HTML e CSS <br>#41 Aulas</h3>
-
-                <div class="progress">
-                    <span style="width:40%"></span>
-                </div>
-
-                <a href="cursohtmlecss.html" class="btn">Assistir</a>
-
-            </div>
-        </div>
-
-
-        <div class="card">
-
-            <img src="fotos/javascript.png">
-
-            <div class="card-content">
-
-                <h3>Curso JavaScript <br>#49 Aulas</h3>
-
-                <div class="progress">
-                    <span style="width:20%"></span>
-                </div>
-
-                <a href="javascript.html" class="btn">Assistir</a>
-
-            </div>
-        </div>
-
-
-        <div class="card">
-
-            <img src="fotos/python.png">
-
-            <div class="card-content">
-
-                <h3>Curso Python <br>#47 Aulas</h3>
-
-                <div class="progress">
-                    <span style="width:10%"></span>
-                </div>
-
-                <a href="python.html" class="btn">Assistir</a>
-
-            </div>
-        </div>
-
-
-        <div class="card">
-
-            <img src="fotos/php.png">
-
-            <div class="card-content">
-
-                <h3>Curso PHP <br>#44 Aulas</h3>
-
-                <div class="progress">
-                    <span style="width:0%"></span>
-                </div>
-
-                <a href="php.html" class="btn">Assistir</a>
-
-            </div>
-        </div>
-
-        <div class="card">
-
-            <img src="fotos/java.png">
-
-            <div class="card-content">
-
-                <h3>Curso de Java<br>#30 Aulas</h3>
-
-                <div class="progress">
-                    <span style="width:0%"></span>
-                </div>
-
-                <a href="java.html" class="btn">Assistir</a>
-
-            </div>
-        </div>
-
+    <div class="empty-search" id="emptySearch">
+      Nenhum curso encontrado com essa busca.
     </div>
+  </div>
 
+  <script type="module">
+    import { auth, db } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    <script>
+    const fotoPerfilTopo = document.getElementById("fotoPerfilTopo");
+    const nomePerfilTopo = document.getElementById("nomePerfilTopo");
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".card");
+    const emptySearch = document.getElementById("emptySearch");
+    const cursosEmAndamento = document.getElementById("cursosEmAndamento");
+    const progressoGeral = document.getElementById("progressoGeral");
 
-        /* PARTICULAS FUNDO */
+    const cursos = {
+      "logica-programacao": {
+        totalAulas: 16,
+        progressEl: document.getElementById("progress-logica"),
+        textEl: document.getElementById("progress-logica-text"),
+        percentEl: document.getElementById("progress-logica-percent")
+      },
+      "html-css": {
+        totalAulas: 41,
+        progressEl: document.getElementById("progress-htmlcss"),
+        textEl: document.getElementById("progress-htmlcss-text"),
+        percentEl: document.getElementById("progress-htmlcss-percent")
+      },
+      "javascript": {
+        totalAulas: 49,
+        progressEl: document.getElementById("progress-javascript"),
+        textEl: document.getElementById("progress-javascript-text"),
+        percentEl: document.getElementById("progress-javascript-percent")
+      },
+      "python": {
+        totalAulas: 47,
+        progressEl: document.getElementById("progress-python"),
+        textEl: document.getElementById("progress-python-text"),
+        percentEl: document.getElementById("progress-python-percent")
+      },
+      "php": {
+        totalAulas: 44,
+        progressEl: document.getElementById("progress-php"),
+        textEl: document.getElementById("progress-php-text"),
+        percentEl: document.getElementById("progress-php-percent")
+      },
+      "java": {
+        totalAulas: 30,
+        progressEl: document.getElementById("progress-java"),
+        textEl: document.getElementById("progress-java-text"),
+        percentEl: document.getElementById("progress-java-percent")
+      }
+    };
 
-        const canvas = document.getElementById("particles");
-        const ctx = canvas.getContext("2d");
+    function setProgressoCurso(cursoId, concluidas = 0) {
+      const curso = cursos[cursoId];
+      if (!curso) return;
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+      const total = curso.totalAulas;
+      const percent = Math.min(100, Math.round((concluidas / total) * 100));
 
-        let particles = [];
+      curso.progressEl.style.width = percent + "%";
+      curso.textEl.textContent = `${concluidas}/${total} aulas • ${percent}%`;
+      curso.percentEl.textContent = `${percent}%`;
+    }
 
-        for (let i = 0; i < 80; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                r: Math.random() * 2,
-                dx: (Math.random() - 0.5),
-                dy: (Math.random() - 0.5)
-            })
+    function atualizarResumoGeral(aulasConcluidas = {}) {
+      let totalCursosIniciados = 0;
+      let totalAulasFeitas = 0;
+      let totalAulas = 0;
+
+      Object.keys(cursos).forEach((cursoId) => {
+        const concluidas = contarAulasConcluidasPorCurso(aulasConcluidas, cursoId);
+        if (concluidas > 0) totalCursosIniciados++;
+        totalAulasFeitas += concluidas;
+        totalAulas += cursos[cursoId].totalAulas;
+      });
+
+      const percentGeral = totalAulas > 0
+        ? Math.min(100, Math.round((totalAulasFeitas / totalAulas) * 100))
+        : 0;
+
+      cursosEmAndamento.textContent = totalCursosIniciados;
+      progressoGeral.textContent = `${percentGeral}%`;
+    }
+
+    function resetarTodosProgressos() {
+      Object.keys(cursos).forEach((cursoId) => {
+        setProgressoCurso(cursoId, 0);
+      });
+
+      cursosEmAndamento.textContent = "0";
+      progressoGeral.textContent = "0%";
+    }
+
+    function contarAulasConcluidasPorCurso(aulasConcluidas = {}, cursoId) {
+      return Object.keys(aulasConcluidas).filter((key) => key.startsWith(`${cursoId}:`)).length;
+    }
+
+    async function carregarProgressos(uid) {
+      try {
+        const userRef = doc(db, "usuarios", uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+          resetarTodosProgressos();
+          return;
         }
 
-        function animate() {
+        const dados = userSnap.data();
+        const aulasConcluidas = dados.aulasConcluidas || {};
 
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        Object.keys(cursos).forEach((cursoId) => {
+          const quantidade = contarAulasConcluidasPorCurso(aulasConcluidas, cursoId);
+          setProgressoCurso(cursoId, quantidade);
+        });
 
-            particles.forEach(p => {
+        atualizarResumoGeral(aulasConcluidas);
 
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = "#2563eb";
-                ctx.fill();
+        nomePerfilTopo.textContent = dados.nome || "Aluno";
 
-                p.x += p.dx;
-                p.y += p.dy;
-
-            })
-
-            requestAnimationFrame(animate)
-
+        if (dados.foto && dados.foto.trim() !== "") {
+          fotoPerfilTopo.src = dados.foto;
         }
+      } catch (error) {
+        console.error("Erro ao carregar progressos:", error);
+        resetarTodosProgressos();
+      }
+    }
 
-        animate()
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await carregarProgressos(user.uid);
+      } else {
+        resetarTodosProgressos();
+      }
+    });
 
+    searchInput.addEventListener("input", () => {
+      const input = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
 
-        /* ANIMAÇÃO SCROLL */
+      cards.forEach((card) => {
+        const text = card.innerText.toLowerCase();
+        const mostrar = text.includes(input);
+        card.style.display = mostrar ? "flex" : "none";
+        if (mostrar) visibleCount++;
+      });
 
-        const cards = document.querySelectorAll(".card");
+      emptySearch.style.display = visibleCount === 0 ? "block" : "none";
+    });
+  </script>
 
-        window.addEventListener("scroll", () => {
+  <script>
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
 
-            cards.forEach(card => {
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
 
-                const top = card.getBoundingClientRect().top;
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
-                if (top < window.innerHeight - 100) {
-                    card.classList.add("show");
-                }
+    const particles = [];
+    const totalParticles = window.innerWidth < 768 ? 38 : 70;
 
-            })
+    for (let i = 0; i < totalParticles; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2.2 + 0.4,
+        dx: (Math.random() - 0.5) * 0.35,
+        dy: (Math.random() - 0.5) * 0.35,
+        opacity: Math.random() * 0.5 + 0.15
+      });
+    }
 
-        })
+    function drawConnections() {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a + 1; b < particles.length; b++) {
+          const dx = particles[a].x - particles[b].x;
+          const dy = particles[a].y - particles[b].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
-
-        /* CARD 3D */
-
-        cards.forEach(card => {
-
-            card.addEventListener("mousemove", (e) => {
-
-                let rect = card.getBoundingClientRect();
-
-                let x = e.clientX - rect.left;
-                let y = e.clientY - rect.top;
-
-                let centerX = rect.width / 2;
-                let centerY = rect.height / 2;
-
-                let rotateX = (y - centerY) / 20;
-                let rotateY = (centerX - x) / 20;
-
-                card.style.transform =
-                    `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-
-            })
-
-            card.addEventListener("mouseleave", () => {
-
-                card.style.transform = "rotateX(0) rotateY(0)";
-
-            })
-
-        })
-
-        function searchCourses() {
-
-            let input = document.getElementById("searchInput").value.toLowerCase();
-            let cards = document.querySelectorAll(".card");
-
-            cards.forEach(card => {
-
-                let text = card.innerText.toLowerCase();
-
-                if (text.includes(input)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
-
-            });
-
+          if (distance < 110) {
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.strokeStyle = `rgba(59, 130, 246, ${0.08 * (1 - distance / 110)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
         }
+      }
+    }
 
-    </script>
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      particles.forEach((p) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(56, 189, 248, ${p.opacity})`;
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < -10) p.x = canvas.width + 10;
+        if (p.x > canvas.width + 10) p.x = -10;
+        if (p.y < -10) p.y = canvas.height + 10;
+        if (p.y > canvas.height + 10) p.y = -10;
+      });
+
+      drawConnections();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
 </body>
 
 </html>

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ranking | Zyro Dev</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.25), transparent 30%),
+        radial-gradient(circle at top right, rgba(168, 85, 247, 0.20), transparent 30%),
+        radial-gradient(circle at bottom center, rgba(14, 165, 233, 0.15), transparent 35%),
+        linear-gradient(135deg, #020617, #0f172a 50%, #111827);
+      padding: 30px 16px 120px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .ranking-header {
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .title-box h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .title-box p {
+      color: #94a3b8;
+      font-size: 0.98rem;
+    }
+
+    .glow-text {
+      background: linear-gradient(90deg, #60a5fa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .top3-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .podium-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      min-height: 250px;
+    }
+
+    .podium-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    .podium-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .podium-1::before {
+      background: linear-gradient(135deg, rgb(175, 137, 31), rgb(119, 87, 5));
+    }
+
+    .podium-2::before {
+      background: linear-gradient(135deg, rgba(189, 182, 93, 0.849), rgba(181, 184, 148, 0.555));
+    }
+
+    .podium-3::before {
+      background: linear-gradient(135deg, rgba(193, 194, 188, 0.18), rgb(64, 74, 77));
+    }
+
+    .podium-socio {
+      border: 1px solid rgba(255, 215, 0, 0.45);
+      box-shadow:
+        0 0 25px rgba(255, 215, 0, 0.15),
+        0 0 55px rgba(255, 180, 0, 0.10);
+    }
+
+    .podium-socio::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.14), transparent);
+      animation: brilhoSocio 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes brilhoSocio {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .place-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      min-width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      z-index: 2;
+    }
+
+    .podium-avatar {
+      width: 86px;
+      height: 86px;
+      border-radius: 22px;
+      object-fit: cover;
+      margin-bottom: 16px;
+      border: 2px solid rgba(255,255,255,0.12);
+      position: relative;
+      z-index: 2;
+    }
+
+    .podium-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .podium-tag {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .mini-badge {
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .podium-points {
+      margin-top: auto;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #fff;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .podium-points span {
+      color: #fbbf24;
+      font-size: 1.1rem;
+    }
+
+    .table-wrapper {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+    }
+
+    .ranking-table-header,
+    .ranking-row {
+      display: grid;
+      grid-template-columns: 110px 1.5fr 160px 180px;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px;
+    }
+
+    .ranking-table-header {
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: #94a3b8;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .ranking-list .ranking-row {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: 0.25s ease;
+    }
+
+    .ranking-list .ranking-row:last-child {
+      border-bottom: none;
+    }
+
+    .ranking-row:hover {
+      background: rgba(255,255,255,0.04);
+    }
+
+    .ranking-row.me {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(168, 85, 247, 0.10));
+      border-top: 1px solid rgba(96, 165, 250, 0.12);
+      border-bottom: 1px solid rgba(96, 165, 250, 0.12);
+    }
+
+    .ranking-row.socio {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.10), rgba(255, 180, 0, 0.08));
+      border-top: 1px solid rgba(255, 215, 0, 0.25);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.25);
+    }
+
+    .ranking-row.socio:hover {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(255, 180, 0, 0.12));
+    }
+
+    .rank-col {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .rank-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .user-col {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .user-col img {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.09);
+      flex-shrink: 0;
+    }
+
+    .user-info {
+      min-width: 0;
+    }
+
+    .user-info h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .user-info p {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .badge-col {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .score-col {
+      font-size: 1rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      color: #fff;
+    }
+
+    .score-col span {
+      color: #fbbf24;
+    }
+
+    .empty-badge-text {
+      color: #64748b;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .loading,
+    .error-message,
+    .empty-message {
+      padding: 28px 20px;
+      text-align: center;
+      color: #cbd5e1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+    }
+
+    .floating-me {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      width: min(1100px, calc(100% - 20px));
+      z-index: 999;
+      border-radius: 22px;
+      padding: 16px 18px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.90), rgba(124, 58, 237, 0.90));
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+      backdrop-filter: blur(14px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .floating-me.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(20px);
+    }
+
+    .floating-me-row {
+      display: grid;
+      grid-template-columns: 110px 1.5fr 160px 180px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .go-to-me {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .go-to-me:hover {
+      background: rgba(255,255,255,0.20);
+    }
+
+    .ranking-row,
+    .podium-card {
+      cursor: pointer;
+    }
+
+    @media (max-width: 980px) {
+      .top3-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ranking-table-header {
+        display: none;
+      }
+
+      .ranking-row,
+      .floating-me-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .ranking-row {
+        padding: 18px;
+      }
+
+      .score-col {
+        justify-content: flex-start;
+      }
+
+      .floating-me {
+        width: calc(100% - 16px);
+        bottom: 8px;
+        padding: 14px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 18px 10px 120px;
+      }
+
+      .title-box h1 {
+        font-size: 1.6rem;
+      }
+
+      .podium-card {
+        min-height: auto;
+      }
+
+      .user-col img {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    .nome-dourado {
+      background: linear-gradient(90deg, #FFD700, #FFA500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+    }
+
+    .nome-socio {
+      background: linear-gradient(90deg, #fff3b0, #ffd700, #ffb700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="ranking-header">
+      <div class="title-box">
+        <h1>Ranking <span class="glow-text">Zyro Dev</span></h1>
+        <p>Veja quem mais pontuou na plataforma e acompanhe sua posição em tempo real.</p>
+      </div>
+    </div>
+
+    <div id="loadingBox" class="loading">Carregando ranking...</div>
+
+    <div id="rankingContent" style="display:none;">
+      <div class="top3-grid" id="top3"></div>
+
+      <div class="table-wrapper">
+        <div class="ranking-table-header">
+          <div>Patente</div>
+          <div>Apelido</div>
+          <div>Badges</div>
+          <div style="text-align:right;">Pontuação</div>
+        </div>
+
+        <div class="ranking-list" id="rankingList"></div>
+      </div>
+    </div>
+
+    <div id="errorBox" class="error-message" style="display:none;"></div>
+  </div>
+
+  <div id="floatingMe" class="floating-me hidden">
+    <div class="floating-me-row" id="floatingMeContent"></div>
+  </div>
+
+  <script type="module">
+    import { auth, db } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import {
+      collection,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const loadingBox = document.getElementById("loadingBox");
+    const rankingContent = document.getElementById("rankingContent");
+    const errorBox = document.getElementById("errorBox");
+    const top3Container = document.getElementById("top3");
+    const rankingList = document.getElementById("rankingList");
+    const floatingMe = document.getElementById("floatingMe");
+    const floatingMeContent = document.getElementById("floatingMeContent");
+
+    let currentLoggedUser = null;
+    let myRowElement = null;
+    let observer = null;
+
+    window.abrirPerfilPublico = function(uid) {
+      window.location.href = `./perfil-publico.html?uid=${uid}`;
+    };
+
+    function formatNumber(value) {
+      return Number(value || 0).toLocaleString("pt-BR");
+    }
+
+    function getPlaceStyle(position) {
+      if (position === 1) return "podium-1";
+      if (position === 2) return "podium-2";
+      return "podium-3";
+    }
+
+    function getRankIcon(position) {
+      if (position === 1) return "🥇";
+      if (position === 2) return "🥈";
+      if (position === 3) return "🥉";
+      if (position <= 10) return "🔥";
+      return "#";
+    }
+
+    function isFounder(user) {
+      return Array.isArray(user.badges) && user.badges.includes("fundador");
+    }
+
+    function isSocio(user) {
+      return Array.isArray(user.badges) && user.badges.includes("socio");
+    }
+
+    function getGoldenNameClass(user) {
+      if (isFounder(user)) return "nome-dourado";
+      if (isSocio(user)) return "nome-socio";
+      return "";
+    }
+
+    function normalizeUser(docData, docId) {
+      return {
+        uid: docData.uid || docId,
+        nome: docData.nome || "Usuário",
+        tag: docData.email ? `@${docData.email.split("@")[0]}` : "@usuario",
+        subtitulo: docData.bio && docData.bio.trim()
+          ? docData.bio.trim()
+          : "Membro da Zyro Dev",
+        pontos: Number(docData.pontos || 0),
+        likes: Number(docData.likes || 0),
+        avatar: docData.foto || "https://via.placeholder.com/80x80.png?text=User",
+        badges: Array.isArray(docData.badges) ? docData.badges.filter(Boolean) : []
+      };
+    }
+
+    async function loadRanking() {
+      try {
+        loadingBox.style.display = "block";
+        rankingContent.style.display = "none";
+        errorBox.style.display = "none";
+
+        const snapshot = await getDocs(collection(db, "usuarios"));
+
+        if (snapshot.empty) {
+          loadingBox.style.display = "none";
+          errorBox.style.display = "block";
+          errorBox.textContent = "Nenhum usuário encontrado no ranking.";
+          return;
+        }
+
+        const users = snapshot.docs.map(doc => normalizeUser(doc.data(), doc.id));
+
+        users.sort((a, b) => {
+          if (b.pontos !== a.pontos) {
+            return b.pontos - a.pontos;
+          }
+          return b.likes - a.likes;
+        });
+
+        renderTop3(users);
+        renderRankingList(users);
+        renderFloatingCurrentUser(users);
+
+        loadingBox.style.display = "none";
+        rankingContent.style.display = "block";
+      } catch (error) {
+        console.error("Erro ao carregar ranking:", error);
+        loadingBox.style.display = "none";
+        errorBox.style.display = "block";
+        errorBox.textContent = "Erro ao carregar o ranking. Verifique o Firebase.";
+      }
+    }
+
+    function renderBadges(badges) {
+      if (!badges || badges.length === 0) {
+        return `<div class="empty-badge-text">Sem badges</div>`;
+      }
+
+      return badges.map(badge => `<div class="mini-badge">${badge}</div>`).join("");
+    }
+
+    function renderTop3(users) {
+      const top3 = users.slice(0, 3);
+
+      top3Container.innerHTML = top3.map((user, index) => {
+        const position = index + 1;
+        const nomeClasse = getGoldenNameClass(user);
+        const socioClasse = isSocio(user) ? "podium-socio" : "";
+
+        return `
+          <div class="podium-card ${getPlaceStyle(position)} ${socioClasse}" onclick="abrirPerfilPublico('${user.uid}')">
+            <div class="place-badge">#${position}</div>
+
+            <img class="podium-avatar" src="${user.avatar}" alt="${user.nome}">
+            <div class="podium-name ${nomeClasse}">${user.nome}</div>
+            <div class="podium-tag">${user.tag} • ${user.subtitulo}</div>
+
+            <div class="badge-row">
+              ${renderBadges(user.badges)}
+            </div>
+
+            <div class="podium-points">
+              <span>⭐</span> ${formatNumber(user.pontos)}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderRankingList(users) {
+      rankingList.innerHTML = users.map((user, index) => {
+        const position = index + 1;
+        const isMe = currentLoggedUser && user.uid === currentLoggedUser.uid;
+        const nomeClasse = getGoldenNameClass(user);
+        const socioClasse = isSocio(user) ? "socio" : "";
+
+        return `
+          <div class="ranking-row ${isMe ? "me" : ""} ${socioClasse}"
+               data-uid="${user.uid}"
+               id="${isMe ? "myRankingRow" : ""}"
+               onclick="abrirPerfilPublico('${user.uid}')">
+            <div class="rank-col">
+              <div class="rank-icon">${getRankIcon(position)}</div>
+              <span>#${position}</span>
+            </div>
+
+            <div class="user-col">
+              <img src="${user.avatar}" alt="${user.nome}">
+              <div class="user-info">
+                <h3 class="${nomeClasse}">${user.nome}</h3>
+                <p>${user.tag} • ${user.subtitulo}</p>
+              </div>
+            </div>
+
+            <div class="badge-col">
+              ${renderBadges(user.badges)}
+            </div>
+
+            <div class="score-col">
+              <span>⭐</span> ${formatNumber(user.pontos)}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      myRowElement = document.getElementById("myRankingRow");
+      setupFloatingVisibility();
+    }
+
+    function renderFloatingCurrentUser(users) {
+      if (!currentLoggedUser) {
+        floatingMe.classList.add("hidden");
+        floatingMeContent.innerHTML = "";
+        return;
+      }
+
+      const myIndex = users.findIndex(user => user.uid === currentLoggedUser.uid);
+
+      if (myIndex === -1) {
+        floatingMe.classList.add("hidden");
+        floatingMeContent.innerHTML = "";
+        return;
+      }
+
+      const me = users[myIndex];
+      const position = myIndex + 1;
+      const nomeClasse = getGoldenNameClass(me);
+
+      floatingMeContent.innerHTML = `
+        <div class="rank-col">
+          <div class="rank-icon">🎯</div>
+          <span>#${position}</span>
+        </div>
+
+        <div class="user-col">
+          <img src="${me.avatar}" alt="${me.nome}">
+          <div class="user-info">
+            <h3 class="${nomeClasse}">${me.nome}</h3>
+            <p>${me.tag} • ${me.subtitulo}</p>
+          </div>
+        </div>
+
+        <div class="badge-col">
+          ${renderBadges(me.badges)}
+        </div>
+
+        <div class="score-col" style="justify-content:flex-end; gap:12px;">
+          <span>⭐</span> ${formatNumber(me.pontos)}
+          <button class="go-to-me" id="goToMeBtn">Ver minha posição</button>
+        </div>
+      `;
+
+      const goToMeBtn = document.getElementById("goToMeBtn");
+      if (goToMeBtn) {
+        goToMeBtn.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const row = document.getElementById("myRankingRow");
+          if (row) {
+            row.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        });
+      }
+
+      floatingMe.classList.remove("hidden");
+    }
+
+    function setupFloatingVisibility() {
+      if (observer) {
+        observer.disconnect();
+        observer = null;
+      }
+
+      if (!myRowElement || !currentLoggedUser) {
+        floatingMe.classList.add("hidden");
+        return;
+      }
+
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            floatingMe.classList.add("hidden");
+          } else {
+            floatingMe.classList.remove("hidden");
+          }
+        });
+      }, {
+        threshold: 0.35
+      });
+
+      observer.observe(myRowElement);
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      currentLoggedUser = user || null;
+      await loadRanking();
+    });
+  </script>
+</body>
+</html>

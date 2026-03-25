@@ -2,364 +2,1003 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZyroDev | Aula</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZyroDev | Aula</title>
 
-    <style>
-        :root {
-            --primary: #000000;
-            --sidebar: #0b1220;
-            --card: #000000;
-            --accent: #2563eb;
-            --secondary: #6d28d9;
-            --gray: #94a3b8;
-            --white: #ffffff;
-        }
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #0f172a;
+      --card: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --muted: #94a3b8;
+      --blue: #3b82f6;
+      --purple: #8b5cf6;
+      --green: #22c55e;
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+      --radius-xl: 22px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --sidebar-width: 220px;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", "Segoe UI", sans-serif;
+    }
 
-        body {
-            background: var(--primary);
-            color: var(--white);
-            display: flex;
-        }
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.14), transparent 24%),
+        radial-gradient(circle at top right, rgba(139, 92, 246, 0.12), transparent 26%),
+        linear-gradient(135deg, #020617, #081120 45%, #0f172a);
+      overflow-x: hidden;
+    }
 
-        /* SIDEBAR */
-        .sidebar {
-            width: 220px;
-            background: var(--sidebar);
-            height: 100vh;
-            padding: 30px 20px;
-            position: fixed;
-        }
+    .page {
+      display: grid;
+      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+      min-height: 100vh;
+    }
 
-        .sidebar h2 {
-            margin-bottom: 30px;
-        }
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 22px 16px;
+      background: rgba(2, 6, 23, 0.78);
+      backdrop-filter: blur(14px);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
 
-        .sidebar a {
-            display: block;
-            color: var(--gray);
-            text-decoration: none;
-            margin-bottom: 15px;
-        }
+    .brand {
+      padding: 8px 6px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
 
-        .sidebar a:hover {
-            color: var(--white);
-        }
+    .brand h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      background: linear-gradient(90deg, #fff, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
 
-        /* MAIN */
-        .main {
-            margin-left: 220px;
-            display: flex;
-            width: 100%;
-            height: 100vh;
-        }
+    .brand p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
 
-        /* VIDEO AREA */
-        .video-area {
-            flex: 2;
-            padding: 40px;
-        }
+    .menu-title {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #64748b;
+      font-weight: 800;
+      padding: 0 6px;
+    }
 
-        .video-container {
-            background: var(--card);
-            border-radius: 15px;
-            overflow: hidden;
-        }
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-        #videoPlayer {
-            width: 100%;
-            height: 500px;
-        }
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      text-decoration: none;
+      color: #e2e8f0;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: 0.25s ease;
+    }
 
-        .course-title {
-            margin-top: 20px;
-            font-size: 22px;
-        }
+    .nav-links a:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(96, 165, 250, 0.18);
+    }
 
-        /* RIGHT PANEL */
-        .right-panel {
-            flex: 1;
-            background: var(--card);
-            padding: 30px;
-            overflow-y: auto;
-        }
+    .nav-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), rgba(139, 92, 246, 0.12));
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 1rem;
+    }
 
-        .progress {
-            background: #111827;
-            border-radius: 20px;
-            height: 10px;
-            margin-bottom: 20px;
-        }
+    .content {
+      padding: 22px;
+      min-width: 0;
+    }
 
-        .progress-bar {
-            background: var(--accent);
-            height: 100%;
-            width: 0%;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.85fr);
+      gap: 20px;
+      align-items: start;
+    }
 
-        .lesson {
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            background: #111827;
-        }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      animation: fadeUp 0.4s ease;
+    }
 
-        .lesson.locked {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .lesson.active {
-            background: var(--secondary);
-        }
+    .main-card {
+      padding: 22px;
+    }
 
-/* =========================
-RESPONSIVIDADE CELULAR
-========================= */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
 
-@media (max-width:900px){
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+    }
 
-body{
-flex-direction:column;
-}
+    .chip.blue {
+      background: rgba(59, 130, 246, 0.12);
+      color: #dbeafe;
+    }
 
-/* SIDEBAR */
+    .chip.green {
+      background: rgba(34, 197, 94, 0.12);
+      color: #dcfce7;
+    }
 
-.sidebar{
-position:relative;
-width:100%;
-height:auto;
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:15px;
-padding:20px;
-text-align:center;
-}
+    .eyebrow {
+      color: #60a5fa;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 800;
+      font-size: 0.76rem;
+      margin-bottom: 10px;
+    }
 
-.sidebar h2{
-width:100%;
-margin-bottom:10px;
-}
+    .course-title {
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
 
-.sidebar a{
-margin:5px 10px;
-}
+    .course-subtitle {
+      color: #cbd5e1;
+      font-size: 0.96rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      max-width: 720px;
+    }
 
-/* MAIN */
+    .video-shell {
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #000;
+      transition: 0.25s ease;
+    }
 
-.main{
-margin-left:0;
-flex-direction:column;
-height:auto;
-}
+    .video-shell:hover {
+      transform: translateY(-2px);
+    }
 
-/* VIDEO AREA */
+    .video-container {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
 
-.video-area{
-padding:20px;
-}
+    #videoPlayer {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
 
-#videoPlayer{
-height:300px;
-}
+    .bottom-action {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
 
-/* RIGHT PANEL */
+    .complete-button,
+    .ghost-button {
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 14px;
+      font-size: 0.94rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.25s ease;
+    }
 
-.right-panel{
-padding:20px;
-height:auto;
-}
+    .complete-button {
+      border: none;
+      color: white;
+      cursor: pointer;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.22);
+    }
 
-.lesson{
-font-size:14px;
-}
+    .complete-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(59, 130, 246, 0.28);
+    }
 
-.course-title{
-font-size:18px;
-}
+    .complete-button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
 
-}
+    .ghost-button {
+      color: #dbeafe;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-/* CELULARES PEQUENOS */
+    .ghost-button:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.07);
+    }
 
-@media (max-width:500px){
+    .status-box {
+      margin-top: 14px;
+      padding: 14px 15px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
 
-#videoPlayer{
-height:220px;
-}
+    .side-card {
+      padding: 18px;
+      position: sticky;
+      top: 22px;
+    }
 
-.lesson{
-padding:12px;
-font-size:13px;
-}
+    .progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
 
-.sidebar{
-flex-direction:column;
-}
+    .progress-header h3 {
+      font-size: 1.16rem;
+      font-weight: 900;
+    }
 
-.sidebar a{
-width:100%;
-}
+    .progress-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #dbeafe;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.16);
+    }
 
-}
+    .progress-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 16px;
+    }
 
-    </style>
+    .progress-topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .progress-topline strong {
+      font-size: 0.96rem;
+    }
+
+    .progress-topline span {
+      color: #cbd5e1;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .progress {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.76);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #22c55e);
+      transition: width 0.35s ease;
+    }
+
+    .lesson-list-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #60a5fa;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .lesson-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 520px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .lesson-list::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .lesson-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.10);
+      border-radius: 999px;
+    }
+
+    .lesson {
+      position: relative;
+      padding: 14px 16px 14px 56px;
+      border-radius: 16px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: 0.25s ease;
+      min-height: 74px;
+      overflow: hidden;
+    }
+
+    .lesson:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .lesson::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .lesson-number {
+      position: absolute;
+      left: 23px;
+      top: 23px;
+      font-size: 0.7rem;
+      font-weight: 900;
+      z-index: 1;
+    }
+
+    .lesson-title {
+      font-size: 0.94rem;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .lesson-subtitle {
+      color: #94a3b8;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .lesson.active {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(139, 92, 246, 0.14));
+      border-color: rgba(96, 165, 250, 0.18);
+    }
+
+    .lesson.completed {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.14), rgba(16, 185, 129, 0.10));
+      border-color: rgba(74, 222, 128, 0.18);
+    }
+
+    .lesson.completed::after {
+      content: "✓";
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #dcfce7;
+      background: rgba(34, 197, 94, 0.18);
+      border: 1px solid rgba(74, 222, 128, 0.18);
+    }
+
+    @media (max-width: 1100px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-card {
+        position: static;
+      }
+
+      .lesson-list {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .content {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .sidebar {
+        padding: 16px;
+      }
+
+      .main-card,
+      .side-card {
+        padding: 16px;
+      }
+
+      .course-title {
+        font-size: 1.45rem;
+      }
+
+      .course-subtitle {
+        font-size: 0.9rem;
+      }
+
+      .bottom-action {
+        flex-direction: column;
+      }
+
+      .complete-button,
+      .ghost-button {
+        width: 100%;
+      }
+
+      .lesson {
+        padding: 14px 14px 14px 52px;
+      }
+
+      .lesson-title {
+        font-size: 0.88rem;
+      }
+
+      .lesson-subtitle {
+        font-size: 0.79rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="page">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>ZyroDev</h1>
+        <p>Uma área de estudos mais limpa, bonita e focada no conteúdo.</p>
+      </div>
 
-    <div class="sidebar">
-        <h2>ZyroDev 💦</h2>
-        <a href="index.html" class="btn">Voltar ao inicio</a>
-        <a href="cursos.html" class="btn">Voltar aos Cursos</a>
-        <a href="creditos.html" class="btn">Créditos aos professores</a>
-        <a href="https://www.google.com" class="btn">Sair</a>
-    </div>
+      <div class="menu-title">Navegação</div>
 
-    <div class="main">
+      <nav class="nav-links">
+        <a href="index.html">
+          <span class="nav-icon">🏠</span>
+          <span>Voltar ao início</span>
+        </a>
 
-        <div class="video-area">
-            <div class="video-container">
-                <div id="videoPlayer"></div>
+        <a href="cursos.html">
+          <span class="nav-icon">🎓</span>
+          <span>Voltar aos cursos</span>
+        </a>
+
+        <a href="ranking.html">
+          <span class="nav-icon">🏆</span>
+          <span>Ver ranking</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <div class="content-grid">
+        <section>
+          <div class="panel main-card">
+            <div class="chips">
+              <div class="chip blue">🧠 Lógica de Programação</div>
+              <div class="chip green" id="topProgressChip">0% concluído</div>
             </div>
-            <h3 class="course-title">Aula 01 - Lógica de Programação</h3>
-        </div>
 
-        <div class="right-panel">
+            <div class="eyebrow">Aula atual</div>
+            <h1 class="course-title" id="heroTitle">Aula 00 - Introdução à Lógica de Programação</h1>
+            <p class="course-subtitle">
+              Assista a aula, acompanhe seu progresso e avance de forma simples.
+            </p>
 
-            <h3>Seu progresso</h3>
-            <div class="progress">
+            <div class="video-shell">
+              <div class="video-container">
+                <iframe
+                  id="videoPlayer"
+                  src="https://www.youtube.com/embed/jBIPvXHRYpg"
+                  title="Player do curso"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+
+            <div class="bottom-action">
+              <button id="completeButton" class="complete-button">Marcar como concluída ✅</button>
+              <a href="cursos.html" class="ghost-button">⬅ Voltar aos cursos</a>
+            </div>
+
+            <div id="statusText" class="status-box">Faça login para salvar seu progresso.</div>
+          </div>
+        </section>
+
+        <aside>
+          <div class="panel side-card">
+            <div class="progress-header">
+              <h3>Seu progresso</h3>
+              <div class="progress-badge" id="progressPercentBadge">0%</div>
+            </div>
+
+            <div class="progress-card">
+              <div class="progress-topline">
+                <strong>Curso Lógica de Programação</strong>
+                <span id="progressText">0 de 16 aulas</span>
+              </div>
+
+              <div class="progress">
                 <div class="progress-bar" id="progressBar"></div>
+              </div>
             </div>
 
-            <div class="lesson active">Aula 00 - Introdução à Lógica de Programação</div>
-            <div class="lesson locked">Aula 01 - Entenda LÓGICA DE PROGRAMAÇÃO e ALGORITMOS</div>
-            <div class="lesson locked">Aula 02 - Qual LINGUAGEM começar a PROGRAMAR?</div>
-            <div class="lesson locked">Aula 03 - VARIÁVEIS e CONSTANTES</div>
-            <div class="lesson locked">Aula 04 - O que é CamelCase, e quando utilizar? </div>
-            <div class="lesson locked">Aula 05 - TIPOS de DADOS</div>
-            <div class="lesson locked">Aula 06 - OPERADORES ARITMÉTICOS | Lógica de Programação</div>
-            <div class="lesson locked">Aula 07 - OPERADORES RELACIONAIS | Lógica de Programação</div>
-            <div class="lesson locked">Aula 08 - Estrutura de Decisão IF / ELSE | Lógica de Programação</div>
-            <div class="lesson locked">Aula 09 - Estrutura de Decisão SWITCH / CASE | Lógica de Programação</div>
-            <div class="lesson locked">Aula 10 - Estrutura de Repetição PARA ( FOR ) | Lógica de Programação</div>
-            <div class="lesson locked">Aula 11 - Estrutura de Repetição ENQUANTO ( WHILE ) | Lógica de Programação</div>
-            <div class="lesson locked">Aula 12 - Estrutura de Repetição REPITA ATÉ ( DO WHILE ) | Lógica de Programação
+            <div class="lesson-list-title">Aulas do curso</div>
+
+            <div class="lesson-list" id="lessonList">
+              <div class="lesson active">
+                <span class="lesson-number">00</span>
+                <div class="lesson-title">Aula 00 - Introdução à Lógica de Programação</div>
+                <div class="lesson-subtitle">Base inicial para entender como pensar como programador.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">01</span>
+                <div class="lesson-title">Aula 01 - Entenda LÓGICA DE PROGRAMAÇÃO e ALGORITMOS</div>
+                <div class="lesson-subtitle">Comece a entender a estrutura mental por trás do código.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">02</span>
+                <div class="lesson-title">Aula 02 - Qual LINGUAGEM começar a PROGRAMAR?</div>
+                <div class="lesson-subtitle">Veja como escolher bem sua primeira linguagem.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">03</span>
+                <div class="lesson-title">Aula 03 - VARIÁVEIS e CONSTANTES</div>
+                <div class="lesson-subtitle">Entenda como guardar e manipular informações.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">04</span>
+                <div class="lesson-title">Aula 04 - O que é CamelCase, e quando utilizar?</div>
+                <div class="lesson-subtitle">Aprenda padrão de escrita e organização do código.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">05</span>
+                <div class="lesson-title">Aula 05 - TIPOS de DADOS</div>
+                <div class="lesson-subtitle">Conheça os formatos de informação usados na programação.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">06</span>
+                <div class="lesson-title">Aula 06 - OPERADORES ARITMÉTICOS | Lógica de Programação</div>
+                <div class="lesson-subtitle">Trabalhe com contas e operações básicas no código.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">07</span>
+                <div class="lesson-title">Aula 07 - OPERADORES RELACIONAIS | Lógica de Programação</div>
+                <div class="lesson-subtitle">Compare valores e comece a tomar decisões.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">08</span>
+                <div class="lesson-title">Aula 08 - Estrutura de Decisão IF / ELSE | Lógica de Programação</div>
+                <div class="lesson-subtitle">Controle o fluxo do programa com condições.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">09</span>
+                <div class="lesson-title">Aula 09 - Estrutura de Decisão SWITCH / CASE | Lógica de Programação</div>
+                <div class="lesson-subtitle">Organize várias possibilidades de decisão.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">10</span>
+                <div class="lesson-title">Aula 10 - Estrutura de Repetição PARA ( FOR ) | Lógica de Programação</div>
+                <div class="lesson-subtitle">Aprenda a repetir processos com mais eficiência.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">11</span>
+                <div class="lesson-title">Aula 11 - Estrutura de Repetição ENQUANTO ( WHILE ) | Lógica de Programação</div>
+                <div class="lesson-subtitle">Repita ações enquanto uma condição for verdadeira.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">12</span>
+                <div class="lesson-title">Aula 12 - Estrutura de Repetição REPITA ATÉ ( DO WHILE ) | Lógica de Programação</div>
+                <div class="lesson-subtitle">Entenda outra forma prática de repetição.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">13</span>
+                <div class="lesson-title">Aula 13 - Vetores (ARRAYS) | Lógica de Programação</div>
+                <div class="lesson-subtitle">Agrupe vários dados em uma única estrutura.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">14</span>
+                <div class="lesson-title">Aula 14 - MATRIZES (ARRAYS) | Lógica de Programação</div>
+                <div class="lesson-subtitle">Organize dados em linhas e colunas.</div>
+              </div>
+
+              <div class="lesson">
+                <span class="lesson-number">15</span>
+                <div class="lesson-title">Aula 15 - Estrutura de Repetição FOREACH | Lógica de Programação</div>
+                <div class="lesson-subtitle">Percorra coleções de forma elegante e prática.</div>
+              </div>
             </div>
-            <div class="lesson locked">Aula 13 - Vetores (ARRAYS) | Lógica de Programação</div>
-            <div class="lesson locked">Aula 14 - MATRIZES (ARRAYS) | Lógica de Programação</div>
-            <div class="lesson locked">Aula 15 - Estrutura de Repetição FOREACH | Lógica de Programação</div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
 
+  <script type="module">
+    import { auth, db } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import {
+      doc,
+      getDoc,
+      updateDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-        </div>
+    let currentIndex = 0;
+    let usuarioAtual = null;
+    let dadosUsuario = null;
 
-    </div>
+    const COURSE_ID = "logica-programacao";
+    const AULA_PONTOS = 5;
+    const CURSO_COMPLETO_PONTOS = 25;
+    const BADGE_CURSO = "curso_logica_completo";
 
-    <script src="https://www.youtube.com/iframe_api"></script>
+    const lessons = document.querySelectorAll(".lesson");
+    const progressBar = document.getElementById("progressBar");
+    const completeButton = document.getElementById("completeButton");
+    const statusText = document.getElementById("statusText");
+    const videoPlayer = document.getElementById("videoPlayer");
+    const heroTitle = document.getElementById("heroTitle");
+    const progressText = document.getElementById("progressText");
+    const progressPercentBadge = document.getElementById("progressPercentBadge");
+    const topProgressChip = document.getElementById("topProgressChip");
 
-    <script>
-        let player;
-        let currentIndex = 0;
+    const videos = [
+      { title: "Aula 00 - Introdução à Lógica de Programação", subtitle: "Base inicial para entender como pensar como programador.", id: "jBIPvXHRYpg" },
+      { title: "Aula 01 - Entenda LÓGICA DE PROGRAMAÇÃO e ALGORITMOS", subtitle: "Comece a entender a estrutura mental por trás do código.", id: "JaTf3dhx464" },
+      { title: "Aula 02 - Qual LINGUAGEM começar a PROGRAMAR?", subtitle: "Veja como escolher bem sua primeira linguagem.", id: "i4gzTpOadd4" },
+      { title: "Aula 03 - VARIÁVEIS e CONSTANTES", subtitle: "Entenda como guardar e manipular informações.", id: "FmTO2EPatZQ" },
+      { title: "Aula 04 - O que é CamelCase, e quando utilizar?", subtitle: "Aprenda padrão de escrita e organização do código.", id: "7Da-DUTqNiw" },
+      { title: "Aula 05 - TIPOS de DADOS", subtitle: "Conheça os formatos de informação usados na programação.", id: "2ckX4M3ocdQ" },
+      { title: "Aula 06 - OPERADORES ARITMÉTICOS | Lógica de Programação", subtitle: "Trabalhe com contas e operações básicas no código.", id: "DMiAvs2qCtY" },
+      { title: "Aula 07 - OPERADORES RELACIONAIS | Lógica de Programação", subtitle: "Compare valores e comece a tomar decisões.", id: "dbnAeLjzetY" },
+      { title: "Aula 08 - Estrutura de Decisão IF / ELSE | Lógica de Programação", subtitle: "Controle o fluxo do programa com condições.", id: "juQgzKcbnuQ" },
+      { title: "Aula 09 - Estrutura de Decisão SWITCH / CASE | Lógica de Programação", subtitle: "Organize várias possibilidades de decisão.", id: "v2H1MNSkE_s" },
+      { title: "Aula 10 - Estrutura de Repetição PARA ( FOR ) | Lógica de Programação", subtitle: "Aprenda a repetir processos com mais eficiência.", id: "rRWDVXFj0gk" },
+      { title: "Aula 11 - Estrutura de Repetição ENQUANTO ( WHILE ) | Lógica de Programação", subtitle: "Repita ações enquanto uma condição for verdadeira.", id: "tfAh284O04w" },
+      { title: "Aula 12 - Estrutura de Repetição REPITA ATÉ ( DO WHILE ) | Lógica de Programação", subtitle: "Entenda outra forma prática de repetição.", id: "uJnjcZMd4dQ" },
+      { title: "Aula 13 - Vetores (ARRAYS) | Lógica de Programação", subtitle: "Agrupe vários dados em uma única estrutura.", id: "NwIIouSVKN4" },
+      { title: "Aula 14 - MATRIZES (ARRAYS) | Lógica de Programação", subtitle: "Organize dados em linhas e colunas.", id: "qfC1CqhtNOI" },
+      { title: "Aula 15 - Estrutura de Repetição FOREACH | Lógica de Programação", subtitle: "Percorra coleções de forma elegante e prática.", id: "IFfdJi8-FHE" }
+    ];
 
-        const lessons = document.querySelectorAll(".lesson");
-        const progressBar = document.getElementById("progressBar");
-        const courseTitle = document.querySelector(".course-title");
+    function getAulasConcluidas() {
+      if (!dadosUsuario || !dadosUsuario.aulasConcluidas) return {};
+      return dadosUsuario.aulasConcluidas;
+    }
 
-        const videos = [
-            { title: "Aula 00 - Introdução à Lógica de Programação", id: "jBIPvXHRYpg" },
-            { title: "Aula 01 - Entenda LÓGICA DE PROGRAMAÇÃO e ALGORITMOS", id: "JaTf3dhx464" },
-            { title: "Aula 02 - Qual LINGUAGEM começar a PROGRAMAR?", id: "i4gzTpOadd4" },
-            { title: "Aula 03 - VARIÁVEIS e CONSTANTES", id: "FmTO2EPatZQ" },
-            { title: "Aula 04 - O que é CamelCase, e quando utilizar?", id: "7Da-DUTqNiw" },
-            { title: "Aula 05 - TIPOS de DADOS", id: "2ckX4M3ocdQ" },
-            { title: "Aula 06 - OPERADORES ARITMÉTICOS | Lógica de Programação", id: "DMiAvs2qCtY" },
-            { title: "Aula 07 - OPERADORES RELACIONAIS | Lógica de Programação", id: "dbnAeLjzetY" },
-            { title: "Aula 08 - Estrutura de Decisão IF / ELSE | Lógica de Programação", id: "juQgzKcbnuQ" },
-            { title: "Aula 09 - Estrutura de Decisão SWITCH / CASE | Lógica de Programação", id: "v2H1MNSkE_s" },
-            { title: "Aula 10 - Estrutura de Repetição PARA ( FOR ) | Lógica de Programação", id: "rRWDVXFj0gk" },
-            { title: "Aula 11 - Estrutura de Repetição ENQUANTO ( WHILE ) | Lógica de Programação", id: "tfAh284O04w" },
-            { title: "Aula 12 - PEstrutura de Repetição REPITA ATÉ ( DO WHILE ) | Lógica de Programação", id: "uJnjcZMd4dQ" },
-            { title: "Aula 13 - Vetores (ARRAYS) | Lógica de Programação", id: "NwIIouSVKN4" },
-            { title: "Aula 14 - MATRIZES (ARRAYS) | Lógica de Programação", id: "qfC1CqhtNOI" },
-            { title: "Aula 15 - Estrutura de Repetição FOREACH | Lógica de Programação", id: "IFfdJi8-FHE" },
-        ];
+    function getPontos() {
+      if (!dadosUsuario) return 0;
+      return Number(dadosUsuario.pontos || 0);
+    }
 
-        // Carregar progresso salvo
-        let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
+    function getAulaKey(index) {
+      return `${COURSE_ID}:aula_${index}`;
+    }
 
-        // Inicializa player
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('videoPlayer', {
-                videoId: videos[0].id
-            });
+    function trocarVideo(index) {
+      const videoId = videos[index].id;
+      videoPlayer.src = `https://www.youtube.com/embed/${videoId}`;
+      heroTitle.innerText = videos[index].title;
+    }
+
+    function getConcluidasDoCurso() {
+      const aulasConcluidas = getAulasConcluidas();
+      let concluidas = 0;
+
+      videos.forEach((_, index) => {
+        if (aulasConcluidas[getAulaKey(index)]) concluidas++;
+      });
+
+      return concluidas;
+    }
+
+    function atualizarAulasVisuais() {
+      const aulasConcluidas = getAulasConcluidas();
+
+      lessons.forEach((lesson, index) => {
+        lesson.classList.remove("completed", "active");
+
+        const aulaKey = getAulaKey(index);
+
+        if (aulasConcluidas[aulaKey]) {
+          lesson.classList.add("completed");
         }
 
-        // Clique nas aulas
-        lessons.forEach((lesson, index) => {
-            lesson.classList.remove("locked");
-
-            lesson.addEventListener("click", () => {
-                currentIndex = index;
-
-                lessons.forEach(l => l.classList.remove("active"));
-                lesson.classList.add("active");
-
-                player.loadVideoById(videos[index].id);
-                courseTitle.innerText = videos[index].title;
-            });
-        });
-
-        // Criar botão marcar como concluído
-        const completeButton = document.createElement("button");
-        completeButton.innerText = "Marcar como concluída ✅";
-        completeButton.style.marginTop = "20px";
-        completeButton.style.padding = "10px 20px";
-        completeButton.style.background = "#2563eb";
-        completeButton.style.color = "white";
-        completeButton.style.border = "none";
-        completeButton.style.borderRadius = "8px";
-        completeButton.style.cursor = "pointer";
-
-        document.querySelector(".video-area").appendChild(completeButton);
-
-        // Evento marcar como concluído
-        completeButton.addEventListener("click", () => {
-            if (!completedLessons.includes(currentIndex)) {
-                completedLessons.push(currentIndex);
-                localStorage.setItem("completedLessons", JSON.stringify(completedLessons));
-                lessons[currentIndex].style.background = "#16a34a";
-                updateProgress();
-            }
-        });
-
-        // Atualizar progresso
-        function updateProgress() {
-            let percent = (completedLessons.length / videos.length) * 100;
-            progressBar.style.width = percent + "%";
+        if (index === currentIndex) {
+          lesson.classList.add("active");
         }
+      });
+    }
 
-        // Carregar progresso visual ao abrir
-        completedLessons.forEach(index => {
-            if (lessons[index]) {
-                lessons[index].style.background = "#16a34a";
-            }
-        });
+    function atualizarBarraProgresso() {
+      const concluidasDoCurso = getConcluidasDoCurso();
+      const percent = Math.round((concluidasDoCurso / videos.length) * 100);
 
-        updateProgress();
-    </script>
+      progressBar.style.width = `${percent}%`;
+      progressText.textContent = `${concluidasDoCurso} de ${videos.length} aulas`;
+      progressPercentBadge.textContent = `${percent}%`;
+      topProgressChip.textContent = `${percent}% concluído`;
+    }
 
+    function atualizarTextoStatus() {
+      if (!usuarioAtual) {
+        statusText.textContent = "Faça login para salvar seu progresso.";
+        return;
+      }
+
+      const aulasConcluidas = getAulasConcluidas();
+      const aulaAtualKey = getAulaKey(currentIndex);
+
+      if (aulasConcluidas[aulaAtualKey]) {
+        statusText.textContent = "Essa aula já foi concluída.";
+      } else {
+        statusText.textContent = "Conclua a aula para ganhar +5 pontos.";
+      }
+    }
+
+    function atualizarBotaoConclusao() {
+      if (!usuarioAtual) {
+        completeButton.disabled = true;
+        completeButton.textContent = "Faça login para concluir";
+        return;
+      }
+
+      const aulasConcluidas = getAulasConcluidas();
+      const aulaAtualKey = getAulaKey(currentIndex);
+
+      if (aulasConcluidas[aulaAtualKey]) {
+        completeButton.disabled = true;
+        completeButton.textContent = "Aula já concluída ✅";
+      } else {
+        completeButton.disabled = false;
+        completeButton.textContent = "Marcar como concluída ✅";
+      }
+    }
+
+    function atualizarTela() {
+      atualizarAulasVisuais();
+      atualizarBarraProgresso();
+      atualizarTextoStatus();
+      atualizarBotaoConclusao();
+      trocarVideo(currentIndex);
+    }
+
+    async function carregarDadosUsuario(uid) {
+      const userRef = doc(db, "usuarios", uid);
+      const userSnap = await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+        dadosUsuario = null;
+        return;
+      }
+
+      dadosUsuario = userSnap.data();
+    }
+
+    async function concluirAulaAtual() {
+      if (!usuarioAtual) {
+        alert("Faça login para concluir aulas.");
+        return;
+      }
+
+      const userRef = doc(db, "usuarios", usuarioAtual.uid);
+      const userSnap = await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+        alert("Seu usuário não foi encontrado no banco.");
+        return;
+      }
+
+      dadosUsuario = userSnap.data();
+
+      const aulasConcluidas = { ...(dadosUsuario.aulasConcluidas || {}) };
+      const badges = Array.isArray(dadosUsuario.badges) ? [...dadosUsuario.badges] : [];
+      const cursosCompletos = { ...(dadosUsuario.cursosCompletos || {}) };
+
+      const aulaKey = getAulaKey(currentIndex);
+
+      if (aulasConcluidas[aulaKey]) {
+        alert("Você já concluiu essa aula.");
+        atualizarTela();
+        return;
+      }
+
+      aulasConcluidas[aulaKey] = true;
+
+      let novosPontos = getPontos() + AULA_PONTOS;
+
+      let totalConcluidasCurso = 0;
+      videos.forEach((_, index) => {
+        if (aulasConcluidas[getAulaKey(index)]) totalConcluidasCurso++;
+      });
+
+      if (totalConcluidasCurso === videos.length && !cursosCompletos[COURSE_ID]) {
+        cursosCompletos[COURSE_ID] = true;
+        novosPontos += CURSO_COMPLETO_PONTOS;
+
+        if (!badges.includes(BADGE_CURSO)) {
+          badges.push(BADGE_CURSO);
+        }
+      }
+
+      await updateDoc(userRef, {
+        aulasConcluidas,
+        cursosCompletos,
+        badges,
+        pontos: novosPontos,
+        updatedAt: serverTimestamp()
+      });
+
+      dadosUsuario = {
+        ...dadosUsuario,
+        aulasConcluidas,
+        cursosCompletos,
+        badges,
+        pontos: novosPontos
+      };
+
+      atualizarTela();
+      alert("Aula concluída com sucesso! 🚀");
+    }
+
+    lessons.forEach((lesson, index) => {
+      lesson.addEventListener("click", () => {
+        currentIndex = index;
+        atualizarTela();
+      });
+    });
+
+    completeButton.addEventListener("click", async () => {
+      try {
+        await concluirAulaAtual();
+      } catch (error) {
+        console.error("Erro ao concluir aula:", error);
+        alert("Erro ao salvar progresso. Verifique o Firebase.");
+      }
+    });
+
+    onAuthStateChanged(auth, async (user) => {
+      usuarioAtual = user || null;
+
+      if (usuarioAtual) {
+        await carregarDadosUsuario(usuarioAtual.uid);
+      } else {
+        dadosUsuario = null;
+      }
+
+      atualizarTela();
+    });
+  </script>
 </body>
-
 </html>

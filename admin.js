@@ -15,6 +15,8 @@ const btnAtualizar = document.getElementById("btnAtualizar");
 const totalUsuarios = document.getElementById("totalUsuarios");
 const totalAdmins = document.getElementById("totalAdmins");
 const totalBanidos = document.getElementById("totalBanidos");
+const totalLikes = document.getElementById("totalLikes");
+const totalPontos = document.getElementById("totalPontos");
 const mensagem = document.getElementById("mensagem");
 
 let listaUsuarios = [];
@@ -28,12 +30,16 @@ function mostrarMensagem(texto, tipo = "ok") {
 }
 
 function escaparHTML(texto = "") {
-  return texto
+  return String(texto)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function normalizarNumero(valor) {
+  return Number.isFinite(Number(valor)) ? Number(valor) : 0;
 }
 
 async function verificarAdmin(uid) {
@@ -54,9 +60,13 @@ async function carregarUsuarios() {
     listaUsuarios = [];
 
     querySnapshot.forEach((docSnap) => {
+      const dados = docSnap.data();
+
       listaUsuarios.push({
         id: docSnap.id,
-        ...docSnap.data()
+        ...dados,
+        likesRecebidos: normalizarNumero(dados.likesRecebidos),
+        pontos: normalizarNumero(dados.pontos)
       });
     });
 
@@ -79,6 +89,8 @@ function atualizarResumo() {
   totalUsuarios.textContent = listaUsuarios.length;
   totalAdmins.textContent = listaUsuarios.filter(u => u.admin === true).length;
   totalBanidos.textContent = listaUsuarios.filter(u => u.banido === true).length;
+  totalLikes.textContent = listaUsuarios.reduce((acc, u) => acc + normalizarNumero(u.likesRecebidos), 0);
+  totalPontos.textContent = listaUsuarios.reduce((acc, u) => acc + normalizarNumero(u.pontos), 0);
 }
 
 function renderizarUsuarios(usuarios) {
@@ -93,6 +105,8 @@ function renderizarUsuarios(usuarios) {
     const nome = escaparHTML(usuario.nome || "Usuário sem nome");
     const email = escaparHTML(usuario.email || "Sem email");
     const uid = escaparHTML(usuario.uid || usuario.id);
+    const likesRecebidos = normalizarNumero(usuario.likesRecebidos);
+    const pontos = normalizarNumero(usuario.pontos);
 
     return `
       <div class="usuario-card">
@@ -111,6 +125,8 @@ function renderizarUsuarios(usuarios) {
 
           <div class="usuario-dados">
             <div><strong>UID:</strong> ${uid}</div>
+            <div><strong>Likes recebidos:</strong> ${likesRecebidos}</div>
+            <div><strong>Pontos:</strong> ${pontos}</div>
           </div>
 
           <div class="badges">
@@ -136,6 +152,22 @@ function renderizarUsuarios(usuarios) {
 
             <button class="btn btn-danger" onclick="window.removerBadge('${usuario.id}')">
               Remover Badge
+            </button>
+
+            <button class="btn btn-like" onclick="window.adicionarLikes('${usuario.id}')">
+              Adicionar Likes
+            </button>
+
+            <button class="btn btn-danger" onclick="window.removerLikes('${usuario.id}')">
+              Remover Likes
+            </button>
+
+            <button class="btn btn-points" onclick="window.adicionarPontos('${usuario.id}')">
+              Adicionar Pontos
+            </button>
+
+            <button class="btn btn-warning" onclick="window.removerPontos('${usuario.id}')">
+              Remover Pontos
             </button>
           </div>
         </div>
@@ -230,6 +262,148 @@ window.removerBadge = async function (userId) {
   } catch (error) {
     console.error(error);
     mostrarMensagem("Erro ao remover badge.", "erro");
+  }
+};
+
+window.adicionarLikes = async function (userId) {
+  const valor = prompt("Quantos likes deseja adicionar?");
+  if (valor === null) return;
+
+  const quantidade = Number(valor);
+
+  if (!Number.isInteger(quantidade) || quantidade <= 0) {
+    mostrarMensagem("Digite um número inteiro maior que 0 para adicionar likes.", "erro");
+    return;
+  }
+
+  try {
+    const userRef = doc(db, "usuarios", userId);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      mostrarMensagem("Usuário não encontrado.", "erro");
+      return;
+    }
+
+    const dados = userSnap.data();
+    const likesAtuais = normalizarNumero(dados.likesRecebidos);
+
+    await updateDoc(userRef, {
+      likesRecebidos: likesAtuais + quantidade
+    });
+
+    mostrarMensagem(`${quantidade} like(s) adicionados com sucesso.`);
+    await carregarUsuarios();
+  } catch (error) {
+    console.error(error);
+    mostrarMensagem("Erro ao adicionar likes.", "erro");
+  }
+};
+
+window.removerLikes = async function (userId) {
+  const valor = prompt("Quantos likes deseja remover?");
+  if (valor === null) return;
+
+  const quantidade = Number(valor);
+
+  if (!Number.isInteger(quantidade) || quantidade <= 0) {
+    mostrarMensagem("Digite um número inteiro maior que 0 para remover likes.", "erro");
+    return;
+  }
+
+  try {
+    const userRef = doc(db, "usuarios", userId);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      mostrarMensagem("Usuário não encontrado.", "erro");
+      return;
+    }
+
+    const dados = userSnap.data();
+    const likesAtuais = normalizarNumero(dados.likesRecebidos);
+    const novoValor = Math.max(0, likesAtuais - quantidade);
+
+    await updateDoc(userRef, {
+      likesRecebidos: novoValor
+    });
+
+    mostrarMensagem(`${quantidade} like(s) removidos com sucesso.`);
+    await carregarUsuarios();
+  } catch (error) {
+    console.error(error);
+    mostrarMensagem("Erro ao remover likes.", "erro");
+  }
+};
+
+window.adicionarPontos = async function (userId) {
+  const valor = prompt("Quantos pontos deseja adicionar?");
+  if (valor === null) return;
+
+  const quantidade = Number(valor);
+
+  if (!Number.isInteger(quantidade) || quantidade <= 0) {
+    mostrarMensagem("Digite um número inteiro maior que 0 para adicionar pontos.", "erro");
+    return;
+  }
+
+  try {
+    const userRef = doc(db, "usuarios", userId);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      mostrarMensagem("Usuário não encontrado.", "erro");
+      return;
+    }
+
+    const dados = userSnap.data();
+    const pontosAtuais = normalizarNumero(dados.pontos);
+
+    await updateDoc(userRef, {
+      pontos: pontosAtuais + quantidade
+    });
+
+    mostrarMensagem(`${quantidade} ponto(s) adicionados com sucesso.`);
+    await carregarUsuarios();
+  } catch (error) {
+    console.error(error);
+    mostrarMensagem("Erro ao adicionar pontos.", "erro");
+  }
+};
+
+window.removerPontos = async function (userId) {
+  const valor = prompt("Quantos pontos deseja remover?");
+  if (valor === null) return;
+
+  const quantidade = Number(valor);
+
+  if (!Number.isInteger(quantidade) || quantidade <= 0) {
+    mostrarMensagem("Digite um número inteiro maior que 0 para remover pontos.", "erro");
+    return;
+  }
+
+  try {
+    const userRef = doc(db, "usuarios", userId);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      mostrarMensagem("Usuário não encontrado.", "erro");
+      return;
+    }
+
+    const dados = userSnap.data();
+    const pontosAtuais = normalizarNumero(dados.pontos);
+    const novoValor = Math.max(0, pontosAtuais - quantidade);
+
+    await updateDoc(userRef, {
+      pontos: novoValor
+    });
+
+    mostrarMensagem(`${quantidade} ponto(s) removidos com sucesso.`);
+    await carregarUsuarios();
+  } catch (error) {
+    console.error(error);
+    mostrarMensagem("Erro ao remover pontos.", "erro");
   }
 };
 

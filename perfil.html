@@ -213,6 +213,67 @@
       100% { transform: translateX(100%); }
     }
 
+/* ===== TEMA SOCIO (IGUAL FUNDADOR) ===== */
+
+.tema-socio {
+  background:
+    radial-gradient(circle at top, rgba(255, 215, 0, 0.25), transparent 40%),
+    radial-gradient(circle at bottom, rgba(255, 180, 0, 0.2), transparent 40%),
+    linear-gradient(135deg, #050505, #1a1200);
+}
+
+.tema-socio .card {
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  background: rgba(20, 15, 0, 0.75);
+  box-shadow:
+    0 0 30px rgba(255, 215, 0, 0.2),
+    0 0 80px rgba(255, 200, 0, 0.15);
+}
+
+.tema-socio h1 {
+  background: linear-gradient(90deg, #fff3b0, #ffd700, #ffb700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tema-socio .foto {
+  border: 3px solid gold;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.tema-socio .tag {
+  background: rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  color: #ffd700;
+}
+
+.tema-socio .bio-box {
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  background: rgba(20, 15, 0, 0.6);
+}
+
+.tema-socio .btn-primary {
+  background: linear-gradient(90deg, #ffd700, #ffb700);
+  color: black;
+}
+
+/* 🔥 BRILHO ANIMADO IGUAL FUNDADOR */
+.tema-socio .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  opacity: 0.2;
+  animation: brilhoSocio 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes brilhoSocio {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+    
   </style>
 </head>
 

@@ -2,416 +2,1035 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZyroDev | Aula</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZyroDev | Aula</title>
 
-    <style>
-        :root {
-            --primary: #000000;
-            --sidebar: #0b1220;
-            --card: #000000;
-            --accent: #2563eb;
-            --secondary: #6d28d9;
-            --gray: #94a3b8;
-            --white: #ffffff;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #0f172a;
+      --sidebar: rgba(7, 15, 30, 0.85);
+      --card: rgba(255, 255, 255, 0.05);
+      --card-2: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --muted: #94a3b8;
+      --blue: #2563eb;
+      --purple: #7c3aed;
+      --green: #16a34a;
+      --white: #ffffff;
+      --shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --sidebar-width: 220px;
+    }
 
-        body {
-            background: var(--primary);
-            color: var(--white);
-            display: flex;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", "Segoe UI", sans-serif;
+    }
 
-        /* SIDEBAR */
-        .sidebar {
-            width: 220px;
-            background: var(--sidebar);
-            height: 100vh;
-            padding: 30px 20px;
-            position: fixed;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        .sidebar h2 {
-            margin-bottom: 30px;
-        }
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 24%),
+        radial-gradient(circle at top right, rgba(124, 58, 237, 0.12), transparent 26%),
+        linear-gradient(135deg, #020617, #081120 45%, #0f172a);
+      overflow-x: hidden;
+    }
 
-        .sidebar a {
-            display: block;
-            color: var(--gray);
-            text-decoration: none;
-            margin-bottom: 15px;
-        }
+    .page {
+      display: grid;
+      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+      min-height: 100vh;
+    }
 
-        .sidebar a:hover {
-            color: var(--white);
-        }
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 22px 16px;
+      background: var(--sidebar);
+      backdrop-filter: blur(14px);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
 
-        /* MAIN */
-        .main {
-            margin-left: 220px;
-            display: flex;
-            width: 100%;
-            height: 100vh;
-        }
+    .brand {
+      padding: 8px 6px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
 
-        /* VIDEO AREA */
-        .video-area {
-            flex: 2;
-            padding: 40px;
-        }
+    .brand h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      background: linear-gradient(90deg, #fff, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
 
-        .video-container {
-            background: var(--card);
-            border-radius: 15px;
-            overflow: hidden;
-        }
+    .brand p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
 
-        #videoPlayer {
-            width: 100%;
-            height: 500px;
-        }
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-        .course-title {
-            margin-top: 20px;
-            font-size: 22px;
-        }
+    .nav a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #dbeafe;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: 0.25s ease;
+    }
 
-        /* RIGHT PANEL */
-        .right-panel {
-            flex: 1;
-            background: var(--card);
-            padding: 30px;
-            overflow-y: auto;
-        }
+    .nav a:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(96, 165, 250, 0.18);
+    }
 
-        .progress {
-            background: #111827;
-            border-radius: 20px;
-            height: 10px;
-            margin-bottom: 20px;
-        }
+    .nav-icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(124, 58, 237, 0.14));
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 1rem;
+    }
 
-        .progress-bar {
-            background: var(--accent);
-            height: 100%;
-            width: 0%;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
+    .content {
+      padding: 22px;
+      min-width: 0;
+    }
 
-        .lesson {
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            background: #111827;
-        }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.85fr);
+      gap: 20px;
+      align-items: start;
+    }
 
-        .lesson.locked {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      animation: fadeUp 0.4s ease;
+    }
 
-        .lesson.active {
-            background: var(--secondary);
-        }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
 
-/* =========================
-RESPONSIVIDADE CELULAR
-========================= */
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-@media (max-width:900px){
+    .video-area {
+      padding: 22px;
+    }
 
-body{
-flex-direction:column;
-}
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
 
-/* SIDEBAR */
-.sidebar{
-position:relative;
-width:100%;
-height:auto;
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:15px;
-padding:20px;
-text-align:center;
-}
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-.sidebar h2{
-width:100%;
-margin-bottom:10px;
-}
+    .chip.blue {
+      background: rgba(37, 99, 235, 0.12);
+      color: #dbeafe;
+    }
 
-.sidebar a{
-margin:5px 10px;
-}
+    .chip.green {
+      background: rgba(22, 163, 74, 0.12);
+      color: #dcfce7;
+    }
 
-/* MAIN */
-.main{
-margin-left:0;
-flex-direction:column;
-height:auto;
-}
+    .eyebrow {
+      color: #60a5fa;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 800;
+      font-size: 0.76rem;
+      margin-bottom: 10px;
+    }
 
-/* VIDEO AREA */
-.video-area{
-padding:20px;
-}
+    .course-title {
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
 
-#videoPlayer{
-height:320px;
-}
+    .course-subtitle {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      max-width: 700px;
+    }
 
-/* RIGHT PANEL */
-.right-panel{
-padding:20px;
-height:auto;
-}
+    .video-container {
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #000;
+      transition: 0.25s ease;
+      position: relative;
+    }
 
-.lesson{
-font-size:14px;
-}
+    .video-container:hover {
+      transform: translateY(-2px);
+    }
 
-.course-title{
-font-size:18px;
-}
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      position: relative;
+    }
 
-}
+    #videoPlayer {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      position: absolute;
+      inset: 0;
+    }
 
-/* CELULARES PEQUENOS */
+    #videoPlayer iframe {
+      width: 100% !important;
+      height: 100% !important;
+      border: 0;
+      display: block;
+    }
 
-@media (max-width:500px){
+    .video-loading {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: #cbd5e1;
+      font-weight: 700;
+      background:
+        radial-gradient(circle at center, rgba(37, 99, 235, 0.10), transparent 45%),
+        #000;
+      z-index: 1;
+      transition: opacity 0.25s ease;
+    }
 
-#videoPlayer{
-height:220px;
-}
+    .video-loading.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
 
-.lesson{
-padding:12px;
-font-size:13px;
-}
+    .bottom-row {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
 
-.sidebar{
-flex-direction:column;
-}
+    .complete-button,
+    .ghost-button {
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 14px;
+      font-size: 0.94rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.25s ease;
+    }
 
-.sidebar a{
-width:100%;
-}
+    .complete-button {
+      border: none;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.22);
+    }
 
-.course-title{
-font-size:16px;
-}
+    .complete-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(37, 99, 235, 0.28);
+    }
 
-}
+    .ghost-button {
+      color: #dbeafe;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-    </style>
+    .ghost-button:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .status-box {
+      margin-top: 14px;
+      padding: 14px 15px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .right-panel {
+      padding: 18px;
+      position: sticky;
+      top: 22px;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .progress-head h3 {
+      font-size: 1.16rem;
+      font-weight: 900;
+    }
+
+    .progress-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #dbeafe;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.16);
+    }
+
+    .progress-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--card-2);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 16px;
+    }
+
+    .progress-topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .progress-topline strong {
+      font-size: 0.96rem;
+    }
+
+    .progress-topline span {
+      color: #cbd5e1;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .progress {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.76);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #22c55e);
+      transition: width 0.35s ease;
+    }
+
+    .lesson-list-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #60a5fa;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .lesson-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 540px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .lesson-list::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .lesson-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.10);
+      border-radius: 999px;
+    }
+
+    .lesson {
+      position: relative;
+      padding: 14px 16px 14px 52px;
+      border-radius: 16px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: 0.25s ease;
+      min-height: 72px;
+    }
+
+    .lesson:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .lesson::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 26px;
+      height: 26px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .lesson-number {
+      position: absolute;
+      left: 23px;
+      top: 22px;
+      font-size: 0.68rem;
+      font-weight: 900;
+      z-index: 1;
+    }
+
+    .lesson-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      line-height: 1.4;
+      color: #fff;
+      padding-right: 38px;
+    }
+
+    .lesson.active {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(124, 58, 237, 0.14));
+      border-color: rgba(96, 165, 250, 0.18);
+    }
+
+    .lesson.completed {
+      background: linear-gradient(135deg, rgba(22, 163, 74, 0.16), rgba(34, 197, 94, 0.10));
+      border-color: rgba(74, 222, 128, 0.18);
+    }
+
+    .lesson.completed::after {
+      content: "✓";
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #dcfce7;
+      background: rgba(34, 197, 94, 0.18);
+      border: 1px solid rgba(74, 222, 128, 0.18);
+    }
+
+    @media (max-width: 1100px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .right-panel {
+        position: static;
+      }
+
+      .lesson-list {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .content {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .sidebar {
+        padding: 16px;
+      }
+
+      .video-area,
+      .right-panel {
+        padding: 16px;
+      }
+
+      .course-title {
+        font-size: 1.4rem;
+      }
+
+      .course-subtitle {
+        font-size: 0.9rem;
+      }
+
+      .bottom-row {
+        flex-direction: column;
+      }
+
+      .complete-button,
+      .ghost-button {
+        width: 100%;
+      }
+
+      .lesson {
+        padding: 13px 14px 13px 50px;
+      }
+
+      .lesson-title {
+        font-size: 0.86rem;
+      }
+
+      #videoPlayer {
+        min-height: 220px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
-    <div class="sidebar">
+  <div class="page">
+    <aside class="sidebar">
+      <div class="brand">
         <h2>ZyroDev 💦</h2>
-        <a href="index.html" class="btn">Voltar ao inicio</a>
-        <a href="cursos.html" class="btn">Voltar aos Cursos</a>
-        <a href="creditos.html" class="btn">Créditos aos professores</a>
-        <a href="https://www.google.com" class="btn">Sair</a>
-    </div>
+        <p>Uma área de estudos mais bonita, limpa e focada no conteúdo.</p>
+      </div>
 
-    <div class="main">
+      <nav class="nav">
+        <a href="index.html">
+          <span class="nav-icon">🏠</span>
+          <span>Voltar ao início</span>
+        </a>
 
-        <div class="video-area">
-            <div class="video-container">
-                <div id="videoPlayer"></div>
+        <a href="cursos.html">
+          <span class="nav-icon">🎓</span>
+          <span>Voltar aos cursos</span>
+        </a>
+
+        <a href="creditos.html">
+          <span class="nav-icon">👏</span>
+          <span>Créditos aos professores</span>
+        </a>
+
+        <a href="https://www.google.com">
+          <span class="nav-icon">🚪</span>
+          <span>Sair</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <div class="layout">
+        <section class="panel video-area">
+          <div class="chip-row">
+            <div class="chip blue">💻 HTML e CSS</div>
+            <div class="chip green" id="topProgressChip">0% concluído</div>
+          </div>
+
+          <div class="eyebrow">Aula atual</div>
+          <h1 class="course-title" id="courseTitle">Aula 01 - Começa aqui o novo de HTML5 e CSS3</h1>
+          <p class="course-subtitle">
+            Assista a aula, acompanhe seu progresso e avance de forma simples, bonita e organizada.
+          </p>
+
+          <div class="video-container">
+            <div class="video-frame">
+              <div class="video-loading" id="videoLoading">Carregando vídeo...</div>
+              <div id="videoPlayer"></div>
             </div>
-            <h3 class="course-title">Aula 01 - Lógica de Programação</h3>
-        </div>
+          </div>
 
-        <div class="right-panel">
+          <div class="bottom-row">
+            <button id="completeButton" class="complete-button">Marcar como concluída ✅</button>
+            <a href="cursos.html" class="ghost-button">⬅ Voltar aos cursos</a>
+          </div>
 
+          <div class="status-box" id="statusText">Conclua a aula atual para avançar no curso.</div>
+        </section>
+
+        <aside class="panel right-panel">
+          <div class="progress-head">
             <h3>Seu progresso</h3>
+            <div class="progress-badge" id="progressPercentBadge">0%</div>
+          </div>
+
+          <div class="progress-card">
+            <div class="progress-topline">
+              <strong>Curso HTML5 e CSS3</strong>
+              <span id="progressText">0 de 41 aulas</span>
+            </div>
+
             <div class="progress">
-                <div class="progress-bar" id="progressBar"></div>
+              <div class="progress-bar" id="progressBar"></div>
             </div>
+          </div>
 
-            <div class="lesson active">Aula 01 - Começa aqui o novo de HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 02 - O que vamos aprender no módulo 01? - HTML5 + CSS3</div>
-            <div class="lesson locked">Aula 03 - Precisamos fazer um acordo - HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 04 - Será que este curso é para mim? - HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 05 - Melhores livros para aprender HTML5 e CSS3 - @Curso em Vídeo HTML5 e
-                CSS3</div>
-            <div class="lesson locked">Aula 06 - Como a Internet chega na minha casa? - @Curso em Vídeo HTML5 e CSS3
-            </div>
-            <div class="lesson locked">Aula 07 - Como a Internet funciona? - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 08 - O que é domínio e hospedagem? - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 09 - A diferença entre HTML, CSS e JavaScript - @Curso em Vídeo HTML5 e CSS3
-            </div>
-            <div class="lesson locked">Aula 10 - Front-end, Back-end e Full stack - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 11 - Instalando todas as ferramentas - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 12 - Seu primeiro código HTML - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 13 - Parágrafos e Quebras - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 14 - Símbolos e Emoji no seu site - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 15 - Você tem o direito de usar qualquer imagem no seu site? - @Curso emVídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 16 - Quais são os formatos para imagens na Web? - @Curso em Vídeo HTML5 eCSS3</div>
-            <div class="lesson locked">Aula 17 - O tamanho das imagens importa para um site? - @Curso em Vídeo HTML5 eCSS3</div>
-            <div class="lesson locked">Aula 18 - A tag img em HTML5 - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 19 - Como mudar o favicon de um site - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 20 - Hierarquia de Títulos - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 21 - Semântica na HTML5 é importante - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 22 - Negrito e Itálico do jeito certo - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 23 - Formatações adicionais em HTML - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 24 - Citações e Códigos - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 25 - Listas OL e UL - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 26 - Listas mistas e de definição - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 27 - Links e Âncoras em HTML5 - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 28 - Links internos - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 29 - Links para download - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 30 - Desafios propostos - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 31 - Imagens Dinâmicas - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 32 - Imagens que se adaptam sozinhas - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 33 - Colocando áudio no seu site - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 34 - Formatos de vídeo para seu site - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 35 - Vídeos em hospedagem própria - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 36 - Incorporação de vídeos externos - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 37 - Desafio: um site com vídeos - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 38 - Estilos CSS online - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 39 - Estilos CSS internos - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 40 - Estilos CSS externos - @Curso em Vídeo HTML5 e CSS3</div>
-            <div class="lesson locked">Aula 41 - Fim do Módulo 1: Certificados liberados - HTML5 e CSS3</div>
+          <div class="lesson-list-title">Aulas do curso</div>
+          <div class="lesson-list" id="lessonList"></div>
+        </aside>
+      </div>
+    </main>
+  </div>
 
+  <script src="https://www.youtube.com/iframe_api"></script>
 
-        </div>
+<script type="module">
+  import { auth, db } from "./firebase.js";
+  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import {
+    doc,
+    getDoc,
+    setDoc,
+    updateDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    </div>
+  let player = null;
+  let currentIndex = 0;
+  let currentUser = null;
+  let playerReady = false;
+  let dadosUsuario = null;
 
-    <script src="https://www.youtube.com/iframe_api"></script>
+  const COURSE_ID = "html-css";
+  const AULA_PONTOS = 5;
+  const CURSO_COMPLETO_PONTOS = 25;
+  const BADGE_CURSO = "curso_html_css_completo";
 
-    <script>
-        let player;
-        let currentIndex = 0;
+  const progressBar = document.getElementById("progressBar");
+  const courseTitle = document.getElementById("courseTitle");
+  const progressText = document.getElementById("progressText");
+  const progressPercentBadge = document.getElementById("progressPercentBadge");
+  const topProgressChip = document.getElementById("topProgressChip");
+  const completeButton = document.getElementById("completeButton");
+  const statusText = document.getElementById("statusText");
+  const lessonList = document.getElementById("lessonList");
+  const videoLoading = document.getElementById("videoLoading");
 
-        const lessons = document.querySelectorAll(".lesson");
-        const progressBar = document.getElementById("progressBar");
-        const courseTitle = document.querySelector(".course-title");
+  const videos = [
+    { title: "Aula 01 - Começa aqui o novo de HTML5 e CSS3", id: "Ejkb_YpuHWs" },
+    { title: "Aula 02 - O que vamos aprender no módulo 01? - HTML5 + CSS3", id: "jgQjeqGRdgA" },
+    { title: "Aula 03 - Precisamos fazer um acordo - HTML5 e CSS3", id: "VfIXgGJWLvA" },
+    { title: "Aula 04 - Será que este curso é para mim? - HTML5 e CSS3", id: "57wyfS560Uk" },
+    { title: "Aula 05 - Melhores livros para aprender HTML5 e CSS3", id: "0zLjVhHdOm8" },
+    { title: "Aula 06 - Como a Internet chega na minha casa?", id: "F74GKCLXUWM" },
+    { title: "Aula 07 - Como a Internet funciona?", id: "nlO5hySqJFA" },
+    { title: "Aula 08 - O que é domínio e hospedagem?", id: "RFHSt1PCy0k" },
+    { title: "Aula 09 - A diferença entre HTML, CSS e JavaScript", id: "B4FU3NFRTDw" },
+    { title: "Aula 10 - Front-end, Back-end e Full stack", id: "iSqf2iPqJNM" },
+    { title: "Aula 11 - Instalando todas as ferramentas", id: "UForX7ehChM" },
+    { title: "Aula 12 - Seu primeiro código HTML", id: "E6CdIawPTh0" },
+    { title: "Aula 13 - Parágrafos e Quebras", id: "f6NTJdtEFOc" },
+    { title: "Aula 14 - Símbolos e Emoji no seu site", id: "nhMdFe3WwYc" },
+    { title: "Aula 15 - Você tem o direito de usar qualquer imagem no seu site?", id: "bDULqeGEvAw" },
+    { title: "Aula 16 - Quais são os formatos para imagens na Web?", id: "xg-vHgLF0mI" },
+    { title: "Aula 17 - O tamanho das imagens importa para um site?", id: "8rkuukKA8a4" },
+    { title: "Aula 18 - A tag img em HTML5", id: "CwOmEetWMnU" },
+    { title: "Aula 19 - Como mudar o favicon de um site", id: "1ZeettFfxys" },
+    { title: "Aula 20 - Hierarquia de Títulos", id: "aiOEBhozEOg" },
+    { title: "Aula 21 - Semântica na HTML5 é importante", id: "HaSgt1hK2Fs" },
+    { title: "Aula 22 - Negrito e Itálico do jeito certo", id: "T-d_hsO3hUI" },
+    { title: "Aula 23 - Formatações adicionais em HTML", id: "8TgKFYkcO5Y" },
+    { title: "Aula 24 - Citações e Códigos", id: "4ynvsrkamt8" },
+    { title: "Aula 25 - Listas OL e UL", id: "JlE0pzESf5g" },
+    { title: "Aula 26 - Listas mistas e de definição", id: "Ez1kgIyoGuE" },
+    { title: "Aula 27 - Links e Âncoras em HTML5", id: "LeOVXQDsAIY" },
+    { title: "Aula 28 - Links internos", id: "LeLnlT-ZKw8" },
+    { title: "Aula 29 - Links para download", id: "Jszz7M676y8" },
+    { title: "Aula 30 - Desafios propostos", id: "suL56Mdx22Y" },
+    { title: "Aula 31 - Imagens Dinâmicas", id: "E01LDVj0Rpg" },
+    { title: "Aula 32 - Imagens que se adaptam sozinhas", id: "cAgkwPWE4hU" },
+    { title: "Aula 33 - Colocando áudio no seu site", id: "4OZYsFl-J9s" },
+    { title: "Aula 34 - Formatos de vídeo para seu site", id: "DjOSM72cYac" },
+    { title: "Aula 35 - Vídeos em hospedagem própria", id: "TCeyIwFGkYo" },
+    { title: "Aula 36 - Incorporação de vídeos externos", id: "3hng-hmSv2Y" },
+    { title: "Aula 37 - Desafio: um site com vídeos", id: "gqrySQQzvvQ" },
+    { title: "Aula 38 - Estilos CSS online", id: "byqhpuVpvEI" },
+    { title: "Aula 39 - Estilos CSS internos", id: "fzyab4P2pn8" },
+    { title: "Aula 40 - Estilos CSS externos", id: "i1JVMspDJQ" },
+    { title: "Aula 41 - Fim do Módulo 1: Certificados liberados", id: "xYLizixflv4" }
+  ];
 
-        const videos = [
-            { title: "Aula 01 - Começa aqui o novo de HTML5 e CSS3", id: "Ejkb_YpuHWs" },
-            { title: "Aula 02 - O que vamos aprender no módulo 01? - HTML5 + CSS3", id: "jgQjeqGRdgA" },
-            { title: "Aula 03 - Precisamos fazer um acordo - HTML5 e CSS3", id: "VfIXgGJWLvA" },
-            { title: "Aula 04 - Será que este curso é para mim? - HTML5 e CSS3", id: "57wyfS560Uk" },
-            { title: "Aula 05 - Melhores livros para aprender HTML5 e CSS3 - @Curso em Vídeo HTML5 e CSS3", id: "0zLjVhHdOm8" },
-            { title: "Aula 06 - Como a Internet chega na minha casa? - @Curso em Vídeo HTML5 e CSS3", id: "F74GKCLXUWM" },
-            { title: "Aula 07 - Como a Internet funciona? - @Curso em Vídeo HTML5 e CSS3", id: "nlO5hySqJFA" },
-            { title: "Aula 08 - O que é domínio e hospedagem? - @Curso em Vídeo HTML5 e CSS3", id: "RFHSt1PCy0k" },
-            { title: "Aula 09 - A diferença entre HTML, CSS e JavaScript - @Curso em Vídeo HTML5 e CSS3", id: "B4FU3NFRTDw" },
-            { title: "Aula 10 - Front-end, Back-end e Full stack - @Curso em Vídeo HTML5 e CSS3", id: "iSqf2iPqJNM" },
-            { title: "Aula 11 - Instalando todas as ferramentas - @Curso em Vídeo HTML5 e CSS3", id: "UForX7ehChM" },
-            { title: "Aula 12 - Seu primeiro código HTML - @Curso em Vídeo HTML5 e CSS3", id: "E6CdIawPTh0" },
-            { title: "Aula 13 - Parágrafos e Quebras - @Curso em Vídeo HTML5 e CSS3", id: "f6NTJdtEFOc" },
-            { title: "Aula 14 - Símbolos e Emoji no seu site - @Curso em Vídeo HTML5 e CSS3", id: "nhMdFe3WwYc" },
-            { title: "Aula 15 - Você tem o direito de usar qualquer imagem no seu site? - @Curso em Vídeo HTML5 e CSS3", id: "bDULqeGEvAw" },
-            { title: "Aula 16 - Quais são os formatos para imagens na Web? - @Curso em Vídeo HTML5 e CSS3", id: "xg-vHgLF0mI" },
-            { title: "Aula 17 - O tamanho das imagens importa para um site? - @Curso em Vídeo HTML5 e CSS3", id: "8rkuukKA8a4" },
-            { title: "Aula 18 - A tag img em HTML5 - @Curso em Vídeo HTML5 e CSS3", id: "CwOmEetWMnU" },
-            { title: "Aula 19 - Como mudar o favicon de um site - @Curso em Vídeo HTML5 e CSS3", id: "1ZeettFfxys" },
-            { title: "Aula 20 - Hierarquia de Títulos - @Curso em Vídeo HTML5 e CSS3", id: "aiOEBhozEOg" },
-            { title: "Aula 21 - Semântica na HTML5 é importante - @Curso em Vídeo HTML5 e CSS3", id: "HaSgt1hK2Fs" },
-            { title: "Aula 22 - Negrito e Itálico do jeito certo - @Curso em Vídeo HTML5 e CSS3", id: "T-d_hsO3hUI" },
-            { title: "Aula 23 - Formatações adicionais em HTML - @Curso em Vídeo HTML5 e CSS3", id: "8TgKFYkcO5Y" },
-            { title: "Aula 24 - Citações e Códigos - @Curso em Vídeo HTML5 e CSS3", id: "4ynvsrkamt8" },
-            { title: "Aula 25 - Listas OL e UL - @Curso em Vídeo HTML5 e CSS3", id: "JlE0pzESf5g" },
-            { title: "Aula 26 - Listas mistas e de definição - @Curso em Vídeo HTML5 e CSS3", id: "Ez1kgIyoGuE" },
-            { title: "Aula 27 - Links e Âncoras em HTML5 - @Curso em Vídeo HTML5 e CSS3", id: "LeOVXQDsAIY" },
-            { title: "Aula 28 - Links internos - @Curso em Vídeo HTML5 e CSS3", id: "LeLnlT-ZKw8" },
-            { title: "Aula 29 - Links para download - @Curso em Vídeo HTML5 e CSS3", id: "Jszz7M676y8" },
-            { title: "Aula 30 - Desafios propostos - @Curso em Vídeo HTML5 e CSS3", id: "suL56Mdx22Y" },
-            { title: "Aula 31 - Imagens Dinâmicas - @Curso em Vídeo HTML5 e CSS3", id: "E01LDVj0Rpg" },
-            { title: "Aula 32 - Imagens que se adaptam sozinhas - @Curso em Vídeo HTML5 e CSS3", id: "cAgkwPWE4hU" },
-            { title: "Aula 33 - Colocando áudio no seu site - @Curso em Vídeo HTML5 e CSS3", id: "4OZYsFl-J9s" },
-            { title: "Aula 34 - Formatos de vídeo para seu site - @Curso em Vídeo HTML5 e CSS3", id: "DjOSM72cYac" },
-            { title: "Aula 35 - Vídeos em hospedagem própria - @Curso em Vídeo HTML5 e CSS3", id: "TCeyIwFGkYo" },
-            { title: "Aula 36 - Incorporação de vídeos externos - @Curso em Vídeo HTML5 e CSS3", id: "3hng-hmSv2Y" },
-            { title: "Aula 37 - Desafio: um site com vídeos - @Curso em Vídeo HTML5 e CSS3", id: "gqrySQQzvvQ" },
-            { title: "Aula 38 - Estilos CSS online - @Curso em Vídeo HTML5 e CSS3", id: "byqhpuVpvEI" },
-            { title: "Aula 39 - Estilos CSS internos - @Curso em Vídeo HTML5 e CSS3", id: "fzyab4P2pn8" },
-            { title: "Aula 40 - Estilos CSS externos - @Curso em Vídeo HTML5 e CSS3", id: "i1JVMspDJQ" },
-            { title: "Aula 41 - Fim do Módulo 1: Certificados liberados - HTML5 e CSS3", id: "xYLizixflv4" },
-        ];
+  let completedLessons = [];
 
-        // Carregar progresso salvo
-        let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
+  function getAulaKey(index) {
+    return `${COURSE_ID}:aula_${index}`;
+  }
 
-        // Inicializa player
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('videoPlayer', {
-                videoId: videos[0].id
-            });
+  function getAulasConcluidas() {
+    if (!dadosUsuario || !dadosUsuario.aulasConcluidas) return {};
+    return dadosUsuario.aulasConcluidas;
+  }
+
+  function getPontos() {
+    if (!dadosUsuario) return 0;
+    return Number(dadosUsuario.pontos || 0);
+  }
+
+  function mostrarLoadingVideo(texto = "Carregando vídeo...") {
+    videoLoading.textContent = texto;
+    videoLoading.classList.remove("hidden");
+  }
+
+  function esconderLoadingVideo() {
+    videoLoading.classList.add("hidden");
+  }
+
+  function getConcluidasDoCurso() {
+    const aulasConcluidas = getAulasConcluidas();
+    let concluidas = 0;
+
+    videos.forEach((_, index) => {
+      if (aulasConcluidas[getAulaKey(index)]) concluidas++;
+    });
+
+    return concluidas;
+  }
+
+  function sincronizarCompletedLessons() {
+    const aulasConcluidas = getAulasConcluidas();
+
+    completedLessons = videos
+      .map((_, index) => index)
+      .filter((index) => aulasConcluidas[getAulaKey(index)]);
+  }
+
+  function renderLessons() {
+    lessonList.innerHTML = "";
+
+    videos.forEach((video, index) => {
+      const lesson = document.createElement("div");
+      lesson.className = "lesson";
+      lesson.dataset.index = index;
+
+      if (index === currentIndex) lesson.classList.add("active");
+      if (completedLessons.includes(index)) lesson.classList.add("completed");
+
+      lesson.innerHTML = `
+        <span class="lesson-number">${String(index + 1).padStart(2, "0")}</span>
+        <div class="lesson-title">${video.title}</div>
+      `;
+
+      lesson.addEventListener("click", () => {
+        currentIndex = index;
+        courseTitle.textContent = videos[index].title;
+        carregarVideoAtual();
+        atualizarTela();
+      });
+
+      lessonList.appendChild(lesson);
+    });
+  }
+
+  function updateProgress() {
+    const totalConcluidas = getConcluidasDoCurso();
+    const percent = Math.round((totalConcluidas / videos.length) * 100);
+
+    progressBar.style.width = percent + "%";
+    progressText.textContent = `${totalConcluidas} de ${videos.length} aulas`;
+    progressPercentBadge.textContent = `${percent}%`;
+    topProgressChip.textContent = `${percent}% concluído`;
+  }
+
+  function updateStatus() {
+    if (!currentUser) {
+      statusText.textContent = "Faça login para salvar seu progresso.";
+      completeButton.textContent = "Faça login para concluir";
+      completeButton.disabled = true;
+      return;
+    }
+
+    const aulasConcluidas = getAulasConcluidas();
+    const aulaAtualKey = getAulaKey(currentIndex);
+
+    if (aulasConcluidas[aulaAtualKey]) {
+      statusText.textContent = "Essa aula já foi concluída.";
+      completeButton.textContent = "Aula já concluída ✅";
+      completeButton.disabled = true;
+    } else {
+      statusText.textContent = "Conclua a aula atual para ganhar +5 pontos.";
+      completeButton.textContent = "Marcar como concluída ✅";
+      completeButton.disabled = false;
+    }
+  }
+
+  function atualizarTela() {
+    sincronizarCompletedLessons();
+    renderLessons();
+    updateProgress();
+    updateStatus();
+    courseTitle.textContent = videos[currentIndex].title;
+  }
+
+  function carregarVideoAtual() {
+    mostrarLoadingVideo();
+
+    if (player && playerReady && typeof player.loadVideoById === "function") {
+      player.loadVideoById(videos[currentIndex].id);
+      return;
+    }
+
+    tentarIniciarPlayer();
+  }
+
+  function criarPlayer() {
+    if (!window.YT || !window.YT.Player) return;
+    if (player) return;
+
+    mostrarLoadingVideo();
+
+    player = new YT.Player("videoPlayer", {
+      videoId: videos[currentIndex].id,
+      playerVars: {
+        rel: 0,
+        modestbranding: 1
+      },
+      events: {
+        onReady: () => {
+          playerReady = true;
+          esconderLoadingVideo();
+        },
+        onStateChange: (event) => {
+          if (
+            event.data === YT.PlayerState.PLAYING ||
+            event.data === YT.PlayerState.BUFFERING
+          ) {
+            esconderLoadingVideo();
+          }
+        },
+        onError: () => {
+          mostrarLoadingVideo("Não foi possível carregar este vídeo.");
         }
+      }
+    });
+  }
 
-        // Clique nas aulas
-        lessons.forEach((lesson, index) => {
-            lesson.classList.remove("locked");
+  function tentarIniciarPlayer() {
+    if (window.YT && window.YT.Player) {
+      criarPlayer();
+      return;
+    }
 
-            lesson.addEventListener("click", () => {
-                currentIndex = index;
+    const intervalo = setInterval(() => {
+      if (window.YT && window.YT.Player) {
+        clearInterval(intervalo);
+        criarPlayer();
+      }
+    }, 200);
 
-                lessons.forEach(l => l.classList.remove("active"));
-                lesson.classList.add("active");
+    setTimeout(() => clearInterval(intervalo), 8000);
+  }
 
-                player.loadVideoById(videos[index].id);
-                courseTitle.innerText = videos[index].title;
-            });
-        });
+  window.onYouTubeIframeAPIReady = function () {
+    criarPlayer();
+  };
 
-        // Criar botão marcar como concluído
-        const completeButton = document.createElement("button");
-        completeButton.innerText = "Marcar como concluída ✅";
-        completeButton.style.marginTop = "20px";
-        completeButton.style.padding = "10px 20px";
-        completeButton.style.background = "#2563eb";
-        completeButton.style.color = "white";
-        completeButton.style.border = "none";
-        completeButton.style.borderRadius = "8px";
-        completeButton.style.cursor = "pointer";
+  async function carregarDadosUsuario(uid) {
+    if (!uid) {
+      dadosUsuario = null;
+      atualizarTela();
+      return;
+    }
 
-        document.querySelector(".video-area").appendChild(completeButton);
+    try {
+      const userRef = doc(db, "usuarios", uid);
+      const userSnap = await getDoc(userRef);
 
-        // Evento marcar como concluído
-        completeButton.addEventListener("click", () => {
-            if (!completedLessons.includes(currentIndex)) {
-                completedLessons.push(currentIndex);
-                localStorage.setItem("completedLessons", JSON.stringify(completedLessons));
-                lessons[currentIndex].style.background = "#16a34a";
-                updateProgress();
-            }
-        });
+      if (!userSnap.exists()) {
+        dadosUsuario = null;
+        atualizarTela();
+        return;
+      }
 
-        // Atualizar progresso
-        function updateProgress() {
-            let percent = (completedLessons.length / videos.length) * 100;
-            progressBar.style.width = percent + "%";
+      dadosUsuario = userSnap.data();
+      atualizarTela();
+    } catch (error) {
+      console.error("Erro ao carregar progresso:", error);
+      dadosUsuario = null;
+      atualizarTela();
+    }
+  }
+
+  async function concluirAulaAtual() {
+    if (!currentUser) {
+      alert("Faça login para concluir aulas.");
+      return;
+    }
+
+    try {
+      const userRef = doc(db, "usuarios", currentUser.uid);
+      const userSnap = await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+        const dadosIniciais = {
+          nome: currentUser.displayName || "Aluno",
+          email: currentUser.email || "",
+          foto: currentUser.photoURL || "",
+          pontos: 0,
+          badges: [],
+          cursosCompletos: {},
+          aulasConcluidas: {}
+        };
+
+        await setDoc(userRef, dadosIniciais, { merge: true });
+        dadosUsuario = dadosIniciais;
+      } else {
+        dadosUsuario = userSnap.data();
+      }
+
+      const aulasConcluidas = { ...(dadosUsuario.aulasConcluidas || {}) };
+      const badges = Array.isArray(dadosUsuario.badges) ? [...dadosUsuario.badges] : [];
+      const cursosCompletos = { ...(dadosUsuario.cursosCompletos || {}) };
+
+      const aulaKey = getAulaKey(currentIndex);
+
+      if (aulasConcluidas[aulaKey]) {
+        alert("Você já concluiu essa aula.");
+        atualizarTela();
+        return;
+      }
+
+      aulasConcluidas[aulaKey] = true;
+
+      let novosPontos = getPontos() + AULA_PONTOS;
+
+      let totalConcluidasCurso = 0;
+      videos.forEach((_, index) => {
+        if (aulasConcluidas[getAulaKey(index)]) totalConcluidasCurso++;
+      });
+
+      if (totalConcluidasCurso === videos.length && !cursosCompletos[COURSE_ID]) {
+        cursosCompletos[COURSE_ID] = true;
+        novosPontos += CURSO_COMPLETO_PONTOS;
+
+        if (!badges.includes(BADGE_CURSO)) {
+          badges.push(BADGE_CURSO);
         }
+      }
 
-        // Carregar progresso visual ao abrir
-        completedLessons.forEach(index => {
-            if (lessons[index]) {
-                lessons[index].style.background = "#16a34a";
-            }
-        });
+      await updateDoc(userRef, {
+        aulasConcluidas,
+        cursosCompletos,
+        badges,
+        pontos: novosPontos,
+        updatedAt: serverTimestamp()
+      });
 
-        updateProgress();
-    </script>
+      dadosUsuario = {
+        ...dadosUsuario,
+        aulasConcluidas,
+        cursosCompletos,
+        badges,
+        pontos: novosPontos
+      };
 
+      atualizarTela();
+      alert("Aula concluída com sucesso! 🚀");
+    } catch (error) {
+      console.error("Erro ao salvar conclusão:", error);
+      alert("Erro ao salvar progresso. Verifique o Firebase.");
+    }
+  }
+
+  completeButton.addEventListener("click", async () => {
+    await concluirAulaAtual();
+  });
+
+  onAuthStateChanged(auth, async (user) => {
+    currentUser = user || null;
+    await carregarDadosUsuario(user ? user.uid : null);
+  });
+
+  atualizarTela();
+  tentarIniciarPlayer();
+</script>
 </body>
 
 </html>
