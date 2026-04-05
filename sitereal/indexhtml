@@ -30,16 +30,16 @@
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEU-ID-AQUI"></script>
 <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
 
-    gtag('config', 'G-E6W5V869QD');
+  gtag('config', 'G-E6W5V869QD');
 </script>
 
-<style>
+    <style>
     html {
         scroll-behavior: smooth;
     }
@@ -563,7 +563,6 @@
         0% {
             background-position: 0% center;
         }
-
         100% {
             background-position: 200% center;
         }
@@ -1355,127 +1354,13 @@
     }
 
     .nome-fundador,
-    .nome-socio {
-        background: linear-gradient(90deg, #fff3b0, #ffd700, #ffb700);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        color: transparent;
-        font-weight: 800;
-    }
-
-    #coelhoPascoaWrap::after {
-        content: "Feliz pascoa dev 🐰";
-        position: absolute;
-        top: -18px;
-        right: 10px;
-        background: rgba(255, 255, 255, 0.95);
-        color: #111827;
-        padding: 8px 12px;
-        border-radius: 999px;
-        font-size: 13px;
-        font-weight: 700;
-        opacity: 0;
-        transform: translateY(8px);
-        transition: 0.3s;
-    }
-
-    #coelhoPascoaWrap.ativo::after {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    #coelhoPascoaWrap {
-        position: fixed;
-        left: -320px;
-        bottom: 30px;
-        width: 240px;
-        z-index: 9998;
-        pointer-events: none;
-        opacity: 0;
-    }
-
-    #coelhoPascoaWrap.ativo {
-        opacity: 1;
-        animation: coelhoPassando 12s ease-in-out forwards;
-    }
-
-    #coelhoPascoaVideo {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    @keyframes coelhoPassando {
-        0% {
-            left: -320px;
-            opacity: 0;
-            transform: translateY(0);
-        }
-
-        10% {
-            opacity: 1;
-        }
-
-        30% {
-            left: 60px;
-        }
-
-        50% {
-            left: 120px;
-        }
-
-        70% {
-            left: 200px;
-        }
-
-        100% {
-            left: calc(100vw + 260px);
-            opacity: 0;
-        }
-    }
-
-#coelhoPascoa {
-    position: fixed;
-    left: -100px;
-    bottom: 40px;
-    font-size: 50px;
-    z-index: 9999;
-    opacity: 0;
-    pointer-events: none;
-}
-
-#coelhoPascoa.ativo {
-    animation: coelhoAndando 10s ease-in-out forwards;
-}
-
-@keyframes coelhoAndando {
-    0% {
-        left: -100px;
-        opacity: 0;
-        transform: translateY(0);
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    25% {
-        transform: translateY(-20px);
-    }
-
-    50% {
-        transform: translateY(0);
-    }
-
-    75% {
-        transform: translateY(-15px);
-    }
-
-    100% {
-        left: calc(100vw + 100px);
-        opacity: 0;
-    }
+.nome-socio {
+  background: linear-gradient(90deg, #fff3b0, #ffd700, #ffb700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
 }
 
 </style>
@@ -1533,11 +1418,11 @@
         <div class="logo">ZyroDev 💦</div>
 
         <div class="nav-links">
-            <a href="#hero-content">🐰 Início</a>
-            <a href="#stat">💻 Conteúdos</a>
-            <a href="creditos.html">👨‍💻 Devs</a>
-            <a href="#rodape">📖 Sobre</a>
-            <a href="ranking.html">🏆 Ranking 🥚</a>
+            <a href="#hero-content">Inicio</a>
+            <a href="#stat">Info</a>
+            <a href="creditos.html">Creditos</a>
+            <a href="#rodape">Sobre</a>
+            <a href="ranking.html">Ranking</a>
         </div>
 
         <div class="notification-wrapper">
@@ -1600,15 +1485,6 @@
             Discord
         </a>
     </div>
-
-<div id="coelhoPascoa">🐰</div>
-    <div id="coelhoPascoaWrap">
-        <video id="coelhoPascoaVideo" muted playsinline preload="auto">
-            <source src="./fotos/coelho-pascoa.webm" type="video/webm">
-            Seu navegador não suporta vídeo.
-        </video>
-    </div>
-<div id="coelhoPascoa">🐰</div>
 
 
     <div class="cookie-box" id="cookieBox">
@@ -1726,115 +1602,115 @@
     </footer>
 
     <script type="module">
-        import { auth, db } from "./firebase.js";
-        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-        import { buscarDadosUsuario } from "./temporada-service.js";
+    import { auth, db } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { buscarDadosUsuario } from "./temporada-service.js";
 
-        const adminLink = document.getElementById("adminLink");
-        const headerNome = document.getElementById("headerNome");
-        const headerFoto = document.getElementById("headerFoto");
-        const perfilLink = document.getElementById("perfilLink");
-        const popup = document.getElementById("googlePopup");
-        const fecharBtn = document.getElementById("fecharGooglePopup");
-        const agoraNaoBtn = document.getElementById("agoraNaoGooglePopup");
+    const adminLink = document.getElementById("adminLink");
+    const headerNome = document.getElementById("headerNome");
+    const headerFoto = document.getElementById("headerFoto");
+    const perfilLink = document.getElementById("perfilLink");
+    const popup = document.getElementById("googlePopup");
+    const fecharBtn = document.getElementById("fecharGooglePopup");
+    const agoraNaoBtn = document.getElementById("agoraNaoGooglePopup");
 
-        function fecharPopup() {
-            popup?.classList.remove("show");
-        }
+    function fecharPopup() {
+        popup?.classList.remove("show");
+    }
 
-        function aplicarNomeFundador(dados = {}) {
-            if (!headerNome) return;
+function aplicarNomeFundador(dados = {}) {
+    if (!headerNome) return;
 
-            const badges = Array.isArray(dados?.badges) ? dados.badges.map(b => String(b).toLowerCase()) : [];
-            const cargo = String(dados?.cargo || "").toLowerCase().trim();
+    const badges = Array.isArray(dados?.badges) ? dados.badges.map(b => String(b).toLowerCase()) : [];
+    const cargo = String(dados?.cargo || "").toLowerCase().trim();
 
-            const ehFundador =
-                dados?.fundador === true ||
-                cargo === "fundador" ||
-                badges.includes("fundador");
+    const ehFundador =
+        dados?.fundador === true ||
+        cargo === "fundador" ||
+        badges.includes("fundador");
 
-            const ehSocio =
-                cargo === "socio" ||
-                badges.includes("socio");
+    const ehSocio =
+        cargo === "socio" ||
+        badges.includes("socio");
 
-            if (ehFundador || ehSocio) {
-                headerNome.classList.add("fundador-dourado");
-                headerNome.title = ehFundador ? "Fundador" : "Sócio";
-            } else {
-                headerNome.classList.remove("fundador-dourado");
-                headerNome.removeAttribute("title");
-            }
-        }
+    if (ehFundador || ehSocio) {
+        headerNome.classList.add("fundador-dourado");
+        headerNome.title = ehFundador ? "Fundador" : "Sócio";
+    } else {
+        headerNome.classList.remove("fundador-dourado");
+        headerNome.removeAttribute("title");
+    }
+}
 
-        fecharBtn?.addEventListener("click", fecharPopup);
-        agoraNaoBtn?.addEventListener("click", fecharPopup);
+    fecharBtn?.addEventListener("click", fecharPopup);
+    agoraNaoBtn?.addEventListener("click", fecharPopup);
 
-        popup?.addEventListener("click", function (e) {
-            if (e.target === popup) fecharPopup();
-        });
+    popup?.addEventListener("click", function (e) {
+        if (e.target === popup) fecharPopup();
+    });
 
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                try {
-                    const userRef = doc(db, "usuarios", user.uid);
-                    const userSnap = await getDoc(userRef);
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            try {
+                const userRef = doc(db, "usuarios", user.uid);
+                const userSnap = await getDoc(userRef);
 
-                    if (userSnap.exists() && userSnap.data().admin === true && adminLink) {
-                        adminLink.style.display = "inline-block";
-                    }
-
-                    const dados = await buscarDadosUsuario(user.uid);
-
-                    if (headerNome) {
-                        headerNome.textContent = dados?.nome || user.displayName || user.email || "Perfil";
-                    }
-
-                    aplicarNomeFundador(dados);
-
-                    if (headerFoto) {
-                        const foto = dados?.foto || user.photoURL || "";
-
-                        if (foto) {
-                            headerFoto.src = foto;
-                            headerFoto.style.display = "block";
-                        } else {
-                            headerFoto.style.display = "none";
-                        }
-                    }
-
-                    if (perfilLink) perfilLink.href = "perfil.html";
-                    fecharPopup();
-                } catch (error) {
-                    console.error("Erro ao carregar usuário no header:", error);
-
-                    if (headerNome) {
-                        headerNome.textContent = user.displayName || user.email || "Perfil";
-                        headerNome.classList.remove("fundador-dourado");
-                        headerNome.removeAttribute("title");
-                    }
-
-                    if (headerFoto && user.photoURL) {
-                        headerFoto.src = user.photoURL;
-                        headerFoto.style.display = "block";
-                    }
-
-                    if (perfilLink) perfilLink.href = "perfil.html";
-                    fecharPopup();
+                if (userSnap.exists() && userSnap.data().admin === true && adminLink) {
+                    adminLink.style.display = "inline-block";
                 }
-            } else {
+
+                const dados = await buscarDadosUsuario(user.uid);
+
                 if (headerNome) {
-                    headerNome.textContent = "Entrar";
+                    headerNome.textContent = dados?.nome || user.displayName || user.email || "Perfil";
+                }
+
+                aplicarNomeFundador(dados);
+
+                if (headerFoto) {
+                    const foto = dados?.foto || user.photoURL || "";
+
+                    if (foto) {
+                        headerFoto.src = foto;
+                        headerFoto.style.display = "block";
+                    } else {
+                        headerFoto.style.display = "none";
+                    }
+                }
+
+                if (perfilLink) perfilLink.href = "perfil.html";
+                fecharPopup();
+            } catch (error) {
+                console.error("Erro ao carregar usuário no header:", error);
+
+                if (headerNome) {
+                    headerNome.textContent = user.displayName || user.email || "Perfil";
                     headerNome.classList.remove("fundador-dourado");
                     headerNome.removeAttribute("title");
                 }
 
-                if (headerFoto) headerFoto.style.display = "none";
-                if (perfilLink) perfilLink.href = "login.html";
-                popup?.classList.add("show");
+                if (headerFoto && user.photoURL) {
+                    headerFoto.src = user.photoURL;
+                    headerFoto.style.display = "block";
+                }
+
+                if (perfilLink) perfilLink.href = "perfil.html";
+                fecharPopup();
             }
-        });
-    </script>
+        } else {
+            if (headerNome) {
+                headerNome.textContent = "Entrar";
+                headerNome.classList.remove("fundador-dourado");
+                headerNome.removeAttribute("title");
+            }
+
+            if (headerFoto) headerFoto.style.display = "none";
+            if (perfilLink) perfilLink.href = "login.html";
+            popup?.classList.add("show");
+        }
+    });
+</script>
 
     <script>
         function toggleNotifications() {
@@ -1877,26 +1753,21 @@
     <script>
         const frases = [
             "Lembre-se do foco 👀",
-            "💥 Quebra código de dia, arruma de madrugada",
+             "💥 Quebra código de dia, arruma de madrugada",
             "☕ Movido a café",
-            "Feliz pascoa 🐰",
             "Amar java e uma arte ☕",
             "Nunca pare de aprender 🚀",
             "Todo dev já foi iniciante 💻",
-            "Feliz pascoa 🐰",
             "Erros também ensinam 🧠",
             "Pratique todos os dias 🔥",
             "Seu futuro depende do hoje ⚡",
-            "Feliz pascoa 🐰",
-            "💥 Quebra código de dia, arruma de madrugada",
+             "💥 Quebra código de dia, arruma de madrugada",
             "☕ Movido a café",
             "Persistência cria mestres 🏆",
             "Código muda vidas 🌍",
-            "Feliz pascoa 🐰",
             "Programar é resolver problemas 🧩",
             "Grandes devs começaram do zero 👨‍💻",
             "Construa. Erre. Aprenda. Repita 🔁",
-            "Feliz pascoa 🐰",
             "💥 Quebra código de dia, arruma de madrugada",
             "☕ Movido a café"
         ];
@@ -1958,56 +1829,6 @@
             box.style.display = "none";
         }
     </script>
-
-    <script>
-        const coelhoWrap = document.getElementById("coelhoPascoaWrap");
-        const coelhoVideo = document.getElementById("coelhoPascoaVideo");
-
-        function tocarCoelhoPascoa() {
-            if (!coelhoWrap || !coelhoVideo) return;
-
-            coelhoWrap.classList.remove("ativo");
-            coelhoVideo.pause();
-            coelhoVideo.currentTime = 0;
-
-            void coelhoWrap.offsetWidth;
-
-            coelhoWrap.classList.add("ativo");
-
-            const playPromise = coelhoVideo.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(() => { });
-            }
-
-            setTimeout(() => {
-                coelhoWrap.classList.remove("ativo");
-                coelhoVideo.pause();
-                coelhoVideo.currentTime = 0;
-            }, 12000);
-        }
-
-        window.addEventListener("load", () => {
-            setTimeout(tocarCoelhoPascoa, 8000);
-            setInterval(tocarCoelhoPascoa, 120000);
-        });
-    </script>
-
-<script>
-    const coelho = document.getElementById("coelhoPascoa");
-
-    function aparecerCoelho() {
-        coelho.classList.remove("ativo");
-
-        void coelho.offsetWidth;
-
-        coelho.classList.add("ativo");
-    }
-
-    window.addEventListener("load", () => {
-        setTimeout(aparecerCoelho, 3000); // primeira vez
-        setInterval(aparecerCoelho, 20000); // a cada 2 min
-    });
-</script>
 
 </body>
 
