@@ -78,10 +78,6 @@ function renderizarPerfil(dadosBanco, userAuth) {
       ? dadosBanco.nome
       : userAuth?.displayName || "Usuário";
 
-  const emailFinal =
-    dadosBanco?.email && dadosBanco.email.trim() !== ""
-      ? dadosBanco.email
-      : userAuth?.email || "Sem email";
 
   const bioFinal =
     dadosBanco?.bio && dadosBanco.bio.trim() !== ""
@@ -92,7 +88,6 @@ function renderizarPerfil(dadosBanco, userAuth) {
 
   if (fotoPerfil) fotoPerfil.src = fotoFinal;
   if (nomePerfil) nomePerfil.textContent = nomeFinal;
-  if (emailPerfil) emailPerfil.textContent = emailFinal;
   if (bioPerfil) bioPerfil.textContent = bioFinal;
 
   renderizarBadges(badges);

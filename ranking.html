@@ -514,7 +514,7 @@
       return {
         uid: docData.uid || docId,
         nome: docData.nome || "Usuário",
-        tag: docData.email ? `@${docData.email.split("@")[0]}` : "@usuario",
+        tag: docData.username ? `@${docData.username}` : "@usuario",
         subtitulo: docData.bio && docData.bio.trim()
           ? docData.bio.trim()
           : "Membro da Zyro Dev",
