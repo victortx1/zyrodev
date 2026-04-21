@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zyro Run</title>
+  <link rel="stylesheet" href="jogo.css" />
+  <link rel="icon" type="image/png" href="./fotozyrorum/faviconzyrorum.png">
+</head>
+<body>
+  
+
+  <div class="game-wrap">
+    <div class="hud">
+      <div class="hud-box">🏆 Pontos: <span id="score">0</span></div>
+      <div class="hud-box">🪙 Moedas: <span id="coins">0</span></div>
+      <div class="hud-box">💰 Total: <span id="totalCoins">0</span></div>
+      <div class="hud-box">🌍 Fase: <span id="biomeName">Floresta</span></div>
+    </div>
+
+    <div class="game-container biome-forest" id="gameContainer">
+      <div class="sky"></div>
+      <div class="decor decor-back" id="decorBack"></div>
+      <div class="decor decor-front" id="decorFront"></div>
+      <div class="ground"></div>
+
+      <!-- MENU -->
+      <div class="top-actions">
+        <button id="menuToggle" class="menu-toggle" aria-label="Abrir menu">
+          <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+
+        <div id="gameMenu" class="game-menu hidden">
+          <div class="game-menu-title">Menu do jogo</div>
+
+          <button id="pauseGameBtn" class="menu-item">Pausar jogo</button>
+          <button id="openSettingsBtn" class="menu-item">Configurações</button>
+          <button id="exitGameBtn" class="menu-item menu-item-danger">Sair</button>
+          <button onclick="window.location.href='index.html'">Voltar para o site</button>
+        </div>
+      </div>
+
+      <!-- PAINEL DE CONFIG -->
+      <div id="settingsPanel" class="settings-panel hidden">
+        <div class="settings-card">
+          <div class="settings-header">
+            <div class="settings-title">Configurações</div>
+            <button id="closeSettingsBtn" class="settings-close">✕</button>
+          </div>
+
+          <button class="btn-termos" onclick="irParaTermos()">
+  📜 Termos de Uso
+</button>
+
+          <div class="settings-group">
+            <label class="settings-label">Som</label>
+            <div class="settings-row">
+              <button id="soundToggleBtn" class="settings-btn secondary">Efeitos: Ligado</button>
+              <button id="musicToggleBtn" class="settings-btn secondary">Música: Ligada</button>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <label class="settings-label">Volume</label>
+            <div class="volume-wrap">
+              <input id="volumeSlider" class="volume-slider" type="range" min="0" max="100" value="60" />
+              <span id="volumeValue" class="volume-value">60%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="player" id="player"></div>
+
+      <!-- TELA DE ABERTURA -->
+      <div class="intro-screen" id="introScreen">
+        <div class="intro-bg-layer intro-layer-1"></div>
+        <div class="intro-bg-layer intro-layer-2"></div>
+        <div class="intro-overlay"></div>
+
+        <div class="intro-content">
+          <p class="intro-top">ZYRO STUDIO</p>
+
+          <h1 class="intro-logo">
+            <span>ZYRO</span>
+            <span>RUN</span>
+          </h1>
+
+          <p class="intro-subtitle">ZYRO GAME DISPLAY</p>
+
+          <div class="intro-actions">
+            <button class="intro-btn intro-btn-loja" onclick="window.location.href='loja.html'">
+              ENTRAR NA LOJA
+            </button>
+
+            <button id="enterGameBtn" class="intro-btn">
+              ENTRAR NO JOGO
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAME OVER -->
+      <div class="game-over hidden" id="gameOverScreen">
+        <h2>Game Over</h2>
+        <p>Sua pontuação: <span id="finalScore">0</span></p>
+        <p>Moedas ganhas: <span id="finalCoins">0</span></p>
+        <button id="restartBtn">Jogar de novo</button>
+      </div>
+    </div>
+
+    <div class="mobile-controls">
+      <button id="jumpBtn">PULAR</button>
+    </div>
+  </div>
+
+  <script>
+    function irParaTermos() {
+  window.open("termos.html", "_blank"); // abre em nova aba
+}
+  </script>
+
+  <script type="module" src="jogo.js"></script>
+</body>
+</html>

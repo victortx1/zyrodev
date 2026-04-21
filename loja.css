@@ -1,0 +1,209 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+.shop-container {
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.item {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.item:hover {
+  transform: scale(1.05);
+}
+
+.item img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.price {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+button {
+  background: #22c55e;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #16a34a;
+}
+
+/* VIP destaque */
+.vip {
+  border: 2px solid gold;
+}
+
+/* Misterioso */
+.mystery {
+  border: 2px dashed purple;
+}
+
+/* info moedas */
+.info {
+  margin-top: 20px;
+  font-size: 18px;
+}
+.categoria {
+  text-align: left;
+  margin: 30px 0 10px;
+  font-size: 22px;
+  border-left: 5px solid #22c55e;
+  padding-left: 10px;
+}
+
+/* sistema de notificaçoes */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toast {
+  min-width: 280px;
+  max-width: 360px;
+  background: linear-gradient(135deg, #0b1220, #101a2e);
+  color: #fff;
+  border: 1px solid rgba(0, 255, 170, 0.25);
+  border-left: 5px solid #00d084;
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  font-family: Arial, sans-serif;
+  animation: slideInToast 0.35s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.toast.erro {
+  border-left-color: #ff4d4f;
+}
+
+.toast.aviso {
+  border-left-color: #f7b500;
+}
+
+.toast-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.toast-titulo {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.toast-fechar {
+  background: transparent;
+  border: none;
+  color: #bbb;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.toast-fechar:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.toast-mensagem {
+  font-size: 14px;
+  color: #d8e3ff;
+  line-height: 1.4;
+}
+
+.toast-barra {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  background: #00d084;
+  animation: tempoToast linear forwards;
+}
+
+.toast.erro .toast-barra {
+  background: #ff4d4f;
+}
+
+.toast.aviso .toast-barra {
+  background: #f7b500;
+}
+
+@keyframes slideInToast {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToast {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+}
+
+@keyframes tempoToast {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@media (max-width: 600px) {
+  .toast-container {
+    top: 12px;
+    right: 12px;
+    left: 12px;
+  }
+
+  .toast {
+    min-width: auto;
+    max-width: 100%;
+  }
+}

@@ -42,6 +42,25 @@ function normalizarNumero(valor) {
   return Number.isFinite(Number(valor)) ? Number(valor) : 0;
 }
 
+function vipEstaAtivo(usuario = {}) {
+  if (usuario.vipAtivo !== true) return false;
+  if (!usuario.vipFim) return true;
+
+  const fim = new Date(usuario.vipFim);
+  if (isNaN(fim.getTime())) return false;
+
+  return fim > new Date();
+}
+
+function formatarDataVip(dataIso = "") {
+  if (!dataIso) return "Sem data";
+
+  const data = new Date(dataIso);
+  if (isNaN(data.getTime())) return "Data inválida";
+
+  return data.toLocaleString("pt-BR");
+}
+
 async function verificarAdmin(uid) {
   const ref = doc(db, "usuarios", uid);
   const snap = await getDoc(ref);
@@ -107,6 +126,7 @@ function renderizarUsuarios(usuarios) {
     const uid = escaparHTML(usuario.uid || usuario.id);
     const likesRecebidos = normalizarNumero(usuario.likesRecebidos);
     const pontos = normalizarNumero(usuario.pontos);
+    const vipAtivo = vipEstaAtivo(usuario);
 
     return `
       <div class="usuario-card">
@@ -120,6 +140,7 @@ function renderizarUsuarios(usuarios) {
             <div style="display:flex; gap:8px; flex-wrap:wrap;">
               ${usuario.admin ? `<span class="status status-admin">ADMIN</span>` : ""}
               ${usuario.banido ? `<span class="status status-banido">BANIDO</span>` : ""}
+              ${vipAtivo ? `<span class="status status-admin" style="background:rgba(16,185,129,0.18);color:#6ee7b7;border:1px solid rgba(16,185,129,0.35);">VIP</span>` : ""}
             </div>
           </div>
 
@@ -127,6 +148,8 @@ function renderizarUsuarios(usuarios) {
             <div><strong>UID:</strong> ${uid}</div>
             <div><strong>Likes recebidos:</strong> ${likesRecebidos}</div>
             <div><strong>Pontos:</strong> ${pontos}</div>
+            <div><strong>VIP ativo:</strong> ${vipAtivo ? "Sim" : "Não"}</div>
+            <div><strong>VIP expira em:</strong> ${vipAtivo ? escaparHTML(formatarDataVip(usuario.vipFim || "")) : "—"}</div>
           </div>
 
           <div class="badges">
@@ -168,6 +191,14 @@ function renderizarUsuarios(usuarios) {
 
             <button class="btn btn-warning" onclick="window.removerPontos('${usuario.id}')">
               Remover Pontos
+            </button>
+
+            <button class="btn btn-green" onclick="window.darVip30Dias('${usuario.id}')">
+              Dar VIP 30 dias
+            </button>
+
+            <button class="btn btn-danger" onclick="window.removerVip('${usuario.id}')">
+              Remover VIP
             </button>
           </div>
         </div>
@@ -404,6 +435,77 @@ window.removerPontos = async function (userId) {
   } catch (error) {
     console.error(error);
     mostrarMensagem("Erro ao remover pontos.", "erro");
+  }
+};
+
+window.darVip30Dias = async function (userId) {
+  try {
+    const userRef = doc(db, "usuarios", userId);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      mostrarMensagem("Usuário não encontrado.", "erro");
+      return;
+    }
+
+    const dados = userSnap.data();
+    const badgesAtuais = Array.isArray(dados.badges) ? dados.badges : [];
+
+    const badgesAtualizadas = badgesAtuais.includes("vip")
+      ? badgesAtuais
+      : [...badgesAtuais, "vip"];
+
+    const agora = new Date();
+    const fim = new Date();
+    fim.setDate(fim.getDate() + 30);
+
+    await updateDoc(userRef, {
+      vipAtivo: true,
+      vipFim: fim.toISOString(),
+      vipTipo: "esmeralda",
+      vipCompradoEm: agora.toISOString(),
+      vipBonusMultiplicador: 2,
+      skinVipAtiva: true,
+      badges: badgesAtualizadas
+    });
+
+    mostrarMensagem("VIP Esmeralda de 30 dias ativado com sucesso.");
+    await carregarUsuarios();
+  } catch (error) {
+    console.error(error);
+    mostrarMensagem("Erro ao ativar VIP.", "erro");
+  }
+};
+
+window.removerVip = async function (userId) {
+  try {
+    const userRef = doc(db, "usuarios", userId);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      mostrarMensagem("Usuário não encontrado.", "erro");
+      return;
+    }
+
+    const dados = userSnap.data();
+    const badgesAtuais = Array.isArray(dados.badges) ? dados.badges : [];
+    const badgesAtualizadas = badgesAtuais.filter((badge) => badge !== "vip");
+
+    await updateDoc(userRef, {
+      vipAtivo: false,
+      vipFim: "",
+      vipTipo: "",
+      vipCompradoEm: "",
+      vipBonusMultiplicador: 1,
+      skinVipAtiva: false,
+      badges: badgesAtualizadas
+    });
+
+    mostrarMensagem("VIP removido com sucesso.");
+    await carregarUsuarios();
+  } catch (error) {
+    console.error(error);
+    mostrarMensagem("Erro ao remover VIP.", "erro");
   }
 };
 

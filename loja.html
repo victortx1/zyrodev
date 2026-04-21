@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja - Zyro Run</title>
+  <link rel="stylesheet" href="loja.css">
+  <link rel="icon" type="image/png" href="./fotozyrorum/faviconzyrorum.png">
+</head>
+<body>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<div class="shop-container">
+  <h1>🛒 Loja do Jogo</h1>
+
+  <h2 class="categoria">🧍‍♂️ Bonecos</h2>
+  <div class="shop-grid">
+
+    <div class="item" data-skin-id="rumagua">
+  <img src="fotosloja/rumaguaatualizado.png" alt="Rum água">
+  <h3>Rum água</h3>
+  <p>💰 250 moedas</p>
+  <button class="btn-comprar" onclick="comprarSkin('rumagua')">Comprar</button>
+  <button class="btn-equipar" onclick="equiparSkin('rumagua')">Equipar</button>
+</div>
+
+    <div class="item" data-skin-id="rumanalck">
+      <img src="fotosloja/rumanalck-Photoroom.png" alt="Rum analck">
+      <h3>Rum analck</h3>
+      <p>💰 450 moedas</p>
+      <button class="btn-comprar" onclick="comprarSkin('rumanalck')">Comprar</button>
+      <button class="btn-equipar" onclick="equiparSkin('rumanalck')">Equipar</button>
+    </div>
+
+    <div class="item" data-skin-id="rumfogo">
+      <img src="fotosloja/rumfogo-Photoroom.png" alt="Rum fogo">
+      <h3>Rum fogo</h3>
+      <p>💰 550 moedas</p>
+      <button class="btn-comprar" onclick="comprarSkin('rumfogo')">Comprar</button>
+      <button class="btn-equipar" onclick="equiparSkin('rumfogo')">Equipar</button>
+    </div>
+
+    <div class="item" data-skin-id="rumgelo">
+      <img src="fotosloja/rumgelo-Photoroom.png" alt="Rum gelo">
+      <h3>Rum gelo</h3>
+      <p>💰 950 moedas</p>
+      <button class="btn-comprar" onclick="comprarSkin('rumgelo')">Comprar</button>
+      <button class="btn-equipar" onclick="equiparSkin('rumgelo')">Equipar</button>
+    </div>
+
+    <div class="item" data-skin-id="rumprincipe">
+      <img src="fotosloja/rumprincipe-Photoroom.png" alt="Rum principe">
+      <h3>Rum principe</h3>
+      <p>💰 1200 moedas</p>
+      <button class="btn-comprar" onclick="comprarSkin('rumprincipe')">Comprar</button>
+      <button class="btn-equipar" onclick="equiparSkin('rumprincipe')">Equipar</button>
+    </div>
+
+    <div class="item" data-skin-id="rumguardiao">
+      <img src="fotosloja/rumguardiao-Photoroom.png" alt="Rum guardião">
+      <h3>Rum guardião</h3>
+      <p>💰 1300 moedas</p>
+      <button class="btn-comprar" onclick="comprarSkin('rumguardiao')">Comprar</button>
+      <button class="btn-equipar" onclick="equiparSkin('rumguardiao')">Equipar</button>
+    </div>
+
+    <div class="item" data-skin-id="ruminterestelar">
+      <img src="fotosloja/ruminterestelar-Photoroom.png" alt="Rum interestelar">
+      <h3>Rum interestelar</h3>
+      <p>💰 1550 moedas</p>
+      <button class="btn-comprar" onclick="comprarSkin('ruminterestelar')">Comprar</button>
+      <button class="btn-equipar" onclick="equiparSkin('ruminterestelar')">Equipar</button>
+    </div>
+
+    <div class="item" data-skin-id="rumhack">
+      <img src="fotosloja/rumhack-Photoroom.png" alt="Rum hack">
+      <h3>Rum hack</h3>
+      <p>💰 1600 moedas</p>
+      <button class="btn-comprar" onclick="comprarSkin('rumhack')">Comprar</button>
+      <button class="btn-equipar" onclick="equiparSkin('rumhack')">Equipar</button>
+    </div>
+
+    <div class="item" data-skin-id="rumflash">
+      <img src="fotosloja/rumflash-Photoroom.png" alt="Rum flash">
+      <h3>Rum flash</h3>
+      <p>💰 2000 moedas</p>
+      <button class="btn-comprar" onclick="comprarSkin('rumflash')">Comprar</button>
+      <button class="btn-equipar" onclick="equiparSkin('rumflash')">Equipar</button>
+    </div>
+
+    <div class="item" data-skin-id="rumruby">
+      <img src="fotosloja/rumruby-Photoroom.png" alt="Rum ruby">
+      <h3>Rum ruby</h3>
+      <p>💰 2500 moedas</p>
+      <button class="btn-comprar" onclick="comprarSkin('rumruby')">Comprar</button>
+      <button class="btn-equipar" onclick="equiparSkin('rumruby')">Equipar</button>
+    </div>
+
+    <div class="item" data-skin-id="rumperolanegra">
+      <img src="fotosloja/rumperolanegra-Photoroom.png" alt="Rum perola negra">
+      <h3>Rum perola negra</h3>
+      <p>💰 3500 moedas</p>
+      <button class="btn-comprar" onclick="comprarSkin('rumperolanegra')">Comprar</button>
+      <button class="btn-equipar" onclick="equiparSkin('rumperolanegra')">Equipar</button>
+    </div>
+
+  </div>
+
+  <h2 class="categoria">💰 VIP</h2>
+<div class="shop-grid">
+  <div class="item vip">
+    <img src="fotosloja/vipzyrorum.png" alt="VIP Zyro">
+    <h3>VIP 30 dias</h3>
+    <p>💰 15000 moedas</p>
+    <button onclick="comprarVip()">Comprar</button>
+  </div>
+</div>
+
+  <h2 class="categoria">🎁 Misterioso</h2>
+  <div class="shop-grid">
+    <div class="item mystery">
+      <img src="fotosloja/misteriozyro.jfif">
+      <h3>Misterio zyro</h3>
+      <p>🎁 5000000 moedas</p>
+      <button onclick="comprarMisterioso('Misterioso', 5000000)">Comprar</button>
+    </div>
+  </div>
+
+  <div class="info">
+    💰 Suas moedas: <span id="coins">0</span>
+  </div>
+</div>
+
+<script type="module" src="loja.js"></script>
+</body>
+</html>

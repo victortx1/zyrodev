@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZyroDev | Aula</title>
+  <link rel="icon" type="image/png" href="./fotos/favicon.png.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #0f172a;
+      --sidebar: rgba(7, 15, 30, 0.85);
+      --card: rgba(255, 255, 255, 0.05);
+      --card-2: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --muted: #94a3b8;
+      --blue: #2563eb;
+      --purple: #7c3aed;
+      --green: #16a34a;
+      --white: #ffffff;
+      --shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --sidebar-width: 220px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", "Segoe UI", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 24%),
+        radial-gradient(circle at top right, rgba(124, 58, 237, 0.12), transparent 26%),
+        linear-gradient(135deg, #020617, #081120 45%, #0f172a);
+      overflow-x: hidden;
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 22px 16px;
+      background: var(--sidebar);
+      backdrop-filter: blur(14px);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .brand {
+      padding: 8px 6px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .brand h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      background: linear-gradient(90deg, #fff, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+
+    .brand p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #dbeafe;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: 0.25s ease;
+    }
+
+    .nav a:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(96, 165, 250, 0.18);
+    }
+
+    .nav-icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(124, 58, 237, 0.14));
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 1rem;
+    }
+
+    .content {
+      padding: 22px;
+      min-width: 0;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.85fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      animation: fadeUp 0.4s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .video-area {
+      padding: 22px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .chip.blue {
+      background: rgba(37, 99, 235, 0.12);
+      color: #dbeafe;
+    }
+
+    .chip.green {
+      background: rgba(22, 163, 74, 0.12);
+      color: #dcfce7;
+    }
+
+    .eyebrow {
+      color: #60a5fa;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 800;
+      font-size: 0.76rem;
+      margin-bottom: 10px;
+    }
+
+    .course-title {
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+
+    .course-subtitle {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      max-width: 700px;
+    }
+
+    .video-container {
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #000;
+      transition: 0.25s ease;
+      position: relative;
+    }
+
+    .video-container:hover {
+      transform: translateY(-2px);
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      position: relative;
+    }
+
+    #videoPlayer {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      position: absolute;
+      inset: 0;
+    }
+
+    #videoPlayer iframe {
+      width: 100% !important;
+      height: 100% !important;
+      border: 0;
+      display: block;
+    }
+
+    .video-loading {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: #cbd5e1;
+      font-weight: 700;
+      background:
+        radial-gradient(circle at center, rgba(37, 99, 235, 0.10), transparent 45%),
+        #000;
+      z-index: 1;
+      transition: opacity 0.25s ease;
+    }
+
+    .video-loading.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .bottom-row {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .complete-button,
+    .ghost-button {
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 14px;
+      font-size: 0.94rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.25s ease;
+    }
+
+    .complete-button {
+      border: none;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.22);
+    }
+
+    .complete-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(37, 99, 235, 0.28);
+    }
+
+    .ghost-button {
+      color: #dbeafe;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .ghost-button:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .status-box {
+      margin-top: 14px;
+      padding: 14px 15px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .right-panel {
+      padding: 18px;
+      position: sticky;
+      top: 22px;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .progress-head h3 {
+      font-size: 1.16rem;
+      font-weight: 900;
+    }
+
+    .progress-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #dbeafe;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.16);
+    }
+
+    .progress-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--card-2);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 16px;
+    }
+
+    .progress-topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .progress-topline strong {
+      font-size: 0.96rem;
+    }
+
+    .progress-topline span {
+      color: #cbd5e1;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .progress {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.76);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #22c55e);
+      transition: width 0.35s ease;
+    }
+
+    .lesson-list-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #60a5fa;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .lesson-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 540px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .lesson-list::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .lesson-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.10);
+      border-radius: 999px;
+    }
+
+    .lesson {
+      position: relative;
+      padding: 14px 16px 14px 52px;
+      border-radius: 16px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: 0.25s ease;
+      min-height: 72px;
+    }
+
+    .lesson:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .lesson::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 26px;
+      height: 26px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .lesson-number {
+      position: absolute;
+      left: 23px;
+      top: 22px;
+      font-size: 0.68rem;
+      font-weight: 900;
+      z-index: 1;
+    }
+
+    .lesson-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      line-height: 1.4;
+      color: #fff;
+      padding-right: 38px;
+    }
+
+    .lesson.active {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(124, 58, 237, 0.14));
+      border-color: rgba(96, 165, 250, 0.18);
+    }
+
+    .lesson.completed {
+      background: linear-gradient(135deg, rgba(22, 163, 74, 0.16), rgba(34, 197, 94, 0.10));
+      border-color: rgba(74, 222, 128, 0.18);
+    }
+
+    .lesson.completed::after {
+      content: "✓";
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #dcfce7;
+      background: rgba(34, 197, 94, 0.18);
+      border: 1px solid rgba(74, 222, 128, 0.18);
+    }
+
+    @media (max-width: 1100px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .right-panel {
+        position: static;
+      }
+
+      .lesson-list {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .content {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .sidebar {
+        padding: 16px;
+      }
+
+      .video-area,
+      .right-panel {
+        padding: 16px;
+      }
+
+      .course-title {
+        font-size: 1.4rem;
+      }
+
+      .course-subtitle {
+        font-size: 0.9rem;
+      }
+
+      .bottom-row {
+        flex-direction: column;
+      }
+
+      .complete-button,
+      .ghost-button {
+        width: 100%;
+      }
+
+      .lesson {
+        padding: 13px 14px 13px 50px;
+      }
+
+      .lesson-title {
+        font-size: 0.86rem;
+      }
+
+      #videoPlayer {
+        min-height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <div class="brand">
+        <h2>ZyroDev 💦</h2>
+        <p>Uma área de estudos mais bonita, limpa e focada no conteúdo.</p>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html">
+          <span class="nav-icon">🏠</span>
+          <span>Voltar ao início</span>
+        </a>
+
+        <a href="cursos.html">
+          <span class="nav-icon">🎓</span>
+          <span>Voltar aos cursos</span>
+        </a>
+
+        <a href="creditos.html">
+          <span class="nav-icon">👏</span>
+          <span>Créditos aos professores</span>
+        </a>
+
+        <a href="https://www.google.com">
+          <span class="nav-icon">🚪</span>
+          <span>Sair</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <div class="layout">
+        <section class="panel video-area">
+          <div class="chip-row">
+            <div class="chip blue">c#</div>
+            <div class="chip green" id="topProgressChip">0% concluído</div>
+          </div>
+
+          <div class="eyebrow">Aula atual</div>
+          <h1 class="course-title" id="courseTitle">Aula 01 - Começa aqui seu curso de C# Básico</h1>
+          <p class="course-subtitle">
+            Assista as aulas, acompanhe seu progresso e avance no curso de C# de forma simples, bonita e organizada.
+          </p>
+
+          <div class="video-container">
+            <div class="video-frame">
+              <div class="video-loading" id="videoLoading">Carregando vídeo...</div>
+              <div id="videoPlayer"></div>
+            </div>
+          </div>
+
+          <div class="bottom-row">
+            <button id="completeButton" class="complete-button">Marcar como concluída ✅</button>
+            <a href="cursos.html" class="ghost-button">⬅ Voltar aos cursos</a>
+          </div>
+
+          <div class="status-box" id="statusText">Conclua a aula atual para avançar no curso.</div>
+        </section>
+
+        <aside class="panel right-panel">
+          <div class="progress-head">
+            <h3>Seu progresso</h3>
+            <div class="progress-badge" id="progressPercentBadge">0%</div>
+          </div>
+
+          <div class="progress-card">
+            <div class="progress-topline">
+              <strong>Curso C# Básico</strong>
+              <span id="progressText">0 de 22 aulas</span>
+            </div>
+
+            <div class="progress">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
+          </div>
+
+          <div class="lesson-list-title">Aulas do curso</div>
+          <div class="lesson-list" id="lessonList"></div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+<script type="module">
+  import { auth, db } from "./firebase.js";
+  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import {
+    doc,
+    getDoc,
+    setDoc,
+    updateDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  let player = null;
+  let currentIndex = 0;
+  let currentUser = null;
+  let playerReady = false;
+  let dadosUsuario = null;
+
+  const COURSE_ID = "csharp";
+  const AULA_PONTOS = 5;
+  const CURSO_COMPLETO_PONTOS = 25;
+  const BADGE_CURSO = "curso_csharp_completo";
+
+  const progressBar = document.getElementById("progressBar");
+  const courseTitle = document.getElementById("courseTitle");
+  const progressText = document.getElementById("progressText");
+  const progressPercentBadge = document.getElementById("progressPercentBadge");
+  const topProgressChip = document.getElementById("topProgressChip");
+  const completeButton = document.getElementById("completeButton");
+  const statusText = document.getElementById("statusText");
+  const lessonList = document.getElementById("lessonList");
+  const videoLoading = document.getElementById("videoLoading");
+
+  const videos = [
+    { title: "Aula 01 - Primeiros Passos - Curso C# Básico ", id: "HOpCMKNJEFg" },
+    { title: "Aula 02 - Variáveis - Curso C# Básico ", id: "fNgTLLH7tNA" },
+    { title: "Aula 03 - Debug - Curso C# Básico", id: "bI2sJiJaGQ4" },
+    { title: "Aula 04 - Operadores Matemáticos - Curso C# Básico", id: "0x4-H-NKVfY" },
+    { title: "Aula 05 - Operadores de Atribuição - Curso C# Básico", id: "ws7W34Uvwo8" },
+    { title: "Aula 06 - Operadores de Comparação - Curso C# Básico", id: "cGsYrKYtw5c" },
+    { title: "Aula 07 - Operadores Lógicos - Curso C# Básico", id: "YSw-_0l5MJ4" },
+    { title: "Aula 08 - Estrutura de Controle IF - Curso C# Básico", id: "9PCgXhbcwbs" },
+    { title: "Aula 09 - Estrutura de Controle SWITCH - Curso C# Básico", id: "e6qSmpK04p8" },
+    { title: "Aula 10 - Conversão de Tipos - Curso C# Básico", id: "iLpkqIp9szs" },
+    { title: "Aula 11 - Constantes - Curso C# Básico", id: "SeTHO6wZUJ0" },
+    { title: "Aula 12 - Estruturas de Repetição - Curso C# Básico", id: "ZszWzTlLJZA" },
+    { title: "Aula 13 - Como Trabalhar com Datas em C#: 5 Exemplos Práticos - Curso C# Básico", id: "PVsoL8-zZg4" },
+    { title: "Aula 14 - Como Usar Enumeradores (Enums) em C# de Forma Simples - Curso C# Básico", id: "OiF7XAQREoY" },
+    { title: "Aula 15 - Como e quando usar tuplas em C# - Curso C# Básico", id: "q8k1DIySz4I" },
+    { title: "Aula 16 - Tutorial de Matrizes em C# – O Guia Completo para Iniciantes - Curso C# Básico", id: "YQMVMtJhBCA" },
+    { title: "Aula 17 - Listas no C#: Conceitos, Exemplos e Dicas Essenciais - Curso C# Básico", id: "39-Q9JO5Ow0" },
+    { title: "Aula 18 - Tudo o que você precisa saber sobre vetores em C#", id: "STzO-Sfr-R0" },
+    { title: "Aula 19 - Refatorei um IF Gigante com XOR em C# - Curso C# Básico", id: "3fZ8b0FgHRQ" },
+    { title: "Aula 20 - Torne Seu Código Limpo com Métodos em C# - Curso C# Básico", id: "HZP5LCx1YEg" },
+    { title: "Aula 21 - Como usar um dicionário em C# - Curso C# Básico", id: "CHCrHOaHnAs" },
+    { title: "Aula 22 - Como acessar partes de listas e arrays com Range Operator no C#", id: "vQgltVzXm8w" },
+  ];
+
+  let completedLessons = [];
+
+  function getAulaKey(index) {
+    return `${COURSE_ID}:aula_${index}`;
+  }
+
+  function getAulasConcluidas() {
+    if (!dadosUsuario || !dadosUsuario.aulasConcluidas) return {};
+    return dadosUsuario.aulasConcluidas;
+  }
+
+  function getPontos() {
+    if (!dadosUsuario) return 0;
+    return Number(dadosUsuario.pontos || 0);
+  }
+
+  function mostrarLoadingVideo(texto = "Carregando vídeo...") {
+    videoLoading.textContent = texto;
+    videoLoading.classList.remove("hidden");
+  }
+
+  function esconderLoadingVideo() {
+    videoLoading.classList.add("hidden");
+  }
+
+  function getConcluidasDoCurso() {
+    const aulasConcluidas = getAulasConcluidas();
+    let concluidas = 0;
+
+    videos.forEach((_, index) => {
+      if (aulasConcluidas[getAulaKey(index)]) concluidas++;
+    });
+
+    return concluidas;
+  }
+
+  function sincronizarCompletedLessons() {
+    const aulasConcluidas = getAulasConcluidas();
+
+    completedLessons = videos
+      .map((_, index) => index)
+      .filter((index) => aulasConcluidas[getAulaKey(index)]);
+  }
+
+  function renderLessons() {
+    lessonList.innerHTML = "";
+
+    videos.forEach((video, index) => {
+      const lesson = document.createElement("div");
+      lesson.className = "lesson";
+      lesson.dataset.index = index;
+
+      if (index === currentIndex) lesson.classList.add("active");
+      if (completedLessons.includes(index)) lesson.classList.add("completed");
+
+      lesson.innerHTML = `
+        <span class="lesson-number">${String(index + 1).padStart(2, "0")}</span>
+        <div class="lesson-title">${video.title}</div>
+      `;
+
+      lesson.addEventListener("click", () => {
+        currentIndex = index;
+        courseTitle.textContent = videos[index].title;
+        carregarVideoAtual();
+        atualizarTela();
+      });
+
+      lessonList.appendChild(lesson);
+    });
+  }
+
+  function updateProgress() {
+    const totalConcluidas = getConcluidasDoCurso();
+    const percent = Math.round((totalConcluidas / videos.length) * 100);
+
+    progressBar.style.width = percent + "%";
+    progressText.textContent = `${totalConcluidas} de ${videos.length} aulas`;
+    progressPercentBadge.textContent = `${percent}%`;
+    topProgressChip.textContent = `${percent}% concluído`;
+  }
+
+  function updateStatus() {
+    if (!currentUser) {
+      statusText.textContent = "Faça login para salvar seu progresso.";
+      completeButton.textContent = "Faça login para concluir";
+      completeButton.disabled = true;
+      return;
+    }
+
+    const aulasConcluidas = getAulasConcluidas();
+    const aulaAtualKey = getAulaKey(currentIndex);
+
+    if (aulasConcluidas[aulaAtualKey]) {
+      statusText.textContent = "Essa aula já foi concluída.";
+      completeButton.textContent = "Aula já concluída ✅";
+      completeButton.disabled = true;
+    } else {
+      statusText.textContent = "Conclua a aula atual para ganhar +5 pontos.";
+      completeButton.textContent = "Marcar como concluída ✅";
+      completeButton.disabled = false;
+    }
+  }
+
+  function atualizarTela() {
+    sincronizarCompletedLessons();
+    renderLessons();
+    updateProgress();
+    updateStatus();
+    courseTitle.textContent = videos[currentIndex].title;
+  }
+
+  function carregarVideoAtual() {
+    mostrarLoadingVideo();
+
+    if (player && playerReady && typeof player.loadVideoById === "function") {
+      player.loadVideoById(videos[currentIndex].id);
+      return;
+    }
+
+    tentarIniciarPlayer();
+  }
+
+  function criarPlayer() {
+    if (!window.YT || !window.YT.Player) return;
+    if (player) return;
+
+    mostrarLoadingVideo();
+
+    player = new YT.Player("videoPlayer", {
+      videoId: videos[currentIndex].id,
+      playerVars: {
+        rel: 0,
+        modestbranding: 1
+      },
+      events: {
+        onReady: () => {
+          playerReady = true;
+          esconderLoadingVideo();
+        },
+        onStateChange: (event) => {
+          if (
+            event.data === YT.PlayerState.PLAYING ||
+            event.data === YT.PlayerState.BUFFERING
+          ) {
+            esconderLoadingVideo();
+          }
+        },
+        onError: () => {
+          mostrarLoadingVideo("Não foi possível carregar este vídeo.");
+        }
+      }
+    });
+  }
+
+  function tentarIniciarPlayer() {
+    if (window.YT && window.YT.Player) {
+      criarPlayer();
+      return;
+    }
+
+    const intervalo = setInterval(() => {
+      if (window.YT && window.YT.Player) {
+        clearInterval(intervalo);
+        criarPlayer();
+      }
+    }, 200);
+
+    setTimeout(() => clearInterval(intervalo), 8000);
+  }
+
+  window.onYouTubeIframeAPIReady = function () {
+    criarPlayer();
+  };
+
+  async function carregarDadosUsuario(uid) {
+    if (!uid) {
+      dadosUsuario = null;
+      atualizarTela();
+      return;
+    }
+
+    try {
+      const userRef = doc(db, "usuarios", uid);
+      const userSnap = await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+        dadosUsuario = null;
+        atualizarTela();
+        return;
+      }
+
+      dadosUsuario = userSnap.data();
+      atualizarTela();
+    } catch (error) {
+      console.error("Erro ao carregar progresso:", error);
+      dadosUsuario = null;
+      atualizarTela();
+    }
+  }
+
+  async function concluirAulaAtual() {
+    if (!currentUser) {
+      alert("Faça login para concluir aulas.");
+      return;
+    }
+
+    try {
+      const userRef = doc(db, "usuarios", currentUser.uid);
+      const userSnap = await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+        const dadosIniciais = {
+          nome: currentUser.displayName || "Aluno",
+          email: currentUser.email || "",
+          foto: currentUser.photoURL || "",
+          pontos: 0,
+          badges: [],
+          cursosCompletos: {},
+          aulasConcluidas: {}
+        };
+
+        await setDoc(userRef, dadosIniciais, { merge: true });
+        dadosUsuario = dadosIniciais;
+      } else {
+        dadosUsuario = userSnap.data();
+      }
+
+      const aulasConcluidas = { ...(dadosUsuario.aulasConcluidas || {}) };
+      const badges = Array.isArray(dadosUsuario.badges) ? [...dadosUsuario.badges] : [];
+      const cursosCompletos = { ...(dadosUsuario.cursosCompletos || {}) };
+
+      const aulaKey = getAulaKey(currentIndex);
+
+      if (aulasConcluidas[aulaKey]) {
+        alert("Você já concluiu essa aula.");
+        atualizarTela();
+        return;
+      }
+
+      aulasConcluidas[aulaKey] = true;
+
+      let novosPontos = getPontos() + AULA_PONTOS;
+
+      let totalConcluidasCurso = 0;
+      videos.forEach((_, index) => {
+        if (aulasConcluidas[getAulaKey(index)]) totalConcluidasCurso++;
+      });
+
+      if (totalConcluidasCurso === videos.length && !cursosCompletos[COURSE_ID]) {
+        cursosCompletos[COURSE_ID] = true;
+        novosPontos += CURSO_COMPLETO_PONTOS;
+
+        if (!badges.includes(BADGE_CURSO)) {
+          badges.push(BADGE_CURSO);
+        }
+      }
+
+      await updateDoc(userRef, {
+        aulasConcluidas,
+        cursosCompletos,
+        badges,
+        pontos: novosPontos,
+        updatedAt: serverTimestamp()
+      });
+
+      dadosUsuario = {
+        ...dadosUsuario,
+        aulasConcluidas,
+        cursosCompletos,
+        badges,
+        pontos: novosPontos
+      };
+
+      atualizarTela();
+      alert("Aula concluída com sucesso! 🚀");
+    } catch (error) {
+      console.error("Erro ao salvar conclusão:", error);
+      alert("Erro ao salvar progresso. Verifique o Firebase.");
+    }
+  }
+
+  completeButton.addEventListener("click", async () => {
+    await concluirAulaAtual();
+  });
+
+  onAuthStateChanged(auth, async (user) => {
+    currentUser = user || null;
+    await carregarDadosUsuario(user ? user.uid : null);
+  });
+
+  atualizarTela();
+  tentarIniciarPlayer();
+</script>
+</body>
+
+</html>

@@ -565,12 +565,20 @@
     }
 
     function renderBadges(badges) {
-      if (!badges || badges.length === 0) {
-        return `<div class="empty-badge-text">Sem badges</div>`;
-      }
+  const badgesVisuais = ["fundador", "socio", "primeira_temporada"];
 
-      return badges.map(badge => `<div class="mini-badge">${badge}</div>`).join("");
-    }
+  const badgesFiltradas = (badges || []).filter(badge =>
+    badgesVisuais.includes(badge)
+  );
+
+  if (badgesFiltradas.length === 0) {
+    return `<div class="empty-badge-text">Sem badges</div>`;
+  }
+
+  return badgesFiltradas
+    .map(badge => `<div class="mini-badge">${badge.replace(/_/g, " ")}</div>`)
+    .join("");
+}
 
     function renderTop3(users) {
       const top3 = users.slice(0, 3);

@@ -625,6 +625,36 @@
         height: 170px;
       }
     }
+
+.profile {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.ranking-btn {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 22px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  background: linear-gradient(135deg, #2563eb, #8b5cf6);
+  border: 1px solid rgba(255,255,255,0.1);
+
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.35);
+  transition: 0.3s;
+}
+
+.ranking-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.45);
+}
+
   </style>
 </head>
 
@@ -642,13 +672,13 @@
         </div>
       </div>
 
-      <div class="profile">
-        <img id="fotoPerfilTopo" src="fotos/ZYRODEV.png" alt="Perfil">
-        <div class="profile-info">
-          <strong id="nomePerfilTopo">Aluno</strong>
-          <span>Bem-vindo de volta</span>
-        </div>
-      </div>
+<div class="profile">
+  <div class="profile-info">
+    <a href="ranking.html" class="ranking-btn">
+  🏆 Ranking dos Jogadores
+</a>
+  </div>
+</div>
     </header>
 
     <section class="hero">
@@ -668,12 +698,12 @@
 
       <div class="stats-card">
         <div class="stat-box">
-          <strong>6</strong>
+          <strong>7</strong>
           <span>Cursos disponíveis para você estudar agora</span>
         </div>
 
         <div class="stat-box">
-          <strong>227</strong>
+          <strong>249</strong>
           <span>Total de aulas entre todas as trilhas</span>
         </div>
 
@@ -705,7 +735,7 @@
       <div class="card">
         <div class="card-banner">
           <span class="course-badge">Iniciante</span>
-          <img src="fotos/logica.png" alt="Curso de Lógica de Programação">
+          <img src="fotos/logicadeprogramaozyrodev.png" alt="Curso de Lógica de Programação">
           <div class="card-overlay"></div>
         </div>
         <div class="card-content">
@@ -736,7 +766,7 @@
       <div class="card">
         <div class="card-banner">
           <span class="course-badge">Muito pedido</span>
-          <img src="fotos/htmlcss.png" alt="Curso HTML e CSS">
+          <img src="fotos/htmlcsszyrodev.png" alt="Curso HTML e CSS">
           <div class="card-overlay"></div>
         </div>
         <div class="card-content">
@@ -767,7 +797,7 @@
       <div class="card">
         <div class="card-banner">
           <span class="course-badge">Interatividade</span>
-          <img src="fotos/javascript.png" alt="Curso JavaScript">
+          <img src="fotos/javascriptzyrodev.png" alt="Curso JavaScript">
           <div class="card-overlay"></div>
         </div>
         <div class="card-content">
@@ -798,7 +828,7 @@
       <div class="card">
         <div class="card-banner">
           <span class="course-badge">Popular</span>
-          <img src="fotos/python.png" alt="Curso Python">
+          <img src="fotos/pythonzyrodev.png" alt="Curso Python">
           <div class="card-overlay"></div>
         </div>
         <div class="card-content">
@@ -829,7 +859,7 @@
       <div class="card">
         <div class="card-banner">
           <span class="course-badge">Back-end</span>
-          <img src="fotos/php.png" alt="Curso PHP">
+          <img src="fotos/phpzyrodev.png" alt="Curso PHP">
           <div class="card-overlay"></div>
         </div>
         <div class="card-content">
@@ -860,7 +890,7 @@
       <div class="card">
         <div class="card-banner">
           <span class="course-badge">Estruturado</span>
-          <img src="fotos/java.png" alt="Curso Java">
+          <img src="fotos/javazyrodev.png" alt="Curso Java">
           <div class="card-overlay"></div>
         </div>
         <div class="card-content">
@@ -887,6 +917,37 @@
           </div>
         </div>
       </div>
+
+      <div class="card">
+  <div class="card-banner">
+    <span class="course-badge">Estruturado</span>
+    <img src="fotos/csharpzyrodev.png" alt="Curso C#">
+    <div class="card-overlay"></div>
+  </div>
+  <div class="card-content">
+    <h3>Curso de C#</h3>
+    <p>Aprenda lógica, orientação a objetos e crie uma base sólida para desenvolver sistemas e jogos.</p>
+
+    <div class="meta">
+      <span class="meta-item">📚 22 aulas</span>
+      <span class="meta-item">💜 C#</span>
+    </div>
+
+    <div class="progress-area">
+      <div class="progress-label">
+        <span>Seu progresso</span>
+        <span id="progress-csharp-percent">0%</span>
+      </div>
+
+      <div class="progress">
+        <span id="progress-csharp"></span>
+      </div>
+
+      <div class="progress-text" id="progress-csharp-text">0/22 aulas • 0%</div>
+      <a href="csharp.html" class="btn">Assistir</a>
+    </div>
+  </div>
+</div>
     </div>
 
     <div class="empty-search" id="emptySearch">
@@ -943,6 +1004,12 @@
         progressEl: document.getElementById("progress-java"),
         textEl: document.getElementById("progress-java-text"),
         percentEl: document.getElementById("progress-java-percent")
+      },
+      "csharp": {
+       totalAulas: 22,
+       progressEl: document.getElementById("progress-csharp"),
+       textEl: document.getElementById("progress-csharp-text"),
+       percentEl: document.getElementById("progress-csharp-percent")
       }
     };
 
