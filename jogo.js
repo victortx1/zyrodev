@@ -19,6 +19,10 @@ const biomeNameEl = document.getElementById("biomeName");
 
 const introScreen = document.getElementById("introScreen");
 const enterGameBtn = document.getElementById("enterGameBtn");
+const gameAdOverlay = document.getElementById("gameAdOverlay");
+const closeGameAdBtn = document.getElementById("closeGameAdBtn");
+const gameAdShopBtn = document.getElementById("gameAdShopBtn");
+const gameAdPlayBtn = document.getElementById("gameAdPlayBtn");
 
 const gameOverScreen = document.getElementById("gameOverScreen");
 const restartBtn = document.getElementById("restartBtn");
@@ -775,6 +779,20 @@ function closeSettings() {
   settingsPanel.classList.add("hidden");
 }
 
+function openGameAd() {
+  if (!gameAdOverlay) return;
+
+  gameAdOverlay.classList.remove("hidden");
+  gameAdOverlay.setAttribute("aria-hidden", "false");
+}
+
+function closeGameAd() {
+  if (!gameAdOverlay) return;
+
+  gameAdOverlay.classList.add("hidden");
+  gameAdOverlay.setAttribute("aria-hidden", "true");
+}
+
 function toggleSoundEffects() {
   soundEnabled = !soundEnabled;
   applyAudioSettings();
@@ -809,12 +827,17 @@ document.addEventListener("keydown", (e) => {
   }
 
   if (e.code === "Escape") {
+    closeGameAd();
     closeMenu();
     closeSettings();
   }
 });
 
 document.addEventListener("click", (e) => {
+  if (gameAdOverlay && e.target === gameAdOverlay) {
+    closeGameAd();
+  }
+
   if (
     gameMenu &&
     !gameMenu.classList.contains("hidden") &&
@@ -844,6 +867,23 @@ if (enterGameBtn) {
 
 if (restartBtn) {
   restartBtn.addEventListener("click", startGame);
+}
+
+if (closeGameAdBtn) {
+  closeGameAdBtn.addEventListener("click", closeGameAd);
+}
+
+if (gameAdShopBtn) {
+  gameAdShopBtn.addEventListener("click", () => {
+    window.location.href = "loja.html";
+  });
+}
+
+if (gameAdPlayBtn) {
+  gameAdPlayBtn.addEventListener("click", () => {
+    closeGameAd();
+    startGame();
+  });
 }
 
 if (menuToggle) {
@@ -898,3 +938,7 @@ onAuthStateChanged(auth, async (user) => {
 aplicarSkinEquipada();
 updateHUD();
 syncMusicState();
+
+window.addEventListener("load", () => {
+  setTimeout(openGameAd, 900);
+});
