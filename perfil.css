@@ -169,3 +169,102 @@ body{
     transform:translateY(0);
   }
 }
+body.tema-copa-mundo{
+  background:
+    linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.45)),
+    url("../fotos/fundo-copa.png") center/cover no-repeat !important;
+}
+
+body.tema-copa-mundo .perfil-card{
+  border:2px solid #ffdf00 !important;
+  background:rgba(0, 35, 22, .78) !important;
+  box-shadow:
+    0 0 40px rgba(255,223,0,.55),
+    0 0 90px rgba(0,156,59,.45) !important;
+}
+
+body.tema-copa-mundo .perfil-info h1{
+  color:#ffdf00 !important;
+  text-shadow:
+    0 0 12px rgba(255,223,0,.8),
+    0 0 22px rgba(0,156,59,.8);
+}
+
+body.tema-copa-mundo .btn-primary{
+  background:linear-gradient(135deg, #009c3b, #ffdf00) !important;
+  color:#001b0f !important;
+}
+
+body.tema-copa-mundo .btn-danger{
+  background:rgba(0,156,59,.25) !important;
+  border:1px solid #ffdf00 !important;
+  color:#fff !important;
+}
+
+body.tema-copa-mundo .avatar-wrap{
+  background:linear-gradient(135deg, #ffdf00, #009c3b, #002776) !important;
+  box-shadow:0 0 25px rgba(255,223,0,.9) !important;
+}
+@keyframes brilhoCopa{
+  0%{background-position:0% center;}
+  100%{background-position:300% center;}
+}
+
+@keyframes girarBadgeCopa{
+  from{transform:rotateY(0deg);}
+  to{transform:rotateY(360deg);}
+}
+html.tema-copa-mundo,
+body.tema-copa-mundo{
+  background:
+    linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.35)),
+    url("../fotos/fundo-copa.png") center/cover no-repeat fixed !important;
+}
+
+body.tema-copa-mundo .bg-shape{
+  display:none !important;
+}
+
+body.tema-copa-mundo .perfil-card{
+  background:rgba(0, 35, 20, .78) !important;
+  border:2px solid #ffdf00 !important;
+  box-shadow:
+    0 0 40px rgba(255,223,0,.65),
+    0 0 90px rgba(0,156,59,.55) !important;
+}
+
+body.tema-copa-mundo .perfil-info h1{
+  color:#ffdf00 !important;
+  text-shadow:
+    0 0 12px rgba(255,223,0,.9),
+    0 0 22px rgba(0,156,59,.9) !important;
+}
+
+body.tema-copa-mundo .btn-primary{
+  background:linear-gradient(135deg, #009c3b, #ffdf00) !important;
+  color:#001b0f !important;
+  box-shadow:0 0 18px rgba(255,223,0,.65) !important;
+}
+
+body.tema-copa-mundo .btn-danger{
+  background:rgba(0,156,59,.25) !important;
+  border:1px solid #ffdf00 !important;
+  color:#fff !important;
+}
+
+body.tema-copa-mundo .avatar-wrap{
+  background:linear-gradient(135deg, #ffdf00, #009c3b, #002776) !important;
+  box-shadow:0 0 25px rgba(255,223,0,.95) !important;
+}
+
+body.tema-copa-mundo .badge-copa{
+  animation:girarBadgeCopa 4s linear infinite;
+  filter:
+    drop-shadow(0 0 8px rgba(255,223,0,.95))
+    drop-shadow(0 0 16px rgba(0,156,59,.9));
+}
+
+@keyframes girarBadgeCopa{
+  from{transform:rotateY(0deg);}
+  to{transform:rotateY(360deg);}
+}

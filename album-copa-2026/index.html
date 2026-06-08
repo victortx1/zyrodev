@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZyroDev | Álbum Futebol 2026</title>
+  <link rel="stylesheet" href="album.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html">ZyroDev <span>Album 2026</span></a>
+    <nav>
+      <a href="../index.html">Voltar</a>
+      <a href="#pacotes">Pacotes</a>
+      <a href="#album">Álbum</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="heroText">
+        <p class="tag">Jogo colecionável da ZyroDev</p>
+        <h1>Complete seu Álbum Mundial 2026</h1>
+        <p>Abra 3 pacotes por dia, cole cartas, junte repetidas e complete as seleções.</p>
+        <a class="heroBtn" href="#pacotes">Abrir pacotes</a>
+      </div>
+      <div class="pack3d">
+        <div class="packGlow"></div>
+        <div class="packFace">ZYRO<br><span>2026</span></div>
+      </div>
+    </section>
+
+    <section id="pacotes" class="section">
+      <div class="sectionHead">
+        <div>
+          <p class="tag">Pacotes diários</p>
+          <h2>Abrir pacote</h2>
+        </div>
+        <button id="resetBtn" title="Apenas para teste">Resetar jogo</button>
+      </div>
+
+      <div class="dashboard">
+        <article><small>Pacotes hoje</small><strong id="packsLeft">0</strong></article>
+        <article><small>Cartas coladas</small><strong id="progress">0/0</strong></article>
+        <article><small>Repetidas</small><strong id="duplicates">0</strong></article>
+        <article><small>Seleções</small><strong id="teamCount">0</strong></article>
+      </div>
+
+      <button id="openPackBtn" class="mainBtn">Abrir pacote grátis</button>
+
+      <h3 class="subTitle">Cartas recebidas</h3>
+      <div id="packArea" class="cardsGrid"></div>
+    </section>
+
+    <section id="album" class="section albumSection">
+      <div class="sectionHead">
+        <div>
+          <p class="tag">Coleção</p>
+          <h2>Meu álbum</h2>
+        </div>
+        <select id="teamFilter"></select>
+      </div>
+
+      <div id="albumGrid" class="albumGrid"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="cards-data.js"></script>
+  <script src="album.js"></script>
+</body>
+</html>

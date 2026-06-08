@@ -11,6 +11,117 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
   <style>
+
+ .maintenance-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background:
+      radial-gradient(circle at top left, rgba(37, 99, 235, .22), transparent 35%),
+      radial-gradient(circle at bottom right, rgba(124, 58, 237, .20), transparent 35%),
+      rgba(2, 6, 23, .98);
+    backdrop-filter: blur(18px);
+    font-family: Arial, sans-serif;
+    color: white;
+  }
+
+  .maintenance-card {
+    width: 100%;
+    max-width: 560px;
+    padding: 42px 34px;
+    border-radius: 28px;
+    text-align: center;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+  }
+
+  .maintenance-icon {
+    width: 86px;
+    height: 86px;
+    margin: 0 auto 24px;
+    display: grid;
+    place-items: center;
+    border-radius: 24px;
+    font-size: 42px;
+    background: linear-gradient(135deg, #2563eb55, #7c3aed55);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    50% { transform: scale(1.06); }
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    margin-bottom: 20px;
+    border-radius: 999px;
+    color: #fbbf24;
+    background: rgba(251,191,36,.12);
+    border: 1px solid rgba(251,191,36,.25);
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+  }
+
+  .status-badge span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fbbf24;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: .25; }
+  }
+
+  .maintenance-card h1 {
+    font-size: 34px;
+    margin-bottom: 14px;
+    background: linear-gradient(90deg, #fff, #93c5fd, #c4b5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .maintenance-card p {
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin-bottom: 26px;
+  }
+
+  .maintenance-info {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .maintenance-info div {
+    padding: 14px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.08);
+    font-weight: 700;
+  }
+
+  .maintenance-card a {
+    display: block;
+    padding: 16px;
+    border-radius: 16px;
+    color: white;
+    text-decoration: none;
+    font-weight: 900;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+  }
+
     :root {
       --bg: #020617;
       --bg-soft: #0f172a;
@@ -577,6 +688,35 @@
 </head>
 
 <body>
+
+<!-- BLOQUEIO DE MANUTENÇÃO ZYRODEV -->
+<div class="maintenance-overlay">
+  <div class="maintenance-card">
+    <div class="maintenance-icon">🔧</div>
+
+    <div class="status-badge">
+      <span></span>
+      Em manutenção
+    </div>
+
+    <h1>Curso em atualização</h1>
+
+    <p>
+      Este curso está temporariamente bloqueado porque estamos
+      <strong>repondo várias aulas</strong> e adicionando novos conteúdos.
+    </p>
+
+    <div class="maintenance-info">
+      <div>📚 Muitas aulas sendo repostas</div>
+      <div>🚀 Conteúdo melhorado</div>
+      <div>✨ Novas aulas chegando</div>
+      <div>☕ Curso atualizado em breve</div>
+    </div>
+
+    <a href="cursos.html">⬅ Voltar aos cursos</a>
+  </div>
+</div>
+
   <div class="page">
     <aside class="sidebar">
       <div class="brand">
@@ -645,7 +785,7 @@
           <div class="progress-card">
             <div class="progress-topline">
               <strong>Curso Java</strong>
-              <span id="progressText">0 de 30 aulas</span>
+              <span id="progressText">0 de 400 aulas</span>
             </div>
 
             <div class="progress">

@@ -12,71 +12,135 @@ const bioPerfil = document.getElementById("bioPerfil");
 const badgesPerfil = document.getElementById("badgesPerfil");
 const btnSair = document.getElementById("btnSair");
 
+function normalizarBadges(badges) {
+  if (Array.isArray(badges)) return badges;
+
+  if (badges && typeof badges === "object") {
+    return Object.keys(badges).filter((key) => badges[key] === true);
+  }
+
+  return [];
+}
+
+function criarBadge(src, className, title, alt) {
+  const badge = document.createElement("img");
+  badge.src = src;
+  badge.className = className;
+  badge.title = title;
+  badge.alt = alt;
+  return badge;
+}
+
 function renderizarBadges(badges = []) {
   if (!badgesPerfil) return;
 
   badgesPerfil.innerHTML = "";
 
-  if (badges.includes("fundador")) {
-    const badge = document.createElement("img");
-    badge.src = "./fotos/fundador.png";
-    badge.className = "badge-icon";
-    badge.title = "Fundador Zyro";
-    badge.alt = "Badge Fundador";
-    badgesPerfil.appendChild(badge);
+    if (badges.includes("fundador")) {
+    badgesPerfil.appendChild(
+      criarBadge("./fotos/fundador.png", "badge-icon", "Fundador Zyro", "Badge Fundador")
+    );
   }
 
+  if (badges.includes("copa_do_mundo")) {
+    badgesPerfil.appendChild(
+      criarBadge(
+        "./fotos/copa_do_mundo.png",
+        "badge-icon badge-copa",
+        "Copa do Mundo",
+        "Badge Copa do Mundo"
+      )
+    );
+  }
+
+
   if (badges.includes("primeira_temporada")) {
-    const badge = document.createElement("img");
-    badge.src = "./fotos/temporada1.png";
-    badge.className = "badge-icon";
-    badge.title = "Conta da Primeira Temporada";
-    badge.alt = "Badge Primeira Temporada";
-    badgesPerfil.appendChild(badge);
+    badgesPerfil.appendChild(
+      criarBadge("./fotos/temporada1.png", "badge-icon", "Conta da Primeira Temporada", "Badge Primeira Temporada")
+    );
   }
 
   if (badges.includes("socio")) {
-    const badge = document.createElement("img");
-    badge.src = "./fotos/sociozyro.png";
-    badge.className = "badge-icon";
-    badge.title = "Sócio Zyro";
-    badge.alt = "Badge Sócio";
-    badgesPerfil.appendChild(badge);
+    badgesPerfil.appendChild(
+      criarBadge("./fotos/sociozyro.png", "badge-icon", "Sócio Zyro", "Badge Sócio")
+    );
   }
 
   if (badges.includes("vip")) {
-    const badge = document.createElement("img");
-    badge.src = "./fotosloja/vipzyrorum.png";
-    badge.className = "badge-icon";
-    badge.title = "VIP ZYRORUM";
-    badge.alt = "Badge VIP";
-    badgesPerfil.appendChild(badge);
+    badgesPerfil.appendChild(
+      criarBadge("./fotosloja/vipzyrorum.png", "badge-icon", "VIP ZYRORUM", "Badge VIP")
+    );
   }
 
   if (badges.includes("vip_perola_negra")) {
-    const badge = document.createElement("img");
-    badge.src = "./fotosloja/vipperolanegra.png";
-    badge.className = "badge-icon";
-    badge.title = "VIP Pérola Negra";
-    badge.alt = "Badge VIP Pérola Negra";
-    badgesPerfil.appendChild(badge);
+    badgesPerfil.appendChild(
+      criarBadge("./fotosloja/vipperolanegra.png", "badge-icon", "VIP Pérola Negra", "Badge VIP Pérola Negra")
+    );
   }
 }
 
 function aplicarTemaEspecial(dadosBanco = {}) {
-  const body = document.getElementById("bodyPerfil");
-  if (!body) return;
+  const body = document.body;
+  const html = document.documentElement;
+  const card = document.querySelector(".perfil-card");
+  const titulo = document.querySelector(".perfil-info h1");
+  const botoes = document.querySelectorAll(".btn-primary");
+  const btnDanger = document.querySelector(".btn-danger");
+  const avatar = document.querySelector(".avatar-wrap");
 
   body.classList.remove(
     "tema-fundador",
+    "tema-copa-mundo",
     "tema-socio",
     "tema-vip-esmeralda",
     "tema-vip-perola-negra"
   );
 
-  const badges = Array.isArray(dadosBanco?.badges) ? dadosBanco.badges : [];
+  html.classList.remove("tema-copa-mundo");
+
+  const badges = normalizarBadges(dadosBanco?.badges);
   const vipAtivo = Boolean(dadosBanco?.vipAtivo);
   const vipPagoAtivo = Boolean(dadosBanco?.vipPagoAtivo);
+
+  if (badges.includes("copa_do_mundo")) {
+    body.classList.add("tema-copa-mundo");
+    html.classList.add("tema-copa-mundo");
+
+    body.style.background = `
+      linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.40)),
+      url("./fotos/fundo-copa.png") center / cover no-repeat fixed
+    `;
+
+    if (card) {
+      card.style.background = "rgba(0, 35, 20, .78)";
+      card.style.border = "2px solid #ffdf00";
+      card.style.boxShadow = "0 0 40px rgba(255,223,0,.65), 0 0 90px rgba(0,156,59,.55)";
+    }
+
+    if (titulo) {
+      titulo.style.color = "#ffdf00";
+      titulo.style.textShadow = "0 0 12px rgba(255,223,0,.9), 0 0 22px rgba(0,156,59,.9)";
+    }
+
+    botoes.forEach((btn) => {
+      btn.style.background = "linear-gradient(135deg, #009c3b, #ffdf00)";
+      btn.style.color = "#001b0f";
+      btn.style.boxShadow = "0 0 18px rgba(255,223,0,.65)";
+    });
+
+    if (btnDanger) {
+      btnDanger.style.background = "rgba(0,156,59,.25)";
+      btnDanger.style.border = "1px solid #ffdf00";
+      btnDanger.style.color = "#fff";
+    }
+
+    if (avatar) {
+      avatar.style.background = "linear-gradient(135deg, #ffdf00, #009c3b, #002776)";
+      avatar.style.boxShadow = "0 0 25px rgba(255,223,0,.95)";
+    }
+
+    return;
+  }
 
   if (badges.includes("fundador")) {
     body.classList.add("tema-fundador");
@@ -99,7 +163,7 @@ function aplicarTemaEspecial(dadosBanco = {}) {
 }
 
 function usuarioPodeUsarVideo(dadosBanco = {}) {
-  const badges = Array.isArray(dadosBanco?.badges) ? dadosBanco.badges : [];
+  const badges = normalizarBadges(dadosBanco?.badges);
 
   return (
     dadosBanco?.vipAtivo === true ||
@@ -111,7 +175,7 @@ function usuarioPodeUsarVideo(dadosBanco = {}) {
   );
 }
 
-function renderizarMidiaPerfil(dadosBanco, userAuth) {
+function renderizarMidiaPerfil(dadosBanco = {}, userAuth) {
   if (!perfilMediaWrap) return;
 
   const fotoFinal =
@@ -144,7 +208,9 @@ function renderizarMidiaPerfil(dadosBanco, userAuth) {
     const selo = document.createElement("div");
     selo.className = "video-badge";
 
-    if (dadosBanco?.vipPagoAtivo === true || (Array.isArray(dadosBanco?.badges) && dadosBanco.badges.includes("vip_perola_negra"))) {
+    const badges = normalizarBadges(dadosBanco?.badges);
+
+    if (dadosBanco?.vipPagoAtivo === true || badges.includes("vip_perola_negra")) {
       selo.textContent = "VIP PAGO";
     } else {
       selo.textContent = "VIP";
@@ -164,7 +230,7 @@ function renderizarMidiaPerfil(dadosBanco, userAuth) {
   perfilMediaWrap.appendChild(img);
 }
 
-function renderizarPerfil(dadosBanco, userAuth) {
+function renderizarPerfil(dadosBanco = {}, userAuth) {
   const nomeFinal =
     dadosBanco?.nome && dadosBanco.nome.trim() !== ""
       ? dadosBanco.nome
@@ -175,7 +241,10 @@ function renderizarPerfil(dadosBanco, userAuth) {
       ? dadosBanco.bio
       : "Sem bio ainda.";
 
-  const badges = Array.isArray(dadosBanco?.badges) ? dadosBanco.badges : [];
+  const badges = normalizarBadges(dadosBanco?.badges);
+
+  console.log("DADOS DO BANCO:", dadosBanco);
+  console.log("BADGES NORMALIZADAS:", badges);
 
   renderizarMidiaPerfil(dadosBanco, userAuth);
 
@@ -184,7 +253,7 @@ function renderizarPerfil(dadosBanco, userAuth) {
   if (emailPerfil) emailPerfil.textContent = userAuth?.email || "";
 
   renderizarBadges(badges);
-  aplicarTemaEspecial(dadosBanco);
+  aplicarTemaEspecial({ ...dadosBanco, badges });
 }
 
 onAuthStateChanged(auth, async (user) => {
@@ -196,10 +265,10 @@ onAuthStateChanged(auth, async (user) => {
   try {
     await verificarEAtualizarVip(user.uid);
     const dados = await buscarDadosUsuario(user.uid);
-    renderizarPerfil(dados, user);
+    renderizarPerfil(dados || {}, user);
   } catch (error) {
     console.error("Erro ao carregar perfil:", error);
-    renderizarPerfil(null, user);
+    renderizarPerfil({}, user);
   }
 });
 

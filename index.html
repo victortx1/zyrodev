@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" href="./fotos/favicon.png.png">
-  <title>ZyroDev | Aprenda Programação Gratis</title>
+  <title>ZyroDev | HEXA 2026</title>
 
   <meta name="description" content="Aprenda programação gratuitamente e evolua com a ZyroDev">
   <meta property="og:title" content="ZyroDev">
@@ -59,13 +59,13 @@
   .button a {
     display: inline-block;
     text-decoration: none;
-    background: linear-gradient(90deg, #2563eb, #6d28d9);
-    color: #fff;
+    background: linear-gradient(90deg, #3cc443, #c7d928);
+    color: #000000;
     font-weight: 700;
     font-size: 16px;
     padding: 14px 28px;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 10px 25px rgba(68, 82, 19, 0.25);
     transition: 0.3s ease;
   }
 
@@ -89,7 +89,7 @@
     align-items: center;
     gap: 18px;
     padding: 18px 28px;
-    background: rgba(2, 6, 23, 0.72);
+    background: rgba(23, 2, 2, 0.72);
     backdrop-filter: blur(10px);
     z-index: 1000;
     flex-wrap: wrap;
@@ -117,7 +117,7 @@
     padding: 10px 14px;
     border-radius: 10px;
     text-decoration: none;
-    color: #cbd5e1;
+    color: #bee0b5;
     font-size: 13px;
     font-weight: 600;
     background: rgba(15, 23, 42, 0.88);
@@ -268,7 +268,7 @@
 }
 
  .user-profile:hover {
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  background: linear-gradient(135deg, #009c3b, #ffdf00);
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
 }
@@ -303,6 +303,60 @@
     animation: brilhoDourado 3s linear infinite;
     font-weight: 800;
   }
+
+  #headerNome.copa-hexa,
+.nome-copa-hexa {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffd700 22%,
+    #00d26a 45%,
+    #009cff 70%,
+    #ffd700 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 8px rgba(255, 215, 0, 0.22),
+    0 0 14px rgba(0, 210, 106, 0.18);
+  animation: brilhoCopaHexa 4s linear infinite;
+  font-weight: 800;
+}
+
+.user-profile.copa-hexa-ativo {
+  background: linear-gradient(135deg, #061b12, #0f172a);
+  border: 1px solid rgba(255, 215, 0, 0.28);
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.35),
+    0 0 16px rgba(255, 215, 0, 0.12);
+}
+
+.user-profile.copa-hexa-ativo:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.40),
+    0 0 22px rgba(0, 210, 106, 0.18);
+}
+
+.user-profile.copa-hexa-ativo #headerFoto {
+  border: 2px solid rgba(255, 215, 0, 0.75);
+  box-shadow:
+    0 0 10px rgba(255, 215, 0, 0.25),
+    0 0 18px rgba(0, 210, 106, 0.18);
+}
+
+@keyframes brilhoCopaHexa {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 250% center;
+  }
+}
 
 #headerNome.vip-esmeralda,
 .nome-vip {
@@ -430,7 +484,8 @@
     align-items: center;
     padding: 120px 8%;
     position: relative;
-    background: radial-gradient(circle at top, #2563eb, #020617 60%);
+    .hero {
+  background: radial-gradient(circle at top, #009c3b, #020617 60%);}
     overflow: hidden;
   }
 
@@ -495,7 +550,11 @@
     transition: transform 0.15s ease-out;
     animation: flutuarBoneco 4s ease-in-out infinite;
     filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.35));
+    object-fit: contain;
+background: transparent;
+pointer-events: none;
   }
+
 
   @keyframes flutuarBoneco {
     0% {
@@ -931,7 +990,7 @@
   #preloader {
   position: fixed;
   inset: 0;
-  background: #000;
+  background: linear-gradient(135deg, #000000, #006B3F);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1028,7 +1087,7 @@
   @keyframes pulseGlow {
     0%, 100% {
       transform: scale(1);
-      box-shadow: 0 0 25px rgba(110, 168, 255, 0.35);
+      box-shadow: 0 0 25px rgba(115, 255, 110, 0.35);
     }
     50% {
       transform: scale(1.08);
@@ -1573,7 +1632,63 @@
   </div>
 </div>
 
-    
+    <!-- POPUP COPA DO MUNDO -->
+<div id="popupCopa" class="popup-overlay ativo">
+  <div class="popup-content" style="
+    background: linear-gradient(135deg,#009c3b,#002776);
+    padding:30px;
+    text-align:center;
+    color:white;
+    max-width:550px;
+    border:2px solid #ffdf00;
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(255,223,0,.4);
+  ">
+
+    <span id="fecharCopa" class="fechar">&times;</span>
+
+    <h1 style="
+      font-size:32px;
+      margin-bottom:15px;
+      color:#ffdf00;
+    ">
+      🏆 CLIMA DE COPA NA ZYRODEV
+    </h1>
+
+    <p style="
+      font-size:17px;
+      line-height:1.6;
+      margin-bottom:20px;
+    ">
+      O novo <b>Badge Copa do Mundo 2026</b> já foi adicionado
+      automaticamente ao perfil de todos os membros da ZyroDev!
+    </p>
+
+    <p style="
+      font-size:15px;
+      color:#dbeafe;
+      margin-bottom:25px;
+    ">
+      🇧🇷 Estamos oficialmente em clima de Copa do Mundo.<br>
+      Prepare-se para eventos, novidades, atualizações temáticas
+      e muita torcida rumo ao HEXA! ⭐⭐⭐⭐⭐⭐
+    </p>
+
+<button id="btnFecharCopa" onclick="window.location.href='perfil.html'" style="
+  background:linear-gradient(90deg,#ffdf00,#ffd700);
+  color:black;
+  border:none;
+  padding:14px 30px;
+  border-radius:12px;
+  font-weight:800;
+  cursor:pointer;
+  font-size:15px;
+">
+  VER MEU PERFIL 🇧🇷
+</button>
+
+  </div>
+</div>
 
   <div id="googlePopup" class="google-popup-overlay">
     <div class="google-popup-box">
@@ -1603,136 +1718,15 @@
 <div id="listaUpdates"></div>
 
   <div class="navbar">
-    <div class="logo">ZyroDev 💦</div>
+    <div class="logo">ZyroDev Hexa💦</div>
 
     <div class="nav-links">
       <a href="#hero-content">Inicio</a>
       <a href="#stat">Info</a>
       <a href="creditos.html">Creditos</a>
       <a href="#rodape">Sobre</a>
-      <a href="jogo.html">Jogo</a>
     </div>
 
-    <div class="notification-wrapper">
-      <div class="bell-button" onclick="toggleNotifications()">
-        🔔
-        <span class="notification-count">ﾠ</span>
-      </div>
-
-      <div class="notification-box" id="notificationBox">
-        <div class="notification-header">
-          <h3>Notificações</h3>
-          <span class="close-notifications" onclick="fecharNotifications()">✕</span>
-        </div>
-
-        <!-- 🔔 SISTEMA DE ATUALIZAÇÕES COMPLETO -->
-
-<div class="notification-item">
-  <b>🚀 Atualização Geral</b><br>
-  Sistema de pontuação reformulado e otimizado para melhor desempenho.
-</div>
-
-<div class="notification-item">
-  <b>⚙️ Correções</b><br>
-  Corrigimos bugs de progresso, salvamento e inconsistências.
-</div>
-
-<div class="notification-item">
-  <b>💎 Sistema VIP</b><br>
-  Novo sistema VIP ZyroRum com benefícios exclusivos como moedas extras e destaque no perfil.
-</div>
-
-<div class="notification-item">
-  <b>🟢 VIP Esmeralda</b><br>
-  Novo VIP adicionado à loja com vantagens especiais dentro do jogo.
-</div>
-
-<div class="notification-item">
-  <b>🛒 Loja do Jogo</b><br>
-  Sistema de loja atualizado com compra de personagens, skins e VIPs.
-</div>
-
-<div class="notification-item">
-  <b>🎮 Novo Jogo</b><br>
-  Adicionado o Zyro Run com sistema de fases, moedas e progressão.
-</div>
-
-<div class="notification-item">
-  <b>🎨 Interface</b><br>
-  Melhorias no design geral do site, deixando mais moderno e responsivo.
-</div>
-
-<div class="notification-item">
-  <b>📱 Mobile</b><br>
-  Correções no layout para dispositivos móveis.
-</div>
-
-<div class="notification-item">
-  <b>👤 Perfil</b><br>
-  Perfil agora 100% editável com personalização completa.
-</div>
-
-<div class="notification-item">
-  <b>🏷️ Sistema de Badges</b><br>
-  Adicionado sistema de badges para usuários VIP e destaques.
-</div>
-
-<div class="notification-item">
-  <b>📸 Fotos de Perfil</b><br>
-  Agora é possível adicionar e exibir foto de perfil corretamente.
-</div>
-
-<div class="notification-item">
-  <b>📜 Termos de Uso</b><br>
-  Página de termos criada e integrada ao site.
-</div>
-
-<div class="notification-item">
-  <b>🎓 Cursos</b><br>
-  Sistema de cursos atualizado com novos conteúdos.
-</div>
-
-<div class="notification-item">
-  <b>💻 Novo Curso</b><br>
-  Adicionado curso de C# na plataforma.
-</div>
-
-<div class="notification-item">
-  <b>📚 Conteúdo</b><br>
-  Melhorias nas páginas dos cursos com layout mais organizado.
-</div>
-
-<div class="notification-item">
-  <b>🧾 Sistema de Updates</b><br>
-  Novo sistema de atualizações com liberação antecipada para VIPs.
-</div>
-
-<div class="notification-item">
-  <b>📧 Futuro</b><br>
-  Preparação para sistema de notificações por e-mail.
-</div>
-
-<div class="notification-item">
-  <b>❌ Remoção</b><br>
-  Removemos o sistema de comentários para melhor performance.
-</div>
-
-<div class="notification-item">
-  <b>🔗 Integrações</b><br>
-  Adicionado redirecionamento para sites externos (ex: compras).
-</div>
-
-<div class="notification-item">
-  <b>🎵 Áudio</b><br>
-  Sistema de sons implementado no jogo.
-</div>
-
-<div class="notification-item">
-  <b>❤ Agradecimento</b><br>
-  Obrigado pelos 18.000 acessos 💙
-</div>
-      </div>
-    </div>
 
     <a href="login.html" class="user-profile" id="perfilLink">
       <img src="" id="headerFoto" alt="Foto do perfil">
@@ -1769,10 +1763,14 @@
       </div>
     </div>
 
-    <div class="boneco-area" id="bonecoArea">
-      <div class="fala" id="falaBoneco">Já pegou<br>o café! ☕</div>
-      <img src="/fotos/zyropac.png" class="boneco" id="boneco" alt="Mascote">
-    </div>
+<div class="boneco-area" id="bonecoArea">
+  <img
+    class="boneco"
+    id="boneco"
+    src="/fotos/zyro-copa.png"
+    alt="Boneco Copa"
+  >
+</div>
   </section>
 
 
@@ -1908,18 +1906,29 @@
   const ehVipEsmeralda =
     (dados?.vipAtivo === true || badges.includes("vip")) && !ehVipPerolaNegra;
 
-  headerNome.classList.remove(
-    "fundador-dourado",
-    "vip-esmeralda",
-    "vip-perola-negra"
-  );
+headerNome.classList.remove(
+  "fundador-dourado",
+  "vip-esmeralda",
+  "vip-perola-negra",
+  "copa-hexa"
+);
 
-  perfilLink.classList.remove(
-    "vip-ativo",
-    "vip-perola-negra-ativo"
-  );
+perfilLink.classList.remove(
+  "vip-ativo",
+  "vip-perola-negra-ativo",
+  "copa-hexa-ativo"
+);
 
   headerNome.removeAttribute("title");
+
+  const ehCopaHexa = badges.includes("copa_do_mundo");
+
+if (ehCopaHexa) {
+  headerNome.classList.add("copa-hexa");
+  perfilLink.classList.add("copa-hexa-ativo");
+  headerNome.title = "Brasil Rumo ao Hexa";
+  return;
+}
 
   if (ehFundador || ehSocio) {
     headerNome.classList.add("fundador-dourado");
@@ -2066,24 +2075,24 @@ perfilLink?.classList.remove("vip-ativo", "vip-perola-negra-ativo");
 
   <script>
     const frases = [
-      "🪐 Ja jogou o zyrorum hoje?",
+      "Nao existe almoço grátis,",
       "Lembre-se do foco 👀",
       "💥 Quebra código de dia, arruma de madrugada",
       "☕ Movido a café",
-      "🪐 Ja jogou o zyrorum hoje?",
+      "Quer ser grande dev (Estude)",
       "Amar java e uma arte ☕",
       "Nunca pare de aprender 🚀",
       "Todo dev já foi iniciante 💻",
       "Erros também ensinam 🧠",
-      "🪐 Ja jogou o zyrorum hoje?",
+      "Brasil Hexa 2026",
       "Pratique todos os dias 🔥",
       "Seu futuro depende do hoje ⚡",
       "Persistência cria mestres 🏆",
       "Código muda vidas 🌍",
-      "🪐 Ja jogou o zyrorum hoje?",
+      "Que venha a 6 estrela",
       "Programar é resolver problemas 🧩",
       "Grandes devs começaram do zero 👨‍💻",
-      "🪐 Ja jogou o zyrorum hoje?",
+      "Bora Brasil Rumo ao Hexa! ",
       "Construa. Erre. Aprenda. Repita 🔁"
     ];
 
@@ -2298,6 +2307,19 @@ document.addEventListener("DOMContentLoaded", () => {
   imagem.onclick = () => {
     window.location.href = "jogo.html";
   };
+
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const popup = document.getElementById("popupCopa");
+  const fechar = document.getElementById("fecharCopa");
+
+  fechar.addEventListener("click", () => {
+    popup.classList.remove("ativo");
+  });
 
 });
 </script>

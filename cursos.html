@@ -655,10 +655,102 @@
   box-shadow: 0 15px 40px rgba(139, 92, 246, 0.45);
 }
 
+.aviso-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.78);
+  backdrop-filter: blur(10px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.aviso-box {
+  width: 100%;
+  max-width: 460px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(8, 15, 30, 0.98));
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 26px;
+  padding: 34px 26px;
+  text-align: center;
+  color: white;
+  position: relative;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55);
+  animation: avisoEntrar 0.35s ease;
+}
+
+.aviso-x {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.aviso-x:hover {
+  background: rgba(239, 68, 68, 0.85);
+}
+
+.aviso-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.aviso-box h2 {
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.aviso-box p {
+  color: #cbd5e1;
+  line-height: 1.7;
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+
+.aviso-box span {
+  color: #38bdf8;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@keyframes avisoEntrar {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
   </style>
 </head>
 
 <body>
+
+<div class="aviso-overlay" id="avisoJava">
+  <div class="aviso-box">
+    <button class="aviso-x" onclick="fecharAvisoJava()">×</button>
+    <div class="aviso-icon">☕</div>
+    <h2>Curso de Java inativo</h2>
+    <p>
+      O curso de Java está temporariamente indisponível no momento
+      por causa de atualizações e reposição de muitas aulas.
+    </p>
+    <span>Voltará em breve com melhorias na ZyroDev 🚀</span>
+  </div>
+</div>
+
   <canvas id="particles"></canvas>
   <div class="bg-blur"></div>
 
@@ -898,7 +990,7 @@
           <p>Aprenda orientação a objetos e desenvolva uma base forte para sistemas maiores.</p>
 
           <div class="meta">
-            <span class="meta-item">📚 30 aulas</span>
+            <span class="meta-item">📚 400 aulas</span>
             <span class="meta-item">☕ OOP</span>
           </div>
 
@@ -912,7 +1004,7 @@
               <span id="progress-java"></span>
             </div>
 
-            <div class="progress-text" id="progress-java-text">0/30 aulas • 0%</div>
+            <div class="progress-text" id="progress-java-text">0/400 aulas • 0%</div>
             <a href="java.html" class="btn">Assistir</a>
           </div>
         </div>
@@ -1181,6 +1273,13 @@
 
     animate();
   </script>
+
+<script>
+  function fecharAvisoJava() {
+    document.getElementById("avisoJava").style.display = "none";
+  }
+</script>
+
 </body>
 
 </html>

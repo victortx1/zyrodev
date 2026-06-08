@@ -1,0 +1,2306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" href="./fotos/favicon.png.png">
+  <title>ZyroDev | Aprenda Programação Gratis</title>
+
+  <meta name="description" content="Aprenda programação gratuitamente e evolua com a ZyroDev">
+  <meta property="og:title" content="ZyroDev">
+  <meta property="og:description" content="Aprenda programação gratuitamente e evolua com a ZyroDev">
+  <meta property="og:image" content="/preview.png">
+  <meta name="application-name" content="ZyroDev">
+  <meta name="apple-mobile-web-app-title" content="ZyroDev">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEU-ID-AQUI"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-E6W5V869QD');
+  </script>
+
+  <style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: white;
+    background: #020617;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* BOTÃO */
+  .button {
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+  .button a {
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(90deg, #2563eb, #6d28d9);
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+    transition: 0.3s ease;
+  }
+
+  .button a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(37, 99, 235, 0.35);
+  }
+
+  .button a:active {
+    transform: translateY(0);
+  }
+
+  /* NAVBAR */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 28px;
+    background: rgba(2, 6, 23, 0.72);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 22px;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #cbd5e1;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(15, 23, 42, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-links a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .nav-links a:hover {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.28);
+  }
+
+  .nav-links a:hover::before {
+    left: 120%;
+  }
+
+  .nav-links a:active {
+    transform: scale(0.97);
+  }
+
+  /* NOTIFICAÇÕES */
+  .notification-wrapper {
+    position: fixed;
+    top: 27px;
+    right: 170px;
+    z-index: 999;
+  }
+
+  .bell-button {
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+    color: white;
+  }
+
+  .notification-count {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: red;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 50%;
+  }
+
+  .notification-box {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    width: 280px;
+    max-height: 420px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    padding: 15px;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .notification-box::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .notification-box::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .notification-box::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
+  }
+
+  .notification-box::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+  }
+
+  .notification-box h3 {
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .notification-item {
+    background: #020617;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #cbd5e1;
+  }
+
+  .notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .close-notifications {
+    cursor: pointer;
+    font-size: 18px;
+    color: #94a3b8;
+    transition: 0.2s;
+    flex-shrink: 0;
+  }
+
+  .close-notifications:hover {
+    color: white;
+  }
+
+  /* PERFIL */
+  .user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+
+  padding: 10px 16px;
+  border-radius: 14px;
+
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+
+  transition: all 0.25s ease;
+}
+
+ .user-profile:hover {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+  #headerFoto {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: none;
+  }
+
+  #headerNome {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+    display: inline-block;
+    transition: 0.3s ease;
+  }
+
+  #headerNome.fundador-dourado,
+  .nome-fundador,
+  .nome-socio {
+    background: linear-gradient(90deg, #fff7c2 0%, #ffd700 25%, #ffb800 50%, #fff0a8 75%, #ffd700 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.18);
+    animation: brilhoDourado 3s linear infinite;
+    font-weight: 800;
+  }
+
+#headerNome.vip-esmeralda,
+.nome-vip {
+  background: linear-gradient(90deg, #ffffff 0%, #cffff0 20%, #4dffba 45%, #e8fff6 70%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 8px rgba(77, 255, 186, 0.18),
+    0 0 16px rgba(77, 255, 186, 0.12);
+  animation: brilhoVipEsmeraldaHeader 3s linear infinite;
+  font-weight: 800;
+}
+
+@keyframes brilhoVipEsmeraldaHeader {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.user-profile.vip-ativo {
+  background: linear-gradient(135deg, #081d18, #0b2b22);
+  border: 1px solid rgba(77, 255, 186, 0.25);
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.35),
+    0 0 16px rgba(77, 255, 186, 0.10);
+}
+
+.user-profile.vip-ativo:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.40),
+    0 0 22px rgba(77, 255, 186, 0.18);
+}
+
+.user-profile.vip-ativo #headerFoto {
+  border: 2px solid rgba(77, 255, 186, 0.75);
+  box-shadow:
+    0 0 10px rgba(77, 255, 186, 0.22),
+    0 0 18px rgba(77, 255, 186, 0.12);
+}
+
+  @keyframes brilhoDourado {
+    0% {
+      background-position: 0% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+#headerNome.vip-perola-negra,
+.nome-vip-perola-negra {
+  background: linear-gradient(90deg, #f5eaff 0%, #c084fc 22%, #8b5cf6 45%, #2a1240 72%, #000000 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 8px rgba(168, 85, 247, 0.20),
+    0 0 16px rgba(168, 85, 247, 0.14);
+  animation: brilhoVipPerolaNegra 3s linear infinite;
+  font-weight: 800;
+}
+
+@keyframes brilhoVipPerolaNegra {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.user-profile.vip-perola-negra-ativo {
+  background: linear-gradient(135deg, #12091c, #1a0f2b, #09060f);
+  border: 1px solid rgba(168, 85, 247, 0.30);
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.38),
+    0 0 18px rgba(168, 85, 247, 0.14);
+}
+
+.user-profile.vip-perola-negra-ativo:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.42),
+    0 0 24px rgba(168, 85, 247, 0.22);
+}
+
+.user-profile.vip-perola-negra-ativo #headerFoto {
+  border: 2px solid rgba(192, 132, 252, 0.80);
+  box-shadow:
+    0 0 12px rgba(168, 85, 247, 0.24),
+    0 0 20px rgba(168, 85, 247, 0.14);
+}
+
+  /* DISCORD */
+  .discord-btn {
+    background: #111827;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+  }
+
+  .discord-btn:hover {
+    background: #2563eb;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 8%;
+    position: relative;
+    background: radial-gradient(circle at top, #2563eb, #020617 60%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .hero-content {
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero h1 {
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    word-break: break-word;
+    line-height: 1.05;
+    background: linear-gradient(90deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .hero p {
+    color: #cbd5e1;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-size: 17px;
+    max-width: 700px;
+  }
+
+  /* BONECO */
+  .boneco-area {
+    position: absolute;
+    right: 40px;
+    bottom: 20px;
+    width: 420px;
+    max-width: 42vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    z-index: 2;
+  }
+
+  .boneco {
+    width: 100%;
+    max-width: 420px;
+    user-select: none;
+    -webkit-user-drag: none;
+    touch-action: none;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform 0.15s ease-out;
+    animation: flutuarBoneco 4s ease-in-out infinite;
+    filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.35));
+  }
+
+  @keyframes flutuarBoneco {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .personagem-box {
+    position: relative;
+    display: inline-block;
+  }
+
+  .personagem {
+    width: 300px;
+  }
+
+  .fala {
+    position: absolute;
+    top: 40px;
+    left: -30px;
+    z-index: 5;
+    background: #ffffff;
+    color: #111111;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+    transform: rotate(-12deg);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.30);
+    animation: floatFala 2.4s ease-in-out infinite;
+  }
+
+  .fala::after {
+    content: "";
+    position: absolute;
+    right: 24px;
+    bottom: -10px;
+    width: 18px;
+    height: 18px;
+    background: #ffffff;
+    transform: rotate(45deg);
+  }
+
+  @keyframes floatFala {
+    0% { transform: rotate(-12deg) translateY(0); }
+    50% { transform: rotate(-12deg) translateY(-6px); }
+    100% { transform: rotate(-12deg) translateY(0); }
+  }
+
+  /* STATS */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 80px 20px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat h2 {
+    font-size: 40px;
+    color: #60a5fa;
+  }
+
+  .stat p {
+    color: #94a3b8;
+  }
+
+  /* MOTIVAÇÃO */
+  .motivacao-area {
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .palavra {
+    position: absolute;
+    color: #60a5fa;
+    font-weight: 600;
+    font-size: 18px;
+    opacity: 0;
+    animation: subir 2s linear forwards;
+  }
+
+  @keyframes subir {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+  /* FEATURES */
+  .features {
+    width: 100%;
+    padding: 100px 8%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+  }
+
+  .feature-card {
+    min-width: 0;
+    background: #0f172a;
+    padding: 30px;
+    border-radius: 12px;
+    transition: 0.3s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-10px);
+    background: #111827;
+  }
+
+  .feature-card h3 {
+    margin-bottom: 10px;
+    color: #60a5fa;
+  }
+
+  .feature-card p {
+    color: #94a3b8;
+    font-size: 14px;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: #020617;
+    padding-top: 60px;
+    margin-top: 120px;
+    border-top: 1px solid #0f172a;
+  }
+
+  .footer-top {
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(90deg, #2563eb, #6d28d9, #2563eb);
+    background-size: 200% 100%;
+    animation: linha 6s linear infinite;
+  }
+
+  @keyframes linha {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 200%;
+    }
+  }
+
+  .footer-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 50px;
+    padding: 60px 8%;
+  }
+
+  .footer-brand {
+    max-width: 350px;
+  }
+
+  .footer-brand h2 {
+    color: #60a5fa;
+    margin-bottom: 15px;
+  }
+
+  .footer-brand p {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .footer-social h3,
+  .footer-links h3 {
+    margin-bottom: 15px;
+    color: #60a5fa;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 15px;
+  }
+
+  .social-icons img {
+    width: 28px;
+    transition: 0.3s;
+  }
+
+  .social-icons img:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 8px #60a5fa);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: #94a3b8;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+
+  .footer-links a:hover {
+    color: #60a5fa;
+    transform: translateX(5px);
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding: 25px;
+    border-top: 1px solid #0f172a;
+    color: #64748b;
+    font-size: 13px;
+  }
+
+  /* COOKIE */
+  .cookie-box {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 20px 30px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 9999;
+    opacity: 0;
+    transition: 0.6s;
+  }
+
+  .cookie-box.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .cookie-text {
+    font-size: 14px;
+    color: #cbd5f5;
+    max-width: 400px;
+  }
+
+  .cookie-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #2563eb, #9333ea);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .cookie-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #2563eb, 0 0 20px #9333ea;
+  }
+
+  /* IDEA HINT */
+  #ideaHint {
+    position: fixed;
+    top: 110px;
+    right: 500px;
+    background: #e5e1d8;
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: 0.4s;
+    z-index: 999;
+  }
+
+  #ideaHint.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* POPUP GOOGLE */
+  .google-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.35s ease;
+  }
+
+  .google-popup-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .google-popup-box {
+    width: 100%;
+    max-width: 480px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.98));
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 24px;
+    padding: 32px 24px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+    position: relative;
+    transform: scale(0.92) translateY(20px);
+    transition: 0.35s ease;
+  }
+
+  .google-popup-overlay.show .google-popup-box {
+    transform: scale(1) translateY(0);
+  }
+
+  .google-popup-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    font-size: 26px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .google-popup-close:hover {
+    color: white;
+    transform: scale(1.1);
+  }
+
+  .google-popup-badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.16);
+    color: #93c5fd;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    border: 1px solid rgba(96, 165, 250, 0.25);
+  }
+
+  .google-popup-box h2 {
+    font-size: 32px;
+    margin-bottom: 14px;
+    background: linear-gradient(90deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .google-popup-box p {
+    color: #cbd5e1;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .google-popup-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .google-popup-btn {
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    padding: 13px 20px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: 0.25s;
+  }
+
+  .google-popup-btn-main {
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
+    color: white;
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+  }
+
+  .google-popup-btn-main:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(99, 102, 241, 0.38);
+  }
+
+  .google-popup-btn-secondary {
+    background: rgba(255, 255, 255, 0.07);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+  }
+
+  .google-popup-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  /* PRELOADER */
+  #preloader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#preloader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-box {
+  width: 320px;
+  max-width: 85%;
+  text-align: center;
+}
+
+.loader-logo {
+  font-size: 34px;
+  font-weight: 800;
+  color: #3b82f6;
+  margin-bottom: 10px;
+}
+
+.loader-text {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 18px;
+}
+
+.progress {
+  width: 100%;
+  height: 8px;
+  background: #111827;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: #2563eb;
+  transition: width 0.15s linear;
+}
+
+  #preloader.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  @keyframes bgMove {
+    0% {
+      transform: translate(-10%, -10%) rotate(0deg);
+    }
+    50% {
+      transform: translate(5%, 5%) rotate(180deg);
+    }
+    100% {
+      transform: translate(-10%, -10%) rotate(360deg);
+    }
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(35px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .logo-loader {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 25px rgba(110, 168, 255, 0.35);
+    }
+    50% {
+      transform: scale(1.08);
+      box-shadow: 0 0 40px rgba(0, 255, 213, 0.55);
+    }
+  }
+
+  @keyframes textGlow {
+    0%, 100% {
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.08);
+    }
+    50% {
+      text-shadow: 0 0 18px rgba(0, 255, 213, 0.35);
+    }
+  }
+
+
+  .progress-bar {
+    width: 0%;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #00ffd5, #6ea8ff, #ff4fd8);
+    box-shadow: 0 0 18px rgba(0, 255, 213, 0.45);
+    transition: width 0.15s linear;
+    position: relative;
+  }
+
+  .progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 40px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    filter: blur(8px);
+  }
+
+
+  /* RESPONSIVO */
+  @media (max-width: 1100px) {
+    .navbar {
+      padding: 16px 20px;
+    }
+
+    .hero {
+      padding: 120px 24px 70px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+    }
+
+    .boneco-area {
+      right: 20px;
+      width: 340px;
+      max-width: 38vw;
+    }
+
+    .boneco {
+      max-width: 340px;
+    }
+
+    .notification-wrapper {
+      right: 145px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .navbar {
+      padding: 10px 10px 12px;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .logo {
+      font-size: 18px;
+    }
+
+    .nav-links {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 5px;
+    }
+
+    .nav-links a {
+      width: 100%;
+      min-height: 32px;
+      padding: 6px 4px;
+      font-size: 10px;
+      border-radius: 8px;
+    }
+
+    .notification-wrapper {
+      position: static;
+      order: 4;
+    }
+
+    .notification-box {
+      position: fixed;
+      top: 110px;
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      width: calc(100vw - 24px);
+      max-width: 320px;
+      max-height: 55vh;
+    }
+
+    .user-profile {
+      order: 3;
+      max-width: 100%;
+      padding: 3px 6px;
+      gap: 6px;
+    }
+
+    #headerFoto {
+      width: 26px;
+      height: 26px;
+    }
+
+    #headerNome {
+      max-width: 88px;
+      font-size: 11px;
+    }
+
+    .discord-btn {
+      order: 5;
+      font-size: 10px;
+      padding: 6px 9px;
+      gap: 6px;
+    }
+
+    .discord-btn img {
+      width: 14px;
+    }
+
+    .hero {
+      min-height: calc(100vh - 82px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 8px;
+      padding: 96px 12px 16px;
+      text-align: left;
+    }
+
+    .hero-content {
+      max-width: 100%;
+      width: 100%;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(18px, 5.2vw, 30px);
+      line-height: 1.03;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 11px;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      max-width: 100%;
+    }
+
+    .button {
+      margin-top: 6px;
+    }
+
+    .button a {
+      font-size: 11px;
+      padding: 9px 14px;
+      border-radius: 10px;
+    }
+
+    .boneco-area {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      width: 100%;
+      max-width: 100%;
+      margin-top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .boneco {
+      width: min(100%, 190px);
+      max-width: 190px;
+    }
+
+    .fala {
+      top: 3%;
+      left: 0;
+      font-size: 7px;
+      padding: 5px 6px;
+      border-radius: 9px;
+    }
+
+    .fala::after {
+      width: 8px;
+      height: 8px;
+      right: 10px;
+      bottom: -4px;
+    }
+
+    .stats {
+      padding: 40px 16px;
+      gap: 24px;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat h2 {
+      font-size: 28px;
+    }
+
+    .stat p {
+      font-size: 12px;
+    }
+
+    .motivacao-area {
+      height: 90px;
+    }
+
+    .palavra {
+      font-size: 12px;
+    }
+
+    .features {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 40px 16px;
+    }
+
+    .feature-card {
+      padding: 18px;
+    }
+
+    .feature-card h3 {
+      font-size: 15px;
+    }
+
+    .feature-card p {
+      font-size: 12px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 30px;
+    }
+
+    .footer-container {
+      padding: 30px 16px;
+      gap: 24px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-brand,
+    .footer-social,
+    .footer-links {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .footer-brand p,
+    .footer-links a,
+    .footer-bottom {
+      font-size: 12px;
+    }
+
+    .social-icons {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cookie-box {
+      width: calc(100vw - 20px);
+      max-width: 360px;
+      bottom: 10px;
+      padding: 14px;
+      gap: 10px;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .cookie-text {
+      font-size: 12px;
+      max-width: 100%;
+    }
+
+    .cookie-btn {
+      width: 100%;
+    }
+
+    .google-popup-box {
+      max-width: 92vw;
+      padding: 22px 14px;
+      border-radius: 18px;
+    }
+
+    .google-popup-box h2 {
+      font-size: 22px;
+    }
+
+    .google-popup-box p {
+      font-size: 13px;
+    }
+
+    .google-popup-buttons {
+      flex-direction: column;
+    }
+
+    .google-popup-btn {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .navbar {
+      padding: 8px 8px 10px;
+      gap: 7px;
+    }
+
+    .logo {
+      font-size: 16px;
+    }
+
+    .nav-links {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 4px;
+    }
+
+    .nav-links a {
+      min-height: 30px;
+      font-size: 9px;
+      padding: 5px 3px;
+    }
+
+    #headerNome {
+      max-width: 76px;
+      font-size: 10px;
+    }
+
+    .discord-btn {
+      font-size: 9px;
+      padding: 5px 7px;
+    }
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      padding: 88px 8px 12px;
+      gap: 4px;
+    }
+
+    .hero h1 {
+      font-size: clamp(15px, 5.7vw, 22px);
+      line-height: 1.02;
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      font-size: 10px;
+      line-height: 1.32;
+      margin-bottom: 10px;
+    }
+
+    .button a {
+      font-size: 10px;
+      padding: 8px 12px;
+    }
+
+    .boneco {
+      width: min(100%, 165px);
+      max-width: 165px;
+    }
+
+    .fala {
+      top: 2%;
+      left: 0;
+      font-size: 6px;
+      padding: 4px 5px;
+    }
+
+    .fala::after {
+      width: 7px;
+      height: 7px;
+      right: 8px;
+      bottom: -3px;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .navbar {
+      padding: 7px 7px 9px;
+    }
+
+    .logo {
+      font-size: 15px;
+    }
+
+    .nav-links a {
+      min-height: 28px;
+      font-size: 8px;
+      padding: 4px 2px;
+    }
+
+    .hero {
+      padding: 84px 6px 10px;
+    }
+
+    .hero h1 {
+      font-size: 14px;
+    }
+
+    .hero p {
+      font-size: 9px;
+    }
+
+    .button a {
+      font-size: 9px;
+      padding: 7px 10px;
+    }
+
+    .boneco {
+      max-width: 150px;
+    }
+
+    .fala {
+      font-size: 5px;
+      padding: 3px 4px;
+    }
+  }
+
+.link-direitos {
+  color: #66b3ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link-direitos:hover {
+  text-decoration: underline;
+  color: #00c6ff;
+}
+
+/* FUNDO ESCURO */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+/* MOSTRAR */
+.popup-overlay.ativo {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* CAIXA */
+.popup-content {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  animation: subir 0.4s ease;
+}
+
+/* ANIMAÇÃO */
+@keyframes subir {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* IMAGEM */
+.popup-content img {
+  width: 100%;
+  cursor: pointer;
+}
+
+/* BOTÃO */
+#btnJogar {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  background: linear-gradient(45deg, #ff8c00, #ff3c00);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#btnJogar:hover {
+  transform: scale(1.05);
+}
+
+/* BOTÃO FECHAR */
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+  <div id="preloader">
+  <div class="loader-box">
+    <h1 class="loader-logo">ZYRO DEV</h1>
+    <p class="loader-text">Carregando...</p>
+
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+</div>
+
+    
+
+  <div id="googlePopup" class="google-popup-overlay">
+    <div class="google-popup-box">
+      <button class="google-popup-close" id="fecharGooglePopup">×</button>
+
+      <div class="google-popup-badge">🚀 Novidade</div>
+
+      <h2>Crie sua conta Google</h2>
+
+      <p>
+        Entre com sua conta para acessar seu perfil, salvar suas informações
+        e aproveitar melhor a experiência na <b>ZyroDev</b>.
+      </p>
+
+      <div class="google-popup-buttons">
+        <a href="login.html" class="google-popup-btn google-popup-btn-main">
+          Entrar com Google
+        </a>
+
+        <button id="agoraNaoGooglePopup" class="google-popup-btn google-popup-btn-secondary">
+          Agora não
+        </button>
+      </div>
+    </div>
+  </div>
+
+<div id="listaUpdates"></div>
+
+  <div class="navbar">
+    <div class="logo">ZyroDev 💦</div>
+
+    <div class="nav-links">
+      <a href="#hero-content">Inicio</a>
+      <a href="#stat">Info</a>
+      <a href="creditos.html">Creditos</a>
+      <a href="#rodape">Sobre</a>
+      <a href="./album-copa-2026/index.html">Álbum 2026</a>
+    </div>
+
+    <div class="notification-wrapper">
+      <div class="bell-button" onclick="toggleNotifications()">
+        🔔
+        <span class="notification-count">ﾠ</span>
+      </div>
+
+      <div class="notification-box" id="notificationBox">
+        <div class="notification-header">
+          <h3>Notificações</h3>
+          <span class="close-notifications" onclick="fecharNotifications()">✕</span>
+        </div>
+
+        <!-- 🔔 SISTEMA DE ATUALIZAÇÕES COMPLETO -->
+
+<div class="notification-item">
+  <b>🚀 Atualização Geral</b><br>
+  Sistema de pontuação reformulado e otimizado para melhor desempenho.
+</div>
+
+<div class="notification-item">
+  <b>⚙️ Correções</b><br>
+  Corrigimos bugs de progresso, salvamento e inconsistências.
+</div>
+
+<div class="notification-item">
+  <b>💎 Sistema VIP</b><br>
+  Novo sistema VIP ZyroRum com benefícios exclusivos como moedas extras e destaque no perfil.
+</div>
+
+<div class="notification-item">
+  <b>🟢 VIP Esmeralda</b><br>
+  Novo VIP adicionado à loja com vantagens especiais dentro do jogo.
+</div>
+
+<div class="notification-item">
+  <b>🛒 Loja do Jogo</b><br>
+  Sistema de loja atualizado com compra de personagens, skins e VIPs.
+</div>
+
+<div class="notification-item">
+  <b>🎮 Novo Jogo</b><br>
+  Adicionado o Zyro Run com sistema de fases, moedas e progressão.
+</div>
+
+<div class="notification-item">
+  <b>🎨 Interface</b><br>
+  Melhorias no design geral do site, deixando mais moderno e responsivo.
+</div>
+
+<div class="notification-item">
+  <b>📱 Mobile</b><br>
+  Correções no layout para dispositivos móveis.
+</div>
+
+<div class="notification-item">
+  <b>👤 Perfil</b><br>
+  Perfil agora 100% editável com personalização completa.
+</div>
+
+<div class="notification-item">
+  <b>🏷️ Sistema de Badges</b><br>
+  Adicionado sistema de badges para usuários VIP e destaques.
+</div>
+
+<div class="notification-item">
+  <b>📸 Fotos de Perfil</b><br>
+  Agora é possível adicionar e exibir foto de perfil corretamente.
+</div>
+
+<div class="notification-item">
+  <b>📜 Termos de Uso</b><br>
+  Página de termos criada e integrada ao site.
+</div>
+
+<div class="notification-item">
+  <b>🎓 Cursos</b><br>
+  Sistema de cursos atualizado com novos conteúdos.
+</div>
+
+<div class="notification-item">
+  <b>💻 Novo Curso</b><br>
+  Adicionado curso de C# na plataforma.
+</div>
+
+<div class="notification-item">
+  <b>📚 Conteúdo</b><br>
+  Melhorias nas páginas dos cursos com layout mais organizado.
+</div>
+
+<div class="notification-item">
+  <b>🧾 Sistema de Updates</b><br>
+  Novo sistema de atualizações com liberação antecipada para VIPs.
+</div>
+
+<div class="notification-item">
+  <b>📧 Futuro</b><br>
+  Preparação para sistema de notificações por e-mail.
+</div>
+
+<div class="notification-item">
+  <b>❌ Remoção</b><br>
+  Removemos o sistema de comentários para melhor performance.
+</div>
+
+<div class="notification-item">
+  <b>🔗 Integrações</b><br>
+  Adicionado redirecionamento para sites externos (ex: compras).
+</div>
+
+<div class="notification-item">
+  <b>🎵 Áudio</b><br>
+  Sistema de sons implementado no jogo.
+</div>
+
+<div class="notification-item">
+  <b>❤ Agradecimento</b><br>
+  Obrigado pelos 18.000 acessos 💙
+</div>
+      </div>
+    </div>
+
+    <a href="login.html" class="user-profile" id="perfilLink">
+      <img src="" id="headerFoto" alt="Foto do perfil">
+      <span id="headerNome">Entrar</span>
+    </a>
+
+    <a href="https://discord.gg/AJkeUcN47e" target="_blank" class="discord-btn">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" width="18" alt="Discord">
+      Discord
+    </a>
+  </div>
+
+  <div class="cookie-box" id="cookieBox">
+    <div class="cookie-text">
+      🍪 Este site utiliza cookies para melhorar sua experiência no <b>ZyroDev</b>.
+    </div>
+
+    <button class="cookie-btn" onclick="acceptCookies()">
+      Aceitar
+    </button>
+  </div>
+
+  <section id="hero-content" class="hero">
+    <div class="hero-content">
+      <h1>Desbloqueie Seu<br>Próximo Nível<br>Como Dev</h1>
+
+      <p>
+        A ZyroDev reúne os melhores conteúdos gratuitos da internet
+        para acelerar sua evolução na programação.
+      </p>
+
+      <div class="button">
+        <a href="cursos.html">Começar agora</a>
+      </div>
+    </div>
+
+    <div class="boneco-area" id="bonecoArea">
+      <div class="fala" id="falaBoneco">Já pegou<br>o café! ☕</div>
+      <img src="/fotos/zyropac.png" class="boneco" id="boneco" alt="Mascote">
+    </div>
+  </section>
+
+
+  <section id="stat" class="stats">
+    <div class="stat">
+      <h2>+200</h2>
+      <p>Vídeos de Programação<br>com atualizações constantes</p>
+    </div>
+
+    <div class="stat">
+      <h2>+20</h2>
+      <p>Tecnologias</p>
+    </div>
+
+    <div class="stat">
+      <h2>100%</h2>
+      <p>Conteúdo Gratuito</p>
+    </div>
+  </section>
+
+  <section class="motivacao-area">
+    <div id="palavras"></div>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <h3>📚 Conteúdo Organizado</h3>
+      <p>Cursos organizados para facilitar sua evolução na programação.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>🚀 Evolução Rápida</h3>
+      <p>Aprenda com os melhores conteúdos gratuitos da internet.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>💬 Comunidade</h3>
+      <p>Entre no Discord da ZyroDev e evolua junto com outros devs.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top"></div>
+
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2>ZyroDev 💦</h2>
+        <p>
+          Aprenda programação gratuitamente e evolua junto com a comunidade.
+          A ZyroDev reúne os melhores conteúdos da internet para transformar iniciantes em desenvolvedores.
+        </p>
+      </div>
+
+      <div id="rodape" class="footer-social">
+        <h3>Redes Sociais</h3>
+
+        <div class="social-icons">
+          <a href="https://youtube.com/@delarotaldev?si=yPCHouUNscxSGSlk" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+          </a>
+          <a href="https://www.instagram.com/delarotaldev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram">
+          </a>
+          <a href="https://discord.gg/AJkeUcN47e" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord">
+          </a>
+          <a href="https://github.com/victortx1" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="GitHub">
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Links</h3>
+        <a href="#hero-content">Inicio</a>
+        <a href="#stat">Informações</a>
+        <a href="creditos.html">Creditos</a>
+        <a href="https://bio.site/Delarotaldev">Info DELAR</a>
+        <a href="/admin.html" id="adminLink" style="display:none;">Painel Admin</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+  © 2026 ZyroDev💦 • 
+  <a href="direitos.html" class="link-direitos">Todos os direitos reservados</a>
+</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { auth, db } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { buscarDadosUsuario } from "./temporada-service.js";
+
+    const adminLink = document.getElementById("adminLink");
+    const headerNome = document.getElementById("headerNome");
+    const headerFoto = document.getElementById("headerFoto");
+    const perfilLink = document.getElementById("perfilLink");
+    const popup = document.getElementById("googlePopup");
+    const fecharBtn = document.getElementById("fecharGooglePopup");
+    const agoraNaoBtn = document.getElementById("agoraNaoGooglePopup");
+
+    function fecharPopup() {
+      popup?.classList.remove("show");
+    }
+
+    function aplicarTemaHeader(dados = {}) {
+  if (!headerNome || !perfilLink) return;
+
+  const badges = Array.isArray(dados?.badges)
+    ? dados.badges.map(b => String(b).toLowerCase())
+    : [];
+
+  const cargo = String(dados?.cargo || "").toLowerCase().trim();
+  const vipPagoTipo = String(dados?.vipPagoTipo || "").toLowerCase().trim();
+
+  const ehFundador =
+    dados?.fundador === true ||
+    cargo === "fundador" ||
+    badges.includes("fundador");
+
+  const ehSocio =
+    cargo === "socio" ||
+    badges.includes("socio");
+
+  const ehVipPerolaNegra =
+    dados?.vipPagoAtivo === true ||
+    vipPagoTipo === "perola_negra" ||
+    badges.includes("vip_perola_negra");
+
+  const ehVipEsmeralda =
+    (dados?.vipAtivo === true || badges.includes("vip")) && !ehVipPerolaNegra;
+
+  headerNome.classList.remove(
+    "fundador-dourado",
+    "vip-esmeralda",
+    "vip-perola-negra"
+  );
+
+  perfilLink.classList.remove(
+    "vip-ativo",
+    "vip-perola-negra-ativo"
+  );
+
+  headerNome.removeAttribute("title");
+
+  if (ehFundador || ehSocio) {
+    headerNome.classList.add("fundador-dourado");
+    headerNome.title = ehFundador ? "Fundador" : "Sócio";
+    return;
+  }
+
+  if (ehVipPerolaNegra) {
+    headerNome.classList.add("vip-perola-negra");
+    perfilLink.classList.add("vip-perola-negra-ativo");
+    headerNome.title = "VIP Pérola Negra";
+    return;
+  }
+
+  if (ehVipEsmeralda) {
+    headerNome.classList.add("vip-esmeralda");
+    perfilLink.classList.add("vip-ativo");
+    headerNome.title = "VIP Esmeralda";
+  }
+}
+
+    fecharBtn?.addEventListener("click", fecharPopup);
+    agoraNaoBtn?.addEventListener("click", fecharPopup);
+
+    popup?.addEventListener("click", function (e) {
+      if (e.target === popup) fecharPopup();
+    });
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        try {
+          const userRef = doc(db, "usuarios", user.uid);
+          const userSnap = await getDoc(userRef);
+
+          if (userSnap.exists() && userSnap.data().admin === true && adminLink) {
+            adminLink.style.display = "inline-block";
+          }
+
+          const dados = await buscarDadosUsuario(user.uid);
+
+          if (headerNome) {
+            headerNome.textContent = dados?.nome || user.displayName || user.email || "Perfil";
+          }
+
+          aplicarTemaHeader(dados);
+
+          if (headerFoto) {
+            const foto = dados?.foto || user.photoURL || "";
+
+            if (foto) {
+              headerFoto.src = foto;
+              headerFoto.style.display = "block";
+            } else {
+              headerFoto.style.display = "none";
+            }
+          }
+
+          if (perfilLink) perfilLink.href = "perfil.html";
+          fecharPopup();
+        } catch (error) {
+          console.error("Erro ao carregar usuário no header:", error);
+
+          if (headerNome) {
+  headerNome.textContent = user.displayName || user.email || "Perfil";
+
+  headerNome.classList.remove("fundador-dourado", "vip-esmeralda", "vip-perola-negra");
+perfilLink?.classList.remove("vip-ativo", "vip-perola-negra-ativo");
+
+  headerNome.removeAttribute("title");
+}
+
+if (headerFoto && user.photoURL) {
+  headerFoto.src = user.photoURL;
+  headerFoto.style.display = "block";
+}
+
+if (perfilLink) perfilLink.href = "perfil.html";
+fecharPopup();
+
+        }
+      } else {
+        if (headerNome) {
+          headerNome.textContent = "Entrar";
+
+          headerNome.classList.remove("fundador-dourado", "vip-esmeralda", "vip-perola-negra");
+perfilLink?.classList.remove("vip-ativo", "vip-perola-negra-ativo");
+
+          headerNome.removeAttribute("title");
+        }
+
+        if (headerFoto) headerFoto.style.display = "none";
+        if (perfilLink) perfilLink.href = "login.html";
+        popup?.classList.add("show");
+      }
+    });
+  </script>
+
+  <script>
+    function toggleNotifications() {
+      const box = document.getElementById("notificationBox");
+      box.style.display = box.style.display === "block" ? "none" : "block";
+    }
+
+    function fecharNotifications() {
+      const box = document.getElementById("notificationBox");
+      box.style.display = "none";
+    }
+  </script>
+
+  <script>
+    const hint = document.getElementById("ideaHint");
+
+    function showHint() {
+      if (!hint) return;
+
+      hint.classList.add("show");
+
+      setTimeout(() => {
+        hint.classList.remove("show");
+      }, 5000);
+    }
+
+    if (hint) {
+      setInterval(showHint, 20000);
+      showHint();
+    }
+  </script>
+
+  <script>
+    const cookieBox = document.getElementById("cookieBox");
+
+    if (!localStorage.getItem("zyro_cookie")) {
+      setTimeout(() => {
+        cookieBox.classList.add("show");
+      }, 1500);
+    }
+
+    function acceptCookies() {
+      localStorage.setItem("zyro_cookie", "true");
+      cookieBox.style.transform = "translateX(-50%) translateY(120px)";
+      cookieBox.style.opacity = "0";
+    }
+  </script>
+
+  <script>
+    const frases = [
+      "🪐 Ja jogou o zyrorum hoje?",
+      "Lembre-se do foco 👀",
+      "💥 Quebra código de dia, arruma de madrugada",
+      "☕ Movido a café",
+      "🪐 Ja jogou o zyrorum hoje?",
+      "Amar java e uma arte ☕",
+      "Nunca pare de aprender 🚀",
+      "Todo dev já foi iniciante 💻",
+      "Erros também ensinam 🧠",
+      "🪐 Ja jogou o zyrorum hoje?",
+      "Pratique todos os dias 🔥",
+      "Seu futuro depende do hoje ⚡",
+      "Persistência cria mestres 🏆",
+      "Código muda vidas 🌍",
+      "🪐 Ja jogou o zyrorum hoje?",
+      "Programar é resolver problemas 🧩",
+      "Grandes devs começaram do zero 👨‍💻",
+      "🪐 Ja jogou o zyrorum hoje?",
+      "Construa. Erre. Aprenda. Repita 🔁"
+    ];
+
+    function criarPalavra() {
+      const container = document.getElementById("palavras");
+      if (!container) return;
+
+      const palavra = document.createElement("div");
+
+      palavra.classList.add("palavra");
+      palavra.innerText = frases[Math.floor(Math.random() * frases.length)];
+      palavra.style.left = Math.random() * 90 + "%";
+      palavra.style.top = Math.random() * 80 + "%";
+
+      container.appendChild(palavra);
+
+      setTimeout(() => {
+        palavra.remove();
+      }, 2000);
+    }
+
+    setInterval(criarPalavra, 1000);
+  </script>
+
+  <script>
+  window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader");
+    const progressBar = document.getElementById("progressBar");
+
+    const jaViuLoader = sessionStorage.getItem("loaderJaMostrado");
+
+    if (jaViuLoader) {
+      preloader.style.display = "none";
+      return;
+    }
+
+    let progress = 0;
+
+    const interval = setInterval(() => {
+      progress++;
+      progressBar.style.width = progress + "%";
+
+      if (progress >= 100) {
+        clearInterval(interval);
+
+        setTimeout(() => {
+          preloader.classList.add("hide");
+          sessionStorage.setItem("loaderJaMostrado", "true");
+        }, 300);
+      }
+    }, 10);
+  });
+</script>
+
+  <script>
+    const bonecoArea = document.getElementById("bonecoArea");
+    const boneco = document.getElementById("boneco");
+
+    if (bonecoArea && boneco) {
+      let rotateX = 0;
+      let rotateY = 0;
+      let currentX = 0;
+      let currentY = 0;
+
+      function updateTransform() {
+        currentX += (rotateX - currentX) * 0.12;
+        currentY += (rotateY - currentY) * 0.12;
+
+        boneco.style.transform =
+          `translateY(0px) rotateX(${currentX}deg) rotateY(${currentY}deg) scale(1.02)`;
+
+        requestAnimationFrame(updateTransform);
+      }
+
+      updateTransform();
+
+      function handleMove(clientX, clientY) {
+        const rect = bonecoArea.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const percentX = (x - centerX) / centerX;
+        const percentY = (y - centerY) / centerY;
+
+        rotateY = percentX * 18;
+        rotateX = percentY * -18;
+      }
+
+      bonecoArea.addEventListener("mousemove", (e) => {
+        handleMove(e.clientX, e.clientY);
+      });
+
+      bonecoArea.addEventListener("mouseleave", () => {
+        rotateX = 0;
+        rotateY = 0;
+      });
+
+      bonecoArea.addEventListener("touchstart", (e) => {
+        const touch = e.touches[0];
+        handleMove(touch.clientX, touch.clientY);
+      }, { passive: true });
+
+      bonecoArea.addEventListener("touchmove", (e) => {
+        const touch = e.touches[0];
+        handleMove(touch.clientX, touch.clientY);
+      }, { passive: true });
+
+      bonecoArea.addEventListener("touchend", () => {
+        rotateX = 0;
+        rotateY = 0;
+      });
+
+      bonecoArea.addEventListener("touchcancel", () => {
+        rotateX = 0;
+        rotateY = 0;
+      });
+    }
+  </script>
+
+  <script>
+    const frasesBoneco = [
+      "Já pegou<br>o café! ☕",
+      "Vamos jogar <br>zyrorum! 🎮",
+      "Bora codar 💻",
+      "Foco no<br>progresso 🚀",
+      "🪐 Ja jogou o <br>zyrorum hoje?"
+    ];
+
+    let fraseAtual = 0;
+    const falaBoneco = document.getElementById("falaBoneco");
+
+    if (falaBoneco) {
+      setInterval(() => {
+        falaBoneco.innerHTML = frasesBoneco[fraseAtual];
+        fraseAtual = (fraseAtual + 1) % frasesBoneco.length;
+      }, 3000);
+    }
+  </script>
+
+<script type="module">
+import { auth } from "./firebase.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { buscarDadosUsuario } from "./temporada-service.js";
+import { buscarUpdates } from "./updates-service.js";
+import { usuarioESocio, liberadoParaTodos } from "./acesso-antecipado.js";
+
+const container = document.getElementById("listaUpdates");
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user || !container) return;
+
+  const dados = await buscarDadosUsuario(user.uid);
+  const updates = await buscarUpdates();
+
+  container.innerHTML = "";
+
+  updates.forEach((update) => {
+    const podeVer =
+      usuarioESocio(dados) || liberadoParaTodos(update);
+
+    if (!podeVer) return;
+
+    const div = document.createElement("div");
+    div.style.background = "#0f172a";
+    div.style.padding = "20px";
+    div.style.marginBottom = "10px";
+    div.style.borderRadius = "12px";
+
+    div.innerHTML = `
+      <h3>${update.titulo}</h3>
+      <p>${update.descricao}</p>
+      ${
+        !liberadoParaTodos(update)
+          ? `<span style="color:#60a5fa;">🔒 Acesso antecipado Sócio</span>`
+          : ""
+      }
+    `;
+
+    container.appendChild(div);
+  });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const popup = document.getElementById("popupAnuncio");
+  const fechar = document.getElementById("fecharPopup");
+  const btnJogar = document.getElementById("btnJogar");
+  const imagem = document.getElementById("imagemAnuncio");
+
+  if (!popup || !fechar || !btnJogar || !imagem) {
+    console.error("Popup não encontrado no HTML");
+    return;
+  }
+
+  setTimeout(() => {
+    popup.classList.add("ativo");
+  }, 800);
+
+  fechar.onclick = () => {
+    popup.classList.remove("ativo");
+  };
+
+  btnJogar.onclick = () => {
+    window.location.href = "jogo.html";
+  };
+
+  imagem.onclick = () => {
+    window.location.href = "jogo.html";
+  };
+
+});
+</script>
+
+</body>
+</html>
