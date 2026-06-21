@@ -3,164 +3,1197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Editar perfil | ZyroDev</title>
+  <title>Editar Perfil · ZyroDev</title>
   <link rel="icon" type="image/png" href="./fotos/favicon.png.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
+    :root {
+      --bg-deep:      #030509;
+      --bg-surface:   #080c18;
+      --blue:         #0099ff;
+      --blue-light:   #606ffa;
+      --cyan:         #22d3ee;
+      --violet:       #5ce4f6;
+      --violet-light: #8bedfa;
+      --pink:         #48ecde;
+      --ok:           #4ade80;
+      --err:          #f87171;
+      --warn:         #fbbf24;
+      --text-hi:      #f1f5f9;
+      --text-mid:     #cbd5e1;
+      --text-dim:     #64748b;
+      --glass-bg:     rgba(2, 7, 1, 0.72);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --neon-blue:    rgba(246, 243, 59, 0.6);
+      --neon-violet:  rgba(218, 246, 92, 0.6);
+      --neon-cyan:    rgba(75, 238, 34, 0.5);
+      --r-xl:         28px;
+      --r-lg:         18px;
+      --r-md:         12px;
+      --r-sm:         8px;
+    }
+
+    *, *::before, *::after {
+      margin: 0; padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+    }
+
+    html, body {
+      min-height: 100vh;
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
     }
 
     body {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.35), transparent 35%),
-        linear-gradient(135deg, #020617, #0f172a);
-      color: white;
+      background: var(--bg-deep);
+      color: var(--text-hi);
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 30px;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 48px 20px 60px;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    .card {
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(246, 59, 59, 0.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+      will-change: transform;
+    }
+
+    .orb-1 {
+      width: 520px; height: 520px;
+      top: -180px; left: -120px;
+      background: radial-gradient(circle, rgba(20, 20, 20, 0.28) 0%, transparent 70%);
+      animation: orbDrift1 18s ease-in-out infinite alternate;
+    }
+
+    .orb-2 {
+      width: 480px; height: 480px;
+      bottom: -160px; right: -100px;
+      background: radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, transparent 70%);
+      animation: orbDrift2 22s ease-in-out infinite alternate;
+    }
+
+    .orb-3 {
+      width: 300px; height: 300px;
+      top: 50%; right: 8%;
+      background: radial-gradient(circle, rgba(255, 217, 0, 0.15) 0%, transparent 70%);
+      animation: orbDrift3 14s ease-in-out infinite alternate;
+    }
+
+    .orb-4 {
+      width: 260px; height: 260px;
+      bottom: 15%; left: 5%;
+      background: radial-gradient(circle, rgba(233, 236, 72, 0.12) 0%, transparent 70%);
+      animation: orbDrift1 20s ease-in-out 4s infinite alternate;
+    }
+
+    @keyframes orbDrift1 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(40px, 30px) scale(1.1); }
+    }
+    @keyframes orbDrift2 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(-30px, -40px) scale(1.08); }
+    }
+    @keyframes orbDrift3 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(-20px, 25px) scale(1.12); }
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: particleFloat linear infinite;
+      opacity: 0;
+    }
+
+    /* Generate 18 particles via repeated rules */
+    .particle:nth-child(1)  { width:3px;  height:3px;  left:8%;   background:var(--cyan);   animation-duration:12s; animation-delay:0s;    bottom:-10px; }
+    .particle:nth-child(2)  { width:2px;  height:2px;  left:18%;  background:var(--blue);   animation-duration:15s; animation-delay:2s;    bottom:-10px; }
+    .particle:nth-child(3)  { width:4px;  height:4px;  left:28%;  background:var(--violet); animation-duration:11s; animation-delay:1s;    bottom:-10px; }
+    .particle:nth-child(4)  { width:2px;  height:2px;  left:38%;  background:var(--cyan);   animation-duration:18s; animation-delay:3.5s;  bottom:-10px; }
+    .particle:nth-child(5)  { width:3px;  height:3px;  left:48%;  background:var(--blue);   animation-duration:14s; animation-delay:0.5s;  bottom:-10px; }
+    .particle:nth-child(6)  { width:2px;  height:2px;  left:57%;  background:var(--violet); animation-duration:16s; animation-delay:2.5s;  bottom:-10px; }
+    .particle:nth-child(7)  { width:3px;  height:3px;  left:66%;  background:var(--cyan);   animation-duration:13s; animation-delay:4s;    bottom:-10px; }
+    .particle:nth-child(8)  { width:4px;  height:4px;  left:74%;  background:var(--blue);   animation-duration:17s; animation-delay:1.5s;  bottom:-10px; }
+    .particle:nth-child(9)  { width:2px;  height:2px;  left:83%;  background:var(--pink);   animation-duration:19s; animation-delay:0.8s;  bottom:-10px; }
+    .particle:nth-child(10) { width:3px;  height:3px;  left:91%;  background:var(--violet); animation-duration:12s; animation-delay:3s;    bottom:-10px; }
+    .particle:nth-child(11) { width:2px;  height:2px;  left:13%;  background:var(--blue);   animation-duration:20s; animation-delay:5s;    bottom:-10px; }
+    .particle:nth-child(12) { width:3px;  height:3px;  left:22%;  background:var(--cyan);   animation-duration:15s; animation-delay:6s;    bottom:-10px; }
+    .particle:nth-child(13) { width:2px;  height:2px;  left:33%;  background:var(--violet); animation-duration:11s; animation-delay:7s;    bottom:-10px; }
+    .particle:nth-child(14) { width:4px;  height:4px;  left:44%;  background:var(--pink);   animation-duration:14s; animation-delay:2.2s;  bottom:-10px; }
+    .particle:nth-child(15) { width:2px;  height:2px;  left:53%;  background:var(--blue);   animation-duration:16s; animation-delay:4.5s;  bottom:-10px; }
+    .particle:nth-child(16) { width:3px;  height:3px;  left:63%;  background:var(--cyan);   animation-duration:13s; animation-delay:1.2s;  bottom:-10px; }
+    .particle:nth-child(17) { width:2px;  height:2px;  left:77%;  background:var(--violet); animation-duration:18s; animation-delay:3.8s;  bottom:-10px; }
+    .particle:nth-child(18) { width:3px;  height:3px;  left:88%;  background:var(--blue);   animation-duration:21s; animation-delay:0.3s;  bottom:-10px; }
+
+    @keyframes particleFloat {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      5%   { opacity: 0.7; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-105vh) translateX(20px); opacity: 0; }
+    }
+    .scanline {
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card-wrapper {
+      position: relative;
       width: 100%;
-      max-width: 560px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 28px;
-      padding: 32px;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      max-width: 580px;
+      z-index: 2;
+      margin-top: auto;
+      margin-bottom: auto;
+      align-self: center;
     }
 
-    h1 {
-      font-size: 36px;
-      margin-bottom: 14px;
+    .card-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: calc(var(--r-xl) + 2px);
+      background: linear-gradient(
+        135deg,
+        var(--blue),
+        var(--violet),
+        var(--cyan),
+        var(--pink),
+        var(--violet),
+        var(--blue)
+      );
+      background-size: 300% 300%;
+      animation: neonBorderSpin 6s linear infinite;
+      z-index: -1;
+      filter: blur(0px);
+      opacity: 0.75;
     }
 
-    .sub {
-      color: #cbd5e1;
-      margin-bottom: 26px;
-      line-height: 1.5;
+    .card-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: calc(var(--r-xl) + 14px);
+      background: linear-gradient(
+        135deg,
+        rgba(81, 246, 59, 0.18),
+        rgba(244, 246, 92, 0.18),
+        rgba(51, 238, 34, 0.14)
+      );
+      background-size: 300% 300%;
+      animation: neonBorderSpin 6s linear infinite;
+      z-index: -2;
+      filter: blur(22px);
     }
 
+    @keyframes neonBorderSpin {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ═══════════════════════════════════════════
+       MAIN CARD — GLASSMORPHISM
+    ═══════════════════════════════════════════ */
+    .card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--r-xl);
+      padding: 44px 42px 40px;
+      backdrop-filter: blur(28px) saturate(160%);
+      -webkit-backdrop-filter: blur(28px) saturate(160%);
+      box-shadow:
+        0 32px 80px rgba(0,0,0,0.7),
+        0 0 0 1px rgba(255,255,255,0.035) inset,
+        0 1px 0 rgba(255,255,255,0.07) inset;
+      position: relative;
+      overflow: hidden;
+      animation: cardEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes cardEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.97);
+        filter: blur(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+      }
+    }
+
+    /* Inner top shimmer */
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(59,130,246,0.5) 25%,
+        rgba(139,92,246,0.6) 50%,
+        rgba(34,211,238,0.4) 75%,
+        transparent 100%
+      );
+      background-size: 200% 100%;
+      animation: shimmerTop 4s linear infinite;
+    }
+
+    @keyframes shimmerTop {
+      from { background-position: -100% 0; }
+      to   { background-position: 200% 0; }
+    }
+
+    /* Inner bottom glow blob */
+    .card::after {
+      content: "";
+      position: absolute;
+      bottom: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 260px; height: 120px;
+      background: radial-gradient(ellipse, rgba(139,92,246,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       EYEBROW BADGE
+    ═══════════════════════════════════════════ */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(139,92,246,0.14));
+      border: 1px solid rgba(139,92,246,0.32);
+      padding: 6px 13px;
+      border-radius: 999px;
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .eyebrow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+      transform: skewX(-20deg) translateX(-200%);
+      animation: eyebrowSheen 5s ease-in-out 1.2s infinite;
+    }
+
+    @keyframes eyebrowSheen {
+      0%   { transform: skewX(-20deg) translateX(-200%); }
+      30%  { transform: skewX(-20deg) translateX(300%); }
+      100% { transform: skewX(-20deg) translateX(300%); }
+    }
+
+    .eyebrow-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan), 0 0 16px var(--cyan);
+      animation: dotPulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.55; transform: scale(0.75); }
+    }
+
+    /* ═══════════════════════════════════════════
+       HEADER
+    ═══════════════════════════════════════════ */
+    .page-header { margin-bottom: 30px; }
+
+    .page-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .title-icon {
+      width: 46px; height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--violet) 100%);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow:
+        0 8px 24px rgba(99,60,226,0.42),
+        0 0 0 1px rgba(255,255,255,0.12) inset;
+      position: relative;
+      overflow: hidden;
+      animation: iconGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes iconGlow {
+      from { box-shadow: 0 8px 24px rgba(59,130,246,0.42), 0 0 0 1px rgba(255,255,255,0.12) inset; }
+      to   { box-shadow: 0 8px 32px rgba(139,92,246,0.55), 0 0 0 1px rgba(255,255,255,0.15) inset; }
+    }
+
+    .title-icon svg { width: 22px; height: 22px; }
+
+    .title-text {
+      background: linear-gradient(135deg, #e2e8f0 0%, #a5b4fc 50%, #67e8f9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-sub {
+      color: var(--text-dim);
+      font-size: 14.5px;
+      line-height: 1.65;
+      max-width: 480px;
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVIDER
+    ═══════════════════════════════════════════ */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(99,102,241,0.3), rgba(34,211,238,0.25), transparent);
+      margin: 28px 0;
+      position: relative;
+    }
+
+    .divider::after {
+      content: "";
+      position: absolute;
+      top: -1px; left: 50%;
+      transform: translateX(-50%);
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      border-radius: 2px;
+      filter: blur(1px);
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION LABEL
+    ═══════════════════════════════════════════ */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: "";
+      display: block;
+      width: 3px; height: 14px;
+      background: linear-gradient(180deg, var(--blue), var(--cyan));
+      border-radius: 2px;
+      box-shadow: 0 0 8px var(--cyan);
+    }
+
+    /* ═══════════════════════════════════════════
+       AVATAR AREA
+    ═══════════════════════════════════════════ */
     .foto-area {
       display: flex;
       align-items: center;
-      gap: 18px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
+      gap: 26px;
+      padding: 22px 24px;
+      background: rgba(2, 6, 23, 0.55);
+      border: 1px solid rgba(59,130,246,0.14);
+      border-radius: var(--r-lg);
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
     }
 
-    .foto-preview {
-      width: 90px;
-      height: 90px;
+    .foto-area:hover {
+      border-color: rgba(59,130,246,0.28);
+    }
+
+    .foto-area::before {
+      content: "";
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 120px; height: 120px;
+      background: radial-gradient(circle, rgba(34,211,238,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Avatar RGB ring */
+    .avatar-ring-outer {
+      position: relative;
+      width: 108px; height: 108px;
+      flex-shrink: 0;
+    }
+
+    /* Spinning gradient ring */
+    .avatar-ring-outer::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        var(--blue),
+        var(--cyan),
+        var(--violet),
+        var(--pink),
+        var(--violet),
+        var(--cyan),
+        var(--blue)
+      );
+      animation: rgbSpin 3s linear infinite;
+      z-index: 0;
+    }
+
+    /* Glow behind ring */
+    .avatar-ring-outer::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        var(--blue),
+        var(--cyan),
+        var(--violet),
+        var(--pink),
+        var(--violet),
+        var(--cyan),
+        var(--blue)
+      );
+      animation: rgbSpin 3s linear infinite;
+      filter: blur(8px);
+      opacity: 0.6;
+      z-index: -1;
+    }
+
+    @keyframes rgbSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .avatar-ring-inner {
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: #0a0e1e;
+      z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    #fotoPreview {
+      width: 96px; height: 96px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid rgba(255,255,255,0.18);
-      background: #111827;
+      display: block;
+      position: relative;
+      z-index: 2;
+      background:
+        #0e1525
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2334415a" stroke-width="1.2"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.7-3.8 4.7-5.5 7.5-5.5s5.8 1.7 7.5 5.5"/></svg>')
+        center/38px no-repeat;
+      transition: transform 0.3s ease;
     }
 
-    label {
-      display: block;
+    .avatar-ring-outer:hover #fotoPreview {
+      transform: scale(1.04);
+    }
+
+    /* Upload button */
+    .foto-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .foto-label-title {
       font-size: 15px;
-      font-weight: bold;
+      font-weight: 700;
+      color: var(--text-hi);
+      letter-spacing: -0.01em;
+    }
+
+    .foto-label-sub {
+      font-size: 12.5px;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    .file-btn-wrap {
+      position: relative;
+      display: inline-flex;
+      width: fit-content;
+    }
+
+    .file-btn-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.14), rgba(139,92,246,0.16));
+      border: 1px solid rgba(99,102,241,0.32);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #c4b5fd;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.01em;
+    }
+
+    .file-btn-label::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+
+    .file-btn-label:hover::before {
+      transform: translateX(100%);
+    }
+
+    .file-btn-label:hover {
+      background: linear-gradient(135deg, rgba(59,130,246,0.24), rgba(139,92,246,0.26));
+      border-color: rgba(139,92,246,0.55);
+      color: #ddd6fe;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(99,60,226,0.28);
+    }
+
+    .file-btn-label svg {
+      width: 15px; height: 15px;
+      flex-shrink: 0;
+    }
+
+    #fotoInput {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%; height: 100%;
+    }
+
+    /* ═══════════════════════════════════════════
+       FORM FIELDS
+    ═══════════════════════════════════════════ */
+    .campo { margin-bottom: 24px; }
+
+    .label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 10px;
-      color: #e2e8f0;
+    }
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #c4b5fd;
+      letter-spacing: 0.02em;
+    }
+
+    .field-label-icon {
+      width: 22px; height: 22px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.22));
+      border: 1px solid rgba(99,102,241,0.28);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .field-label-icon svg { width: 12px; height: 12px; }
+
+    .contador {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-dim);
+      background: rgba(0,0,0,0.3);
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: all 0.2s ease;
+    }
+
+    .contador.perto-limite {
+      color: var(--warn);
+      border-color: rgba(251,191,36,0.25);
+      background: rgba(251,191,36,0.08);
+    }
+
+    .contador.no-limite {
+      color: var(--err);
+      border-color: rgba(248,113,113,0.25);
+      background: rgba(248,113,113,0.08);
+    }
+
+    /* Input wrapper with side accent */
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 20%; bottom: 20%;
+      width: 3px;
+      border-radius: 0 2px 2px 0;
+      background: linear-gradient(180deg, var(--blue), var(--violet));
+      opacity: 0;
+      transform: scaleY(0.4);
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
+
+    .input-wrap:focus-within::before {
+      opacity: 1;
+      transform: scaleY(1);
     }
 
     .input,
     .textarea {
       width: 100%;
-      background: rgba(2, 6, 23, 0.85);
-      color: white;
+      background: rgba(4, 8, 22, 0.8);
+      color: var(--text-hi);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 16px 18px;
+      border-radius: var(--r-md);
+      padding: 14px 18px 14px 20px;
       outline: none;
-      margin-bottom: 22px;
-      font-size: 16px;
+      font-size: 15px;
+      font-family: inherit;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .input::placeholder,
+    .textarea::placeholder {
+      color: #2d3a52;
+      font-weight: 400;
+    }
+
+    .input:hover,
+    .textarea:hover {
+      border-color: rgba(99,102,241,0.22);
+      background: rgba(6, 10, 26, 0.9);
+    }
+
+    .input:focus,
+    .textarea:focus {
+      border-color: rgba(99,102,241,0.5);
+      box-shadow:
+        0 0 0 3px rgba(99,102,241,0.12),
+        0 0 28px rgba(59,130,246,0.12),
+        0 4px 16px rgba(0,0,0,0.3);
+      background: rgba(4, 8, 24, 0.98);
     }
 
     .textarea {
-      min-height: 140px;
+      min-height: 128px;
       resize: vertical;
+      line-height: 1.6;
     }
 
+    /* ═══════════════════════════════════════════
+       ACTION BUTTONS
+    ═══════════════════════════════════════════ */
     .acoes {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+      margin-top: 10px;
     }
 
     .btn {
       text-decoration: none;
       border: none;
       cursor: pointer;
-      padding: 14px 22px;
-      border-radius: 14px;
-      font-size: 15px;
-      font-weight: bold;
-      transition: .25s;
+      padding: 14px 26px;
+      border-radius: 12px;
+      font-size: 14.5px;
+      font-weight: 700;
+      font-family: inherit;
+      letter-spacing: 0.01em;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      position: relative;
+      overflow: hidden;
     }
 
+    .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* Save button */
     .btn-primary {
-      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 50%, #1d4ed8 100%);
+      background-size: 200% 100%;
       color: white;
+      box-shadow:
+        0 10px 30px rgba(99,60,226,0.40),
+        0 0 0 1px rgba(255,255,255,0.08) inset;
+      flex: 1;
+      justify-content: center;
+      min-width: 180px;
+      animation: btnGradientShift 4s ease infinite;
     }
 
+    @keyframes btnGradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .btn-primary::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+      transform: translateX(-100%) skewX(-15deg);
+      transition: none;
+    }
+
+    .btn-primary:hover::before {
+      transform: translateX(200%) skewX(-15deg);
+      transition: transform 0.6s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow:
+        0 18px 42px rgba(99,60,226,0.55),
+        0 0 0 1px rgba(255,255,255,0.12) inset;
+      filter: brightness(1.1);
+    }
+
+    .btn-primary:active {
+      transform: translateY(-1px) scale(1.0);
+      transition-duration: 0.1s;
+    }
+
+    /* Back button */
     .btn-secondary {
-      background: rgba(255,255,255,0.08);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.045);
+      color: var(--text-mid);
+      border: 1px solid rgba(255,255,255,0.1);
+      min-width: 160px;
+      justify-content: center;
     }
 
-    .status {
-      margin-top: 14px;
-      min-height: 22px;
-      font-size: 14px;
+    .btn-secondary::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn-secondary:hover::before { opacity: 1; }
+
+    .btn-secondary:hover {
+      border-color: rgba(99,102,241,0.35);
+      color: var(--text-hi);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .btn-secondary:hover svg {
+      transform: translateX(-3px);
+    }
+
+    .btn-secondary svg { transition: transform 0.25s ease; }
+
+    /* ═══════════════════════════════════════════
+       STATUS MESSAGE
+    ═══════════════════════════════════════════ */
+    #statusMsg {
+      margin-top: 20px;
+      min-height: 24px;
+      font-size: 13.5px;
+      font-weight: 600;
       color: #93c5fd;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 4px;
+      transition: all 0.3s ease;
+      letter-spacing: 0.01em;
     }
 
-    .erro {
-      color: #f87171;
+    #statusMsg.erro   { color: var(--err); }
+    #statusMsg.sucesso {
+      color: var(--ok);
+      text-shadow: 0 0 12px rgba(74,222,128,0.4);
     }
 
-    .sucesso {
-      color: #86efac;
+    /* ═══════════════════════════════════════════
+       FOOTER TAGS (decorative)
+    ═══════════════════════════════════════════ */
+    .card-footer-tags {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .footer-tag-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+    }
+
+    .footer-brand {
+      margin-left: auto;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--blue), var(--violet), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 520px) {
+      body { padding: 24px 14px 40px; }
+
+      .card { padding: 28px 22px 28px; border-radius: 22px; }
+
+      .page-title { font-size: 24px; }
+      .title-icon { width: 40px; height: 40px; border-radius: 12px; }
+
+      .foto-area { padding: 18px; gap: 18px; }
+
+      .avatar-ring-outer { width: 88px; height: 88px; }
+      #fotoPreview       { width: 78px; height: 78px; background-size: 30px; }
+      .avatar-ring-inner { inset: 3px; }
+
+      .acoes { flex-direction: column; }
+      .btn   { width: 100%; justify-content: center; min-width: unset; }
+
+      .card-footer-tags { gap: 8px; }
+      .footer-brand { margin-left: 0; width: 100%; }
+    }
+
+    @media (max-width: 360px) {
+      .foto-area { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ═══════════════════════════════════════════
+       REDUCED MOTION
+    ═══════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      .orb, .card-wrapper::before, .card-wrapper::after,
+      .card::before, .eyebrow::before, .avatar-ring-outer::before,
+      .avatar-ring-outer::after, .title-icon, .eyebrow-dot,
+      .btn-primary, .particle { animation: none !important; }
+
+      .card { animation: none; }
     }
   </style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>Editar Perfil</h1>
-    <p class="sub">Atualize seu nome, sua bio e sua foto para deixar seu perfil com a sua cara.</p>
 
-    <div class="foto-area">
-      <img id="fotoPreview" class="foto-preview" src="" alt="Prévia da foto">
-      <div>
-        <label for="fotoInput">Trocar foto</label>
-        <input type="file" id="fotoInput" accept="image/*">
-      </div>
-    </div>
+  <!-- Decorative layers -->
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+  <div class="orb orb-3" aria-hidden="true"></div>
+  <div class="orb orb-4" aria-hidden="true"></div>
+  <div class="scanline"  aria-hidden="true"></div>
 
-    <label for="nomeInput">Seu nome</label>
-    <input type="text" id="nomeInput" class="input" placeholder="Digite seu nome">
-
-    <label for="bioInput">Sua bio</label>
-    <textarea id="bioInput" class="textarea" placeholder="Fale um pouco sobre você"></textarea>
-
-    <div class="acoes">
-      <button id="btnSalvar" class="btn btn-primary">Salvar alterações</button>
-      <a href="perfil.html" class="btn btn-secondary">Voltar ao perfil</a>
-    </div>
-
-    <div id="statusMsg" class="status"></div>
+  <!-- Floating particles -->
+  <div class="particles" aria-hidden="true">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
   </div>
+
+  <!-- Card with neon border wrapper -->
+  <div class="card-wrapper">
+    <div class="card">
+
+      <!-- Eyebrow badge -->
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        ZyroDev &nbsp;·&nbsp; Painel de Conta
+      </div>
+
+      <!-- Header -->
+      <header class="page-header">
+        <h1 class="page-title">
+          <span class="title-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+            </svg>
+          </span>
+          <span class="title-text">Editar Perfil</span>
+        </h1>
+        <p class="page-sub">
+          Personalize seu nome, bio e foto. Suas informações ficam visíveis
+          para quem visitar seu perfil na ZyroDev.
+        </p>
+      </header>
+
+      <div class="divider" aria-hidden="true"></div>
+
+      <!-- ── AVATAR SECTION ── -->
+      <div class="section-label">Foto do perfil</div>
+
+      <div class="foto-area">
+        <!-- Animated RGB avatar ring -->
+        <div class="avatar-ring-outer" aria-hidden="true">
+          <div class="avatar-ring-inner">
+            <img id="fotoPreview" src="" alt="Prévia da foto de perfil">
+          </div>
+        </div>
+
+        <div class="foto-info">
+          <div class="foto-label-title">Sua foto pública</div>
+          <div class="foto-label-sub">
+            PNG ou JPG &middot; Máx. 5 MB<br>
+            Recomendado: 256 &times; 256 px ou maior
+          </div>
+          <div class="file-btn-wrap">
+            <span class="file-btn-label" role="button" tabindex="0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              Escolher imagem
+            </span>
+            <input type="file" id="fotoInput" accept="image/*" aria-label="Escolher foto de perfil">
+          </div>
+        </div>
+      </div>
+
+      <!-- ── NOME ── -->
+      <div class="section-label">Informações</div>
+
+      <div class="campo">
+        <div class="label-row">
+          <label for="nomeInput" class="field-label">
+            <span class="field-label-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#a5b4fc"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </span>
+            Nome de exibição
+          </label>
+        </div>
+        <div class="input-wrap">
+          <input
+            type="text"
+            id="nomeInput"
+            class="input"
+            placeholder="Como você quer ser chamado?"
+            autocomplete="name"
+            spellcheck="false"
+          >
+        </div>
+      </div>
+
+      <!-- ── BIO ── -->
+      <div class="campo">
+        <div class="label-row">
+          <label for="bioInput" class="field-label">
+            <span class="field-label-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#a5b4fc"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+            </span>
+            Bio
+          </label>
+          <span class="contador" id="bioContador">0 / 160</span>
+        </div>
+        <div class="input-wrap">
+          <textarea
+            id="bioInput"
+            class="textarea"
+            placeholder="Conte um pouco sobre você, seus projetos ou habilidades…"
+            maxlength="160"
+            spellcheck="true"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- ── ACTIONS ── -->
+      <div class="acoes">
+        <button id="btnSalvar" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/>
+            <polyline points="17 21 17 13 7 13 7 21"/>
+            <polyline points="7 3 7 8 15 8"/>
+          </svg>
+          Salvar alterações
+        </button>
+
+        <a href="perfil.html" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+          </svg>
+          Voltar ao perfil
+        </a>
+      </div>
+
+      <!-- Status message (controlled by editar-perfil.js) -->
+      <div id="statusMsg" role="status" aria-live="polite"></div>
+
+      <!-- Footer tags -->
+      <div class="card-footer-tags" aria-hidden="true">
+        <span class="footer-tag">
+          <span class="footer-tag-dot" style="background:#4ade80; box-shadow:0 0 6px #4ade80;"></span>
+          Criptografado
+        </span>
+        <span class="footer-tag">
+          <span class="footer-tag-dot" style="background:#60a5fa; box-shadow:0 0 6px #60a5fa;"></span>
+          Salvo na nuvem
+        </span>
+        <span class="footer-tag">
+          <span class="footer-tag-dot" style="background:#a78bfa; box-shadow:0 0 6px #a78bfa;"></span>
+          Perfil público
+        </span>
+        <span class="footer-brand">ZyroDev</span>
+      </div>
+
+    </div><!-- /.card -->
+  </div><!-- /.card-wrapper -->
+
+
+  <!-- ── Contador visual de bio (decorativo, não toca na lógica) ── -->
+  <script>
+    (function () {
+      var bio     = document.getElementById('bioInput');
+      var contador = document.getElementById('bioContador');
+      if (!bio || !contador) return;
+
+      function atualizar() {
+        var max   = parseInt(bio.getAttribute('maxlength'), 10) || 160;
+        var atual = bio.value.length;
+        contador.textContent = atual + ' / ' + max;
+        contador.classList.remove('perto-limite', 'no-limite');
+        if (atual >= max) {
+          contador.classList.add('no-limite');
+        } else if (atual >= max * 0.85) {
+          contador.classList.add('perto-limite');
+        }
+      }
+
+      bio.addEventListener('input', atualizar);
+      atualizar();
+    })();
+  </script>
 
   <script type="module" src="./editar-perfil.js"></script>
 </body>

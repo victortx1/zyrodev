@@ -31,12 +31,48 @@ function criarBadge(src, className, title, alt) {
   return badge;
 }
 
+function aplicarVideoFundoCopa() {
+  let videoFundo = document.getElementById("videoFundoCopa");
+
+  if (!videoFundo) {
+    videoFundo = document.createElement("video");
+    videoFundo.id = "videoFundoCopa";
+    videoFundo.src = "./fotos/videobrasil.mp4";
+    videoFundo.autoplay = true;
+    videoFundo.loop = true;
+    videoFundo.muted = true;
+    videoFundo.playsInline = true;
+    videoFundo.setAttribute("webkit-playsinline", "true");
+
+    videoFundo.style.cssText = `
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 1;
+      pointer-events: none;
+    `;
+
+    document.body.prepend(videoFundo);
+  }
+}
+
+function removerVideoFundoCopa() {
+  const videoFundo = document.getElementById("videoFundoCopa");
+
+  if (videoFundo) {
+    videoFundo.remove();
+  }
+}
+
 function renderizarBadges(badges = []) {
   if (!badgesPerfil) return;
 
   badgesPerfil.innerHTML = "";
 
-    if (badges.includes("fundador")) {
+  if (badges.includes("fundador")) {
     badgesPerfil.appendChild(
       criarBadge("./fotos/fundador.png", "badge-icon", "Fundador Zyro", "Badge Fundador")
     );
@@ -52,7 +88,6 @@ function renderizarBadges(badges = []) {
       )
     );
   }
-
 
   if (badges.includes("primeira_temporada")) {
     badgesPerfil.appendChild(
@@ -97,6 +132,9 @@ function aplicarTemaEspecial(dadosBanco = {}) {
   );
 
   html.classList.remove("tema-copa-mundo");
+  removerVideoFundoCopa();
+
+  body.style.background = "";
 
   const badges = normalizarBadges(dadosBanco?.badges);
   const vipAtivo = Boolean(dadosBanco?.vipAtivo);
@@ -106,10 +144,9 @@ function aplicarTemaEspecial(dadosBanco = {}) {
     body.classList.add("tema-copa-mundo");
     html.classList.add("tema-copa-mundo");
 
-    body.style.background = `
-      linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.40)),
-      url("./fotos/fundo-copa.png") center / cover no-repeat fixed
-    `;
+    aplicarVideoFundoCopa();
+
+    body.style.background = "#020617";
 
     if (card) {
       card.style.background = "rgba(0, 35, 20, .78)";

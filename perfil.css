@@ -169,11 +169,6 @@ body{
     transform:translateY(0);
   }
 }
-body.tema-copa-mundo{
-  background:
-    linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.45)),
-    url("../fotos/fundo-copa.png") center/cover no-repeat !important;
-}
 
 body.tema-copa-mundo .perfil-card{
   border:2px solid #ffdf00 !important;
@@ -213,12 +208,6 @@ body.tema-copa-mundo .avatar-wrap{
 @keyframes girarBadgeCopa{
   from{transform:rotateY(0deg);}
   to{transform:rotateY(360deg);}
-}
-html.tema-copa-mundo,
-body.tema-copa-mundo{
-  background:
-    linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.35)),
-    url("../fotos/fundo-copa.png") center/cover no-repeat fixed !important;
 }
 
 body.tema-copa-mundo .bg-shape{
@@ -267,4 +256,43 @@ body.tema-copa-mundo .badge-copa{
 @keyframes girarBadgeCopa{
   from{transform:rotateY(0deg);}
   to{transform:rotateY(360deg);}
+}
+html.tema-copa-mundo,
+body.tema-copa-mundo {
+  background: #020617 !important;
+  overflow-x: hidden !important;
+}
+
+#videoFundoCopa {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: cover !important;
+  z-index: 0 !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+}
+
+body.tema-copa-mundo::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.perfil-page {
+  position: relative !important;
+  z-index: 2 !important;
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.perfil-card {
+  position: relative !important;
+  z-index: 3 !important;
 }
