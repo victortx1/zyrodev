@@ -59,7 +59,7 @@
   .button a {
     display: inline-block;
     text-decoration: none;
-    background: linear-gradient(90deg, #3cc443, #c7d928);
+    background: linear-gradient(90deg, #3cc4b2, #28b6d9);
     color: #000000;
     font-weight: 700;
     font-size: 16px;
@@ -268,7 +268,7 @@
 }
 
  .user-profile:hover {
-  background: linear-gradient(135deg, #009c3b, #ffdf00);
+  background: linear-gradient(135deg, #00979c, #00ffd5);
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
 }
@@ -459,7 +459,6 @@
     0 0 20px rgba(168, 85, 247, 0.14);
 }
 
-  /* DISCORD */
   .discord-btn {
     background: #111827;
     padding: 10px 16px;
@@ -477,7 +476,6 @@
     background: #2563eb;
   }
 
-  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -485,7 +483,7 @@
     padding: 120px 8%;
     position: relative;
     .hero {
-  background: radial-gradient(circle at top, #009c3b, #020617 60%);}
+  background: radial-gradient(circle at top, #00709c, #020617 60%);}
     overflow: hidden;
   }
 
@@ -525,7 +523,6 @@
     max-width: 700px;
   }
 
-  /* BONECO */
   .boneco-area {
     position: absolute;
     right: 40px;
@@ -612,7 +609,6 @@ pointer-events: none;
     100% { transform: rotate(-12deg) translateY(0); }
   }
 
-  /* STATS */
   .stats {
     display: flex;
     justify-content: center;
@@ -634,7 +630,6 @@ pointer-events: none;
     color: #94a3b8;
   }
 
-  /* MOTIVAÇÃO */
   .motivacao-area {
     height: 150px;
     position: relative;
@@ -667,7 +662,6 @@ pointer-events: none;
     }
   }
 
-  /* FEATURES */
   .features {
     width: 100%;
     padding: 100px 8%;
@@ -699,7 +693,6 @@ pointer-events: none;
     font-size: 14px;
   }
 
-  /* FOOTER */
   .footer {
     background: #020617;
     padding-top: 60px;
@@ -795,7 +788,6 @@ pointer-events: none;
     font-size: 13px;
   }
 
-  /* COOKIE */
   .cookie-box {
     position: fixed;
     bottom: 30px;
@@ -842,7 +834,6 @@ pointer-events: none;
     box-shadow: 0 0 10px #2563eb, 0 0 20px #9333ea;
   }
 
-  /* IDEA HINT */
   #ideaHint {
     position: fixed;
     top: 110px;
@@ -864,7 +855,7 @@ pointer-events: none;
     transform: translateY(0);
   }
 
-  /* POPUP GOOGLE */
+
   .google-popup-overlay {
     position: fixed;
     inset: 0;
@@ -990,7 +981,7 @@ pointer-events: none;
   #preloader {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, #000000, #006B3F);
+  background: linear-gradient(135deg, #131f30, #00526b);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1087,11 +1078,11 @@ pointer-events: none;
   @keyframes pulseGlow {
     0%, 100% {
       transform: scale(1);
-      box-shadow: 0 0 25px rgba(115, 255, 110, 0.35);
+      box-shadow: 0 0 25px rgba(110, 250, 255, 0.35);
     }
     50% {
       transform: scale(1.08);
-      box-shadow: 0 0 40px rgba(0, 255, 213, 0.55);
+      box-shadow: 0 0 40px rgba(0, 225, 255, 0.55);
     }
   }
 
@@ -1538,7 +1529,7 @@ pointer-events: none;
   color: #00c6ff;
 }
 
-/* FUNDO ESCURO */
+
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -1556,13 +1547,13 @@ pointer-events: none;
   transition: 0.3s;
 }
 
-/* MOSTRAR */
+
 .popup-overlay.ativo {
   opacity: 1;
   visibility: visible;
 }
 
-/* CAIXA */
+
 .popup-content {
   position: relative;
   width: 90%;
@@ -1572,7 +1563,7 @@ pointer-events: none;
   animation: subir 0.4s ease;
 }
 
-/* ANIMAÇÃO */
+
 @keyframes subir {
   from {
     transform: translateY(50px);
@@ -1582,15 +1573,13 @@ pointer-events: none;
     transform: translateY(0);
     opacity: 1;
   }
-}
+} 
 
-/* IMAGEM */
 .popup-content img {
   width: 100%;
   cursor: pointer;
 }
 
-/* BOTÃO */
 #btnJogar {
   width: 100%;
   padding: 15px;
@@ -1617,11 +1606,6 @@ pointer-events: none;
   cursor: pointer;
 }
 
-/* =========================================================
-   ZYRODEV PREMIUM UPGRADE — CAMADA VISUAL ADICIONAL
-   (não altera lógica, IDs, Firebase, ou JS existente)
-   ========================================================= */
-
 :root {
   --zr-green: #00c46b;
   --zr-gold: #ffd700;
@@ -1637,7 +1621,6 @@ pointer-events: none;
   }
 }
 
-/* Fundo global com glow ambiente animado */
 body::before {
   content: "";
   position: fixed;
@@ -1662,7 +1645,6 @@ body::before {
   z-index: 1;
 }
 
-/* ---------- REVEAL ON SCROLL ---------- */
 .zr-reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -1676,7 +1658,6 @@ body::before {
   filter: blur(0);
 }
 
-/* ---------- HERO: ENTRADA CINEMATOGRÁFICA ---------- */
 .hero-content h1,
 .hero-content p,
 .hero-content .button {
@@ -1709,7 +1690,6 @@ body::before {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* ---------- VÍDEO DE FUNDO DO HERO ---------- */
 .zr-hero-video-wrap {
   position: absolute;
   inset: 0;
@@ -1736,7 +1716,6 @@ body::before {
     radial-gradient(60% 50% at 75% 30%, rgba(0,196,107,0.12), transparent 70%);
 }
 
-/* partículas suaves do hero (douradas/verdes) */
 .zr-particles {
   position: absolute;
   inset: 0;
@@ -1760,7 +1739,6 @@ body::before {
   100% { opacity: 0; transform: translateY(-110vh) translateX(20px); }
 }
 
-/* ---------- BOTÕES PREMIUM (reforço, sem remover estilos atuais) ---------- */
 .button a,
 .cookie-btn,
 .google-popup-btn-main,
@@ -1791,7 +1769,6 @@ body::before {
   box-shadow: 0 0 18px rgba(60, 196, 67, 0.45), 0 14px 30px rgba(37, 99, 235, 0.35);
 }
 
-/* ---------- STATS ANIMADAS ---------- */
 .stat h2 {
   background: linear-gradient(90deg, #60a5fa, #34d399);
   -webkit-background-clip: text;
@@ -1800,7 +1777,6 @@ body::before {
   text-shadow: 0 0 24px rgba(96, 165, 250, 0.25);
 }
 
-/* ---------- FEATURE CARDS: GLASSMORPHISM PREMIUM ---------- */
 .feature-card {
   position: relative;
   background: linear-gradient(160deg, rgba(15, 23, 42, 0.75), rgba(2, 6, 23, 0.55));
@@ -1835,7 +1811,6 @@ body::before {
   opacity: 1;
 }
 
-/* ---------- SEÇÃO DE CURSOS PREMIUM ---------- */
 .zr-courses {
   width: 100%;
   padding: 20px 8% 100px;
@@ -1914,15 +1889,15 @@ body::before {
 
 .zr-course-card:hover {
   transform: translateY(-8px);
-  border-color: rgba(255, 215, 0, 0.30);
-  box-shadow: 0 16px 36px rgba(0,0,0,0.35), 0 0 22px rgba(255, 215, 0, 0.14);
+  border-color: rgba(0, 225, 255, 0.3);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.35), 0 0 22px rgba(0, 225, 255, 0.14);
 }
 
 .zr-course-card:hover .zr-icon {
   transform: scale(1.15) rotate(-4deg);
 }
 
-/* ---------- SEÇÃO COMUNIDADE ---------- */
+
 .zr-community {
   width: 100%;
   padding: 20px 8% 100px;
@@ -1936,7 +1911,7 @@ body::before {
   border-radius: 24px;
   padding: 50px 36px;
   background: linear-gradient(135deg, rgba(0, 156, 59, 0.14), rgba(15, 23, 42, 0.8));
-  border: 1px solid rgba(255, 215, 0, 0.18);
+  border: 1px solid rgba(0, 247, 255, 0.18);
   box-shadow: 0 20px 50px rgba(0,0,0,0.35);
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -1974,7 +1949,7 @@ body::before {
 .zr-community-stats div strong {
   display: block;
   font-size: 24px;
-  color: #ffd700;
+  color: #00eeff;
   margin-bottom: 4px;
 }
 
@@ -1999,11 +1974,11 @@ body::before {
 .footer-links h3::before {
   content: "—";
   margin-right: 6px;
-  color: rgba(255, 215, 0, 0.6);
+  color: rgba(0, 195, 255, 0.6);
 }
 
 .footer-top {
-  background: linear-gradient(90deg, #00c46b, #2563eb, #ffd700, #00c46b);
+  background: linear-gradient(90deg, #00b7c4, #2563eb, #00e1ff, #00b7c4);
 }
 
 </style>
@@ -2018,64 +1993,6 @@ body::before {
     <div class="progress">
       <div class="progress-bar" id="progressBar"></div>
     </div>
-  </div>
-</div>
-
-    <!-- POPUP COPA DO MUNDO -->
-<div id="popupCopa" class="popup-overlay ativo">
-  <div class="popup-content" style="
-    background: linear-gradient(135deg,#009c3b,#002776);
-    padding:30px;
-    text-align:center;
-    color:white;
-    max-width:550px;
-    border:2px solid #ffdf00;
-    border-radius:20px;
-    box-shadow:0 0 40px rgba(255,223,0,.4);
-  ">
-
-    <span id="fecharCopa" class="fechar">&times;</span>
-
-    <h1 style="
-      font-size:32px;
-      margin-bottom:15px;
-      color:#ffdf00;
-    ">
-      🏆 CLIMA DE COPA NA ZYRODEV
-    </h1>
-
-    <p style="
-      font-size:17px;
-      line-height:1.6;
-      margin-bottom:20px;
-    ">
-      O novo <b>Badge Copa do Mundo 2026</b> já foi adicionado
-      automaticamente ao perfil de todos os membros da ZyroDev!
-    </p>
-
-    <p style="
-      font-size:15px;
-      color:#dbeafe;
-      margin-bottom:25px;
-    ">
-      🇧🇷 Estamos oficialmente em clima de Copa do Mundo.<br>
-      Prepare-se para eventos, novidades, atualizações temáticas
-      e muita torcida rumo ao HEXA! ⭐⭐⭐⭐⭐⭐
-    </p>
-
-<button id="btnFecharCopa" onclick="window.location.href='perfil.html'" style="
-  background:linear-gradient(90deg,#ffdf00,#ffd700);
-  color:black;
-  border:none;
-  padding:14px 30px;
-  border-radius:12px;
-  font-weight:800;
-  cursor:pointer;
-  font-size:15px;
-">
-  VER MEU PERFIL 🇧🇷
-</button>
-
   </div>
 </div>
 
@@ -2140,11 +2057,9 @@ body::before {
 
   <section id="hero-content" class="hero">
 
-    <!-- VÍDEO DE FUNDO PREMIUM (apenas visual, não interfere na lógica) -->
     <div class="zr-hero-video-wrap">
       <video autoplay muted loop playsinline poster="/fotos/zyro-copa.png">
-        <!-- Substitua pelo seu vídeo (estádio / código / Copa do Mundo) -->
-        <source src="/fotos/videobrasil.mp4" type="video/mp4">
+        <source src="/fotos/programing.mp4" type="video/mp4">
       </video>
       <div class="zr-hero-video-overlay"></div>
     </div>
@@ -2168,7 +2083,7 @@ body::before {
   <img
     class="boneco"
     id="boneco"
-    src="/fotos/zyro-copa.png"
+    src="/fotos/zyropac.png"
     alt="Boneco Copa"
   >
 </div>
@@ -2236,11 +2151,10 @@ body::before {
   <section class="zr-community">
     <div class="zr-community-box zr-reveal">
       <div>
-        <h2>Uma comunidade rumo ao Hexa 🇧🇷</h2>
+        <h2>Uma comunidade 🇧🇷</h2>
         <p>
           Mais que uma plataforma de estudos: a ZyroDev é uma comunidade de devs
-          evoluindo juntos, trocando experiência no Discord e torcendo pelo
-          Brasil na Copa do Mundo 2026.
+          evoluindo juntos, trocando experiência no Discord
         </p>
         <div class="button">
           <a href="https://discord.gg/AJkeUcN47e" target="_blank">Entrar no Discord</a>
@@ -2251,7 +2165,6 @@ body::before {
         <div><strong>+200</strong><span>Vídeos</span></div>
         <div><strong>+20</strong><span>Tecnologias</span></div>
         <div><strong>100%</strong><span>Gratuito</span></div>
-        <div><strong>🏆</strong><span>Rumo ao Hexa</span></div>
       </div>
     </div>
   </section>
@@ -2366,6 +2279,7 @@ perfilLink.classList.remove(
   headerNome.removeAttribute("title");
 
   const ehCopaHexa = badges.includes("copa_do_mundo");
+  
 
 if (ehCopaHexa) {
   headerNome.classList.add("copa-hexa");

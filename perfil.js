@@ -37,7 +37,7 @@ function aplicarVideoFundoCopa() {
   if (!videoFundo) {
     videoFundo = document.createElement("video");
     videoFundo.id = "videoFundoCopa";
-    videoFundo.src = "./fotos/videobrasil.mp4";
+    videoFundo.src = "";
     videoFundo.autoplay = true;
     videoFundo.loop = true;
     videoFundo.muted = true;
