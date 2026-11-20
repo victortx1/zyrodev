@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="./fotos/zraposa.png">
+  <title>ZYRO PODEPA</title>
+  <link rel="stylesheet" href="podepa.css">
+</head>
+<body>
+  <div class="podepa-app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <a href="index.html" class="logo" id="logoLink">Z</a>
+        <div><b>ZYRO PODEPA</b><small>Comunidade de programação</small></div>
+      </div>
+      <button id="generalBtn" class="nav-btn active"><span>💬</span> Chat Geral</button>
+      <div class="me" id="meBtn" title="Ver meu perfil">
+        <img id="myPhoto" src="./fotos/zraposa.png" alt="">
+        <span id="myName">Usuário</span>
+      </div>
+    </aside>
+
+    <main class="chat">
+      <header class="chat-header">
+        <button id="menuBtn" class="menu-btn">☰</button>
+        <div>
+          <h1 id="chatTitle">Chat Geral</h1>
+          <p id="chatSubtitle">Converse e troque ideias sobre programação.</p>
+        </div>
+        <button id="closeBtn" class="close-btn hidden" title="Fechar (Esc)">✕</button>
+      </header>
+
+      <div id="loginBox" class="login-box hidden">
+        <h2>🔐 Faça login</h2>
+        <p>Você precisa estar conectado ao ZyroDev para usar o ZYRO PODEPA.</p>
+      </div>
+
+      <section id="chatSection" class="chat-section hidden">
+        <div id="dropHint" class="drop-hint">📷 Solte a imagem aqui</div>
+        <div id="messages" class="messages"></div>
+        <button id="newBtn" class="new-btn hidden">↓ Novas mensagens</button>
+
+        <div id="punishBar" class="punish-bar hidden">🚫 Palavrão detectado. Você está de castigo por <b id="punishTime">30:00</b></div>
+
+        <div id="imagePreview" class="image-preview hidden">
+          <img id="preview" alt="Pré-visualização">
+          <div class="pv-info"><span id="pvName"></span><div class="bar"><i id="pvBar"></i></div></div>
+          <button id="removeImage" type="button">×</button>
+        </div>
+
+        <form id="messageForm" class="composer">
+          <label class="photo-btn" title="Enviar foto (até 20 MB)">
+            📷
+            <input id="imageInput" type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+          </label>
+          <textarea id="messageInput" maxlength="2000" rows="1" placeholder="Digite sua mensagem..."></textarea>
+          <button id="sendBtn" type="submit">Enviar</button>
+        </form>
+        <small class="hint">Enter envia • Shift + Enter quebra linha • Arraste ou cole imagens (até 20 MB) • Sem palavrões: castigo de 30 min</small>
+      </section>
+    </main>
+  </div>
+
+  <div id="profileModal" class="modal hidden"><div class="pcard" id="profileCard"></div></div>
+  <div id="lightbox" class="lightbox hidden"><img id="lbImg" alt=""></div>
+  <div id="toast" class="toast"></div>
+  <script type="module" src="podepa.js"></script>
+<script src="./i18n.js"></script>
+<script src="./guia-zyro.js" defer></script>
+</body>
+</html>

@@ -1,500 +1,111 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Perfil | ZyroDev</title>
-  <link rel="icon" type="image/png" href="./fotos/favicon.png.png">
-
+  <link rel="icon" type="image/png" href="./fotos/zraposa.png">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.35), transparent 35%),
-        linear-gradient(135deg, #020617, #0f172a);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
-      transition: 0.4s;
-    }
-
-    .card {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      max-width: 520px;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 28px;
-      padding: 32px;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-      transition: 0.4s;
-    }
-
-    .topo {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 24px;
-    }
-
-    .perfil-media-wrap {
-      position: relative;
-      width: 96px;
-      height: 96px;
-      flex-shrink: 0;
-    }
-
-    .foto,
-    .video-perfil {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid rgba(255, 255, 255, 0.2);
-      background: #111827;
-      display: block;
-      transition: 0.3s;
-    }
-
-    .video-perfil {
-      object-fit: cover;
-    }
-
-    .video-badge {
-      position: absolute;
-      right: -4px;
-      bottom: -4px;
-      min-width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      padding: 0 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: bold;
-      color: #fff;
-      background: linear-gradient(90deg, #2563eb, #7c3aed);
-      border: 2px solid #0f172a;
-      box-shadow: 0 0 14px rgba(124, 58, 237, 0.5);
-    }
-
-    .perfil-media-wrap.video-ativa::before {
-      content: "";
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      background: conic-gradient(
-        from 0deg,
-        rgba(255,255,255,0.05),
-        rgba(255,255,255,0.45),
-        rgba(255,255,255,0.05)
-      );
-      animation: girarBorda 3s linear infinite;
-      z-index: 0;
-    }
-
-    .perfil-media-wrap.video-ativa .foto,
-    .perfil-media-wrap.video-ativa .video-perfil {
-      position: relative;
-      z-index: 1;
-    }
-
-    @keyframes girarBorda {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .info-topo {
-      flex: 1;
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(34, 197, 94, 0.15);
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      color: #86efac;
-      font-size: 13px;
-      margin-bottom: 12px;
-      margin-right: 8px;
-    }
-
-    .nome-linha {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: 32px;
-    }
-
-    .email {
-      color: #cbd5e1;
-      margin-bottom: 18px;
-      font-size: 16px;
-      word-break: break-word;
-    }
-
-    .badges-perfil {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .badge-icon {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-      margin-left: 6px;
-      filter: drop-shadow(0 0 6px rgba(255,215,0,0.6));
-      transition: transform 0.25s ease;
-    }
-
-    .badge-icon:hover {
-      transform: scale(1.2);
-    }
-
-    .bio-box {
-      background: rgba(15, 23, 42, 0.65);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
-      padding: 18px;
-      color: #e2e8f0;
-      line-height: 1.6;
-      margin-bottom: 24px;
-      min-height: 80px;
-      white-space: pre-wrap;
-    }
-
-    .acoes {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      padding: 14px 22px;
-      border-radius: 14px;
-      font-size: 15px;
-      font-weight: bold;
-      transition: .25s;
-    }
-
-    .btn-primary {
-      background: linear-gradient(90deg, #2563eb, #7c3aed);
-      color: white;
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.08);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .tema-fundador {
-      background:
-        radial-gradient(circle at top, rgba(255, 215, 0, 0.25), transparent 40%),
-        radial-gradient(circle at bottom, rgba(255, 180, 0, 0.2), transparent 40%),
-        linear-gradient(135deg, #050505, #1a1200);
-    }
-
-    .tema-fundador .card {
-      border: 1px solid rgba(255, 215, 0, 0.5);
-      background: rgba(20, 15, 0, 0.75);
-      box-shadow:
-        0 0 30px rgba(255, 215, 0, 0.2),
-        0 0 80px rgba(255, 200, 0, 0.15);
-    }
-
-    .tema-fundador h1 {
-      background: linear-gradient(90deg, #fff3b0, #ffd700, #ffb700);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .tema-fundador .foto,
-    .tema-fundador .video-perfil {
-      border: 3px solid gold;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-    }
-
-    .tema-fundador .tag {
-      background: rgba(255, 215, 0, 0.15);
-      border: 1px solid rgba(255, 215, 0, 0.4);
-      color: #ffd700;
-    }
-
-    .tema-fundador .bio-box {
-      border: 1px solid rgba(255, 215, 0, 0.25);
-      background: rgba(20, 15, 0, 0.6);
-    }
-
-    .tema-fundador .btn-primary {
-      background: linear-gradient(90deg, #ffd700, #ffb700);
-      color: black;
-    }
-
-    .tema-fundador .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 28px;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
-      opacity: 0.2;
-      animation: brilho 4s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes brilho {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    .tema-socio {
-      background:
-        radial-gradient(circle at top, rgba(255, 215, 0, 0.25), transparent 40%),
-        radial-gradient(circle at bottom, rgba(255, 180, 0, 0.2), transparent 40%),
-        linear-gradient(135deg, #050505, #1a1200);
-    }
-
-    .tema-socio .card {
-      border: 1px solid rgba(255, 215, 0, 0.5);
-      background: rgba(20, 15, 0, 0.75);
-      box-shadow:
-        0 0 30px rgba(255, 215, 0, 0.2),
-        0 0 80px rgba(255, 200, 0, 0.15);
-    }
-
-    .tema-socio h1 {
-      background: linear-gradient(90deg, #fff3b0, #ffd700, #ffb700);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .tema-socio .foto,
-    .tema-socio .video-perfil {
-      border: 3px solid gold;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-    }
-
-    .tema-socio .tag {
-      background: rgba(255, 215, 0, 0.15);
-      border: 1px solid rgba(255, 215, 0, 0.4);
-      color: #ffd700;
-    }
-
-    .tema-socio .bio-box {
-      border: 1px solid rgba(255, 215, 0, 0.25);
-      background: rgba(20, 15, 0, 0.6);
-    }
-
-    .tema-socio .btn-primary {
-      background: linear-gradient(90deg, #ffd700, #ffb700);
-      color: black;
-    }
-
-    .tema-socio .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 28px;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
-      opacity: 0.2;
-      animation: brilhoSocio 4s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes brilhoSocio {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    @media (max-width: 640px) {
-      .card {
-        padding: 22px;
-      }
-
-      .topo {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      h1 {
-        font-size: 26px;
-      }
-
-      .acoes {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
-    }
-
-.tema-vip-esmeralda {
-  background:
-    radial-gradient(circle at top left, rgba(16, 255, 179, 0.28), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(0, 255, 157, 0.20), transparent 35%),
-    linear-gradient(135deg, #031611, #06241c, #041b15);
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+    body{min-height:100vh;color:#fff;background:radial-gradient(circle at 10% 0%,rgba(255,106,0,.22),transparent 32%),radial-gradient(circle at 90% 100%,rgba(255,106,0,.18),transparent 32%),#070707;padding:28px 16px;overflow-x:hidden;position:relative}
+body#bodyPerfil::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: var(--profile-banner-bg);
+    background-size: cover;
+    background-position: center;
+    opacity: .16;
+    z-index: 0;
+    pointer-events: none;
 }
+    body#bodyPerfil::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.30);z-index:0;pointer-events:none}
+    .card{width:min(680px,100%);margin:auto;background:rgba(18,18,18,.88);border:1px solid rgba(255,255,255,.1);border-radius:24px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,.5);backdrop-filter:blur(14px);position:relative;z-index:1}
+    .banner{height:190px;background:linear-gradient(135deg,#151515,#242424);background-size:cover;background-position:center;position:relative;overflow:hidden}
+.banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
 
-.tema-vip-esmeralda .card {
-  border: 1px solid rgba(34, 255, 178, 0.45);
-  background:
-    linear-gradient(135deg, rgba(3, 30, 24, 0.94), rgba(2, 22, 18, 0.92));
-  box-shadow:
-    0 0 18px rgba(0, 255, 170, 0.18),
-    0 0 40px rgba(0, 255, 170, 0.14),
-    0 0 90px rgba(0, 255, 170, 0.12);
-}
+    background-image: var(--banner-bg);
+    background-size: cover;
+    background-position: center;
 
-.tema-vip-esmeralda h1 {
-  background: linear-gradient(90deg, #ecfff8 0%, #8affd4 30%, #19f5a8 60%, #c8ffef 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: brilhoNomeVip 3s linear infinite;
-  text-shadow: 0 0 14px rgba(25, 245, 168, 0.28);
-}
+    opacity: 1;
 
-.tema-vip-esmeralda .foto,
-.tema-vip-esmeralda .video-perfil {
-  border: 3px solid #33ffbb;
-  box-shadow:
-    0 0 12px rgba(51, 255, 187, 0.45),
-    0 0 24px rgba(51, 255, 187, 0.30);
+    z-index: 0;
 }
+    .banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.45) 55%,rgba(0,0,0,.82) 100%);z-index:1}
 
-.tema-vip-esmeralda .tag {
-  background: rgba(0, 255, 157, 0.10);
-  border: 1px solid rgba(51, 255, 187, 0.30);
-  color: #aaffde;
-  box-shadow: 0 0 12px rgba(0, 255, 157, 0.08);
-}
-
-.tema-vip-esmeralda .bio-box {
-  border: 1px solid rgba(51, 255, 187, 0.18);
-  background: rgba(1, 25, 19, 0.75);
-  box-shadow: inset 0 0 18px rgba(0, 255, 157, 0.04);
-}
-
-.tema-vip-esmeralda .btn-primary {
-  background: linear-gradient(90deg, #16f2a3, #00c97f);
-  color: #ffffff;
-  box-shadow:
-    0 8px 20px rgba(0, 255, 157, 0.22),
-    0 0 18px rgba(0, 255, 157, 0.12);
-}
-
-.tema-vip-esmeralda .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 12px 28px rgba(0, 255, 157, 0.28),
-    0 0 22px rgba(0, 255, 157, 0.18);
-}
-
-.tema-vip-esmeralda .card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 28px;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,0.10) 45%,
-    transparent 75%
-  );
-  opacity: 0.22;
-  animation: brilhoVipEsmeralda 4s linear infinite;
-  pointer-events: none;
-}
-
-.tema-vip-esmeralda .badge-icon {
-  filter:
-    drop-shadow(0 0 6px rgba(0, 255, 170, 0.30))
-    drop-shadow(0 0 12px rgba(0, 255, 170, 0.20));
-}
-
-@keyframes brilhoVipEsmeralda {
-  0% { transform: translateX(-120%); }
-  100% { transform: translateX(120%); }
-}
-
-@keyframes brilhoNomeVip {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
-    
-.tema-vip-perola-negra {
-  background:
-    radial-gradient(circle at top, rgba(168, 85, 247, 0.22), transparent 35%),
-    linear-gradient(180deg, #09060f 0%, #12091c 45%, #1a0f2b 100%);
-}
-
-.tema-vip-perola-negra .profile-card,
-.tema-vip-perola-negra .config-box,
-.tema-vip-perola-negra .perfil-box {
-  border: 1px solid rgba(168, 85, 247, 0.28);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.35),
-    0 0 18px rgba(168, 85, 247, 0.12);
-}
-
-  </style>
+    .banner.sem-banner::before{content:"ADICIONE UM BANNER NO EDITAR PERFIL";position:absolute;inset:0;display:grid;place-items:center;color:rgba(255,255,255,.28);font-size:12px;font-weight:700;letter-spacing:.14em;z-index:2;background-image:none}
+    .banner.com-banner::before{z-index:0}
+    .banner.com-banner::after{z-index:1}
+    .content{padding:0 28px 26px}
+    .topo{display:flex;align-items:flex-end;gap:18px;margin-top:-58px;position:relative;z-index:2}
+    .perfil-media-wrap{width:122px;height:122px;flex:0 0 122px;position:relative;overflow:visible}
+    .foto,.video-perfil{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:5px solid #111;background:#161616;position:relative;z-index:1}
+    .avatar-frame-overlay{
+      position:absolute;
+      inset:-22px;
+      z-index:2;
+      pointer-events:none;
+      background-position:center;
+      background-size:contain;
+      background-repeat:no-repeat;
+      animation:frameFloat 3.2s ease-in-out infinite;
+    }
+    .avatar-frame-overlay.moldura-animada{
+      animation:frameFloat 2.7s ease-in-out infinite, framePulse 2.2s ease-in-out infinite;
+    }
+    @keyframes frameFloat{
+      0%,100%{transform:translateY(0) rotate(0deg)}
+      50%{transform:translateY(-2px) rotate(.8deg)}
+    }
+    @keyframes framePulse{
+      0%,100%{filter:drop-shadow(0 0 2px rgba(255,106,0,.15))}
+      50%{filter:drop-shadow(0 0 10px rgba(255,106,0,.65))}
+    }
+    .info-topo{padding-bottom:8px;min-width:0}
+    .tag{display:inline-flex;padding:5px 9px;border-radius:999px;background:rgba(255,106,0,.12);border:1px solid rgba(255,106,0,.22);color:#ff9b5e;font-size:10px;font-weight:700;margin:0 5px 7px 0}
+    .nome-linha{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.nome-linha h1{font-size:28px;line-height:1.1;word-break:break-word}.badges-perfil{display:flex;gap:5px;align-items:center;flex-wrap:wrap}.badge-icon{width:26px;height:26px;object-fit:contain;display:block}.badges-mais{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:12px;font-weight:800;cursor:pointer;display:grid;place-items:center;transition:.2s}.badges-mais:hover{background:rgba(255,106,0,.25);border-color:rgba(255,106,0,.5);transform:translateY(-1px)}
+    .bio-box{margin-top:22px;padding:16px;border-radius:16px;background:#0d0d0d;border:1px solid rgba(255,255,255,.07);color:#d9d9d9;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+    .extras{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.extra{padding:8px 11px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:#bdbdbd;font-size:13px}.site{color:#ff8533;text-decoration:none}.site:hover{text-decoration:underline}
+    .acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn{border:0;text-decoration:none;padding:11px 16px;border-radius:11px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s}.btn:hover{transform:translateY(-2px)}.btn-primary{background:#ff6a00;color:#fff}.btn-secondary{background:#191919;color:#ddd;border:1px solid rgba(255,255,255,.1)}
+    @media(max-width:600px){body{padding:12px}.banner{height:150px}.content{padding:0 16px 18px}.topo{margin-top:-45px;align-items:flex-end}.perfil-media-wrap,.avatar-frame{width:96px;height:96px;flex-basis:96px}.nome-linha h1{font-size:23px}.tag{font-size:9px}.acoes .btn{flex:1;text-align:center}}
+  
+    body{--profile-accent:#ff6a00}
+    .perfil-role-admin .card{border-color:rgba(245,197,66,.55)!important;box-shadow:0 0 45px rgba(245,197,66,.18)}
+    .perfil-role-admin .perfil-topo,.perfil-role-admin .nome-linha h1{color:#f5c542}
+    .perfil-role-sponsor .card{border-color:rgba(37,99,235,.55)!important;box-shadow:0 0 45px rgba(37,99,235,.18)}
+    .perfil-role-sponsor .perfil-topo,.perfil-role-sponsor .nome-linha h1{color:#4f8cff}
+    .perfil-role-creator .card{border-color:rgba(168,85,247,.55)!important;box-shadow:0 0 45px rgba(168,85,247,.18)}
+    .perfil-role-creator .perfil-topo,.perfil-role-creator .nome-linha h1{color:#c084fc}
+</style>
 </head>
-
 <body id="bodyPerfil">
   <div class="card">
-    <div class="topo">
-      <div id="perfilMediaWrap" class="perfil-media-wrap">
-        <img id="fotoPerfil" class="foto" src="" alt="Foto do perfil">
-      </div>
-
-      <div class="info-topo">
-        <div class="tag">Trusted</div>
-        <div class="tag">Season 1</div>
-
-        <div class="nome-linha">
-          <h1 id="nomePerfil">Carregando...</h1>
-          <span id="badgesPerfil" class="badges-perfil"></span>
+    <div id="bannerPerfil" class="banner sem-banner"></div>
+    <div class="content">
+      <div class="topo">
+        <div id="perfilMediaWrap" class="perfil-media-wrap"></div>
+        <div class="info-topo">
+          <div><span class="tag">Trusted</span><span class="tag">Season 1</span></div>
+          <div class="nome-linha"><h1 id="nomePerfil">Carregando...</h1><span id="badgesPerfil" class="badges-perfil"></span></div>
         </div>
       </div>
-    </div>
-
-    <div class="bio-box" id="bioPerfil">Sua bio aparece aqui.</div>
-
-    <div class="acoes">
-      <a href="editar-perfil.html" class="btn btn-primary">Editar perfil</a>
-      <a href="index.html" class="btn btn-primary">Voltar ao início</a>
-      <button class="btn btn-secondary" id="btnSair">Sair da conta Google</button>
+      <div class="bio-box" id="bioPerfil">Sua bio aparece aqui.</div>
+      <div class="extras"><span id="empresaPerfil" class="extra" hidden></span><a id="sitePerfil" class="extra site" target="_blank" rel="noopener noreferrer" hidden></a></div>
+      <div class="acoes">
+        <a href="editar-perfil.html" class="btn btn-primary">Editar perfil</a>
+        <a href="./perfil-publico.html" id="btnPerfilPublico" class="btn btn-secondary">Ver perfil público</a>
+        <a href="./amizades.html" class="btn btn-secondary">Amigos e mensagens</a>
+        <a href="index.html" class="btn btn-secondary">Voltar ao início</a>
+        <button class="btn btn-secondary" id="btnSair">Sair da conta</button>
+      </div>
     </div>
   </div>
-
   <script type="module" src="./perfil.js"></script>
+<script src="./i18n.js"></script>
+<script src="./guia-zyro.js" defer></script>
 </body>
-
 </html>

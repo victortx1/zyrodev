@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="./fotos/zraposa.png">
+  <title>ZyroDev Cursos</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./fotos/favicon.png.png">
+  <style>
+    :root {
+      --bg: #000000;
+      --card: rgba(17, 17, 17, 0.72);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #FFFFFF;
+      --muted: #B8B8B8;
+      --primary: #ff6a00;
+      --secondary: #ff8f3d;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(255, 106, 0, 0.16), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(255, 106, 0, 0.10), transparent 30%),
+        linear-gradient(135deg, #000000 0%, #111111 45%, #000000 100%);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 28px 24px 60px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 38px;
+      padding: 14px 0;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255, 106, 0, 0.25), rgba(255, 106, 0, 0.25));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      font-size: 22px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-text strong {
+      font-size: 26px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ff6a00, #ff8f3d);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .logo-text span {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .ranking-btn {
+      text-decoration: none;
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 12px 20px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 26px rgba(255, 106, 0, 0.30);
+      transition: 0.25s ease;
+    }
+
+    .ranking-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(255, 106, 0, 0.42);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 26px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-card,
+    .stats-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -70px;
+      top: -70px;
+      background: radial-gradient(circle, rgba(255, 106, 0, 0.20), transparent 65%);
+      border-radius: 50%;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 106, 0, 0.12);
+      border: 1px solid rgba(255, 106, 0, 0.18);
+      color: #ff8533;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .hero-card h1 {
+      font-size: 44px;
+      line-height: 1.1;
+      font-weight: 800;
+      margin-bottom: 14px;
+      max-width: 620px;
+    }
+
+    .hero-card p {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      padding: 13px 20px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
+
+    .hero-btn.primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #FFFFFF;
+      box-shadow: 0 10px 30px rgba(255, 106, 0, 0.28);
+    }
+
+    .hero-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(255, 106, 0, 0.40);
+    }
+
+    .hero-btn.secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-btn.secondary:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .stats-card {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 18px;
+      padding: 20px;
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .stat-box strong {
+      font-size: 28px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .stat-box span {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .section-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin: 12px 0 22px;
+      flex-wrap: wrap;
+    }
+
+    .section-title h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+
+    .store-btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:11px 16px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#ff6a00,#ff8f3d);
+      color:#111;
+      font-weight:900;
+      text-decoration:none;
+      box-shadow:0 8px 24px rgba(255,106,0,.18);
+      transition:.2s;
+      white-space:nowrap;
+    }
+    .store-btn:hover {
+      transform:translateY(-2px);
+      filter:brightness(1.05);
+    }
+
+    .search-box {
+      position: relative;
+      min-width: 300px;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 14px 18px 14px 48px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      outline: none;
+      font-size: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      backdrop-filter: blur(12px);
+      transition: 0.25s ease;
+    }
+
+    .search-box input::placeholder {
+      color: #B8B8B8;
+    }
+
+    .search-box input:focus {
+      border-color: rgba(255, 106, 0, 0.35);
+      box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.12);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #B8B8B8;
+      pointer-events: none;
+    }
+
+    /* ---------- Carrossel horizontal de cursos ---------- */
+    .carousel-wrapper {
+      position: relative;
+    }
+
+    .container {
+      display: flex;
+      gap: 22px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 4px 4px 18px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 106, 0, 0.45) transparent;
+    }
+
+    .container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .container::-webkit-scrollbar-thumb {
+      background: rgba(255, 106, 0, 0.45);
+      border-radius: 999px;
+    }
+
+    .card {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+      background: linear-gradient(180deg, rgba(17, 17, 17, 0.82), rgba(17, 17, 17, 0.90));
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.30);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 106, 0, 0.20);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.38);
+    }
+
+    .card-banner {
+      position: relative;
+      height: 170px;
+      overflow: hidden;
+    }
+
+    .card-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .card:hover .card-banner img {
+      transform: scale(1.06);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(17, 17, 17, 0.95), rgba(17, 17, 17, 0.15));
+    }
+
+    .course-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(17, 17, 17, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: #E2E8F0;
+      font-size: 12px;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+    }
+
+    .card-content {
+      padding: 20px 20px 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-content h3 {
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      color: #FFFFFF;
+    }
+
+    .card-content p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      font-size: 12px;
+      color: #B8B8B8;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .progress-area {
+      margin-top: auto;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #B8B8B8;
+      font-weight: 500;
+    }
+
+    .progress {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff6a00, #ff8f3d);
+      box-shadow: 0 0 18px rgba(255, 106, 0, 0.35);
+      transition: width 0.45s ease;
+    }
+
+    .progress-text {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+      min-height: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      transition: 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(255, 106, 0, 0.28);
+    }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(17, 17, 17, 0.75);
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      z-index: 5;
+      transition: 0.2s ease;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .carousel-arrow:hover {
+      background: var(--primary);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .carousel-arrow.left { left: -8px; }
+    .carousel-arrow.right { right: -8px; }
+
+    .empty-search {
+      display: none;
+      text-align: center;
+      padding: 36px 20px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 15px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* ---------- Guia de boas-vindas (primeira visita) ---------- */
+    .guia-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .guia-overlay.ativo {
+      display: flex;
+    }
+
+    .guia-box {
+      width: 100%;
+      max-width: 440px;
+      background: linear-gradient(180deg, rgba(17, 17, 17, 0.97), rgba(17, 17, 17, 0.99));
+      border: 1px solid rgba(255, 106, 0, 0.25);
+      border-radius: 24px;
+      padding: 32px 28px;
+      color: #fff;
+      position: relative;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55);
+      animation: guiaEntrar 0.3s ease;
+    }
+
+    .guia-icon {
+      font-size: 34px;
+      margin-bottom: 14px;
+    }
+
+    .guia-box h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .guia-box p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .guia-dots {
+      display: flex;
+      gap: 6px;
+      margin-top: 22px;
+      margin-bottom: 18px;
+    }
+
+    .guia-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      transition: 0.2s ease;
+    }
+
+    .guia-dots span.ativo {
+      background: var(--primary);
+      width: 20px;
+      border-radius: 999px;
+    }
+
+    .guia-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .guia-pular {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .guia-pular:hover {
+      color: #fff;
+    }
+
+    .guia-avancar {
+      border: none;
+      cursor: pointer;
+      padding: 12px 22px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      transition: 0.2s ease;
+    }
+
+    .guia-avancar:hover {
+      transform: translateY(-2px);
+    }
+
+    @keyframes guiaEntrar {
+      from { opacity: 0; transform: scale(0.94) translateY(16px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-card h1 { font-size: 38px; }
+    }
+
+    @media (max-width: 768px) {
+      .page { padding: 20px 16px 45px; }
+      header { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .hero-card, .stats-card { border-radius: 22px; }
+      .hero-card { padding: 24px; }
+      .hero-card h1 { font-size: 30px; }
+      .stats-card { grid-template-columns: 1fr 1fr; }
+      .section-top { flex-direction: column; align-items: stretch; }
+      .search-box { min-width: unset; max-width: 100%; }
+      .card { flex-basis: 250px; }
+      .carousel-arrow { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .logo-text strong { font-size: 22px; }
+      .hero-card h1 { font-size: 26px; }
+      .hero-card p { font-size: 14px; }
+      .stats-card { grid-template-columns: 1fr; }
+      .card { flex-basis: 78vw; }
+      .card-banner { height: 160px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="particles"></canvas>
+
+  <div class="page">
+    <header>
+      <div class="logo-box">
+        <div class="logo-text">
+          <strong>ZyroDev</strong>
+          <span>Plataforma de cursos</span>
+        </div>
+      </div>
+
+      <a href="ranking.html" class="ranking-btn">🏆 Ranking dos Estudantes</a>
+    </header>
+
+
+    <div class="section-top" id="cursos">
+      <div class="section-title">
+        <h2>🎓 Cursos Disponíveis</h2>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
+        <a href="loja-vip.html" class="store-btn">👑 VIP & Molduras</a>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Buscar curso...">
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-wrapper">
+      <button class="carousel-arrow left" onclick="moverCarrossel(-1)" aria-label="Curso anterior">‹</button>
+
+      <div class="container" id="cardsContainer">
+        <div class="card">
+          <div class="card-banner">
+            <span class="course-badge">Iniciante</span>
+            <img src="fotos/logicadeprogramaozyrodev.png" alt="Curso de Lógica de Programação">
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3>Lógica de Programação</h3>
+            <p>Aprenda a base do raciocínio lógico e dê os primeiros passos no mundo da programação.</p>
+            <div class="meta">
+              <span class="meta-item">📚 16 aulas</span>
+              <span class="meta-item">🧠 Base essencial</span>
+            </div>
+            <div class="progress-area">
+              <div class="progress-label">
+                <span>Seu progresso</span>
+                <span id="progress-logica-percent">0%</span>
+              </div>
+              <div class="progress"><span id="progress-logica"></span></div>
+              <div class="progress-text" id="progress-logica-text">0/16 aulas • 0%</div>
+              <a href="logica-programacao.html" class="btn">Assistir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-banner">
+            <span class="course-badge">Muito pedido</span>
+            <img src="fotos/htmlcsszyrodev.png" alt="Curso HTML e CSS">
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3>HTML e CSS</h3>
+            <p>Construa páginas bonitas, responsivas e com uma base sólida de front-end.</p>
+            <div class="meta">
+              <span class="meta-item">📚 41 aulas</span>
+              <span class="meta-item">🎨 Front-end</span>
+            </div>
+            <div class="progress-area">
+              <div class="progress-label">
+                <span>Seu progresso</span>
+                <span id="progress-htmlcss-percent">0%</span>
+              </div>
+              <div class="progress"><span id="progress-htmlcss"></span></div>
+              <div class="progress-text" id="progress-htmlcss-text">0/41 aulas • 0%</div>
+              <a href="cursohtmlecss.html" class="btn">Assistir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-banner">
+            <span class="course-badge">Interatividade</span>
+            <img src="fotos/javascriptzyrodev.png" alt="Curso JavaScript">
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3>JavaScript</h3>
+            <p>Aprenda a deixar seus projetos vivos, dinâmicos e interativos com JavaScript.</p>
+            <div class="meta">
+              <span class="meta-item">📚 49 aulas</span>
+              <span class="meta-item">⚙️ Dinamismo</span>
+            </div>
+            <div class="progress-area">
+              <div class="progress-label">
+                <span>Seu progresso</span>
+                <span id="progress-javascript-percent">0%</span>
+              </div>
+              <div class="progress"><span id="progress-javascript"></span></div>
+              <div class="progress-text" id="progress-javascript-text">0/49 aulas • 0%</div>
+              <a href="javascript.html" class="btn">Assistir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-banner">
+            <span class="course-badge">Popular</span>
+            <img src="fotos/pythonzyrodev.png" alt="Curso Python">
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3>Python</h3>
+            <p>Uma linguagem poderosa e simples para automações, sistemas e muito mais.</p>
+            <div class="meta">
+              <span class="meta-item">📚 47 aulas</span>
+              <span class="meta-item">🐍 Versátil</span>
+            </div>
+            <div class="progress-area">
+              <div class="progress-label">
+                <span>Seu progresso</span>
+                <span id="progress-python-percent">0%</span>
+              </div>
+              <div class="progress"><span id="progress-python"></span></div>
+              <div class="progress-text" id="progress-python-text">0/47 aulas • 0%</div>
+              <a href="python.html" class="btn">Assistir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-banner">
+            <span class="course-badge">Back-end</span>
+            <img src="fotos/phpzyrodev.png" alt="Curso PHP">
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3>PHP</h3>
+            <p>Desenvolva aplicações web mais completas e entenda melhor a lógica do servidor.</p>
+            <div class="meta">
+              <span class="meta-item">📚 44 aulas</span>
+              <span class="meta-item">🌐 Web</span>
+            </div>
+            <div class="progress-area">
+              <div class="progress-label">
+                <span>Seu progresso</span>
+                <span id="progress-php-percent">0%</span>
+              </div>
+              <div class="progress"><span id="progress-php"></span></div>
+              <div class="progress-text" id="progress-php-text">0/44 aulas • 0%</div>
+              <a href="php.html" class="btn">Assistir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-banner">
+            <span class="course-badge">Estruturado</span>
+            <img src="fotos/javazyrodev.png" alt="Curso Java">
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3>Java</h3>
+            <p>Aprenda orientação a objetos e desenvolva uma base forte para sistemas maiores.</p>
+            <div class="meta">
+              <span class="meta-item">📚 30 aulas</span>
+              <span class="meta-item">☕ OOP</span>
+            </div>
+            <div class="progress-area">
+              <div class="progress-label">
+                <span>Seu progresso</span>
+                <span id="progress-java-percent">0%</span>
+              </div>
+              <div class="progress"><span id="progress-java"></span></div>
+              <div class="progress-text" id="progress-java-text">0/30 aulas • 0%</div>
+              <a href="java.html" class="btn">Assistir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-banner">
+            <span class="course-badge">Estruturado</span>
+            <img src="fotos/csharpzyrodev.png" alt="Curso C#">
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3>C#</h3>
+            <p>Aprenda lógica, orientação a objetos e crie uma base sólida para desenvolver sistemas e jogos.</p>
+            <div class="meta">
+              <span class="meta-item">📚 22 aulas</span>
+              <span class="meta-item">💜 C#</span>
+            </div>
+            <div class="progress-area">
+              <div class="progress-label">
+                <span>Seu progresso</span>
+                <span id="progress-csharp-percent">0%</span>
+              </div>
+              <div class="progress"><span id="progress-csharp"></span></div>
+              <div class="progress-text" id="progress-csharp-text">0/22 aulas • 0%</div>
+              <a href="csharp.html" class="btn">Assistir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-arrow right" onclick="moverCarrossel(1)" aria-label="Próximo curso">›</button>
+    </div>
+
+    <div class="empty-search" id="emptySearch">
+      Nenhum curso encontrado com essa busca.
+    </div>
+  </div>
+
+  <!-- Guia de boas-vindas: aparece só na primeira visita -->
+  <div class="guia-overlay" id="guiaOverlay">
+    <div class="guia-box">
+      <div class="guia-icon" id="guiaIcon">👋</div>
+      <h2 id="guiaTitulo">Bem-vindo à ZyroDev!</h2>
+      <p id="guiaTexto">Este é um tour rápido para você conhecer a plataforma. Leva menos de 30 segundos.</p>
+      <div class="guia-dots" id="guiaDots"></div>
+      <div class="guia-actions">
+        <button class="guia-pular" onclick="fecharGuia()">Pular</button>
+        <button class="guia-avancar" id="guiaBotao" onclick="avancarGuia()">Próximo</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { auth, db } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".card");
+    const emptySearch = document.getElementById("emptySearch");
+    const cursosEmAndamento = document.getElementById("cursosEmAndamento");
+    const progressoGeral = document.getElementById("progressoGeral");
+
+    const cursos = {
+      "logica-programacao": {
+        totalAulas: 16,
+        progressEl: document.getElementById("progress-logica"),
+        textEl: document.getElementById("progress-logica-text"),
+        percentEl: document.getElementById("progress-logica-percent")
+      },
+      "html-css": {
+        totalAulas: 41,
+        progressEl: document.getElementById("progress-htmlcss"),
+        textEl: document.getElementById("progress-htmlcss-text"),
+        percentEl: document.getElementById("progress-htmlcss-percent")
+      },
+      "javascript": {
+        totalAulas: 49,
+        progressEl: document.getElementById("progress-javascript"),
+        textEl: document.getElementById("progress-javascript-text"),
+        percentEl: document.getElementById("progress-javascript-percent")
+      },
+      "python": {
+        totalAulas: 47,
+        progressEl: document.getElementById("progress-python"),
+        textEl: document.getElementById("progress-python-text"),
+        percentEl: document.getElementById("progress-python-percent")
+      },
+      "php": {
+        totalAulas: 44,
+        progressEl: document.getElementById("progress-php"),
+        textEl: document.getElementById("progress-php-text"),
+        percentEl: document.getElementById("progress-php-percent")
+      },
+      "java": {
+        totalAulas: 30,
+        progressEl: document.getElementById("progress-java"),
+        textEl: document.getElementById("progress-java-text"),
+        percentEl: document.getElementById("progress-java-percent")
+      },
+      "csharp": {
+        totalAulas: 22,
+        progressEl: document.getElementById("progress-csharp"),
+        textEl: document.getElementById("progress-csharp-text"),
+        percentEl: document.getElementById("progress-csharp-percent")
+      }
+    };
+
+    function setProgressoCurso(cursoId, concluidas = 0) {
+      const curso = cursos[cursoId];
+      if (!curso) return;
+
+      const total = curso.totalAulas;
+      const percent = Math.min(100, Math.round((concluidas / total) * 100));
+
+      curso.progressEl.style.width = percent + "%";
+      curso.textEl.textContent = `${concluidas}/${total} aulas • ${percent}%`;
+      curso.percentEl.textContent = `${percent}%`;
+    }
+
+    function contarAulasConcluidasPorCurso(aulasConcluidas = {}, cursoId) {
+      return Object.keys(aulasConcluidas).filter((key) => key.startsWith(`${cursoId}:`)).length;
+    }
+
+    function atualizarResumoGeral(aulasConcluidas = {}) {
+      let totalCursosIniciados = 0;
+      let totalAulasFeitas = 0;
+      let totalAulas = 0;
+
+      Object.keys(cursos).forEach((cursoId) => {
+        const concluidas = contarAulasConcluidasPorCurso(aulasConcluidas, cursoId);
+        if (concluidas > 0) totalCursosIniciados++;
+        totalAulasFeitas += concluidas;
+        totalAulas += cursos[cursoId].totalAulas;
+      });
+
+      const percentGeral = totalAulas > 0
+        ? Math.min(100, Math.round((totalAulasFeitas / totalAulas) * 100))
+        : 0;
+
+      cursosEmAndamento.textContent = totalCursosIniciados;
+      progressoGeral.textContent = `${percentGeral}%`;
+    }
+
+    function resetarTodosProgressos() {
+      Object.keys(cursos).forEach((cursoId) => setProgressoCurso(cursoId, 0));
+      cursosEmAndamento.textContent = "0";
+      progressoGeral.textContent = "0%";
+    }
+
+    async function carregarProgressos(uid) {
+      try {
+        const userRef = doc(db, "usuarios", uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+          resetarTodosProgressos();
+          return;
+        }
+
+        const dados = userSnap.data();
+        const aulasConcluidas = dados.aulasConcluidas || {};
+
+        Object.keys(cursos).forEach((cursoId) => {
+          const quantidade = contarAulasConcluidasPorCurso(aulasConcluidas, cursoId);
+          setProgressoCurso(cursoId, quantidade);
+        });
+
+        atualizarResumoGeral(aulasConcluidas);
+      } catch (error) {
+        console.error("Erro ao carregar progressos:", error);
+        resetarTodosProgressos();
+      }
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await carregarProgressos(user.uid);
+      } else {
+        resetarTodosProgressos();
+      }
+    });
+
+    searchInput.addEventListener("input", () => {
+      const input = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const text = card.innerText.toLowerCase();
+        const mostrar = text.includes(input);
+        card.style.display = mostrar ? "flex" : "none";
+        if (mostrar) visibleCount++;
+      });
+
+      emptySearch.style.display = visibleCount === 0 ? "block" : "none";
+    });
+  </script>
+
+  <script>
+    // Partículas de fundo (paleta ajustada ao laranja da marca)
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    const particles = [];
+    const totalParticles = window.innerWidth < 768 ? 30 : 55;
+
+    for (let i = 0; i < totalParticles; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 0.4,
+        dx: (Math.random() - 0.5) * 0.3,
+        dy: (Math.random() - 0.5) * 0.3,
+        opacity: Math.random() * 0.4 + 0.12
+      });
+    }
+
+    function drawConnections() {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a + 1; b < particles.length; b++) {
+          const dx = particles[a].x - particles[b].x;
+          const dy = particles[a].y - particles[b].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 110) {
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.strokeStyle = `rgba(255, 106, 0, ${0.07 * (1 - distance / 110)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 143, 61, ${p.opacity})`;
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < -10) p.x = canvas.width + 10;
+        if (p.x > canvas.width + 10) p.x = -10;
+        if (p.y < -10) p.y = canvas.height + 10;
+        if (p.y > canvas.height + 10) p.y = -10;
+      });
+
+      drawConnections();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
+  <script>
+    // Carrossel horizontal dos cursos
+    const trilha = document.getElementById("cardsContainer");
+
+    function moverCarrossel(direcao) {
+      const larguraCard = trilha.querySelector(".card").offsetWidth + 22;
+      trilha.scrollBy({ left: larguraCard * direcao, behavior: "smooth" });
+    }
+
+    // Permite rolar a trilha com a roda do mouse (sem precisar arrastar pra baixo)
+    trilha.addEventListener("wheel", (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        trilha.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+  </script>
+
+  <script>
+    // Guia de boas-vindas — aparece só na primeira visita ao site
+    const CHAVE_GUIA = "zyrodev_guia_visto";
+
+    const passosGuia = [
+      {
+        icone: "👋",
+        titulo: "Bem-vindo à ZyroDev!",
+        texto: "Este é um tour rápido para você conhecer a plataforma. Leva menos de 30 segundos."
+      },
+      {
+        icone: "🎓",
+        titulo: "Seus cursos",
+        texto: "Todos os cursos ficam em uma trilha horizontal. Arraste, use a roda do mouse ou as setas nas laterais para navegar."
+      },
+      {
+        icone: "🔍",
+        titulo: "Busca rápida",
+        texto: "Use a barra de busca para encontrar um curso específico pelo nome, tema ou linguagem."
+      },
+      {
+        icone: "📊",
+        titulo: "Acompanhe seu progresso",
+        texto: "Cada curso mostra quantas aulas você já concluiu. Seu progresso geral aparece no topo da página."
+      },
+      {
+        icone: "🏆",
+        titulo: "Tudo pronto!",
+        texto: "Clique em \"Assistir\" em qualquer curso para começar. Bons estudos!"
+      }
+    ];
+
+    let passoAtual = 0;
+    const guiaOverlay = document.getElementById("guiaOverlay");
+    const guiaIcon = document.getElementById("guiaIcon");
+    const guiaTitulo = document.getElementById("guiaTitulo");
+    const guiaTexto = document.getElementById("guiaTexto");
+    const guiaDots = document.getElementById("guiaDots");
+    const guiaBotao = document.getElementById("guiaBotao");
+
+    function renderizarDots() {
+      guiaDots.innerHTML = "";
+      passosGuia.forEach((_, i) => {
+        const dot = document.createElement("span");
+        if (i === passoAtual) dot.classList.add("ativo");
+        guiaDots.appendChild(dot);
+      });
+    }
+
+    function renderizarPasso() {
+      const passo = passosGuia[passoAtual];
+      guiaIcon.textContent = passo.icone;
+      guiaTitulo.textContent = passo.titulo;
+      guiaTexto.textContent = passo.texto;
+      guiaBotao.textContent = passoAtual === passosGuia.length - 1 ? "Começar a estudar" : "Próximo";
+      renderizarDots();
+    }
+
+    function avancarGuia() {
+      if (passoAtual < passosGuia.length - 1) {
+        passoAtual++;
+        renderizarPasso();
+      } else {
+        fecharGuia();
+      }
+    }
+
+    function fecharGuia() {
+      guiaOverlay.classList.remove("ativo");
+      try {
+        localStorage.setItem(CHAVE_GUIA, "1");
+      } catch (e) { /* ignora se o navegador bloquear localStorage */ }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      let jaViu = false;
+      try {
+        jaViu = localStorage.getItem(CHAVE_GUIA) === "1";
+      } catch (e) { /* ignora */ }
+
+      if (!jaViu) {
+        renderizarPasso();
+        setTimeout(() => guiaOverlay.classList.add("ativo"), 500);
+      }
+    });
+  </script>
+
+</body>
+
+</html>

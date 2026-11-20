@@ -1,382 +1,3983 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZyroDev — Atualização a caminho</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" href="./fotos/zraposa.png">
+  <title>ZyroDev</title>
+
+  <meta name="description" content="Aprenda programação gratuitamente e evolua com a ZyroDev">
+  <meta name="keywords" content="programação, cursos, desenvolvimento, ZyroDev, JavaScript, Python, HTML, CSS">
+  <meta property="og:title" content="ZyroDev">
+  <meta property="og:description" content="Aprenda programação gratuitamente e evolua com a ZyroDev">
+  <meta property="og:image" content="/preview.png">
+  <meta name="application-name" content="ZyroDev">
+  <meta name="apple-mobile-web-app-title" content="ZyroDev">
+  <script src="./config.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E6W5V869QD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-E6W5V869QD');
+  </script>
+
+  <style>
+  /* ============ RESET & BASE ============ */
   :root {
-    --bg-ink: #0D1117;
-    --surface: #161B22;
-    --surface-2: #1F2630;
-    --accent-amber: #F2A93B;
-    --accent-violet: #7C6FF0;
-    --text-primary: #E6EDF3;
-    --text-muted: #8B98A5;
-    --border: #2B3440;
-    --font-mono: 'JetBrains Mono', monospace;
-    --font-body: 'Inter', system-ui, sans-serif;
+    --bg: #000000;
+    --panel: #111111;
+    --orange: #ff6a00;
+    --orange-light: #ff8533;
+    --text-muted: #B8B8B8;
   }
 
-  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    margin: 0;
-    background: var(--bg-ink);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    color: #FFFFFF;
+    background: var(--bg);
+    overflow-x: hidden;
   }
 
-  /* ===== Página de exemplo (pode remover no site real) ===== */
-  .demo-page {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 120px 24px 60px;
-  }
-  .demo-page h1 {
-    font-family: var(--font-mono);
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    letter-spacing: -0.01em;
-  }
-  .demo-page p {
-    color: var(--text-muted);
-    line-height: 1.6;
+  img { max-width: 100%; height: auto; display: block; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
-  /* ===== Banner de anúncio ===== */
-  .update-banner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    padding: 14px 20px;
-    background: linear-gradient(90deg, var(--surface) 0%, var(--surface-2) 100%);
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.35);
-  }
-
-  .update-banner__text {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.92rem;
-    color: var(--text-primary);
-  }
-
-  .update-banner__dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent-amber);
-    box-shadow: 0 0 0 0 rgba(242, 169, 59, 0.6);
-    animation: pulse-dot 2s infinite;
-    flex-shrink: 0;
-  }
-
-  .update-banner__label {
-    font-family: var(--font-mono);
-    color: var(--accent-amber);
-    font-weight: 600;
-  }
-
-  .update-banner__sub {
-    color: var(--text-muted);
-  }
-
-  .update-banner__btn {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--bg-ink);
-    background: var(--accent-amber);
-    border: none;
-    padding: 9px 18px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform 0.15s ease, background 0.15s ease;
-    white-space: nowrap;
-  }
-
-  .update-banner__btn:hover {
-    background: #ffbe5c;
-    transform: translateY(-1px);
-  }
-
-  .update-banner__btn:focus-visible {
-    outline: 2px solid var(--accent-violet);
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--orange);
     outline-offset: 2px;
   }
 
-  .update-banner__btn:active {
-    transform: translateY(0);
+  /* ============ BOTÃO GENÉRICO ============ */
+  .button { display: inline-block; margin-top: 20px; }
+
+  .button a {
+    display: inline-block;
+    text-decoration: none;
+    background: #ff6a00;
+    color: #000000;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(255, 106, 0, 0.2);
+    transition: 0.3s ease;
   }
 
-  @keyframes pulse-dot {
-    0%   { box-shadow: 0 0 0 0 rgba(242, 169, 59, 0.55); }
-    70%  { box-shadow: 0 0 0 8px rgba(242, 169, 59, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(242, 169, 59, 0); }
+  .button a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(255, 106, 0, 0.35);
   }
 
-  /* ===== Modal / overlay estilo terminal ===== */
-  .update-overlay {
+  .button a:active { transform: translateY(0); }
+
+  /* ============ NAVBAR (3 pílulas flutuantes) ============ */
+  .navbar {
     position: fixed;
-    inset: 0;
-    background: rgba(6, 8, 12, 0.72);
-    backdrop-filter: blur(4px);
-    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 20px 32px;
+    z-index: 1000;
+    flex-wrap: wrap;
+  }
+
+  .nav-logo {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2000;
-    padding: 20px;
+    font-weight: 800;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-decoration: none;
   }
 
-  .update-overlay.is-open {
+  .nav-links {
     display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(10, 14, 25, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 999px;
+    padding: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .terminal {
-    width: 100%;
-    max-width: 460px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
+  .nav-links a {
+    padding: 9px 18px;
+    border-radius: 999px;
+    color: #B8B8B8;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.25s ease;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover { background: #FFFFFF; color: #111111; }
+
+  .nav-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: rgba(10, 14, 25, 0.85);
+    border: 1px solid rgba(255, 106, 0, 0.4);
+    color: #ff6a00;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    max-width: 220px;
+    transition: 0.25s ease;
+  }
+
+  .nav-profile:hover {
+    border-color: rgba(255, 106, 0, 0.8);
+    transform: translateY(-2px);
+  }
+
+  #headerFoto {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: none;
+    flex-shrink: 0;
+  }
+
+  #headerNome {
+    white-space: nowrap;
     overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.55);
-    animation: terminal-in 0.25s ease;
+    text-overflow: ellipsis;
+    max-width: 140px;
+    display: inline-block;
   }
 
-  @keyframes terminal-in {
-    from { opacity: 0; transform: translateY(10px) scale(0.98); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
+  /* Estilos dinâmicos de cargo/VIP aplicados via JS (mantidos) */
+  #headerNome.fundador-dourado,
+  .nome-fundador,
+  .nome-socio {
+    background: linear-gradient(90deg, #ff8533 0%, #ff6a00 25%, #ff6a00 50%, #ff6a00 75%, #ff6a00 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 106, 0, 0.18);
+    animation: brilhoDourado 3s linear infinite;
+    font-weight: 800;
   }
 
-  .terminal__bar {
+  #headerNome.copa-hexa,
+  .nome-copa-hexa {
+    background: linear-gradient(90deg, #FFFFFF 0%, #ff6a00 22%, #ff6a00 45%, #ff6a00 70%, #ff6a00 100%);
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(255, 106, 0, 0.22), 0 0 14px rgba(255, 106, 0, 0.18);
+    animation: brilhoCopaHexa 4s linear infinite;
+    font-weight: 800;
+  }
+
+  .user-profile.copa-hexa-ativo {
+    background: #111111;
+    border-color: rgba(255, 106, 0, 0.35);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35), 0 0 16px rgba(255, 106, 0, 0.12);
+  }
+
+  .user-profile.copa-hexa-ativo #headerFoto {
+    border: 2px solid rgba(255, 106, 0, 0.75);
+    box-shadow: 0 0 10px rgba(255, 106, 0, 0.25), 0 0 18px rgba(255, 106, 0, 0.18);
+  }
+
+  @keyframes brilhoCopaHexa { 0% { background-position: 0% center; } 100% { background-position: 250% center; } }
+
+  #headerNome.vip-esmeralda,
+  .nome-vip {
+    background: linear-gradient(90deg, #FFFFFF 0%, #ff8533 20%, #ff6a00 45%, #FFFFFF 70%, #FFFFFF 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(255, 106, 0, 0.18), 0 0 16px rgba(255, 106, 0, 0.12);
+    animation: brilhoVipEsmeraldaHeader 3s linear infinite;
+    font-weight: 800;
+  }
+
+  @keyframes brilhoVipEsmeraldaHeader { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+
+  .user-profile.vip-ativo {
+    background: linear-gradient(135deg, #111111, #161616);
+    border-color: rgba(255, 106, 0, 0.3);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35), 0 0 16px rgba(255, 106, 0, 0.1);
+  }
+
+  .user-profile.vip-ativo #headerFoto {
+    border: 2px solid rgba(255, 106, 0, 0.75);
+    box-shadow: 0 0 10px rgba(255, 106, 0, 0.22), 0 0 18px rgba(255, 106, 0, 0.12);
+  }
+
+  @keyframes brilhoDourado { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+
+  #headerNome.vip-perola-negra,
+  .nome-vip-perola-negra {
+    background: linear-gradient(90deg, #ff8533 0%, #ff6a00 22%, #ff6a00 45%, #111111 72%, #000000 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(255, 106, 0, 0.2), 0 0 16px rgba(255, 106, 0, 0.14);
+    animation: brilhoVipPerolaNegra 3s linear infinite;
+    font-weight: 800;
+  }
+
+  @keyframes brilhoVipPerolaNegra { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+
+  .user-profile.vip-perola-negra-ativo {
+    background: linear-gradient(135deg, #111111, #161616, #000000);
+    border-color: rgba(255, 106, 0, 0.35);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.38), 0 0 18px rgba(255, 106, 0, 0.14);
+  }
+
+  .user-profile.vip-perola-negra-ativo #headerFoto {
+    border: 2px solid rgba(255, 106, 0, 0.8);
+    box-shadow: 0 0 12px rgba(255, 106, 0, 0.24), 0 0 20px rgba(255, 106, 0, 0.14);
+  }
+
+  #headerNome.admin-dourado{color:#f5c542!important;text-shadow:0 0 10px rgba(245,197,66,.65);font-weight:900}
+  #headerNome.patrocinador-azul{color:#4f8cff!important;text-shadow:0 0 10px rgba(37,99,235,.55);font-weight:900}
+  #headerNome.criador-roxo{color:#c084fc!important;text-shadow:0 0 10px rgba(168,85,247,.55);font-weight:900}
+  .user-profile.admin-dourado-ativo{background:linear-gradient(135deg,rgba(245,197,66,.16),rgba(17,17,17,.95));border-color:rgba(245,197,66,.5);box-shadow:0 0 22px rgba(245,197,66,.18)}
+  .user-profile.patrocinador-azul-ativo{background:linear-gradient(135deg,rgba(37,99,235,.18),rgba(17,17,17,.95));border-color:rgba(37,99,235,.5);box-shadow:0 0 22px rgba(37,99,235,.18)}
+  .user-profile.criador-roxo-ativo{background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(17,17,17,.95));border-color:rgba(168,85,247,.5);box-shadow:0 0 22px rgba(168,85,247,.18)}
+
+  .user-profile.admin-dourado-ativo #headerFoto{border:2px solid #f5c542;box-shadow:0 0 12px rgba(245,197,66,.55)}
+  .user-profile.patrocinador-azul-ativo #headerFoto{border:2px solid #4f8cff;box-shadow:0 0 12px rgba(37,99,235,.55)}
+  .user-profile.criador-roxo-ativo #headerFoto{border:2px solid #c084fc;box-shadow:0 0 12px rgba(168,85,247,.55)}
+  @media (max-width: 900px) {
+    .navbar { justify-content: center; padding: 14px 12px; }
+    .nav-links a { padding: 7px 12px; font-size: 12px; }
+    .nav-profile { max-width: 150px; order: 3; }
+    #headerNome { max-width: 90px; font-size: 12px; }
+  }
+
+  /* ============ HERO (vídeo de fundo) ============ */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 96px 24px 80px;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.72) 55%, #000000 100%),
+      radial-gradient(60% 50% at 50% 30%, rgba(255,106,0,0.10), transparent 70%);
+  }
+
+  .hero-inner { position: relative; z-index: 2; max-width: 720px; }
+
+  .hero-title {
+    font-family: 'Anton', 'Inter', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(34px, 6vw, 62px);
+    line-height: 1.05;
+    letter-spacing: 0.5px;
+    color: #f85b00;
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(6px);
+    animation: heroIn 0.9s cubic-bezier(.16,1,.3,1) forwards;
+    animation-delay: 0.1s;
+  }
+  .hero-title .accent {
+    color: var(--orange);
+  }
+
+  .hero-subtitle {
+    margin-top: 22px;
+    color: #B8B8B8;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 460px;
+    margin-inline: auto;
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(6px);
+    animation: heroIn 0.9s cubic-bezier(.16,1,.3,1) forwards;
+    animation-delay: 0.32s;
+  }
+
+  @keyframes heroIn { to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+
+  .hero-play-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 34px;
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(6px);
+    animation: heroIn 0.9s cubic-bezier(.16,1,.3,1) forwards;
+    animation-delay: 0.5s;
+  }
+
+  .hero-mini-stats {
+    display: flex;
+    gap: 28px;
+    justify-content: center;
+    margin-top: 36px;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(6px);
+    animation: heroIn 0.9s cubic-bezier(.16,1,.3,1) forwards;
+    animation-delay: 0.68s;
+  }
+
+  .hero-mini-stats span {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 14px;
-    background: var(--surface-2);
-    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: #E2E8F0;
+    font-weight: 600;
   }
 
-  .terminal__dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-  }
-  .terminal__dot--r { background: #FF5F57; }
-  .terminal__dot--y { background: #FEBC2E; }
-  .terminal__dot--g { background: #28C840; }
-
-  .terminal__title {
-    margin-left: 6px;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--text-muted);
+  @media (max-width: 600px) {
+    .hero { padding: 88px 16px 60px; }
+    .hero-title { font-size: clamp(24px, 8vw, 34px); }
+    .hero-subtitle { font-size: 13px; }
   }
 
-  .terminal__close {
-    margin-left: auto;
-    background: none;
-    border: none;
-    color: var(--text-muted);
+  /* ============ BOTÃO PLAY HERO (UIverse) ============ */
+  .hero-uiverse-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 10px;
+    width: 130px;
+    height: 50px;
+    color: rgb(182, 182, 182);
+    text-shadow: 2px 2px rgb(116, 116, 116);
+    text-transform: uppercase;
     cursor: pointer;
-    font-size: 1rem;
-    line-height: 1;
-    padding: 4px 6px;
-    border-radius: 4px;
-  }
-  .terminal__close:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
-  .terminal__close:focus-visible { outline: 2px solid var(--accent-violet); outline-offset: 1px; }
-
-  .terminal__body {
-    padding: 22px 20px 26px;
-    font-family: var(--font-mono);
-    font-size: 0.88rem;
-    line-height: 1.7;
+    border: solid 2px black;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 17px;
+    background-color: hsl(27, 100%, 51%);
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
   }
 
-  .terminal__line {
-    color: var(--text-muted);
-  }
-  .terminal__line span.cmd {
-    color: var(--accent-violet);
+  .hero-uiverse-btn:active {
+    transform: scale(0.9);
+    transition: all 100ms ease;
   }
 
-  .terminal__cursor {
-    display: inline-block;
-    width: 7px;
-    height: 14px;
-    background: var(--accent-amber);
-    margin-left: 2px;
-    vertical-align: middle;
-    animation: blink 1s step-end infinite;
+  .hero-uiverse-btn svg {
+    transition: all 0.5s ease;
+    z-index: 2;
+    flex-shrink: 0;
   }
 
-  @keyframes blink {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
+  .hero-uiverse-btn .play {
+    transition: all 0.5s ease;
+    transition-delay: 300ms;
   }
 
-  .terminal__result {
-    margin-top: 14px;
+  .hero-uiverse-btn:hover svg {
+    transform: scale(3) translate(50%);
+  }
+
+  .hero-uiverse-btn .now {
+    position: absolute;
+    left: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+    z-index: 2;
+  }
+
+  .hero-uiverse-btn:hover .now {
+    transform: translateX(10px);
+    transition-delay: 300ms;
+  }
+
+  .hero-uiverse-btn:hover .play {
+    transform: translateX(200%);
+    transition-delay: 300ms;
+  }
+
+  /* ============ ESTATÍSTICAS ============ */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 80px 20px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat { text-align: center; }
+
+  .stat h2 {
+    font-size: 40px;
+    color: #ff6a00;
+    text-shadow: 0 0 24px rgba(255, 106, 0, 0.25);
+  }
+
+  .stat p { color: #B8B8B8; }
+
+  /* ============ FRASES FLUTUANTES ============ */
+  .motivacao-area { height: 150px; position: relative; overflow: hidden; z-index: 1; }
+
+  .palavra {
+    position: absolute;
+    color: #ff6a00;
+    font-weight: 600;
+    font-size: 18px;
     opacity: 0;
-    transform: translateY(4px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    animation: subir 2s linear forwards;
   }
-  .terminal__result.is-visible {
+
+  @keyframes subir {
+    0% { opacity: 0; transform: translateY(10px); }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-20px); }
+  }
+
+  /* ============ FEATURES ============ */
+  .features {
+    width: 100%;
+    padding: 100px 8%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-card {
+    position: relative;
+    min-width: 0;
+    padding: 30px;
+    border-radius: 12px;
+    background: linear-gradient(160deg, rgba(17, 17, 17, 0.75), rgba(17, 17, 17, 0.55));
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-10px) scale(1.015);
+    border-color: rgba(255, 106, 0, 0.35);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4), 0 0 24px rgba(255, 106, 0, 0.18);
+  }
+
+  .feature-card h3 { margin-bottom: 10px; color: #ff6a00; }
+  .feature-card p { color: #B8B8B8; font-size: 14px; }
+
+  /* ============ TRILHAS / CURSOS ============ */
+  .zr-courses { width: 100%; padding: 20px 8% 100px; position: relative; z-index: 1; }
+
+  .zr-courses-header { text-align: center; max-width: 640px; margin: 0 auto 50px; }
+
+  .zr-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ff6a00;
+    background: rgba(255, 106, 0, 0.1);
+    border: 1px solid rgba(255, 106, 0, 0.25);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+
+  .zr-courses-header h2 {
+    font-size: 34px;
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, #FFFFFF, #ff8533);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .zr-courses-header p { color: #B8B8B8; font-size: 15px; line-height: 1.6; }
+
+  .zr-courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .zr-course-card {
+    position: relative;
+    text-align: center;
+    padding: 28px 14px;
+    border-radius: 16px;
+    background: linear-gradient(160deg, rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.6));
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(14px);
+    transition: transform 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+
+  .zr-course-card .zr-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(255, 106, 0, 0.35));
+    transition: transform 0.4s ease;
+  }
+
+  .zr-course-card .zr-name { font-size: 13px; font-weight: 600; color: #B8B8B8; }
+
+  .zr-course-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 106, 0, 0.3);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35), 0 0 22px rgba(255, 106, 0, 0.14);
+  }
+
+  .zr-course-card:hover .zr-icon { transform: scale(1.15) rotate(-4deg); }
+
+  /* ============ COMUNIDADE ============ */
+  .zr-community { width: 100%; padding: 20px 8% 100px; position: relative; z-index: 1; }
+
+  .zr-community-box {
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 24px;
+    padding: 50px 36px;
+    background: linear-gradient(135deg, rgba(255, 106, 0, 0.14), rgba(17, 17, 17, 0.8));
+    border: 1px solid rgba(255, 133, 51, 0.18);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .zr-community-box h2 { font-size: 28px; margin-bottom: 14px; }
+  .zr-community-box p { color: #B8B8B8; font-size: 15px; line-height: 1.7; margin-bottom: 20px; }
+
+  .zr-community-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  .zr-community-stats div {
+    text-align: center;
+    background: rgba(17, 17, 17, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 18px 10px;
+  }
+
+  .zr-community-stats strong { display: block; font-size: 24px; color: #ff6a00; margin-bottom: 4px; }
+  .zr-community-stats span { font-size: 12px; color: #B8B8B8; }
+
+  #headerNome.admin-dourado{color:#f5c542!important;text-shadow:0 0 10px rgba(245,197,66,.65);font-weight:900}
+  #headerNome.patrocinador-azul{color:#4f8cff!important;text-shadow:0 0 10px rgba(37,99,235,.55);font-weight:900}
+  #headerNome.criador-roxo{color:#c084fc!important;text-shadow:0 0 10px rgba(168,85,247,.55);font-weight:900}
+  .user-profile.admin-dourado-ativo{background:linear-gradient(135deg,rgba(245,197,66,.16),rgba(17,17,17,.95));border-color:rgba(245,197,66,.5);box-shadow:0 0 22px rgba(245,197,66,.18)}
+  .user-profile.patrocinador-azul-ativo{background:linear-gradient(135deg,rgba(37,99,235,.18),rgba(17,17,17,.95));border-color:rgba(37,99,235,.5);box-shadow:0 0 22px rgba(37,99,235,.18)}
+  .user-profile.criador-roxo-ativo{background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(17,17,17,.95));border-color:rgba(168,85,247,.5);box-shadow:0 0 22px rgba(168,85,247,.18)}
+
+  .user-profile.admin-dourado-ativo #headerFoto{border:2px solid #f5c542;box-shadow:0 0 12px rgba(245,197,66,.55)}
+  .user-profile.patrocinador-azul-ativo #headerFoto{border:2px solid #4f8cff;box-shadow:0 0 12px rgba(37,99,235,.55)}
+  .user-profile.criador-roxo-ativo #headerFoto{border:2px solid #c084fc;box-shadow:0 0 12px rgba(168,85,247,.55)}
+  @media (max-width: 900px) {
+    .zr-community-box { grid-template-columns: 1fr; padding: 34px 22px; }
+    .zr-courses-header h2 { font-size: 26px; }
+  }
+
+  /* ============ FOOTER ============ */
+  .footer { background: var(--bg); padding-top: 60px; margin-top: 60px; border-top: 1px solid var(--panel); position: relative; z-index: 1; }
+
+  .footer-top {
+    height: 3px;
+    width: 100%;
+    background: #ff6a00;
+  }
+
+  .footer-container { width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 50px; padding: 60px 8%; }
+
+  .footer-brand { max-width: 350px; }
+  .footer-brand h2 { color: #ff6a00; margin-bottom: 15px; }
+  .footer-brand p { color: #B8B8B8; font-size: 14px; line-height: 1.6; }
+
+  .footer-social h3, .footer-links h3 { margin-bottom: 15px; color: #ff6a00; }
+  .footer-social h3::before, .footer-links h3::before { content: "—"; margin-right: 6px; color: rgba(255, 106, 0, 0.6); }
+
+  .social-icons { display: flex; gap: 15px; }
+  .social-icons img { width: 28px; transition: 0.3s; }
+  .social-icons img:hover { transform: scale(1.2); filter: drop-shadow(0 0 8px #ff6a00); }
+
+  .footer-links { display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { text-decoration: none; color: #B8B8B8; font-size: 14px; transition: 0.3s; }
+  .footer-links a:hover { color: #ff6a00; transform: translateX(5px); }
+
+  .footer-bottom { text-align: center; padding: 25px; border-top: 1px solid var(--panel); color: #888888; font-size: 13px; }
+
+  .link-direitos { color: #ff6a00; text-decoration: none; font-weight: bold; }
+  .link-direitos:hover { text-decoration: underline; }
+
+  #headerNome.admin-dourado{color:#f5c542!important;text-shadow:0 0 10px rgba(245,197,66,.65);font-weight:900}
+  #headerNome.patrocinador-azul{color:#4f8cff!important;text-shadow:0 0 10px rgba(37,99,235,.55);font-weight:900}
+  #headerNome.criador-roxo{color:#c084fc!important;text-shadow:0 0 10px rgba(168,85,247,.55);font-weight:900}
+  .user-profile.admin-dourado-ativo{background:linear-gradient(135deg,rgba(245,197,66,.16),rgba(17,17,17,.95));border-color:rgba(245,197,66,.5);box-shadow:0 0 22px rgba(245,197,66,.18)}
+  .user-profile.patrocinador-azul-ativo{background:linear-gradient(135deg,rgba(37,99,235,.18),rgba(17,17,17,.95));border-color:rgba(37,99,235,.5);box-shadow:0 0 22px rgba(37,99,235,.18)}
+  .user-profile.criador-roxo-ativo{background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(17,17,17,.95));border-color:rgba(168,85,247,.5);box-shadow:0 0 22px rgba(168,85,247,.18)}
+
+  .user-profile.admin-dourado-ativo #headerFoto{border:2px solid #f5c542;box-shadow:0 0 12px rgba(245,197,66,.55)}
+  .user-profile.patrocinador-azul-ativo #headerFoto{border:2px solid #4f8cff;box-shadow:0 0 12px rgba(37,99,235,.55)}
+  .user-profile.criador-roxo-ativo #headerFoto{border:2px solid #c084fc;box-shadow:0 0 12px rgba(168,85,247,.55)}
+  @media (max-width: 900px) {
+    .footer-container { padding: 30px 16px; gap: 24px; flex-direction: column; align-items: center; text-align: center; }
+    .footer-brand, .footer-social, .footer-links { width: 100%; max-width: 100%; }
+    .social-icons { justify-content: center; flex-wrap: wrap; }
+  }
+
+  /* ============ COOKIES ============ */
+  .cookie-box {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    background: rgba(17, 17, 17, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 20px 30px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 9999;
+    opacity: 0;
+    transition: 0.6s;
+  }
+
+  .cookie-box.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .cookie-text { font-size: 14px; color: #B8B8B8; max-width: 400px; }
+
+  .cookie-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #ff6a00;
+    color: #FFFFFF;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .cookie-btn:hover { transform: scale(1.05); box-shadow: 0 0 10px #ff6a00, 0 0 20px #ff6a00; }
+
+  #headerNome.admin-dourado{color:#f5c542!important;text-shadow:0 0 10px rgba(245,197,66,.65);font-weight:900}
+  #headerNome.patrocinador-azul{color:#4f8cff!important;text-shadow:0 0 10px rgba(37,99,235,.55);font-weight:900}
+  #headerNome.criador-roxo{color:#c084fc!important;text-shadow:0 0 10px rgba(168,85,247,.55);font-weight:900}
+  .user-profile.admin-dourado-ativo{background:linear-gradient(135deg,rgba(245,197,66,.16),rgba(17,17,17,.95));border-color:rgba(245,197,66,.5);box-shadow:0 0 22px rgba(245,197,66,.18)}
+  .user-profile.patrocinador-azul-ativo{background:linear-gradient(135deg,rgba(37,99,235,.18),rgba(17,17,17,.95));border-color:rgba(37,99,235,.5);box-shadow:0 0 22px rgba(37,99,235,.18)}
+  .user-profile.criador-roxo-ativo{background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(17,17,17,.95));border-color:rgba(168,85,247,.5);box-shadow:0 0 22px rgba(168,85,247,.18)}
+
+  .user-profile.admin-dourado-ativo #headerFoto{border:2px solid #f5c542;box-shadow:0 0 12px rgba(245,197,66,.55)}
+  .user-profile.patrocinador-azul-ativo #headerFoto{border:2px solid #4f8cff;box-shadow:0 0 12px rgba(37,99,235,.55)}
+  .user-profile.criador-roxo-ativo #headerFoto{border:2px solid #c084fc;box-shadow:0 0 12px rgba(168,85,247,.55)}
+  @media (max-width: 900px) {
+    .cookie-box { width: calc(100vw - 20px); max-width: 360px; bottom: 10px; padding: 14px; gap: 10px; flex-direction: column; text-align: center; }
+    .cookie-text { font-size: 12px; max-width: 100%; }
+    .cookie-btn { width: 100%; }
+  }
+
+  /* ============ POPUP LOGIN GOOGLE ============ */
+  .google-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.35s ease;
+  }
+
+  .google-popup-overlay.show { opacity: 1; pointer-events: auto; }
+
+  .google-popup-box {
+    width: 100%;
+    max-width: 480px;
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+    position: relative;
+    transform: scale(0.92) translateY(20px);
+    transition: 0.35s ease;
+  }
+
+  .google-popup-overlay.show .google-popup-box { transform: scale(1) translateY(0); }
+
+  .google-popup-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: transparent;
+    border: none;
+    color: #B8B8B8;
+    font-size: 26px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .google-popup-close:hover { color: #FFFFFF; transform: scale(1.1); }
+
+  .google-popup-badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255, 106, 0, 0.16);
+    color: #ff6a00;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 106, 0, 0.25);
+  }
+
+  .google-popup-box h2 {
+    font-size: 32px;
+    margin-bottom: 14px;
+    color: #ff6a00;
+  }
+
+  .google-popup-box p { color: #B8B8B8; font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+
+  .google-popup-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  .google-popup-btn { text-decoration: none; border: none; cursor: pointer; padding: 13px 20px; border-radius: 14px; font-weight: 700; font-size: 14px; transition: 0.25s; }
+
+  .google-popup-btn-main { background: #ff6a00; color: #FFFFFF; box-shadow: 0 10px 25px rgba(255, 106, 0, 0.25); }
+  .google-popup-btn-main:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(255, 106, 0, 0.38); }
+
+  .google-popup-btn-secondary { background: rgba(255, 255, 255, 0.07); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.1); }
+  .google-popup-btn-secondary:hover { background: rgba(255, 255, 255, 0.12); }
+
+  #headerNome.admin-dourado{color:#f5c542!important;text-shadow:0 0 10px rgba(245,197,66,.65);font-weight:900}
+  #headerNome.patrocinador-azul{color:#4f8cff!important;text-shadow:0 0 10px rgba(37,99,235,.55);font-weight:900}
+  #headerNome.criador-roxo{color:#c084fc!important;text-shadow:0 0 10px rgba(168,85,247,.55);font-weight:900}
+  .user-profile.admin-dourado-ativo{background:linear-gradient(135deg,rgba(245,197,66,.16),rgba(17,17,17,.95));border-color:rgba(245,197,66,.5);box-shadow:0 0 22px rgba(245,197,66,.18)}
+  .user-profile.patrocinador-azul-ativo{background:linear-gradient(135deg,rgba(37,99,235,.18),rgba(17,17,17,.95));border-color:rgba(37,99,235,.5);box-shadow:0 0 22px rgba(37,99,235,.18)}
+  .user-profile.criador-roxo-ativo{background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(17,17,17,.95));border-color:rgba(168,85,247,.5);box-shadow:0 0 22px rgba(168,85,247,.18)}
+
+  .user-profile.admin-dourado-ativo #headerFoto{border:2px solid #f5c542;box-shadow:0 0 12px rgba(245,197,66,.55)}
+  .user-profile.patrocinador-azul-ativo #headerFoto{border:2px solid #4f8cff;box-shadow:0 0 12px rgba(37,99,235,.55)}
+  .user-profile.criador-roxo-ativo #headerFoto{border:2px solid #c084fc;box-shadow:0 0 12px rgba(168,85,247,.55)}
+  @media (max-width: 900px) {
+    .google-popup-box { max-width: 92vw; padding: 22px 14px; border-radius: 18px; }
+    .google-popup-box h2 { font-size: 22px; }
+    .google-popup-box p { font-size: 13px; }
+    .google-popup-buttons { flex-direction: column; }
+    .google-popup-btn { width: 100%; }
+  }
+
+  /* ============ ATUALIZAÇÕES (sócios) ============ */
+  #listaUpdates { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 8%; }
+  #listaUpdates > div { background: var(--panel); padding: 20px; margin-bottom: 10px; border-radius: 12px; }
+
+  /* ============ REVEAL ON SCROLL ============ */
+  .zr-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(6px);
+    transition: opacity 0.9s cubic-bezier(.16,1,.3,1), transform 0.9s cubic-bezier(.16,1,.3,1), filter 0.9s cubic-bezier(.16,1,.3,1);
+  }
+
+  .zr-reveal.zr-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(38% 32% at 14% 8%, rgba(255, 106, 0, 0.1), transparent 60%),
+      radial-gradient(34% 30% at 86% 18%, rgba(255, 106, 0, 0.07), transparent 60%),
+      radial-gradient(40% 36% at 50% 100%, rgba(255, 106, 0, 0.1), transparent 60%);
+    animation: ambientDrift 18s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  @keyframes ambientDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(2%, -2%) scale(1.05); }
+  }
+
+  /* ============ PRELOADER (Honeycomb) ============ */
+  #preloader {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+
+  #preloader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+
+  @keyframes honeycomb {
+    0%, 20%, 80%, 100% { opacity: 0; transform: scale(0); }
+    30%, 70% { opacity: 1; transform: scale(1); }
+  }
+
+  .honeycomb { height: 24px; position: relative; width: 24px; }
+
+  .honeycomb div {
+    animation: honeycomb 2.1s infinite backwards;
+    background: #ff6a00;
+    height: 12px;
+    margin-top: 6px;
+    position: absolute;
+    width: 24px;
+  }
+
+  .honeycomb div::after,
+  .honeycomb div::before {
+    content: '';
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  .honeycomb div::after { top: -6px; border-bottom: 6px solid #ff6a00; }
+  .honeycomb div::before { bottom: -6px; border-top: 6px solid #ff6a00; }
+
+  .honeycomb div:nth-child(1) { animation-delay: 0s; left: -28px; top: 0; }
+  .honeycomb div:nth-child(2) { animation-delay: 0.1s; left: -14px; top: 22px; }
+  .honeycomb div:nth-child(3) { animation-delay: 0.2s; left: 14px; top: 22px; }
+  .honeycomb div:nth-child(4) { animation-delay: 0.3s; left: 28px; top: 0; }
+  .honeycomb div:nth-child(5) { animation-delay: 0.4s; left: 14px; top: -22px; }
+  .honeycomb div:nth-child(6) { animation-delay: 0.5s; left: -14px; top: -22px; }
+  .honeycomb div:nth-child(7) { animation-delay: 0.6s; left: 0; top: 0; }
+
+  /* ============ ENTRADA SUAVE DO SITE (após preloader) ============ */
+  .site-wrapper {
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(10px);
+    transition: opacity 0.85s cubic-bezier(.16,1,.3,1), transform 0.85s cubic-bezier(.16,1,.3,1), filter 0.85s cubic-bezier(.16,1,.3,1);
+    will-change: opacity, transform, filter;
+  }
+
+  .site-wrapper.site-in {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 
-  .terminal__result-title {
-    color: var(--text-primary);
-    font-weight: 700;
+  /* ============ TELA DE VERIFICAÇÃO DE ACESSO (conteúdo protegido) ============ */
+  .auth-checking-overlay {
+    position: fixed;
+    inset: 0;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999998;
+    opacity: 1;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
   }
 
-  .terminal__result-sub {
-    margin-top: 6px;
-    color: var(--text-muted);
-    font-family: var(--font-body);
-    font-size: 0.86rem;
-  }
+  .auth-checking-overlay.hide { opacity: 0; visibility: hidden; pointer-events: none; }
 
-  /* barra de progresso infinita */
-  .scan-track {
-    margin-top: 18px;
-    height: 4px;
-    width: 100%;
-    background: var(--surface-2);
-    border-radius: 999px;
-    overflow: hidden;
+  .auth-checking-box { text-align: center; color: #B8B8B8; font-size: 14px; }
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#preloader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  z-index: 999999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#preloader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.honeycomb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 24px;
+  width: 24px;
+}
+
+.nav-logo img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  display: block;
+}
+
+.menu {
+  padding: 0.3rem;
+  background: rgba(250, 122, 3, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  gap: 2px;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 60px;
+  height: 38px;
+
+  border-radius: 6px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  transform-origin: center left;
+  transition: width 0.2s ease-in;
+
+  text-decoration: none;
+  color: #f5f0f0;
+}
+
+.link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 95px;
+  height: 50px;
+
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  transform-origin: center left;
+  transition: width 0.2s ease-in;
+
+  text-decoration: none;
+  color: #f5f0f0;
+}
+
+.link::before {
+  position: absolute;
+  z-index: -1;
+  content: "";
+
+  display: block;
+
+  border-radius: 8px;
+
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  left: 0;
+
+  transform: translateX(100%);
+  transition: transform 0.2s ease-in;
+
+  transform-origin: center right;
+
+  background-color: #ee853e;
+}
+
+.link:hover,
+.link:focus {
+  outline: none;
+  width: 130px;
+}
+
+.link:hover::before,
+.link:focus::before {
+  transform: translateX(0);
+}
+
+.link-icon {
+  width: 28px;
+  height: 28px;
+
+  display: block;
+  flex-shrink: 0;
+
+  left: 18px;
+  position: absolute;
+}
+
+.link-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.link-title {
+  transform: translateX(100%);
+  opacity: 0;
+
+  transition:
+    transform 0.2s ease-in,
+    opacity 0.2s ease-in;
+
+  transform-origin: center right;
+
+  display: block;
+
+  text-align: center;
+
+  text-indent: 28px;
+  width: 100%;
+}
+
+.link:hover .link-title,
+.link:focus .link-title {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.link-title {
+  transform: translateX(100%);
+  opacity: 0;
+
+  transition:
+    transform 0.2s ease-in,
+    opacity 0.2s ease-in;
+
+  transform-origin: center right;
+
+  display: block;
+  text-align: center;
+
+  text-indent: 28px;
+  width: 100%;
+
+  /* NÃO deixa o texto quebrar */
+  white-space: nowrap;
+}
+.link:hover,
+.link:focus {
+  outline: none;
+  width: 145px;
+}
+
+/* BOTÃO ATIVO */
+.link.active {
+  color: #f1eeeb;
+}
+
+.link.active::before {
+  background-color: #ff6600;
+}
+
+
+.hero-mini-stats span {
     position: relative;
-  }
-  .scan-track__bar {
+    display: inline-block;
+    color: #fff;
+
+    background: linear-gradient(
+        120deg,
+        #ffffff 0%,
+        #ffffff 25%,
+        #ff6a00 40%,
+        #ffffff 55%,
+        #ff6a00 70%,
+        #ffffff 100%
+    );
+
+    background-size: 300% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: aguaTexto 3s ease-in-out infinite;
+
+    filter: drop-shadow(0 0 6px rgba(255, 106, 0, 0.7));
+}
+
+@keyframes aguaTexto {
+    0% {
+        background-position: 100% 50%;
+        transform: translateY(0px);
+    }
+
+    25% {
+        transform: translateY(-1px);
+    }
+
+    50% {
+        background-position: 0% 50%;
+        transform: translateY(1px);
+    }
+
+    75% {
+        transform: translateY(-1px);
+    }
+
+    100% {
+        background-position: 100% 50%;
+        transform: translateY(0px);
+    }
+}
+
+/* =====================================================
+   MENU - CORREÇÃO FINAL DOS ÍCONES E TEXTOS
+   ===================================================== */
+
+.menu .link {
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 60px !important;
+  height: 50px !important;
+  border-radius: 8px !important;
+  position: relative !important;
+  z-index: 1 !important;
+  overflow: hidden !important;
+  transform-origin: center left !important;
+  transition: width 0.25s ease-in-out !important;
+  text-decoration: none !important;
+  color: #f5f0f0 !important;
+}
+
+/* ÍCONE */
+.menu .link .link-icon {
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  left: 16px !important;
+  position: absolute !important;
+}
+
+.menu .link .link-icon svg {
+  width: 28px !important;
+  height: 28px !important;
+  display: block !important;
+}
+
+/* TEXTO ESCONDIDO */
+.menu .link .link-title {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+
+  transform: translateX(100%) !important;
+  opacity: 0 !important;
+
+  transition:
+    transform 0.25s ease-in-out,
+    opacity 0.25s ease-in-out !important;
+
+  pointer-events: none !important;
+}
+
+/* HOVER */
+.menu .link:hover,
+.menu .link:focus {
+  width: 145px !important;
+  outline: none !important;
+}
+
+
+/* EFEITO LARANJA */
+.menu .link::before {
+  position: absolute !important;
+  z-index: -1 !important;
+  content: "" !important;
+  display: block !important;
+
+  border-radius: 8px !important;
+  width: 100% !important;
+  height: 100% !important;
+
+  top: 0 !important;
+  left: 0 !important;
+
+  transform: translateX(100%) !important;
+  transition: transform 0.25s ease-in-out !important;
+  transform-origin: center right !important;
+
+  background-color: #ee853e !important;
+}
+
+.menu .link:hover::before,
+.menu .link:focus::before {
+  transform: translateX(0) !important;
+}
+
+/* BOTÃO ATIVO */
+.menu .link.active {
+  color: #f1eeeb !important;
+}
+
+.menu .link.active::before {
+  background-color: #ff6600 !important;
+}
+
+/* =========================================================
+   ZYRODEV - FLEX COURSE CAROUSEL
+========================================================= */
+
+.zyro-courses-showcase {
+    width: 100%;
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.zyro-courses-title {
+    text-align: center;
+    margin-bottom: 35px;
+    padding: 0 20px;
+}
+
+.zyro-courses-title span {
+    color: #ff6a00;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.zyro-courses-title h2 {
+    margin: 12px 0 10px;
+
+    font-size: clamp(28px, 4vw, 44px);
+
+    color: #fff;
+}
+
+.zyro-courses-title p {
+    margin: 0 auto;
+
+    max-width: 650px;
+
+    color: #999;
+
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* CARROSSEL */
+
+.zyro-flex-carousel {
+    position: relative;
+
+    width: 100%;
+    height: 520px;
+
+    overflow: hidden;
+
+    user-select: none;
+    touch-action: pan-y;
+
+    cursor: grab;
+}
+
+.zyro-flex-carousel.dragging {
+    cursor: grabbing;
+}
+
+
+/* TRACK */
+
+.zyro-carousel-track {
     position: absolute;
-    top: 0; left: 0;
+
+    top: 50%;
+    left: 50%;
+
+    height: 390px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    transform: translate(-50%, -50%);
+
+    will-change: transform;
+}
+
+
+/* IMAGENS */
+
+.zyro-carousel-item {
+    flex-shrink: 0;
+
+    width: 300px;
+    height: 390px;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    background: #111;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.45);
+
+    transition:
+        width .5s ease,
+        height .5s ease,
+        opacity .5s ease,
+        transform .5s ease,
+        filter .5s ease;
+}
+
+.zyro-carousel-item img {
+    width: 100%;
     height: 100%;
-    width: 35%;
+
+    display: block;
+
+    object-fit: cover;
+
+    pointer-events: none;
+}
+
+
+/* ITEM DO CENTRO */
+
+.zyro-carousel-item.active {
+    width: 430px;
+    height: 500px;
+
+    border-color: rgba(255,106,0,.55);
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.65),
+        0 0 40px rgba(255,106,0,.10);
+
+    z-index: 5;
+}
+
+
+/* ITEMS DOS LADOS */
+
+.zyro-carousel-item:not(.active) {
+    opacity: .55;
+
+    filter: brightness(.65);
+
+    transform: scale(.88);
+}
+
+
+/* SETAS */
+
+.zyro-carousel-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 20;
+
+    width: 52px;
+    height: 52px;
+
+    transform: translateY(-50%);
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    background: rgba(15,15,15,.85);
+
+    color: #fff;
+
+    font-size: 32px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(12px);
+
+    transition:
+        .25s ease;
+}
+
+.zyro-carousel-arrow:hover {
+    background: #ff6a00;
+
+    border-color: #ff6a00;
+
+    transform: translateY(-50%) scale(1.08);
+}
+
+.zyro-carousel-left {
+    left: 30px;
+}
+
+.zyro-carousel-right {
+    right: 30px;
+}
+
+
+/* TEXTO / CONTADOR */
+
+.zyro-carousel-caption {
+    position: absolute;
+
+    bottom: 12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 30;
+
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    padding: 10px 16px;
+
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--accent-violet), var(--accent-amber));
-    animation: scan-move 1.4s ease-in-out infinite;
-  }
-  @keyframes scan-move {
-    0%   { left: -35%; }
-    100% { left: 100%; }
+
+    background: rgba(10,10,10,.75);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    backdrop-filter: blur(15px);
+
+    white-space: nowrap;
+}
+
+.zyro-carousel-caption strong {
+    color: #fff;
+
+    font-size: 14px;
+}
+
+.zyro-carousel-caption span {
+    color: #777;
+
+    font-size: 12px;
+}
+
+.zyro-carousel-caption b {
+    color: #ff6a00;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .zyro-flex-carousel {
+        height: 430px;
+    }
+
+    .zyro-carousel-track {
+        height: 330px;
+    }
+
+    .zyro-carousel-item {
+        width: 220px;
+        height: 300px;
+    }
+
+    .zyro-carousel-item.active {
+        width: 280px;
+        height: 370px;
+    }
+
+    .zyro-carousel-arrow {
+        width: 42px;
+        height: 42px;
+
+        font-size: 25px;
+    }
+
+    .zyro-carousel-left {
+        left: 12px;
+    }
+
+    .zyro-carousel-right {
+        right: 12px;
+    }
+
+    .zyro-carousel-caption {
+        bottom: 5px;
+    }
+
+}
+
+/* =========================================================
+ZYRODEV PREMIUM FOOTER
+========================================================= */
+
+.zyro-footer {
+position: relative;
+overflow: hidden;
+margin-top: 100px;
+background:
+radial-gradient(circle at 50% 0%, rgba(255,106,0,.12), transparent 35%),
+#050505;
+border-top: 1px solid rgba(255,255,255,.06);
+isolation: isolate;
+}
+
+/* LINHA SUPERIOR */
+
+.footer-top-line {
+position: relative;
+width: 100%;
+height: 2px;
+background: rgba(255,255,255,.04);
+overflow: hidden;
+}
+
+.footer-top-line span {
+display: block;
+width: 30%;
+height: 100%;
+background: linear-gradient(
+90deg,
+transparent,
+#ff6a00,
+#ff8533,
+transparent
+);
+filter: blur(.5px);
+animation: footerLineMove 5s linear infinite;
+}
+
+@keyframes footerLineMove {
+0% {
+transform: translateX(-120%);
+}
+
+100% {
+transform: translateX(450%);
+}
+}
+
+/* GRID DE FUNDO */
+
+.footer-grid-bg {
+position: absolute;
+inset: 0;
+pointer-events: none;
+opacity: .18;
+
+background-image:
+linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+
+background-size: 45px 45px;
+
+mask-image: linear-gradient(
+to bottom,
+black,
+transparent 90%
+);
+
+animation: footerGridMove 18s linear infinite;
+}
+
+@keyframes footerGridMove {
+from {
+background-position: 0 0;
+}
+
+to {
+background-position: 45px 45px;
+}
+}
+
+/* BRILHOS */
+
+.footer-glow {
+position: absolute;
+width: 320px;
+height: 320px;
+border-radius: 50%;
+background: rgba(255,106,0,.10);
+filter: blur(90px);
+pointer-events: none;
+z-index: -1;
+animation: footerGlowFloat 8s ease-in-out infinite;
+}
+
+.footer-glow-1 {
+top: 80px;
+left: -150px;
+}
+
+.footer-glow-2 {
+right: -150px;
+bottom: 40px;
+animation-delay: -4s;
+}
+
+@keyframes footerGlowFloat {
+0%,100% {
+transform: translateY(0) scale(1);
+}
+
+50% {
+transform: translateY(-35px) scale(1.12);
+}
+}
+
+/* LUZ QUE SEGUE O MOUSE */
+
+.footer-mouse-light {
+position: absolute;
+width: 420px;
+height: 420px;
+border-radius: 50%;
+pointer-events: none;
+
+background: radial-gradient(
+circle,
+rgba(255,106,0,.13) 0%,
+rgba(255,106,0,.05) 25%,
+transparent 70%
+);
+
+transform: translate(-50%, -50%);
+opacity: .8;
+z-index: -1;
+
+transition:
+left .18s ease-out,
+top .18s ease-out;
+}
+
+/* CONTAINER */
+
+.zyro-footer-container {
+position: relative;
+z-index: 2;
+
+width: min(1200px, 92%);
+margin: auto;
+
+padding: 75px 0 55px;
+
+display: grid;
+grid-template-columns:
+1.5fr
+1fr
+1fr
+1.2fr;
+
+gap: 55px;
+}
+
+/* MARCA */
+
+.zyro-footer-brand {
+max-width: 370px;
+}
+
+.footer-brand-logo {
+display: flex;
+align-items: center;
+gap: 14px;
+margin-bottom: 22px;
+}
+
+.footer-logo-ring {
+width: 58px;
+height: 58px;
+
+border-radius: 17px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+background:
+linear-gradient(#0b0b0b,#0b0b0b) padding-box,
+linear-gradient(135deg,#ff6a00,transparent,#ff8533) border-box;
+
+border: 1px solid transparent;
+
+box-shadow:
+0 0 25px rgba(255,106,0,.15),
+inset 0 0 20px rgba(255,106,0,.05);
+
+transition: .4s ease;
+}
+
+.footer-logo-ring img {
+width: 43px;
+height: 43px;
+object-fit: contain;
+
+transition: .4s cubic-bezier(.16,1,.3,1);
+}
+
+.footer-brand-logo:hover .footer-logo-ring {
+transform: rotate(-6deg) scale(1.06);
+box-shadow:
+0 0 35px rgba(255,106,0,.30);
+}
+
+.footer-brand-logo:hover img {
+transform: scale(1.1) rotate(6deg);
+}
+
+.footer-brand-logo strong {
+display: block;
+font-size: 23px;
+font-weight: 800;
+
+background: linear-gradient(
+90deg,
+#fff,
+#ff8533,
+#ff6a00,
+#fff
+);
+
+background-size: 250% auto;
+
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+
+animation: footerLogoText 5s linear infinite;
+}
+
+@keyframes footerLogoText {
+to {
+background-position: 250% center;
+}
+}
+
+.footer-brand-logo small {
+display: block;
+margin-top: 3px;
+
+font-size: 8px;
+letter-spacing: 2px;
+font-weight: 800;
+
+color: #666;
+}
+
+.zyro-footer-brand p {
+color: #8d8d8d;
+font-size: 14px;
+line-height: 1.8;
+}
+
+/* STATUS */
+
+.footer-status {
+display: inline-flex;
+align-items: center;
+gap: 9px;
+
+margin-top: 22px;
+
+padding: 8px 13px;
+
+border-radius: 999px;
+
+background: rgba(255,255,255,.035);
+border: 1px solid rgba(255,255,255,.06);
+
+color: #888;
+font-size: 11px;
+}
+
+.status-pulse {
+width: 7px;
+height: 7px;
+
+border-radius: 50%;
+background: #31e981;
+
+box-shadow:
+0 0 0 0 rgba(49,233,129,.5);
+
+animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+70% {
+box-shadow: 0 0 0 7px rgba(49,233,129,0);
+}
+
+100% {
+box-shadow: 0 0 0 0 rgba(49,233,129,0);
+}
+}
+
+/* COLUNAS */
+
+.footer-column-title {
+display: flex;
+align-items: center;
+gap: 10px;
+
+margin-bottom: 21px;
+}
+
+.footer-column-title h3 {
+color: #fff;
+font-size: 14px;
+font-weight: 800;
+}
+
+.footer-title-line {
+width: 18px;
+height: 2px;
+
+background: #ff6a00;
+
+box-shadow:
+0 0 10px rgba(255,106,0,.7);
+}
+
+/* LINKS */
+
+.footer-link {
+position: relative;
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+width: 100%;
+
+padding: 8px 0;
+
+color: #777;
+text-decoration: none;
+
+font-size: 13px;
+
+transition:
+color .3s ease,
+transform .3s ease;
+}
+
+.footer-link i {
+font-size: 10px;
+opacity: 0;
+transform: translateX(-8px);
+
+color: #ff6a00;
+
+transition: .3s ease;
+}
+
+.footer-link::before {
+content: "";
+
+position: absolute;
+left: 0;
+bottom: 2px;
+
+width: 0;
+height: 1px;
+
+background: #ff6a00;
+
+transition: width .3s ease;
+}
+
+.footer-link:hover {
+color: #fff;
+transform: translateX(5px);
+}
+
+.footer-link:hover::before {
+width: calc(100% - 20px);
+}
+
+.footer-link:hover i {
+opacity: 1;
+transform: translateX(0);
+}
+
+/* SOCIAL */
+
+.footer-social-text {
+color: #777;
+font-size: 13px;
+line-height: 1.7;
+margin-bottom: 18px;
+}
+
+.footer-socials {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 9px;
+}
+
+.footer-social-btn {
+position: relative;
+
+display: flex;
+align-items: center;
+gap: 9px;
+
+padding: 10px 12px;
+
+border-radius: 11px;
+
+text-decoration: none;
+
+background: rgba(255,255,255,.035);
+border: 1px solid rgba(255,255,255,.06);
+
+color: #777;
+
+font-size: 11px;
+font-weight: 700;
+
+overflow: hidden;
+
+transition:
+transform .35s cubic-bezier(.16,1,.3,1),
+border-color .35s ease,
+color .35s ease,
+box-shadow .35s ease;
+}
+
+.footer-social-btn i {
+font-size: 16px;
+transition: .35s ease;
+}
+
+.footer-social-btn::before {
+content: "";
+
+position: absolute;
+inset: 0;
+
+background: linear-gradient(
+110deg,
+transparent 20%,
+rgba(255,255,255,.12) 50%,
+transparent 80%
+);
+
+transform: translateX(-120%);
+
+transition: transform .6s ease;
+}
+
+.footer-social-btn:hover::before {
+transform: translateX(120%);
+}
+
+.footer-social-btn:hover {
+transform: translateY(-4px);
+color: #fff;
+
+border-color: rgba(255,106,0,.35);
+
+box-shadow:
+0 12px 30px rgba(0,0,0,.35),
+0 0 18px rgba(255,106,0,.08);
+}
+
+.footer-social-btn:hover i {
+color: #ff6a00;
+transform: scale(1.15);
+}
+
+/* FRASE */
+
+.footer-phrase {
+position: relative;
+z-index: 2;
+
+width: min(1200px,92%);
+margin: 0 auto;
+
+padding: 45px 0;
+
+text-align: center;
+
+border-top: 1px solid rgba(255,255,255,.06);
+border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.footer-code-decoration {
+margin-bottom: 10px;
+
+font-family: monospace;
+font-size: 12px;
+letter-spacing: 3px;
+
+color: #555;
+}
+
+.footer-code-decoration span {
+color: #ff6a00;
+}
+
+.footer-code-decoration b {
+color: #aaa;
+}
+
+.footer-phrase h2 {
+font-size: clamp(25px,4vw,42px);
+font-weight: 800;
+letter-spacing: -1px;
+}
+
+.footer-phrase h2 span {
+color: #ff6a00;
+
+text-shadow:
+0 0 25px rgba(255,106,0,.25);
+}
+
+.footer-phrase p {
+margin-top: 9px;
+color: #666;
+font-size: 13px;
+}
+
+/* BOTTOM */
+
+.zyro-footer-bottom {
+position: relative;
+z-index: 2;
+
+background: rgba(0,0,0,.45);
+}
+
+.footer-bottom-inner {
+width: min(1200px,92%);
+margin: auto;
+
+min-height: 75px;
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+gap: 20px;
+}
+
+.footer-bottom-inner p {
+color: #555;
+font-size: 12px;
+}
+
+.footer-bottom-inner strong {
+color: #ff6a00;
+}
+
+.footer-rights {
+display: flex;
+align-items: center;
+gap: 8px;
+
+color: #777;
+text-decoration: none;
+
+font-size: 12px;
+
+transition: .3s ease;
+}
+
+.footer-rights i {
+font-size: 9px;
+}
+
+.footer-rights:hover {
+color: #ff6a00;
+transform: translateY(-2px);
+}
+
+/* REVEAL */
+
+.footer-reveal {
+opacity: 0;
+transform: translateY(25px);
+filter: blur(6px);
+
+transition:
+opacity .8s cubic-bezier(.16,1,.3,1),
+transform .8s cubic-bezier(.16,1,.3,1),
+filter .8s ease;
+}
+
+.footer-reveal.footer-visible {
+opacity: 1;
+transform: translateY(0);
+filter: blur(0);
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+.zyro-footer-container {
+grid-template-columns: 1fr 1fr;
+gap: 40px 30px;
+}
+
+.zyro-footer-brand {
+max-width: none;
+}
+
+}
+
+@media (max-width: 600px) {
+
+.zyro-footer {
+margin-top: 70px;
+}
+
+.zyro-footer-container {
+width: 88%;
+grid-template-columns: 1fr;
+padding: 55px 0 40px;
+gap: 35px;
+}
+
+.zyro-footer-brand {
+text-align: center;
+}
+
+.footer-brand-logo {
+justify-content: center;
+}
+
+.footer-status {
+margin-inline: auto;
+}
+
+.footer-column-title {
+justify-content: center;
+}
+
+.footer-link {
+max-width: 300px;
+margin: auto;
+}
+
+.footer-social-text {
+text-align: center;
+}
+
+.footer-socials {
+max-width: 330px;
+margin: auto;
+}
+
+.footer-phrase {
+width: 88%;
+padding: 35px 10px;
+}
+
+.footer-bottom-inner {
+width: 88%;
+padding: 20px 0;
+flex-direction: column;
+justify-content: center;
+text-align: center;
+}
+
+.footer-mouse-light {
+display: none;
+}
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+.footer-top-line span,
+.footer-grid-bg,
+.footer-glow,
+.footer-brand-logo strong,
+.status-pulse {
+animation: none !important;
+}
+
+}
+
+.menu-icons {
+  --orange: #ff6a00;
+  --dark: #0c0f14;
+  --gray: #52555a;
+
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--dark);
+  border-radius: 30px;
+}
+
+.menu-icons .label {
+  width: 50px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  transition: 0.2s;
+}
+
+.menu-icons .label svg {
+  width: 20px;
+  height: 20px;
+
+  fill: var(--gray);
+
+  transition: 0.25s;
+}
+
+.menu-icons .label:hover svg {
+  fill: var(--orange);
+  transform: scale(1.1);
+}
+
+.menu-icons .label.active svg {
+  fill: var(--orange);
+  transform: scale(1.15);
+}
+
+.menu-icons .label.active::after {
+  content: "";
+
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+
+  width: 20px;
+  height: 2px;
+
+  background: var(--orange);
+  border-radius: 10px;
+
+  transform: translateX(-50%);
+}
+
+  
+
+  /* ============ NOTIFICAÇÃO DOS PROFESSORES ============ */
+  .zyro-professor-notice {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: min(340px, calc(100vw - 32px));
+    padding: 14px 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(17,17,17,.96);
+    border: 1px solid rgba(255,106,0,.35);
+    border-radius: 14px;
+    box-shadow: 0 16px 45px rgba(0,0,0,.55), 0 0 22px rgba(255,106,0,.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 99990;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(18px) scale(.96);
+    pointer-events: none;
+    transition: opacity .35s ease, transform .35s ease, visibility .35s ease;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .update-banner__dot,
-    .terminal__cursor,
-    .scan-track__bar,
-    .terminal { animation: none; }
+  .zyro-professor-notice.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
   }
 
-  @media (max-width: 560px) {
-    .update-banner { justify-content: flex-start; text-align: left; }
-    .update-banner__text { flex: 1 1 auto; }
+  .zyro-professor-notice-icon {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    background: rgba(255,106,0,.14);
+    color: #ff6a00;
+    font-size: 18px;
   }
-</style>
+
+  .zyro-professor-notice-content {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .zyro-professor-notice-content strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .zyro-professor-notice-content span {
+    display: block;
+    color: #b8b8b8;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .zyro-professor-notice-close {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    border: 0;
+    border-radius: 8px;
+    background: rgba(255,255,255,.06);
+    color: #888;
+    cursor: pointer;
+    font-size: 17px;
+    line-height: 1;
+    transition: .2s ease;
+  }
+
+  .zyro-professor-notice-close:hover {
+    color: #fff;
+    background: rgba(255,106,0,.18);
+  }
+
+  @media (max-width: 600px) {
+    .zyro-professor-notice {
+      right: 12px;
+      bottom: 14px;
+      width: calc(100vw - 24px);
+    }
+  }
+
+  /* ===== TELA DE ATUALIZAÇÃO ZYRODEV ===== */
+#zyroUpdateOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000001;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.75)),
+    url("./fotos/atualizacao-zyrodev.png") center center / cover no-repeat;
+}
+
+.zyro-update-content {
+  width: 100%;
+  max-width: 460px;
+  padding: 28px;
+  text-align: center;
+  background: rgba(0,0,0,.82);
+  border: 1px solid rgba(255,106,0,.65);
+  border-radius: 18px;
+  box-shadow: 0 0 35px rgba(255,106,0,.25);
+  backdrop-filter: blur(8px);
+}
+
+.zyro-update-content h2 {
+  color: #ff6a00;
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.zyro-update-content p {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+#zyroUpdateButton {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #ff6a00;
+  color: #000;
+  font-weight: 900;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#zyroUpdateButton:disabled {
+  opacity: .7;
+  cursor: wait;
+}
+
+#zyroProgressArea {
+  display: none;
+  margin-top: 22px;
+}
+
+.zyro-progress-track {
+  height: 12px;
+  background: #292929;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+#zyroProgressBar {
+  width: 0%;
+  height: 100%;
+  background: #ff6a00;
+  border-radius: 20px;
+  transition: width 1s linear;
+}
+
+#zyroProgressText {
+  display: block;
+  color: #fff;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+@media(max-width:600px) {
+  .zyro-update-content {
+    padding: 22px 17px;
+  }
+
+  .zyro-update-content h2 {
+    font-size: 22px;
+  }
+}
+
+  </style>
 </head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <body>
 
-  <!-- ===== BANNER DE ANÚNCIO ===== -->
-  <div class="update-banner" id="updateBanner">
-    <div class="update-banner__text">
-      <span class="update-banner__dot" aria-hidden="true"></span>
-      <span class="update-banner__label">ZyroDev</span>
-      <span class="update-banner__sub">uma atualização completa do site está a caminho</span>
+<div id="preloader">
+  <div class="honeycomb">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+</div>
+
+<div id="googlePopup" class="google-popup-overlay">
+  <div class="google-popup-box">
+    <button class="google-popup-close" id="fecharGooglePopup">×</button>
+    <div class="google-popup-badge">🚀 Novidade</div>
+    <h2 data-i18n="loginPrompt">Crie sua conta Google</h2>
+    <p data-i18n="loginDescription">Entre com sua conta para acessar seu perfil, salvar suas informações e aproveitar melhor a experiência na <b>ZyroDev</b>.</p>
+    <div class="google-popup-buttons">
+      <a href="login.html" class="google-popup-btn google-popup-btn-main" data-i18n="loginMain">Entrar com Google</a>
+      <button id="agoraNaoGooglePopup" class="google-popup-btn google-popup-btn-secondary" data-i18n="loginLater">Agora não</button>
     </div>
-    <button class="update-banner__btn" id="checkUpdateBtn" type="button">
-      Atualizar site
+  </div>
+</div>
+
+<div id="siteWrapper" class="site-wrapper"> </div>
+
+<div class="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="./fotos/zraposa.png" alt="ZyroDev">
+  </a>
+
+<!-- TELA DE ATUALIZAÇÃO ZYRODEV -->
+<div id="zyroUpdateOverlay">
+  <div class="zyro-update-content">
+
+    <h2>ATUALIZAR ZYRO</h2>
+
+    <p>
+      Uma nova versão da ZyroDev está disponível!
+      Clique abaixo para iniciar a atualização.
+    </p>
+
+    <button id="zyroUpdateButton">
+      ATUALIZAR ZYRO
     </button>
+
+    <div id="zyroProgressArea">
+      <div class="zyro-progress-track">
+        <div id="zyroProgressBar"></div>
+      </div>
+
+      <span id="zyroProgressText">
+        Preparando atualização... 60 segundos
+      </span>
+    </div>
+
+  </div>
+</div>
+
+
+ <section class="menu-icons">
+
+  <!-- HOME -->
+  <a href="index.html" class="label active" title="Home">
+    <svg viewBox="0 0 21 20">
+      <path d="M18.9999 6.01002L12.4499 0.770018C11.1699-.249982 9.16988-.259982 7.89988.760018L1.34988 6.01002C.409885 6.76002-.160115 8.26002.0398848 9.44002L1.29988 16.98C1.58988 18.67 3.15988 20 4.86988 20H15.4699C17.15988 20 18.75988 18.64 19.04988 16.97L20.30988 9.43002C20.48988 8.26002 19.91988 6.76002 18.9999 6.01002ZM10.9199 16C10.9199 16.41 10.5799 16.75 10.1699 16.75C9.75988 16.75 9.41988 16.41 9.41988 16V13C9.41988 12.59 9.75988 12.25 10.1699 12.25C10.5799 12.25 10.9199 12.59 10.9199 13V16Z"/>
+    </svg>
+  </a>
+
+  <!-- BATE PAPO -->
+  <a href="podepa.html" class="label" title="Bate Papo">
+    <svg viewBox="0 0 24 24">
+      <path d="M20 2H4C2.9 2 2 2.9 2 4V17C2 18.1 2.9 19 4 19H7V22L11 19H20C21.1 19 22 18.1 22 17V4C22 2.9 21.1 2 20 2ZM20 17H10.3L9 18V17H4V4H20V17Z"/>
+    </svg>
+  </a>
+
+  <!-- CRÉDITOS -->
+  <a href="creditos.html" class="label" title="Créditos">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM15.07 11.25L14.17 12.17C13.45 12.9 13 13.5 13 15H11C11 13.84 11.45 12.79 12.76 11.48L13.64 10.58C14.05 10.17 14.3 9.62 14.3 9C14.3 7.73 13.27 6.7 12 6.7C10.73 6.7 9.7 7.73 9.7 9H7.7C7.7 6.63 9.63 4.7 12 4.7C14.37 4.7 16.3 6.63 16.3 9C16.3 9.86 15.95 10.63 15.07 11.25Z"/>
+    </svg>
+  </a>
+
+  <!-- CONFIGURAÇÕES -->
+  <a href="configuracoes.html" class="label" title="Configurações">
+    <svg viewBox="0 0 24 24">
+      <path d="M19.43 12.98C19.47 12.66 19.5 12.34 19.5 12C19.5 11.66 19.47 11.34 19.43 11.02L21.54 9.37L19.54 5.91L17.05 6.91C16.55 6.53 16 6.22 15.4 6L15.05 3.36H10.95L10.6 6C10 6.22 9.45 6.53 8.95 6.91L6.46 5.91L4.46 9.37L6.57 11.02C6.53 11.34 6.5 11.66 6.5 12C6.5 12.34 6.53 12.66 6.57 12.98L4.46 14.63L6.46 18.09L8.95 17.09C9.45 17.47 10 17.78 10.6 18L10.95 20.64H15.05L15.4 18C16 17.78 16.55 17.47 17.05 17.09L19.54 18.09L21.54 14.63L19.43 12.98ZM13 15.5C11.07 15.5 9.5 13.93 9.5 12C9.5 10.07 11.07 8.5 13 8.5C14.93 8.5 16.5 10.07 16.5 12C16.5 13.93 14.93 15.5 13 15.5Z"/>
+    </svg>
+  </a>
+  <!-- LOJA -->
+  <a href="loja-vip.html" class="label" title="Loja">
+    <svg viewBox="0 0 24 24">
+      <path d="M7 4h10l1.4 4H22v12H2V8h3.6L7 4Zm1.5 2L7.8 8h8.4l-.7-2H8.5ZM4 10v8h16v-8H4Zm4 2h8v2H8v-2Z"/>
+    </svg>
+  </a>
+
+</section>
+
+
+
+    <a href="login.html" class="user-profile nav-profile" id="perfilLink">
+      <img src="" id="headerFoto" alt="Foto do perfil">
+      <span id="headerNome" data-i18n="enter">Entrar</span>
+    </a>
   </div>
 
-  <!-- ===== MODAL / TERMINAL DE VERIFICAÇÃO ===== -->
-  <div class="update-overlay" id="updateOverlay" role="dialog" aria-modal="true" aria-labelledby="updateResultTitle">
-    <div class="terminal">
-      <div class="terminal__bar">
-        <span class="terminal__dot terminal__dot--r"></span>
-        <span class="terminal__dot terminal__dot--y"></span>
-        <span class="terminal__dot terminal__dot--g"></span>
-        <span class="terminal__title">zyrodev — verificação de atualização</span>
-        <button class="terminal__close" id="closeOverlayBtn" type="button" aria-label="Fechar">✕</button>
-      </div>
-      <div class="terminal__body">
-        <div class="terminal__line">
-          <span class="cmd">zyrodev@site</span>:~$ checando atualização<span class="terminal__cursor" aria-hidden="true"></span>
+
+  <!-- HERO -->
+  <section class="hero" id="topo">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="fotos/heero.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-inner">
+      <h1 class="hero-title" data-i18n-html="heroTitle">Aprenda a programar<br>de graça<br>com a <span class="accent">ZyroDev.</span></h1>
+
+<div class="hero-play-row">
+
+  <button class="hero-uiverse-btn" id="btnPlayHero" type="button" data-protegido="true">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36px" height="36px">
+
+  <path fill="#cc5200" d="M38.67,42H11.52C11.27,40.62,11,38.57,11,36c0-5,0-11,0-11s1.44-7.39,3.22-9.59 c1.67-2.06,2.76-3.48,6.78-4.41c3-0.7,7.13-0.23,9,1c2.15,1.42,3.37,6.67,3.81,11.29c1.49-0.3,5.21,0.2,5.5,1.28 C40.89,30.29,39.48,38.31,38.67,42z"></path>
+
+  <path fill="#cc5200" d="M39.02,42H11.99c-0.22-2.67-0.48-7.05-0.49-12.72c0.83,4.18,1.63,9.59,6.98,9.79 c3.48,0.12,8.27,0.55,9.83-2.45c1.57-3,3.72-8.95,3.51-15.62c-0.19-5.84-1.75-8.2-2.13-8.7c0.59,0.66,3.74,4.49,4.01,11.7 c0.03,0.83,0.06,1.72,0.08,2.66c4.21-0.15,5.93,1.5,6.07,2.35C40.68,33.85,39.8,38.9,39.02,42z"></path>
+
+  <path fill="#212121" d="M35,27.17c0,3.67-0.28,11.2-0.42,14.83h-2C32.72,38.42,33,30.83,33,27.17 c0-5.54-1.46-12.65-3.55-14.02c-1.65-1.08-5.49-1.48-8.23-0.85c-3.62,0.83-4.57,1.99-6.14,3.92L15,16.32 c-1.31,1.6-2.59,6.92-3,8.96v10.8c0,2.58,0.28,4.61,0.54,5.92H10.5c-0.25-1.41-0.5-3.42-0.5-5.92l0.02-11.09 c0.15-0.77,1.55-7.63,3.43-9.94l0.08-0.09c1.65-2.03,2.96-3.63,7.25-4.61c3.28-0.76,7.67-0.25,9.77,1.13 C33.79,13.6,35,22.23,35,27.17z"></path>
+
+  <path fill="#cc5200" d="M17.165,17.283c5.217-0.055,9.391,0.283,9,6.011c-0.391,5.728-8.478,5.533-9.391,5.337 c-0.913-0.196-7.826-0.043-7.696-5.337C9.209,18,13.645,17.32,17.165,17.283z"></path>
+
+  <path fill="#212121" d="M40.739,37.38c-0.28,1.99-0.69,3.53-1.22,4.62h-2.43c0.25-0.19,1.13-1.11,1.67-4.9 c0.57-4-0.23-11.79-0.93-12.78c-0.4-0.4-2.63-0.8-4.37-0.89l0.1-1.99c1.04,0.05,4.53,0.31,5.71,1.49 C40.689,24.36,41.289,33.53,40.739,37.38z"></path>
+
+  <path fill="#ff8533" d="M10.154,20.201c0.261,2.059-0.196,3.351,2.543,3.546s8.076,1.022,9.402-0.554 c1.326-1.576,1.75-4.365-0.891-5.267C19.336,17.287,12.959,16.251,10.154,20.201z"></path>
+
+  <path fill="#212121" d="M17.615,29.677c-0.502,0-0.873-0.03-1.052-0.069c-0.086-0.019-0.236-0.035-0.434-0.06 c-5.344-0.679-8.053-2.784-8.052-6.255c0.001-2.698,1.17-7.238,8.986-7.32l0.181-0.002c3.444-0.038,6.414-0.068,8.272,1.818 c1.173,1.191,1.712,3,1.647,5.53c-0.044,1.688-0.785,3.147-2.144,4.217C22.785,29.296,19.388,29.677,17.615,29.677z M17.086,17.973 c-7.006,0.074-7.008,4.023-7.008,5.321c-0.001,3.109,3.598,3.926,6.305,4.27c0.273,0.035,0.48,0.063,0.601,0.089 c0.563,0.101,4.68,0.035,6.855-1.732c0.865-0.702,1.299-1.57,1.326-2.653c0.051-1.958-0.301-3.291-1.073-4.075 c-1.262-1.281-3.834-1.255-6.825-1.222L17.086,17.973z"></path>
+
+  <path fill="#ff8533" d="M15.078,19.043c1.957-0.326,5.122-0.529,4.435,1.304c-0.489,1.304-7.185,2.185-7.185,0.652 C12.328,19.467,15.078,19.043,15.078,19.043z"></path>
+
+</svg>
+
+<span class="now">EM Cursos</span>
+<span class="play">Entrar</span>
+
+  </button>
+
+</div>
+
+
+<div class="hero-mini-stats">
+    <span>🎓 +70 alunos formados</span>
+    <span>⚙️ Não existe almoço GRATIS </span>
+</div>
+    </div>
+  </section>
+
+  <section class="zyro-courses-showcase">
+
+    <div class="zyro-courses-title">
+    </div>
+
+    <div class="zyro-flex-carousel" id="zyroFlexCarousel">
+
+        <div class="zyro-carousel-track" id="zyroCarouselTrack">
+
+            <div class="zyro-carousel-item">
+                <img src="./fotos/zyrologica.png" alt="Lógica de Programação">
+            </div>
+
+            <div class="zyro-carousel-item">
+                <img src="./fotos/zyrohtmlecss.png" alt="HTML e CSS">
+            </div>
+
+            <div class="zyro-carousel-item">
+                <img src="./fotos/zyrojscript.png" alt="JavaScript">
+            </div>
+
+            <div class="zyro-carousel-item">
+                <img src="./fotos/zyropython.png" alt="Python">
+            </div>
+
+            <div class="zyro-carousel-item">
+                <img src="./fotos/zyrojava.png" alt="Java">
+            </div>
+
+            <div class="zyro-carousel-item">
+                <img src="./fotos/zyrosql.png" alt="SQL">
+            </div>
+
         </div>
 
-        <div class="terminal__result" id="terminalResult">
-          <div id="updateResultTitle" class="terminal__result-title">Nenhuma atualização disponível no momento.</div>
-          <div class="terminal__result-sub">
-            Estamos preparando uma atualização grande, mudando o site todo. Fique de olho — chega em breve 🚀
-          </div>
-          <div class="scan-track" aria-hidden="true">
-            <div class="scan-track__bar"></div>
-          </div>
+        <button
+            class="zyro-carousel-arrow zyro-carousel-left"
+            id="zyroCarouselPrev"
+            aria-label="Curso anterior">
+            ‹
+        </button>
+
+        <button
+            class="zyro-carousel-arrow zyro-carousel-right"
+            id="zyroCarouselNext"
+            aria-label="Próximo curso">
+            ›
+        </button>
+
+        <div class="zyro-carousel-caption">
+            <strong id="zyroCarouselName">Lógica de Programação</strong>
+
+            <span>
+                <b id="zyroCarouselCurrent">01</b>
+                /
+                <span id="zyroCarouselTotal">06</span>
+            </span>
         </div>
+
+    </div>
+
+</section>
+
+  <section id="stat" class="stats">
+    <div class="stat zr-reveal">
+      <h2 data-counter data-target="350" data-suffix="+">0</h2>
+      <p data-i18n="statsTitle1">Vídeos de Programação<br>com atualizações constantes</p>
+    </div>
+    <div class="stat zr-reveal">
+      <h2 data-counter data-target="20" data-suffix="+">0</h2>
+      <p data-i18n="statsTitle2">Tecnologias</p>
+    </div>
+    <div class="stat zr-reveal">
+      <h2 data-counter data-target="100" data-suffix="%">0</h2>
+      <p data-i18n="statsTitle3">Conteúdo Gratuito</p>
+    </div>
+  </section>
+
+  <section class="motivacao-area">
+    <div id="palavras"></div>
+  </section>
+
+  <section id="sobre" class="features">
+    <div class="feature-card zr-reveal">
+      <h3 data-i18n="feature1Title">📚 Conteúdo Organizado</h3>
+      <p data-i18n="feature1Text">Cursos organizados para facilitar sua evolução na programação.</p>
+    </div>
+    <div class="feature-card zr-reveal">
+      <h3 data-i18n="feature2Title">🚀 Evolução Rápida</h3>
+      <p data-i18n="feature2Text">Aprenda com os melhores conteúdos gratuitos da internet.</p>
+    </div>
+    <div class="feature-card zr-reveal">
+      <h3 data-i18n="feature3Title">💬 Comunidade</h3>
+      <p data-i18n="feature3Text">Entre no Discord da ZyroDev e evolua junto com outros devs.</p>
+    </div>
+  </section>
+
+  <section class="zr-community">
+    <div class="zr-community-box zr-reveal">
+      <div>
+        <h2 data-i18n="communityTitle">Uma comunidade 🇧🇷</h2>
+        <p data-i18n="communityText">Mais que uma plataforma de estudos: a ZyroDev é uma comunidade de devs evoluindo juntos, trocando experiência no Discord.</p>
+        <div class="button"><a href="https://discord.gg/AJkeUcN47e" target="_blank" data-i18n="communityButton">Entrar no Discord</a></div>
       </div>
+
+      <div class="zr-community-stats">
+        <div><strong>+350</strong><span>Vídeos</span></div>
+        <div><strong>+20</strong><span>Tecnologias</span></div>
+        <div><strong>100%</strong><span>Gratuito</span></div>
+      </div>
+    </div>
+  </section>
+
+<footer id="rodape" class="zyro-footer">
+
+  <div class="footer-glow footer-glow-1"></div>
+  <div class="footer-glow footer-glow-2"></div>
+
+  <div class="footer-grid-bg"></div>
+
+  <div class="footer-mouse-light"></div>
+
+  <div class="footer-top-line">
+    <span></span>
+  </div>
+
+  <div class="zyro-footer-container">
+
+<!-- MARCA -->
+<div class="zyro-footer-brand footer-reveal">
+
+  <div class="footer-brand-logo">
+    <div class="footer-logo-ring">
+      <img src="./fotos/zraposa.png" alt="ZyroDev">
+    </div>
+
+    <div>
+      <strong>ZyroDev</strong>
+      <small>PROGRAMANDO O FUTURO</small>
     </div>
   </div>
 
-  <!-- ===== Conteúdo de exemplo (remova ao integrar no site real) ===== -->
-  <div class="demo-page">
-    <h1>zyrodev</h1>
-    <p>Este é um conteúdo de exemplo da página. O banner fica fixo no topo, e o botão "Atualizar site" abre o painel de verificação.</p>
+  <p>
+    Aprenda programação gratuitamente, evolua suas habilidades
+    e faça parte de uma comunidade que está construindo o futuro
+    da tecnologia.
+  </p>
+
+
+</div>
+
+
+<!-- NAVEGAÇÃO -->
+<div class="zyro-footer-column footer-reveal">
+
+  <div class="footer-column-title">
+    <span class="footer-title-line"></span>
+    <h3>Navegação</h3>
   </div>
 
-  <script>
-    (function () {
-      const banner = document.getElementById('updateBanner');
-      const checkBtn = document.getElementById('checkUpdateBtn');
-      const overlay = document.getElementById('updateOverlay');
-      const closeBtn = document.getElementById('closeOverlayBtn');
-      const result = document.getElementById('terminalResult');
+  <a href="#topo" class="footer-link">
+    <span>Início</span>
+    <i class="fa-solid fa-arrow-right"></i>
+  </a>
 
-      let lastFocused = null;
+  <a href="#stat" class="footer-link">
+    <span>Informações</span>
+    <i class="fa-solid fa-arrow-right"></i>
+  </a>
 
-      function openOverlay() {
-        lastFocused = document.activeElement;
-        overlay.classList.add('is-open');
-        result.classList.remove('is-visible');
+  <a href="creditos.html" class="footer-link">
+    <span>Créditos</span>
+    <i class="fa-solid fa-arrow-right"></i>
+  </a>
 
-        // simula um "carregamento" curto antes de revelar o resultado,
-        // depois a barra de progresso continua rodando infinitamente
-        window.setTimeout(function () {
-          result.classList.add('is-visible');
-        }, 900);
+  <a href="configuracoes.html" class="footer-link">
+    <span>Configurações</span>
+    <i class="fa-solid fa-arrow-right"></i>
+  </a>
 
-        closeBtn.focus();
-        document.addEventListener('keydown', onKeydown);
+  <a href="./admin.html" id="adminLink"
+     class="footer-link"
+     style="display:none;"
+     data-i18n="footerAdmin">
+    <span>Painel Admin</span>
+    <i class="fa-solid fa-arrow-right"></i>
+  </a>
+
+</div>
+
+
+<!-- RECURSOS -->
+<div class="zyro-footer-column footer-reveal">
+
+  <div class="footer-column-title">
+    <span class="footer-title-line"></span>
+    <h3>Recursos</h3>
+  </div>
+
+  <a href="#cursos" class="footer-link">
+    <span>Cursos</span>
+    <i class="fa-solid fa-code"></i>
+  </a>
+
+  <a href="#comunidade" class="footer-link">
+    <span>Comunidade</span>
+    <i class="fa-solid fa-users"></i>
+  </a>
+
+  <a href="podepa.html" class="footer-link">
+    <span>Bate Papo</span>
+    <i class="fa-solid fa-comments"></i>
+  </a>
+
+  <a href="https://bio.site/Delarotaldev"
+     target="_blank"
+     class="footer-link">
+    <span>Info DELAR</span>
+    <i class="fa-solid fa-up-right-from-square"></i>
+  </a>
+
+  <a href="#" class="footer-link" data-zyro-guia="abrir">
+    <span>Guia ZyroDev</span>
+    <i class="fa-solid fa-robot"></i>
+  </a>
+
+</div>
+
+
+<!-- REDES -->
+<div class="zyro-footer-social footer-reveal">
+
+  <div class="footer-column-title">
+    <span class="footer-title-line"></span>
+    <h3>Conecte-se</h3>
+  </div>
+
+  <p class="footer-social-text">
+    Acompanhe a ZyroDev e fique por dentro das novidades,
+    projetos e conteúdos.
+  </p>
+
+  <div class="footer-socials">
+
+    <a href="https://youtube.com/@delarotaldev"
+       target="_blank"
+       class="footer-social-btn youtube"
+       aria-label="YouTube">
+      <i class="fa-brands fa-youtube"></i>
+      <span>YouTube</span>
+    </a>
+
+    <a href="https://www.instagram.com/delarotaldev"
+       target="_blank"
+       class="footer-social-btn instagram"
+       aria-label="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+      <span>Instagram</span>
+    </a>
+
+    <a href="https://discord.gg/AJkeUcN47e"
+       target="_blank"
+       class="footer-social-btn discord"
+       aria-label="Discord">
+      <i class="fa-brands fa-discord"></i>
+      <span>Discord</span>
+    </a>
+
+    <a href="https://github.com/victortx1"
+       target="_blank"
+       class="footer-social-btn github"
+       aria-label="GitHub">
+      <i class="fa-brands fa-github"></i>
+      <span>GitHub</span>
+    </a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <!-- FRASE CENTRAL -->
+
+  <div class="footer-phrase footer-reveal">
+
+<div class="footer-code-decoration">
+  <span>&lt;</span>
+  <b>ZyroDev</b>
+  <span>/&gt;</span>
+</div>
+
+<h2>
+  Código hoje.
+  <span>Futuro amanhã.</span>
+</h2>
+
+<p>
+  Transformando curiosidade em código.
+</p>
+
+  </div>
+
+  <!-- BOTTOM -->
+
+  <div class="zyro-footer-bottom">
+
+<div class="footer-bottom-inner">
+
+  <p>
+    © 2026 <strong>ZyroDev</strong> • Todos os direitos reservados.
+  </p>
+
+  <a href="direitos.html" class="footer-rights">
+    Termos e direitos
+    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+  </a>
+
+</div>
+
+  </div>
+
+</footer>
+
+
+</div><!-- /#siteWrapper -->
+
+  <!-- COOKIES — também fora do siteWrapper pelo mesmo motivo do popup -->
+  <div class="cookie-box" id="cookieBox">
+    <div class="cookie-text" data-i18n="cookieText">🍪 Este site utiliza cookies para melhorar sua experiência no <b>ZyroDev</b>.</div>
+    <button class="cookie-btn" onclick="acceptCookies()" data-i18n="cookieButton">Aceitar</button>
+  </div>
+
+
+
+  <!-- NOTIFICAÇÃO AUTOMÁTICA DOS PROFESSORES -->
+  <div class="zyro-professor-notice" id="zyroProfessorNotice" role="status" aria-live="polite">
+    <div class="zyro-professor-notice-icon">
+      <i class="fa-solid fa-bullhorn"></i>
+    </div>
+    <div class="zyro-professor-notice-content">
+      <strong id="zyroProfessorNoticeTitle">Conheça nossos professores</strong>
+      <span id="zyroProfessorNoticeText">Visite os canais dos professores da ZyroDev em creditos e acompanhe os conteúdos.</span>
+      <button onclick="window.location.href='creditos.html'">Ver Créditos</button>
+    </div>
+    <button class="zyro-professor-notice-close" id="zyroProfessorNoticeClose" type="button" aria-label="Fechar notificação">×</button>
+  </div>
+
+  <!-- ================= SCRIPTS ================= -->
+
+  <!-- Autenticação / cargo do usuário (Firebase) -->
+  <script type="module">
+    import { auth, db } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { buscarDadosUsuario } from "./temporada-service.js";
+
+    const adminLink = document.getElementById("adminLink");
+    const headerNome = document.getElementById("headerNome");
+    const headerFoto = document.getElementById("headerFoto");
+    const perfilLink = document.getElementById("perfilLink");
+    const popup = document.getElementById("googlePopup");
+    const fecharBtn = document.getElementById("fecharGooglePopup");
+    const agoraNaoBtn = document.getElementById("agoraNaoGooglePopup");
+
+    function fecharPopup() { popup?.classList.remove("show"); }
+
+    function limparClassesCargo() {
+      headerNome?.classList.remove("fundador-dourado", "vip-esmeralda", "vip-perola-negra", "copa-hexa", "admin-dourado", "patrocinador-azul", "criador-roxo");
+      perfilLink?.classList.remove("vip-ativo", "vip-perola-negra-ativo", "copa-hexa-ativo", "admin-dourado-ativo", "patrocinador-azul-ativo", "criador-roxo-ativo");
+      headerNome?.removeAttribute("title");
+    }
+
+    function aplicarTemaHeader(dados = {}) {
+      if (!headerNome || !perfilLink) return;
+
+      const badges = Array.isArray(dados?.badges) ? dados.badges.map(b => String(b).toLowerCase()) : [];
+      const cargo = String(dados?.cargo || "").toLowerCase().trim();
+      const ehFundador = dados?.fundador === true || cargo === "fundador" || badges.includes("fundador");
+      const ehSocio = cargo === "socio" || badges.includes("socio");
+      const ehVipPerolaNegra = false;
+      const ehVipEsmeralda = false;
+      const ehCopaHexa = badges.includes("copa_do_mundo");
+
+      limparClassesCargo();
+
+      if (dados?.admin === true) {
+        headerNome.classList.add("admin-dourado");
+        perfilLink.classList.add("admin-dourado-ativo");
+        headerNome.title = "Administrador";
+        return;
+      }
+      if (dados?.patrocinador === true || badges.includes("patrocinador") || badges.includes("socio")) {
+        headerNome.classList.add("patrocinador-azul");
+        perfilLink.classList.add("patrocinador-azul-ativo");
+        headerNome.title = "Patrocinador";
+        return;
+      }
+      if (dados?.criador === true || badges.includes("criador")) {
+        headerNome.classList.add("criador-roxo");
+        perfilLink.classList.add("criador-roxo-ativo");
+        headerNome.title = "Criador";
+        return;
       }
 
-      function closeOverlay() {
-        overlay.classList.remove('is-open');
-        document.removeEventListener('keydown', onKeydown);
-        if (lastFocused) lastFocused.focus();
+      if (ehCopaHexa) {
+        headerNome.classList.add("copa-hexa");
+        perfilLink.classList.add("copa-hexa-ativo");
+        headerNome.title = "Brasil Rumo ao Hexa";
+        return;
       }
 
-      function onKeydown(e) {
-        if (e.key === 'Escape') closeOverlay();
+      if (ehFundador || ehSocio) {
+        headerNome.classList.add("fundador-dourado");
+        headerNome.title = ehFundador ? "Fundador" : "Sócio";
+        return;
       }
 
-      checkBtn.addEventListener('click', openOverlay);
-      closeBtn.addEventListener('click', closeOverlay);
-      overlay.addEventListener('click', function (e) {
-        if (e.target === overlay) closeOverlay();
-      });
-    })();
+      if (ehVipPerolaNegra) {
+        headerNome.classList.add("vip-perola-negra");
+        perfilLink.classList.add("vip-perola-negra-ativo");
+        headerNome.title = "VIP Pérola Negra";
+        return;
+      }
+
+      if (ehVipEsmeralda) {
+        headerNome.classList.add("vip-esmeralda");
+        perfilLink.classList.add("vip-ativo");
+        headerNome.title = "VIP Esmeralda";
+      }
+    }
+
+    fecharBtn?.addEventListener("click", fecharPopup);
+    agoraNaoBtn?.addEventListener("click", fecharPopup);
+    popup?.addEventListener("click", (e) => { if (e.target === popup) fecharPopup(); });
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        if (headerNome) headerNome.textContent = "Entrar";
+        limparClassesCargo();
+        if (headerFoto) headerFoto.style.display = "none";
+        if (perfilLink) perfilLink.href = "login.html";
+        popup?.classList.add("show");
+        return;
+      }
+
+      try {
+        const userRef = doc(db, "usuarios", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists() && userSnap.data().admin === true && adminLink) {
+          adminLink.style.display = "inline-block";
+        }
+
+        const dados = await buscarDadosUsuario(user.uid);
+
+        if (headerNome) headerNome.textContent = dados?.nome || user.displayName || user.email || "Perfil";
+        aplicarTemaHeader(dados);
+
+        const foto = dados?.foto || user.photoURL || "";
+        if (headerFoto) {
+          if (foto) { headerFoto.src = foto; headerFoto.style.display = "block"; }
+          else { headerFoto.style.display = "none"; }
+        }
+
+        if (perfilLink) perfilLink.href = "perfil.html";
+        fecharPopup();
+      } catch (error) {
+        console.error("Erro ao carregar usuário no header:", error);
+
+        if (headerNome) headerNome.textContent = user.displayName || user.email || "Perfil";
+        limparClassesCargo();
+
+        if (headerFoto && user.photoURL) {
+          headerFoto.src = user.photoURL;
+          headerFoto.style.display = "block";
+        }
+
+        if (perfilLink) perfilLink.href = "perfil.html";
+        fecharPopup();
+      }
+    });
   </script>
 
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    let usuarioAutenticado = false;
+    let authConfirmado = false;
+
+    const googlePopup = document.getElementById("googlePopup");
+    const btnPlayHero = document.getElementById("btnPlayHero");
+
+    function abrirPopupLogin() {
+      googlePopup?.classList.add("show");
+    }
+
+    function irParaCursos() {
+      window.location.href = "cursos.html";
+    }
+
+    function tratarCliqueProtegido(event) {
+      if (authConfirmado) {
+        if (usuarioAutenticado) {
+          irParaCursos();
+        } else {
+          event.preventDefault();
+          abrirPopupLogin();
+        }
+        return;
+      }
+
+      event.preventDefault();
+      const cancelar = onAuthStateChanged(auth, (user) => {
+        cancelar();
+        if (user) {
+          irParaCursos();
+        } else {
+          abrirPopupLogin();
+        }
+      });
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      usuarioAutenticado = !!user;
+      authConfirmado = true;
+    });
+
+    btnPlayHero?.addEventListener("click", tratarCliqueProtegido);
+
+    document.querySelectorAll("[data-protegido]").forEach((el) => {
+      if (el === btnPlayHero) return;
+      el.addEventListener("click", tratarCliqueProtegido);
+    });
+  </script>
+
+  <!-- Atualizações exclusivas para sócios -->
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { buscarDadosUsuario } from "./temporada-service.js";
+    import { buscarUpdates } from "./updates-service.js";
+    import { usuarioESocio, liberadoParaTodos } from "./acesso-antecipado.js";
+    const container = document.getElementById("listaUpdates");
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user || !container) return;
+
+      const dados = await buscarDadosUsuario(user.uid);
+      const updates = await buscarUpdates();
+
+      container.innerHTML = "";
+
+      updates.forEach((update) => {
+        const podeVer = usuarioESocio(dados) || liberadoParaTodos(update);
+        if (!podeVer) return;
+
+        const div = document.createElement("div");
+        const titulo = document.createElement("h3");
+        titulo.textContent = update.titulo || "";
+        const descricao = document.createElement("p");
+        descricao.textContent = update.descricao || "";
+        div.appendChild(titulo);
+        div.appendChild(descricao);
+        if (!liberadoParaTodos(update)) {
+          const badge = document.createElement("span");
+          badge.style.color = "#ff6a00";
+          badge.textContent = "🔒 Acesso antecipado Sócio";
+          div.appendChild(badge);
+        }
+        container.appendChild(div);
+      });
+    });
+  </script>
+
+  <!-- Cookies -->
+  <script>
+    const cookieBox = document.getElementById("cookieBox");
+    const cookieStorageKey = (window.ZyroConfig && window.ZyroConfig.cookies && window.ZyroConfig.cookies.cookieStorageKey) || "zyro_cookie";
+
+    if (!localStorage.getItem(cookieStorageKey)) {
+      setTimeout(() => cookieBox && cookieBox.classList.add("show"), 1500);
+    }
+
+    function acceptCookies() {
+      localStorage.setItem(cookieStorageKey, "true");
+      if (cookieBox) {
+        cookieBox.style.transform = "translateX(-50%) translateY(120px)";
+        cookieBox.style.opacity = "0";
+      }
+    }
+  </script>
+
+  <!-- Frases motivacionais flutuantes -->
+  <script>
+    const frases = [
+      "Nao existe almoço grátis,",
+      "Lembre-se do foco 👀",
+      "💥 Quebra código de dia, arruma de madrugada",
+      "☕ Movido a café",
+      "Quer ser grande dev (Estude)",
+      "Amar java e uma arte ☕",
+      "Nunca pare de aprender 🚀",
+      "Todo dev já foi iniciante 💻",
+      "Erros também ensinam 🧠",
+      "Pratique todos os dias 🔥",
+      "Seu futuro depende do hoje ⚡",
+      "Persistência cria mestres 🏆",
+      "Código muda vidas 🌍",
+      "Programar é resolver problemas 🧩",
+      "Grandes devs começaram do zero 👨‍💻",
+      "Construa. Erre. Aprenda. Repita 🔁"
+    ];
+
+    function criarPalavra() {
+      const container = document.getElementById("palavras");
+      if (!container) return;
+
+      const palavra = document.createElement("div");
+      palavra.classList.add("palavra");
+      palavra.innerText = frases[Math.floor(Math.random() * frases.length)];
+      palavra.style.left = Math.random() * 90 + "%";
+      palavra.style.top = Math.random() * 80 + "%";
+
+      container.appendChild(palavra);
+      setTimeout(() => palavra.remove(), 2000);
+    }
+
+    setInterval(criarPalavra, 1000);
+  </script>
+
+  <!-- Preloader + entrada suave do site -->
+  <script>
+    window.addEventListener("load", () => {
+      const preloader = document.getElementById("preloader");
+      const siteWrapper = document.getElementById("siteWrapper");
+
+      function mostrarSiteWrapper() {
+        if (!siteWrapper) return;
+        requestAnimationFrame(() => {
+          siteWrapper.classList.add("site-in");
+        });
+      }
+
+      if (!preloader) {
+        mostrarSiteWrapper();
+        return;
+      }
+
+      if (sessionStorage.getItem("loaderJaMostrado")) {
+        preloader.style.display = "none";
+        mostrarSiteWrapper();
+        return;
+      }
+
+      setTimeout(() => {
+        preloader.classList.add("hide");
+        sessionStorage.setItem("loaderJaMostrado", "true");
+        mostrarSiteWrapper();
+
+        setTimeout(() => { preloader.style.display = "none"; }, 500);
+      }, 1690);
+    });
+  </script>
+
+  <!-- Reveal on scroll + contadores animados -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const reveals = document.querySelectorAll(".zr-reveal");
+      if (reveals.length && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("zr-visible");
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        reveals.forEach((el) => io.observe(el));
+      } else {
+        reveals.forEach((el) => el.classList.add("zr-visible"));
+      }
+
+      const counters = document.querySelectorAll("[data-counter]");
+
+      function animarContador(el) {
+        const target = parseInt(el.getAttribute("data-target"), 10) || 0;
+        const suffix = el.getAttribute("data-suffix") || "";
+        const duracao = 1400;
+        const inicio = performance.now();
+
+        function passo(agora) {
+          const progresso = Math.min((agora - inicio) / duracao, 1);
+          el.textContent = Math.floor(progresso * target) + suffix;
+
+          if (progresso < 1) requestAnimationFrame(passo);
+          else el.textContent = target + suffix;
+        }
+
+        requestAnimationFrame(passo);
+      }
+
+      if (counters.length && "IntersectionObserver" in window) {
+        const ioCounters = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animarContador(entry.target);
+              ioCounters.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.4 });
+
+        counters.forEach((el) => ioCounters.observe(el));
+      } else {
+        counters.forEach((el) => animarContador(el));
+      }
+    });
+  </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const carousel = document.getElementById("zyroFlexCarousel");
+    const track = document.getElementById("zyroCarouselTrack");
+
+    const prev = document.getElementById("zyroCarouselPrev");
+    const next = document.getElementById("zyroCarouselNext");
+
+    const name = document.getElementById("zyroCarouselName");
+    const current = document.getElementById("zyroCarouselCurrent");
+    const total = document.getElementById("zyroCarouselTotal");
+
+    if (!carousel || !track) return;
+
+    const items = Array.from(
+        track.querySelectorAll(".zyro-carousel-item")
+    );
+
+    const names = items.map(item => {
+        const img = item.querySelector("img");
+        return img?.alt || "Curso ZyroDev";
+    });
+
+    let active = 0;
+
+    let startX = 0;
+    let currentX = 0;
+
+    let dragging = false;
+
+    let autoPlay;
+
+    total.textContent = String(items.length).padStart(2, "0");
+
+
+    function updateCarousel(animate = true) {
+
+        if (!items.length) return;
+
+        active = (active + items.length) % items.length;
+
+        items.forEach((item, index) => {
+
+            item.classList.toggle(
+                "active",
+                index === active
+            );
+
+        });
+
+        const activeItem = items[active];
+
+        const itemCenter =
+            activeItem.offsetLeft +
+            activeItem.offsetWidth / 2;
+
+        const trackCenter =
+            track.offsetWidth / 2;
+
+        const move =
+            trackCenter - itemCenter;
+
+        track.style.transition = animate
+            ? "transform .65s cubic-bezier(.22,.61,.36,1)"
+            : "none";
+
+        track.style.transform =
+            `translate(calc(-50% + ${move}px), -50%)`;
+
+        name.textContent = names[active];
+
+        current.textContent =
+            String(active + 1).padStart(2, "0");
+    }
+
+
+    function nextCourse() {
+
+        active++;
+
+        updateCarousel();
+
+        restartAutoplay();
+    }
+
+
+    function prevCourse() {
+
+        active--;
+
+        updateCarousel();
+
+        restartAutoplay();
+    }
+
+
+    next.addEventListener("click", nextCourse);
+
+    prev.addEventListener("click", prevCourse);
+
+
+    /* =====================================================
+       ARRASTAR COM MOUSE
+    ===================================================== */
+
+    carousel.addEventListener("pointerdown", event => {
+
+        if (event.target.closest(".zyro-carousel-arrow")) {
+            return;
+        }
+
+        dragging = true;
+
+        startX = event.clientX;
+
+        currentX = startX;
+
+        carousel.classList.add("dragging");
+
+        track.style.transition = "none";
+
+        carousel.setPointerCapture(event.pointerId);
+    });
+
+
+    carousel.addEventListener("pointermove", event => {
+
+        if (!dragging) return;
+
+        currentX = event.clientX;
+
+        const difference =
+            currentX - startX;
+
+        const activeItem = items[active];
+
+        const itemCenter =
+            activeItem.offsetLeft +
+            activeItem.offsetWidth / 2;
+
+        const trackCenter =
+            track.offsetWidth / 2;
+
+        const baseMove =
+            trackCenter - itemCenter;
+
+        track.style.transform =
+            `translate(
+                calc(-50% + ${baseMove + difference}px),
+                -50%
+            )`;
+    });
+
+
+    carousel.addEventListener("pointerup", event => {
+
+        if (!dragging) return;
+
+        dragging = false;
+
+        carousel.classList.remove("dragging");
+
+        const difference =
+            currentX - startX;
+
+        if (Math.abs(difference) > 70) {
+
+            if (difference < 0) {
+                active++;
+            } else {
+                active--;
+            }
+        }
+
+        updateCarousel();
+
+        restartAutoplay();
+    });
+
+
+    carousel.addEventListener("pointercancel", () => {
+
+        dragging = false;
+
+        carousel.classList.remove("dragging");
+
+        updateCarousel();
+    });
+
+
+    /* =====================================================
+       TECLADO
+    ===================================================== */
+
+    document.addEventListener("keydown", event => {
+
+        if (event.key === "ArrowRight") {
+            nextCourse();
+        }
+
+        if (event.key === "ArrowLeft") {
+            prevCourse();
+        }
+
+    });
+
+
+    /* =====================================================
+       AUTOPLAY
+    ===================================================== */
+
+    function startAutoplay() {
+
+        autoPlay = setInterval(() => {
+
+            if (!dragging) {
+                active++;
+                updateCarousel();
+            }
+
+        }, 4000);
+
+    }
+
+
+    function restartAutoplay() {
+
+        clearInterval(autoPlay);
+
+        startAutoplay();
+
+    }
+
+
+    /* =====================================================
+       INICIALIZAÇÃO
+    ===================================================== */
+
+    window.addEventListener("resize", () => {
+        updateCarousel(false);
+    });
+
+    updateCarousel(false);
+
+    startAutoplay();
+
+});
+</script>
+
+<script>
+/* =========================================================
+   ZYRODEV FOOTER INTERACTIONS
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const footer = document.querySelector(".zyro-footer");
+  const mouseLight = document.querySelector(".footer-mouse-light");
+
+  if (!footer) return;
+
+
+  /* ==========================================
+     LUZ SEGUINDO O MOUSE
+  ========================================== */
+
+  if (mouseLight && window.matchMedia("(pointer:fine)").matches) {
+
+    footer.addEventListener("mousemove", (event) => {
+
+      const rect = footer.getBoundingClientRect();
+
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      mouseLight.style.left = `${x}px`;
+      mouseLight.style.top = `${y}px`;
+
+    });
+
+    footer.addEventListener("mouseleave", () => {
+
+      mouseLight.style.opacity = "0";
+
+    });
+
+    footer.addEventListener("mouseenter", () => {
+
+      mouseLight.style.opacity = ".8";
+
+    });
+
+  }
+
+
+  /* ==========================================
+     REVEAL AO ENTRAR NA TELA
+  ========================================== */
+
+  const revealItems = document.querySelectorAll(".footer-reveal");
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+
+      entries.forEach((entry) => {
+
+        if (!entry.isIntersecting) return;
+
+        entry.target.classList.add("footer-visible");
+
+        revealObserver.unobserve(entry.target);
+
+      });
+
+    },
+    {
+      threshold: 0.12
+    }
+  );
+
+  revealItems.forEach((item, index) => {
+
+    item.style.transitionDelay = `${index * 80}ms`;
+
+    revealObserver.observe(item);
+
+  });
+
+
+  /* ==========================================
+     EFEITO 3D SUAVE NOS BLOCOS SOCIAIS
+  ========================================== */
+
+  const socialButtons =
+    document.querySelectorAll(".footer-social-btn");
+
+  socialButtons.forEach((button) => {
+
+    button.addEventListener("mousemove", (event) => {
+
+      const rect = button.getBoundingClientRect();
+
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      const rotateY =
+        ((x / rect.width) - 0.5) * 8;
+
+      const rotateX =
+        ((y / rect.height) - 0.5) * -8;
+
+      button.style.transform =
+        `translateY(-4px) perspective(500px)
+         rotateX(${rotateX}deg)
+         rotateY(${rotateY}deg)`;
+
+    });
+
+    button.addEventListener("mouseleave", () => {
+
+      button.style.transform = "";
+
+    });
+
+  });
+
+
+  /* ==========================================
+     PARALLAX SUTIL DO RODAPÉ
+  ========================================== */
+
+  if (window.matchMedia("(pointer:fine)").matches) {
+
+    footer.addEventListener("mousemove", (event) => {
+
+      const rect = footer.getBoundingClientRect();
+
+      const px =
+        (event.clientX - rect.left) / rect.width - 0.5;
+
+      const py =
+        (event.clientY - rect.top) / rect.height - 0.5;
+
+      const glows =
+        footer.querySelectorAll(".footer-glow");
+
+      glows.forEach((glow, index) => {
+
+        const strength = index === 0 ? 14 : -10;
+
+        glow.style.transform =
+          `translate(
+            ${px * strength}px,
+            ${py * strength}px
+          ) scale(1.05)`;
+
+      });
+
+    });
+
+  }
+
+});
+</script>
+
+
+<script src="./i18n.js"></script>
+
+
+<script>
+/* =========================================================
+   ZYRODEV - AVISO AUTOMÁTICO DOS PROFESSORES
+   Exibe uma pequena notificação a cada 20 segundos.
+========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const notice = document.getElementById("zyroProfessorNotice");
+  const title = document.getElementById("zyroProfessorNoticeTitle");
+  const text = document.getElementById("zyroProfessorNoticeText");
+  const close = document.getElementById("zyroProfessorNoticeClose");
+
+  if (!notice || !title || !text) return;
+
+  const messages = [
+    {
+      title: "Conheça nossos professores",
+      text: "Visite os canais dos professores da ZyroDev e acompanhe os conteúdos."
+    },
+    {
+      title: "Apoie nossos professores",
+      text: "Conheça os canais de quem ajuda a comunidade a aprender programação."
+    },
+    {
+      title: "Tem conteúdo novo por aí",
+      text: "Passe pelos canais dos professores e descubra novas aulas e conteúdos."
+    }
+  ];
+
+  let messageIndex = 0;
+  let hideTimer = null;
+
+  function hideNotice() {
+    notice.classList.remove("show");
+  }
+
+  function showNotice() {
+    const message = messages[messageIndex];
+
+    title.textContent = message.title;
+    text.textContent = message.text;
+    notice.classList.add("show");
+
+    messageIndex = (messageIndex + 1) % messages.length;
+
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hideNotice, 7000);
+  }
+
+  close?.addEventListener("click", hideNotice);
+
+  // Primeiro aviso depois de 20 segundos.
+  setTimeout(showNotice, 20000);
+
+  // Depois, continua anunciando de 20 em 20 segundos.
+  setInterval(showNotice, 20000);
+});
+</script>
+
+
+<script>
+(() => {
+  const DATA_ATUALIZACAO =
+    new Date("2026-11-21T17:00:00-03:00").getTime();
+
+  const CHAVE = "zyrodev_update_seen_v1";
+
+  const overlay = document.getElementById("zyroUpdateOverlay");
+  const button = document.getElementById("zyroUpdateButton");
+  const progressArea = document.getElementById("zyroProgressArea");
+  const progressBar = document.getElementById("zyroProgressBar");
+  const progressText = document.getElementById("zyroProgressText");
+
+  if (!overlay || !button) return;
+
+  function verificarAtualizacao() {
+    if (Date.now() < DATA_ATUALIZACAO) return;
+
+    if (localStorage.getItem(CHAVE)) return;
+
+    overlay.style.display = "flex";
+
+    // Exibe somente uma vez por visitante nesta versão.
+    localStorage.setItem(CHAVE, "exibido");
+  }
+
+  const tempoRestante = DATA_ATUALIZACAO - Date.now();
+
+  if (tempoRestante > 0) {
+    setTimeout(verificarAtualizacao, tempoRestante);
+  } else {
+    verificarAtualizacao();
+  }
+
+  button.addEventListener("click", () => {
+    button.disabled = true;
+    button.textContent = "ATUALIZANDO...";
+
+    progressArea.style.display = "block";
+
+    let segundos = 60;
+
+    progressText.textContent =
+      `Preparando atualização... ${segundos} segundos`;
+
+    const intervalo = setInterval(() => {
+      segundos--;
+
+      const progresso = ((60 - segundos) / 60) * 100;
+
+      progressBar.style.width = progresso + "%";
+
+      progressText.textContent =
+        segundos > 0
+          ? `Atualizando ZyroDev... ${segundos} segundos`
+          : "Atualização concluída!";
+
+      if (segundos <= 0) {
+        clearInterval(intervalo);
+
+        const url = new URL(window.location.href);
+        url.searchParams.set("_zyro", Date.now());
+
+        window.location.replace(url.toString());
+      }
+    }, 1000);
+  });
+})();
+</script>
+
+<script src="./guia-zyro.js" defer></script>
+</body>
+
+<script src="./guia-zyro.js" defer></script>
 </body>
 </html>

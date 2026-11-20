@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Amigos e mensagens | ZyroDev</title>
+<link rel="icon" type="image/png" href="./fotos/zraposa.png">
+<style>
+:root{--bg:#050505;--panel:#101010;--panel2:#151515;--orange:#ff6a00;--orange2:#ff8533;--text:#fff;--muted:#9b9b9b;--border:rgba(255,255,255,.09)}
+*{box-sizing:border-box;font-family:Inter,Arial,sans-serif}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(255,106,0,.16),transparent 30%),#050505;color:var(--text)}
+button,input,textarea{font:inherit}button{cursor:pointer}
+.app{width:min(1180px,100%);margin:auto;padding:22px 16px 50px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.top h1{margin:0;font-size:clamp(1.5rem,3vw,2.2rem)}
+.top p{margin:5px 0 0;color:var(--muted);font-size:.88rem}
+.btn{border:0;border-radius:11px;padding:11px 15px;font-weight:800;background:var(--orange);color:#fff}
+.btn.secondary{background:#171717;border:1px solid var(--border)}
+.grid{display:grid;grid-template-columns:340px 1fr;gap:15px;min-height:650px}
+.card{background:rgba(16,16,16,.92);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 20px 55px rgba(0,0,0,.3)}
+.side{padding:15px}
+.search{display:flex;gap:8px;margin-bottom:13px}
+.search input{flex:1;min-width:0;background:#090909;border:1px solid var(--border);color:#fff;border-radius:10px;padding:11px 12px;outline:none}
+.search input:focus{border-color:rgba(255,106,0,.55)}
+.search button{width:45px;border:0;border-radius:10px;background:var(--orange);color:#fff;font-weight:900}
+.results,.friends{display:grid;gap:8px}
+.section-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:#777;margin:15px 4px 8px}
+.user{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;background:#0c0c0c;border:1px solid rgba(255,255,255,.05)}
+.user:hover{border-color:rgba(255,106,0,.25)}
+.user img{width:42px;height:42px;border-radius:50%;object-fit:cover;background:#222}
+.user-main{min-width:0;flex:1}.user-main strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.user-main small{color:#777;display:block;margin-top:3px;font-size:.7rem}
+.user button{border:0;background:rgba(255,106,0,.12);color:#ff9b5e;border-radius:9px;padding:8px;font-weight:800}
+.friend{width:100%;border:0;text-align:left;color:#fff;display:flex;align-items:center;gap:10px;padding:10px;background:#0c0c0c;border:1px solid rgba(255,255,255,.05);border-radius:12px}
+.friend:hover{border-color:rgba(255,106,0,.3)}
+.friend img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.friend div{min-width:0}.friend strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.friend small{color:#777}
+.empty{color:#666;font-size:.82rem;padding:12px 5px}
+.chat{display:flex;flex-direction:column;min-width:0}
+.chat-head{padding:15px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:11px}
+.chat-head img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#222}
+.chat-avatar-button{width:44px;height:44px;flex:0 0 44px;padding:0;border:0;border-radius:50%;background:transparent;position:relative;cursor:pointer}
+.chat-avatar-button img{width:44px;height:44px;display:block;transition:.2s;outline:2px solid transparent;outline-offset:2px}
+.chat-avatar-button:hover img{transform:scale(1.07);outline-color:rgba(255,106,0,.7)}
+.chat-avatar-button:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.chat-head strong{display:block}.chat-head small{color:#777}
+.messages{flex:1;min-height:0;height:480px;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:min(75%,520px);padding:10px 12px;border-radius:14px;background:#181818;border:1px solid rgba(255,255,255,.06);align-self:flex-start;white-space:pre-wrap;word-break:break-word}
+.msg.me{align-self:flex-end;background:rgba(255,106,0,.14);border-color:rgba(255,106,0,.25)}
+.msg small{display:block;color:#777;font-size:.64rem;margin-top:5px}
+.composer{display:flex;gap:8px;padding:13px;border-top:1px solid var(--border)}
+.composer textarea{flex:1;resize:none;min-height:44px;max-height:120px;background:#090909;color:#fff;border:1px solid var(--border);border-radius:11px;padding:11px;outline:none}
+.composer button{border:0;border-radius:11px;background:var(--orange);color:#fff;padding:0 18px;font-weight:900}
+.notice{padding:18px;text-align:center;color:#777;margin:auto}
+.toast{position:fixed;right:18px;bottom:18px;z-index:20;background:#171717;border:1px solid var(--border);padding:12px 15px;border-radius:12px;display:none;max-width:340px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.side{max-height:none}.messages{height:430px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div><h1>Amigos e mensagens</h1><p>Adicione pessoas pelo nome e converse com seus amigos.</p></div>
+    <a class="btn secondary" href="./perfil.html" style="text-decoration:none">Voltar ao perfil</a>
+  </div>
+
+  <div class="grid">
+    <aside class="card side">
+      <div class="search">
+        <input id="searchInput" placeholder="Digite o nome do amigo..." maxlength="120" autocomplete="off">
+        <button id="searchBtn" title="Pesquisar">⌕</button>
+      </div>
+      <div id="results" class="results"></div>
+
+      <div class="section-title">Meus amigos</div>
+      <div id="friends" class="friends"><div class="empty">Carregando...</div></div>
+    </aside>
+
+    <main class="card chat">
+      <div id="chatHead" class="chat-head">
+        <div class="notice">Selecione um amigo para começar uma conversa privada.</div>
+      </div>
+      <div id="messages" class="messages"><div class="notice">O chat privado aceita somente texto por enquanto. Etamos na versao teste.</div></div>
+      <form id="composer" class="composer" style="display:none">
+        <textarea id="messageInput" maxlength="2000" rows="1" placeholder="Digite sua mensagem..."></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </main>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+
+<script type="module">
+import {auth,db} from "./firebase.js";
+import {onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  collection,doc,getDoc,getDocs,setDoc,query,where,limit,orderBy,onSnapshot,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {sanitizeMediaUrl} from "./security-utils.js";
+
+const DEFAULT_PHOTO="./fotos/zraposa.png";
+const $=id=>document.getElementById(id);
+let me=null, selected=null, selectedConversation=null, stopFriends=null, stopMessages=null, sending=false;
+
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function photo(u){
+  return sanitizeMediaUrl(u) || DEFAULT_PHOTO;
+}
+
+function abrirPerfil(uid){
+  if(!uid) return;
+  location.href=`./perfil-publico.html?uid=${encodeURIComponent(uid)}`;
+}
+function pairId(a,b){return [a,b].sort().join("__")}
+function toast(msg){const el=$("toast");el.textContent=msg;el.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>el.style.display="none",3000)}
+function formatTime(ts){try{return ts?.toDate?.().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})||""}catch{return ""}}
+
+async function carregarPerfil(uid){
+  const s=await getDoc(doc(db,"usuarios",uid));
+  if(!s.exists())return null;
+  return {uid:s.id,...s.data()};
+}
+
+async function pesquisar(){
+  const termo=$("searchInput").value.trim();
+  $("results").innerHTML="";
+  if(!termo){return}
+  try{
+    let encontrados=[];
+    const nomes=[termo,termo.replace(/\s+/g," "),termo.charAt(0).toUpperCase()+termo.slice(1)];
+    for(const nome of [...new Set(nomes)]){
+      const q=query(collection(db,"usuarios"),where("nome",">=",nome),where("nome","<=",nome+"\uf8ff"),limit(10));
+      const snap=await getDocs(q);
+      snap.forEach(d=>{if(!encontrados.some(x=>x.uid===d.id))encontrados.push({uid:d.id,...d.data()})});
+    }
+    encontrados=encontrados.filter(x=>x.uid!==me.uid).slice(0,10);
+
+    if(!encontrados.length){
+      $("results").innerHTML='<div class="empty">Nenhum usuário encontrado.</div>';
+      return;
+    }
+    encontrados.forEach(u=>{
+      const el=document.createElement("div");
+      el.className="user";
+      el.innerHTML=`<img src="${esc(photo(u.foto))}" alt=""><div class="user-main"><strong>${esc(u.nome||"Usuário")}</strong></div><button>Adicionar</button>`;
+      const img=el.querySelector("img");
+      img.onerror=()=>{img.src=DEFAULT_PHOTO};
+      el.querySelector("button").onclick=()=>adicionarAmigo(u);
+      $("results").appendChild(el);
+    });
+  }catch(e){console.error(e);$("results").innerHTML='<div class="empty">Não foi possível pesquisar agora.</div>'}
+}
+
+async function adicionarAmigo(u){
+  if(!me||u.uid===me.uid)return;
+  const id=pairId(me.uid,u.uid);
+  try{
+    const ref=doc(db,"amizades",id), existing=await getDoc(ref);
+    if(existing.exists()){toast("Vocês já são amigos.");return}
+    await setDoc(ref,{
+      participants:[me.uid,u.uid],
+      participantNames:{[me.uid]:me.nome||"Usuário",[u.uid]:u.nome||"Usuário"},
+      participantPhotos:{[me.uid]:me.foto||DEFAULT_PHOTO,[u.uid]:u.foto||DEFAULT_PHOTO},
+      createdAt:serverTimestamp(),
+      updatedAt:serverTimestamp(),
+      lastMessage:""
+    });
+    toast("Amizade adicionada.");
+    await carregarAmigos();
+    abrirChat(u,{id});
+  }catch(e){console.error(e);toast("Não foi possível adicionar essa amizade.")}
+}
+
+function renderAmigo(u,id){
+  const b=document.createElement("button");
+  b.className="friend";
+  b.innerHTML=`<img src="${esc(photo(u.foto))}" alt=""><div><strong>${esc(u.nome||"Usuário")}</strong><small>Conversa privada</small></div>`;
+  const img=b.querySelector("img");
+  img.onerror=()=>{img.src=DEFAULT_PHOTO};
+  b.onclick=()=>abrirChat(u,{id});
+  return b;
+}
+
+async function carregarAmigos(){
+  if(!me)return;
+  if(stopFriends)stopFriends();
+  const q=query(collection(db,"amizades"),where("participants","array-contains",me.uid),limit(100));
+  stopFriends=onSnapshot(q,async snap=>{
+    const docs=[...snap.docs].sort((a,b)=>{
+      const ta=a.data().updatedAt?.toMillis?.()||0, tb=b.data().updatedAt?.toMillis?.()||0;
+      return tb-ta;
+    });
+    const box=$("friends");box.innerHTML="";
+    if(snap.empty){box.innerHTML='<div class="empty">Você ainda não adicionou amigos.</div>';return}
+    for(const d of docs){
+      const data=d.data(), other=(data.participants||[]).find(x=>x!==me.uid);
+      if(!other)continue;
+      const u=await carregarPerfil(other);
+      if(u)box.appendChild(renderAmigo(u,d.id));
+    }
+  },e=>{console.error(e);$("friends").innerHTML='<div class="empty">Não foi possível carregar seus amigos.</div>'});
+}
+
+async function abrirChat(u,conv){
+  selected=u;selectedConversation=conv?.id||pairId(me.uid,u.uid);
+
+  const chatFoto=document.createElement("button");
+  chatFoto.type="button";
+  chatFoto.className="chat-avatar-button";
+  chatFoto.title="Ver perfil";
+  chatFoto.setAttribute("aria-label",`Ver perfil de ${u.nome||"Usuário"}`);
+
+  const chatImg=document.createElement("img");
+  chatImg.src=photo(u.foto);
+  chatImg.alt=`Foto de ${u.nome||"Usuário"}`;
+  chatImg.onerror=()=>{chatImg.src=DEFAULT_PHOTO};
+  chatFoto.appendChild(chatImg);
+  chatFoto.addEventListener("click",()=>abrirPerfil(u.uid));
+
+  const chatInfo=document.createElement("div");
+  chatInfo.innerHTML=`<strong>${esc(u.nome||"Usuário")}</strong><small>Conversa privada</small>`;
+
+  $("chatHead").innerHTML="";
+  $("chatHead").appendChild(chatFoto);
+  $("chatHead").appendChild(chatInfo);
+  $("composer").style.display="flex";
+  $("messageInput").focus();
+  if(stopMessages)stopMessages();
+  const messagesRef=collection(db,"amizades",selectedConversation,"mensagens");
+  const q=query(messagesRef,orderBy("createdAt","asc"),limit(200));
+  stopMessages=onSnapshot(q,snap=>{
+    const box=$("messages");box.innerHTML="";
+    if(snap.empty){box.innerHTML='<div class="notice">Nenhuma mensagem ainda. Comece a conversa.</div>';return}
+    snap.forEach(d=>{
+      const m=d.data(), el=document.createElement("div");
+      el.className="msg"+(m.uid===me.uid?" me":"");
+      el.innerHTML=`${esc(m.texto)}<small>${m.uid===me.uid?"Você":esc(u.nome||"Amigo")} ${formatTime(m.createdAt)}</small>`;
+      box.appendChild(el);
+    });
+    box.scrollTop=box.scrollHeight;
+  },e=>{console.error(e);toast("Não foi possível abrir o chat.")});
+}
+
+$("searchBtn").onclick=pesquisar;
+$("searchInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();pesquisar()}});
+
+$("composer").addEventListener("submit",async e=>{
+  e.preventDefault();
+  if(sending||!me||!selected||!selectedConversation)return;
+  const texto=$("messageInput").value.trim();
+  if(!texto)return;
+  sending=true;
+  try{
+    await setDoc(doc(db,"amizades",selectedConversation,"mensagens",crypto.randomUUID()),{
+      uid:me.uid,conversationId:selectedConversation,texto,createdAt:serverTimestamp()
+    });
+    await setDoc(doc(db,"amizades",selectedConversation),{
+      participants:[me.uid,selected.uid].sort(),
+      updatedAt:serverTimestamp(),
+      lastMessage:texto.slice(0,120)
+    },{merge:true});
+    $("messageInput").value="";
+  }catch(e){console.error(e);toast("Não foi possível enviar a mensagem.")}
+  finally{sending=false}
+});
+
+onAuthStateChanged(auth,async user=>{
+  if(!user){location.href="./login.html";return}
+  me=await carregarPerfil(user.uid);
+  if(!me){toast("Perfil da conta não encontrado.");return}
+  await carregarAmigos();
+});
+</script>
+<script src="./guia-zyro.js" defer></script>
+</body>
+</html>

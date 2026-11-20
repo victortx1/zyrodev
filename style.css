@@ -9,7 +9,7 @@ body{
     color:white;
 
     /* FUNDO BONITO */
-    background: radial-gradient(circle at top, #1e3a8a, #0f172a, #020617);
+    background: radial-gradient(circle at top, #000000, #111111, #000000);
     min-height:100vh;
 }
 
@@ -18,7 +18,7 @@ body{
     position:absolute;
     top:20px;
     right:40px;
-    background:#111827;
+    background:#161616;
     padding:12px 20px;
     border-radius:8px;
     text-decoration:none;
@@ -32,7 +32,7 @@ body{
 }
 
 .discord-btn:hover{
-    background:#2563eb;
+    background:#ff6a00;
     transform:scale(1.05);
 }
 
@@ -45,8 +45,8 @@ body{
     position:relative;
 
     background:
-    linear-gradient(rgba(2,6,23,0.85), rgba(2,6,23,0.9)),
-    radial-gradient(circle at top left,#2563eb,#020617);
+    linear-gradient(rgba(17, 17, 17, 0.85), rgba(17, 17, 17, 0.9)),
+    radial-gradient(circle at top left,#ff6a00,#000000);
 
     background-size:cover;
     background-position:center;
@@ -62,12 +62,12 @@ body{
     font-weight:700;
     margin-bottom:20px;
 
-    background:linear-gradient(90deg,#60a5fa,#a78bfa);
+    background:linear-gradient(90deg,#ff6a00,#ff6a00);
     color:transparent;
 }
 
 .hero p{
-    color:#cbd5e1;
+    color:#B8B8B8;
     margin-bottom:40px;
     line-height:1.6;
 }
@@ -76,7 +76,7 @@ body{
 .btn-slide{
     width:70px;
     height:70px;
-    background:linear-gradient(90deg,#2563eb,#6d28d9);
+    background:linear-gradient(90deg,#ff6a00,#cc5200);
     border-radius:50%;
     display:flex;
     align-items:center;
@@ -89,7 +89,7 @@ body{
 
 .btn-slide:hover{
     transform:scale(1.1);
-    box-shadow:0 0 20px rgba(99,102,241,0.6);
+    box-shadow:0 0 20px rgba(255, 106, 0, 0.6);
 }
 
 .gota{

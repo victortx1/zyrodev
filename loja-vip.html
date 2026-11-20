@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZyroDev — Loja</title>
+<link rel="icon" type="image/png" href="./fotos/zraposa.png">
+<style>
+:root{--bg:#050505;--panel:#0d0d0d;--orange:#ff6a00;--orange2:#ff9a4a;--muted:#8e8e8e;--line:rgba(255,255,255,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:#fff;background:radial-gradient(circle at 50% -5%,rgba(255,106,0,.22),transparent 34%),radial-gradient(circle at 0 60%,rgba(255,106,0,.07),transparent 30%),#050505;font-family:Inter,Arial,sans-serif}a{text-decoration:none;color:inherit}button{font:inherit}
+.nav{width:min(1160px,92%);margin:auto;padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:15px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--orange),var(--orange2));display:grid;place-items:center;color:#111;font-weight:1000}.brand b{font-size:20px}.brand small{display:block;color:#777;margin-top:2px}.nav-actions{display:flex;gap:8px;flex-wrap:wrap}.nav-btn{padding:10px 13px;border-radius:11px;background:#101010;border:1px solid var(--line);color:#bbb;font-size:12px;font-weight:800}.nav-btn.primary{background:linear-gradient(135deg,var(--orange),var(--orange2));color:#111;border:0}
+.hero{width:min(1160px,92%);margin:35px auto 0;text-align:center}.eyebrow{display:inline-flex;padding:7px 12px;border-radius:999px;color:var(--orange2);background:rgba(255,106,0,.08);border:1px solid rgba(255,106,0,.24);font-size:11px;font-weight:900;letter-spacing:.12em}.hero h1{font-size:clamp(38px,7vw,76px);line-height:.98;margin:20px auto 13px;letter-spacing:-.05em;max-width:850px}.hero h1 span{background:linear-gradient(90deg,#fff,var(--orange2));-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:680px;margin:auto;color:#8d8d8d;line-height:1.7;font-size:14px}
+.section{width:min(1160px,92%);margin:58px auto 0}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:18px}.section-head h2{margin:0;font-size:25px}.section-head p{margin:5px 0 0;color:#666;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:16px}.card{position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#151515,#0a0a0a);border-radius:22px;padding:15px;transition:.25s}.card:hover{transform:translateY(-5px);border-color:rgba(255,106,0,.4);box-shadow:0 22px 60px rgba(0,0,0,.4)}.visual{height:190px;border-radius:16px;background:radial-gradient(circle,rgba(255,106,0,.16),transparent 58%),#080808;border:1px solid rgba(255,255,255,.06);display:grid;place-items:center;overflow:hidden}.visual.frame img{width:160px;height:160px;object-fit:contain}.visual.banner img{width:100%;height:100%;object-fit:cover}.visual.avatar img{width:145px;height:145px;object-fit:cover;border-radius:50%}.tag{position:absolute;top:26px;left:26px;z-index:2;padding:6px 9px;border-radius:999px;background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.1);font-size:9px;font-weight:900;color:#72e6aa}.card-body{padding:15px 3px 2px}.card h3{margin:0 0 7px;font-size:19px}.card p{margin:0;color:#777;font-size:12px;line-height:1.55;min-height:38px}.free{font-size:24px;font-weight:1000;color:#67e8a5;margin:14px 0}.acquire{display:block;text-align:center;width:100%;padding:12px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--orange),var(--orange2));color:#111;font-weight:1000;cursor:pointer;transition:.2s}.acquire.owned{background:rgba(103,232,165,.12);color:#67e8a5;border:1px solid rgba(103,232,165,.28);cursor:default}.acquire:hover:not(.owned){filter:brightness(1.08);transform:translateY(-1px)}
+.info{margin-top:40px;padding:18px 20px;border:1px solid var(--line);background:#0b0b0b;border-radius:17px;color:#777;font-size:12px;line-height:1.7}.info b{color:#ddd}footer{width:min(1160px,92%);margin:45px auto 25px;text-align:center;color:#555;font-size:11px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:12px 16px;border-radius:12px;background:#111;border:1px solid rgba(255,106,0,.3);color:#fff;font-size:12px;font-weight:800;transition:.25s;z-index:20}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:650px){.nav{align-items:flex-start}.nav-actions{justify-content:flex-end}.hero h1{font-size:43px}.section-head{display:block}.section-head p{margin-top:6px}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-actions"><a class="nav-btn" href="cursos.html" data-i18n="courses">Cursos</a><a class="nav-btn primary" href="perfil.html" data-i18n="myProfile">Meu perfil</a></div>
+</header>
+
+<section class="hero">
+  <h1 data-i18n-html="freeStoreTitle">Personalize seu <span>perfil.</span></h1>
+  <p data-i18n="freeStoreDescription">Deixa seu perfil com a sua identidade.</p>
+</section>
+
+<section class="section" id="badges"><div class="section-head"><div><h2>Badges</h2><p>Todos os badges ficam visíveis na loja. Para receber qualquer um, é necessário solicitar e aguardar a análise de um administrador.</p></div></div><div class="grid" id="badgesGrid"></div></section>
+
+<section class="section" id="molduras">
+  <div class="section-head"><div><h2 data-i18n="framesTitle">Molduras</h2><p data-i18n="framesSubtitle">Todas gratuitas para usar no seu perfil.</p></div></div>
+  <div class="grid" id="framesGrid"></div>
+</section>
+
+<section class="section" id="banners">
+  <div class="section-head"><div><h2 data-i18n="bannersTitle">Banners</h2><p data-i18n="bannersSubtitle">Fundos para deixar seu perfil com a sua identidade.</p></div></div>
+  <div class="grid" id="bannersGrid"></div>
+</section>
+
+<section class="section" id="avatars">
+  <div class="section-head"><div><h2 data-i18n="avatarsTitle">Fotos de perfil</h2><p data-i18n="avatarsSubtitle">Avatares gratuitos para escolher no Editar perfil.</p></div></div>
+  <div class="grid" id="avatarsGrid"></div>
+</section>
+
+<section class="section">
+  <div class="info"><b data-i18n="storeHowTitle">Como funciona:</b> <span data-i18n="storeHowText">clique em Adquirir gratuitamente, o item fica salvo na sua conta e aparece automaticamente no Editar perfil. A loja não possui pagamentos.</span></div>
+</section>
+<footer>ZyroDev © 2026 • <span data-i18n="freeStoreFooter">Loja gratuita de personalização</span></footer>
+<div id="toast" class="toast"></div>
+
+
+<script>
+const PRODUCTS = [
+  {id:"moldura_fogo",type:"frame",name:"Moldura Hallowen",description:"Moldura do Hallowen.",url:"./fotos/hallowen.png"},
+  {id:"moldura_neon",type:"frame",name:"Moldura Poplar",description:"Moldura poplar.",url:"./fotos/poplar.png"},
+  {id:"moldura_diamante",type:"frame",name:"Moldura Magia",description:"A magia.",url:"./fotos/magico.png"},
+  {id:"moldura_nova_era",type:"frame",name:"Moldura Sakura",description:"Identidade Sakura.",url:"./fotos/sakura.png"},
+  {id:"moldura_galaxia",type:"frame",name:"Moldura Asmart",description:"Asmart no ar.",url:"./fotos/asmart.png"},
+  {id:"banner_aurora",type:"banner",name:"Zyro Dev",description:"Zyro Dev.",url:"./fotos/zyrodevvvv.png"},
+  {id:"banner_neon",type:"banner",name:"Banner Lar",description:"Banner Lar.",url:"./fotos/lar.gif"},
+  {id:"banner_space",type:"banner",name:"Banner Spotify",description:"Banner Spotify.",url:"./fotos/spot.png"},
+  {id:"banner_sunset",type:"banner",name:"Banner Relampago marquinhos",description:"Banner Relampago marquinhos.",url:"./fotos/kathaooo.gif"},
+  {id:"banner_circuit",type:"banner",name:"Banner Node Bots  ",description:"Banner Node Bots  .",url:"./fotos/node.gif"},
+  {id:"avatar_aurora",type:"avatar",name:"Avatar Anie",description:"Avatar da Anie.",url:"./fotos/anie.jfif"},
+  {id:"avatar_neon",type:"avatar",name:"Avatar do frack",description:"O frack.",url:"./fotos/frack.gif"},
+  {id:"avatar_space",type:"avatar",name:"Avatar Minie",description:"Estilo minie.",url:"./fotos/minie.jfif"},
+  {id:"avatar_flame",type:"avatar",name:"Avatar Palhaço",description:"Engraçado e Timido.",url:"./fotos/palhaço.jfif"},
+  {id:"avatar_circuit",type:"avatar",name:"Avatar riok",description:"Estilo riok.",url:"./fotos/riok.jfif"},
+  {id:"moldura_admin_1",type:"frame",name:"Golden Dragon",description:"Exclusiva para administradores.",url:"./fotos/admin.png",role:"admin"},
+  {id:"moldura_admin_2",type:"frame",name:"Black Dragon",description:"Exclusiva para administradores.",url:"./fotos/dragon.png",role:"admin"},
+  {id:"moldura_patrocinador_1",type:"frame",name:"Boss Zyro",description:"Exclusiva para patrocinadores aprovados.",url:"./fotos/bosszyro.png",role:"patrocinador"},
+  {id:"moldura_patrocinador_2",type:"frame",name:"Zyro sponsor",description:"Exclusiva para patrocinadores aprovados.",url:"./fotos/PartnerZyro.png",role:"patrocinador"},
+  {id:"moldura_criador_1",type:"frame",name:"Moldura Criador",description:"Exclusiva para criadores aprovados.",url:"./fotos/criador.png",role:"criador"},
+  {id:"moldura_criador_2",type:"frame",name:"Lead Creator",description:"Exclusiva para criadores aprovados.",url:"./fotos/criadorchefe.png",role:"criador"},
+  {id:"moldura_primeira_temporada",type:"frame",name:"Moldura Primeira Temporada",description:"Item especial da Season 1.",url:"./fotos/pr1.png",role:"season"},
+  {id:"moldura_delar",type:"frame",name:"Moldura Do DELAR",description:"Moldura exclusiva do DELAR.",url:"./fotos/delarr.png",role:"founder"},
+  {id:"banner_admin_1",type:"banner",name:"Banner Admin",description:"Exclusivo para administradores.",url:"./fotos/admin.jfif",role:"admin"},
+  {id:"banner_admin_2",type:"banner",name:"Banner Naruto Admin",description:"Exclusivo para administradores.",url:"./fotos/narutoadmin.jfif",role:"admin"},
+  {id:"banner_patrocinador_1",type:"banner",name:"Banner Patrocinador",description:"Exclusivo para patrocinadores aprovados.",url:"./fotos/patrocinador.jfif",role:"patrocinador"},
+  {id:"banner_patrocinador_2",type:"banner",name:"Banner Patrocinador Propin",description:"Exclusivo para patrocinadores aprovados.",url:"./fotos/propin.jfif",role:"patrocinador"},
+  {id:"banner_criador_1",type:"banner",name:"Banner Criador",description:"Exclusivo para criadores aprovados.",url:"./fotos/criador.jfif",role:"criador"},
+  {id:"banner_criador_2",type:"banner",name:"Banner Cria Zyro",description:"Exclusivo para criadores aprovados.",url:"./fotos/criazyro.jfif",role:"criador"},
+  {id:"banner_primeira_temporada",type:"banner",name:"Banner Season 1",description:"Banner edição limitada.",url:"./fotos/pt1.jfif",role:"season"},
+  {id:"banner_delar",type:"banner",name:"Banner Do DELAR",description:"Banner exclusivo do DELAR.",url:"./fotos/delarzin.jfif",role:"founder"},
+  {id:"avatar_admin_1",type:"avatar",name:"Avatar Alecrin",description:"Exclusiva para administradores.",url:"./fotos/alecrinadm.png",role:"admin"},
+  {id:"avatar_admin_2",type:"avatar",name:"Avatar Boom",description:"Exclusiva para administradores.",url:"./fotos/boomadm.png",role:"admin"},
+  {id:"avatar_patrocinador_1",type:"avatar",name:"Avatar Patrocinador ssponzo",description:"Exclusiva para patrocinadores .",url:"./fotos/ssponzo.jfif",role:"patrocinador"},
+  {id:"avatar_patrocinador_2",type:"avatar",name:"Avatar billionaire",description:"Exclusiva para patrocinadores .",url:"./fotos/reimoney.jfif",role:"patrocinador"},
+  {id:"avatar_criador_1",type:"avatar",name:"Avatar Cfzyro",description:"Exclusiva para criadores .",url:"./fotos/cfzyro.jfif",role:"criador"},
+  {id:"avatar_criador_2",type:"avatar",name:"Avatar Cria",description:"Exclusiva para criadores .",url:"./fotos/cria.jfif",role:"criador"},
+  {id:"avatar_primeira_temporada",type:"avatar",name:"Avatar Primeira Temporada",description:"Avatar especial da Season 1.",url:"./fotos/pt1.png",role:"season"},
+  {id:"avatar_delar",type:"avatar",name:"Avatar Do DELAR",description:"Avatar exclusivo do DELAR.",url:"./fotos/DELAR.png",role:"founder"}
+];
+const BADGES = [
+  {id:"socio",name:"Sócio",description:"Badge especial para parceiros/administradores.",url:"./fotos/sociozyro.png",role:"patrocinador"},
+  {id:"patrocinador",name:"Patrocinador",description:"Badge para patrocinadores aprovados.",url:"./fotos/sponsor.png",role:"patrocinador"},
+  {id:"criador",name:"Criador",description:"Badge para criadores aprovados.",url:"./fotos/criadorzyro.png",role:"criador"},
+];
+const zyroStoreLabels={frame:"framesGrid",banner:"bannersGrid",avatar:"avatarsGrid"};
+let zyroUser=null, zyroData={};
+function zyroList(type){
+ const k=type==="frame"?"moldurasDesbloqueadas":type==="banner"?"bannersDesbloqueados":"fotosDesbloqueadas";
+ return Array.isArray(zyroData[k])?zyroData[k]:[];
+}
+function zyroRole(role){
+ if(!role) return true;
+
+ if(role==="founder"){
+   return zyroUser && zyroUser.uid === "GEGtgrYy33bnY81yOoZxRUMeb7C2";
+ }
+
+ if(role==="admin") return zyroData.admin===true;
+
+ if(role==="patrocinador") return zyroData.patrocinador===true;
+
+ if(role==="criador") return zyroData.criador===true;
+
+ if(role==="season"){
+   return Array.isArray(zyroData.badges) &&
+          zyroData.badges.includes("primeira_temporada");
+ }
+
+ return false;
+}
+function zyroToast(msg){
+ const e=document.getElementById("toast"); if(!e)return;
+ e.textContent=msg; e.classList.add("show"); clearTimeout(window.__zt);
+ window.__zt=setTimeout(()=>e.classList.remove("show"),2600);
+}
+function zyroCard(p,owned,allowed){
+ const card=document.createElement("article"); card.className="card";
+ const visual=document.createElement("div"); visual.className="visual "+p.type;
+ const img=document.createElement("img"); img.src=p.url; img.alt=p.name; img.loading="lazy";
+ img.onerror=()=>{ img.style.display="none"; visual.insertAdjacentHTML("beforeend",'<span style="color:#777;font-size:12px">Imagem não encontrada</span>'); };
+ visual.appendChild(img);
+ const tag=document.createElement("span"); tag.className="tag";
+ tag.textContent=p.role==="admin"?"ADMIN":p.role==="patrocinador"?"PATROCINADOR":p.role==="criador"?"CRIADOR":p.role==="season"?"SEASON 1":"GRÁTIS";
+ card.append(tag,visual);
+ const body=document.createElement("div"); body.className="card-body";
+ body.innerHTML=`<h3>${p.name}</h3><p>${p.description}</p><div class="free">GRÁTIS</div>`;
+ const btn=document.createElement("button"); btn.className="acquire "+(owned?"owned":"");
+ if(owned){btn.textContent="Adquirido • Editar perfil";btn.onclick=()=>location.href="./editar-perfil.html";}
+ else if(!allowed){btn.textContent="Exclusivo";btn.disabled=true;}
+ else {btn.textContent="Adquirir gratuitamente";btn.dataset.product=p.id;}
+ body.appendChild(btn); card.appendChild(body); return {card,btn};
+}
+function renderStore(){
+ for(const type of ["frame","banner","avatar"]){
+   const grid=document.getElementById(zyroStoreLabels[type]); if(!grid)continue;
+   grid.innerHTML="";
+   PRODUCTS.filter(p=>p.type===type).forEach(p=>{
+      const {card,btn}=zyroCard(p,zyroList(type).includes(p.id),zyroRole(p.role));
+      if(btn.dataset.product) btn.addEventListener("click",()=>zyroAcquire(p));
+      grid.appendChild(card);
+   });
+ }
+ const grid=document.getElementById("badgesGrid");
+ if(grid){
+  grid.innerHTML="";
+  BADGES.forEach(b=>{
+    const owned=Array.isArray(zyroData.badges)&&zyroData.badges.includes(b.id);
+    const pending=Array.isArray(zyroData.solicitacoesBadges)&&zyroData.solicitacoesBadges.some(x=>x?.badgeId===b.id&&x?.status==="pendente");
+    const card=document.createElement("article");card.className="card";
+    const visual=document.createElement("div");visual.className="visual avatar";
+    const img=document.createElement("img");img.src=b.url;img.alt=b.name;img.loading="lazy";visual.appendChild(img);card.appendChild(visual);
+    const body=document.createElement("div");body.className="card-body";
+    body.innerHTML=`<h3>${b.name}</h3><p>${b.description}</p><div class="free">SOLICITAÇÃO</div>`;
+    const btn=document.createElement("button");btn.className="acquire "+(owned?"owned":"");btn.disabled=owned||pending;
+    btn.textContent=owned?"Já possui":pending?"Solicitação enviada":"Solicitar badge";
+    if(!owned&&!pending)btn.onclick=()=>zyroRequestBadge(b);
+    body.appendChild(btn);card.appendChild(body);grid.appendChild(card);
+  });
+ }
+}
+async function zyroAcquire(p){
+ if(!zyroUser){location.href="./login.html?redirect=loja.html";return;}
+ if(!zyroRole(p.role)){zyroToast("Você não possui a permissão necessária para este item.");return;}
+ try{
+  const {doc,getDoc,updateDoc,setDoc}=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+  const {db}=await import("./firebase.js");
+  const ref=doc(db,"usuarios",zyroUser.uid);
+  const key=p.type==="frame"?"moldurasDesbloqueadas":p.type==="banner"?"bannersDesbloqueados":"fotosDesbloqueadas";
+  const current=Array.isArray(zyroData[key])?[...zyroData[key]]:[];
+  if(current.includes(p.id))return;
+  current.push(p.id); await updateDoc(ref,{[key]:current}); zyroData[key]=current; renderStore(); zyroToast(p.name+" foi adicionado à sua conta.");
+ }catch(e){console.error(e);zyroToast("Não foi possível adquirir o item. Verifique o Firebase.");}
+}
+async function zyroRequestBadge(b){
+ if(!zyroUser){location.href="./login.html?redirect=loja.html";return;}
+ try{
+  const {doc,updateDoc}=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+  const {db}=await import("./firebase.js");
+  const ref=doc(db,"usuarios",zyroUser.uid);
+  const pedidos=Array.isArray(zyroData.solicitacoesBadges)?[...zyroData.solicitacoesBadges]:[];
+  pedidos.push({badgeId:b.id,nome:b.name,status:"pendente",solicitadoEm:new Date().toISOString()});
+  await updateDoc(ref,{solicitacoesBadges:pedidos}); zyroData.solicitacoesBadges=pedidos; renderStore(); zyroToast("Solicitação enviada.");
+ }catch(e){console.error(e);zyroToast("Não foi possível enviar a solicitação.");}
+}
+renderStore();
+</script>
+
+<script type="module">
+try {
+ const {auth,db}=await import("./firebase.js");
+ const {onAuthStateChanged}=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
+ const {doc,getDoc,setDoc}=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+ onAuthStateChanged(auth, async u=>{
+   zyroUser=u||null;
+   if(!u){ zyroData={}; renderStore(); return; }
+   const ref=doc(db,"usuarios",u.uid); const snap=await getDoc(ref);
+   if(snap.exists()) zyroData=snap.data()||{};
+   else {
+     zyroData={uid:u.uid,nome:u.displayName||"Usuário",bio:"",foto:u.photoURL||"",banner:"",empresa:"",site:"",badges:[],admin:false,banido:false,moldurasDesbloqueadas:[],bannersDesbloqueados:[],fotosDesbloqueadas:[],solicitacoesBadges:[],patrocinador:false,criador:false,vipAtivo:false};
+     await setDoc(ref,zyroData);
+   }
+   renderStore();
+ });
+} catch(e) {
+ console.error("ZyroDev loja Firebase:",e);
+ renderStore();
+}
+</script>
+<script src="./i18n.js"></script>
+<script src="./guia-zyro.js" defer></script>
+</body>
+</html>

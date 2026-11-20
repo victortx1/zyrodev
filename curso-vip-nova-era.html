@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="./fotos/zraposa.png">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZyroDev — Curso Exclusivo Nova Era</title>
+<style>
+:root{--o:#ff6a00;--o2:#ffd166;--bg:#050505}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0%,rgba(255,106,0,.16),transparent 38%),var(--bg);color:#fff;font-family:Inter,Arial,sans-serif}
+.wrap{width:min(980px,92%);margin:auto;padding:25px 0 60px}.back{color:#aaa;text-decoration:none;font-size:13px}.hero{margin-top:25px;padding:42px 30px;border:1px solid rgba(255,106,0,.2);border-radius:28px;background:linear-gradient(145deg,rgba(255,106,0,.12),rgba(255,255,255,.025));text-align:center}.tag{display:inline-block;padding:7px 12px;border-radius:99px;background:rgba(255,106,0,.12);border:1px solid rgba(255,106,0,.3);color:#ff9a4a;font-size:11px;font-weight:900}.hero h1{font-size:clamp(30px,6vw,56px);margin:15px 0 8px}.hero p{color:#aaa;line-height:1.7;max-width:680px;margin:auto}.status{margin-top:20px;padding:12px;border-radius:12px;background:#111;border:1px solid rgba(255,255,255,.08);color:#aaa}.lessons{margin-top:28px;display:grid;gap:12px}.lesson{padding:20px;border:1px solid rgba(255,255,255,.08);background:#101010;border-radius:18px;display:flex;gap:16px;align-items:center}.num{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,var(--o),var(--o2));color:#111;font-weight:900}.lesson h3{margin:0 0 5px}.lesson p{margin:0;color:#888;font-size:13px;line-height:1.5}.locked{opacity:.55}.btn{display:inline-block;margin-top:22px;padding:12px 18px;border-radius:12px;background:linear-gradient(135deg,var(--o),var(--o2));color:#111;text-decoration:none;font-weight:900}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="cursos.html">← Voltar aos cursos</a>
+<section class="hero">
+<span class="tag">👑 VIP NOVA ERA</span>
+<h1>Curso Exclusivo</h1>
+<p>Uma área especial da ZyroDev para membros VIP. O acesso é liberado automaticamente enquanto o VIP estiver ativo.</p>
+<div id="status" class="status">Verificando seu acesso...</div>
+<a class="btn" href="loja-vip.html">Conhecer o VIP Nova Era</a>
+</section>
+<section class="lessons">
+<div class="lesson"><div class="num">01</div><div><h3>Nova Era da ZyroDev</h3><p>Conheça os recursos premium e organize seu perfil para aproveitar a plataforma.</p></div></div>
+<div class="lesson"><div class="num">02</div><div><h3>Perfil profissional</h3><p>Como apresentar seus projetos, links, bio e identidade dentro da comunidade.</p></div></div>
+<div class="lesson"><div class="num">03</div><div><h3>Projetos e portfólio</h3><p>Estruture seus projetos para mostrar evolução e criar uma presença de desenvolvedor.</p></div></div>
+<div class="lesson"><div class="num">04</div><div><h3>Organização de estudos</h3><p>Monte uma rotina prática para continuar avançando nos cursos da ZyroDev.</p></div></div>
+<div class="lesson"><div class="num">05</div><div><h3>Próximos passos</h3><p>Transforme o que você aprendeu em projetos reais e continue sua evolução.</p></div></div>
+</section>
+</div>
+<script type="module">
+import {auth,db} from "./firebase.js";
+import {onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {doc,getDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const status=document.getElementById("status");
+onAuthStateChanged(auth,async user=>{
+ if(!user){status.textContent="Faça login para verificar seu acesso.";return}
+ try{
+  const snap=await getDoc(doc(db,"usuarios",user.uid));
+  const d=snap.exists()?snap.data():{};
+  const ativo=d.vipAtivo===true;
+  status.textContent=ativo?"✓ Acesso liberado — VIP Nova Era ativo.":"🔒 Seu acesso VIP ainda não está liberado.";
+  status.style.color=ativo?"#67e8a5":"#aaa";
+  if(!ativo)document.querySelectorAll(".lesson").forEach(x=>x.classList.add("locked"));
+ }catch(e){console.error(e);status.textContent="Não foi possível verificar o acesso."}
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+ZYRODEV — AMIZADES E CHAT PRIVADO
+
+Implementado:
+- Botão "Amigos e mensagens" no perfil.
+- Adição direta de amizade.
+- Lista de amigos persistida no Firestore.
+- Chat privado individual entre amigos.
+- Chat privado somente texto, sem botão/campo de fotos.
+- Firestore Rules bloqueiam mensagens privadas contendo imageUrl ou qualquer campo extra.
+- Botão "Perfil do Delar" nas Configurações, que procura o perfil do fundador e abre somente o perfil público dele.
+
+ARQUIVOS NOVOS:
+- amizades.html
+
+ARQUIVOS ALTERADOS:
+- perfil.html
+- perfil.js
+- configuracoes.html
+- firestore.rules
+
+IMPORTANTE:
+1. Publique o novo firestore.rules no Firebase.
+2. Publique os arquivos do site normalmente na Vercel.
+4. Contas antigas continuam usando o UID atual como ID exclusivo; não é necessário migrar dados.
+5. O chat privado fica em amizades/{id}/mensagens.

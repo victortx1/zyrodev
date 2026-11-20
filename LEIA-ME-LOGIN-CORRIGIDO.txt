@@ -1,0 +1,33 @@
+# ZyroDev — Login corrigido
+
+Arquivos alterados:
+- `login.html`
+- `login.js`
+- `temporada-service.js`
+
+O login agora possui:
+- Cadastro com nome + e-mail + senha usando Firebase Authentication.
+- Login com e-mail + senha.
+- Login/cadastro com Google.
+- Persistência da sessão no navegador.
+- Recuperação de senha por e-mail.
+- Criação automática do documento `usuarios/{uid}` no Firestore.
+- Preservação de campos administrativos/VIP existentes.
+- Mensagens de erro mais específicas.
+- Links funcionais para Instagram, GitHub, LinkedIn e YouTube do Delar.
+
+## Configuração obrigatória no Firebase
+
+No Firebase Console, no projeto `zyrodev-58fed`:
+
+1. Authentication > Sign-in method:
+   - Ative `Email/Password`.
+   - Ative `Google`.
+
+2. Authentication > Settings > Authorized domains:
+   - O domínio do Vercel usado pelo ZyroDev precisa estar na lista.
+   - Se usar domínio próprio, adicione o domínio também.
+
+O código já está preparado para popup do Google e tenta `redirect` quando o navegador bloqueia o popup.
+
+Não é necessário criar manualmente documentos de usuários: o primeiro cadastro/login cria `usuarios/{uid}` automaticamente.

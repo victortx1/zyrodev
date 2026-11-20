@@ -5,19 +5,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZyroDev | Aula</title>
-  <link rel="icon" type="image/png" href="./fotos/favicon.png.png">
+  <link rel="icon" type="image/png" href="./fotos/zraposa.png">
 
   <style>
     :root {
-      --bg: #020617;
-      --bg-soft: #0f172a;
+      --bg: #000000;
+      --bg-soft: #111111;
       --card: rgba(255, 255, 255, 0.05);
       --border: rgba(255, 255, 255, 0.08);
-      --text: #ffffff;
-      --muted: #94a3b8;
-      --blue: #3b82f6;
-      --purple: #8b5cf6;
-      --green: #22c55e;
+      --text: #FFFFFF;
+      --muted: #B8B8B8;
+      --orange: #ff6a00;
+      --orange: #ff6a00;
+      --orange-dark: #ff6a00;
       --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
       --radius-xl: 22px;
       --radius-lg: 18px;
@@ -36,9 +36,9 @@
       min-height: 100vh;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(59, 130, 246, 0.14), transparent 24%),
-        radial-gradient(circle at top right, rgba(139, 92, 246, 0.12), transparent 26%),
-        linear-gradient(135deg, #020617, #081120 45%, #0f172a);
+        radial-gradient(circle at top left, rgba(255, 106, 0, 0.14), transparent 24%),
+        radial-gradient(circle at top right, rgba(255, 106, 0, 0.12), transparent 26%),
+        linear-gradient(135deg, #000000, #080808 45%, #111111);
       overflow-x: hidden;
     }
 
@@ -53,7 +53,7 @@
       top: 0;
       height: 100vh;
       padding: 22px 16px;
-      background: rgba(2, 6, 23, 0.78);
+      background: rgba(17, 17, 17, 0.78);
       backdrop-filter: blur(14px);
       border-right: 1px solid var(--border);
       display: flex;
@@ -70,7 +70,7 @@
       font-size: 2rem;
       font-weight: 900;
       letter-spacing: -0.04em;
-      background: linear-gradient(90deg, #fff, #60a5fa, #a78bfa);
+      background: linear-gradient(90deg, #FFFFFF, #ff6a00, #ff6a00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -87,7 +87,7 @@
       font-size: 0.74rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: #64748b;
+      color: #888888;
       font-weight: 800;
       padding: 0 6px;
     }
@@ -104,7 +104,7 @@
       gap: 12px;
       padding: 14px;
       text-decoration: none;
-      color: #e2e8f0;
+      color: #E2E8F0;
       border-radius: 16px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.05);
@@ -114,7 +114,7 @@
     .nav-links a:hover {
       transform: translateY(-2px);
       background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(96, 165, 250, 0.18);
+      border-color: rgba(255, 106, 0, 0.18);
     }
 
     .nav-icon {
@@ -124,7 +124,7 @@
       display: grid;
       place-items: center;
       border-radius: 12px;
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), rgba(139, 92, 246, 0.12));
+      background: linear-gradient(135deg, rgba(255, 106, 0, 0.14), rgba(255, 106, 0, 0.12));
       border: 1px solid rgba(255, 255, 255, 0.06);
       font-size: 1rem;
     }
@@ -182,21 +182,21 @@
       font-weight: 800;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #e2e8f0;
+      color: #E2E8F0;
     }
 
     .chip.blue {
-      background: rgba(59, 130, 246, 0.12);
-      color: #dbeafe;
+      background: rgba(255, 106, 0, 0.12);
+      color: #FFFFFF;
     }
 
     .chip.green {
-      background: rgba(34, 197, 94, 0.12);
-      color: #dcfce7;
+      background: rgba(255, 106, 0, 0.12);
+      color: #FFFFFF;
     }
 
     .eyebrow {
-      color: #60a5fa;
+      color: #ff6a00;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       font-weight: 800;
@@ -213,7 +213,7 @@
     }
 
     .course-subtitle {
-      color: #cbd5e1;
+      color: #B8B8B8;
       font-size: 0.96rem;
       line-height: 1.6;
       margin-bottom: 18px;
@@ -224,7 +224,7 @@
       overflow: hidden;
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      background: #000;
+      background: #000000;
       transition: 0.25s ease;
     }
 
@@ -235,7 +235,7 @@
     .video-container {
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: #000;
+      background: #000000;
     }
 
     #videoPlayer {
@@ -271,13 +271,13 @@
       border: none;
       color: white;
       cursor: pointer;
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
-      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.22);
+      background: linear-gradient(135deg, #ff6a00, #ff6a00);
+      box-shadow: 0 12px 30px rgba(255, 106, 0, 0.22);
     }
 
     .complete-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 38px rgba(59, 130, 246, 0.28);
+      box-shadow: 0 18px 38px rgba(255, 106, 0, 0.28);
     }
 
     .complete-button:disabled {
@@ -288,7 +288,7 @@
     }
 
     .ghost-button {
-      color: #dbeafe;
+      color: #FFFFFF;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -302,9 +302,9 @@
       margin-top: 14px;
       padding: 14px 15px;
       border-radius: 14px;
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(17, 17, 17, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      color: #e2e8f0;
+      color: #E2E8F0;
       font-size: 0.92rem;
       line-height: 1.6;
     }
@@ -333,9 +333,9 @@
       border-radius: 999px;
       font-size: 0.78rem;
       font-weight: 800;
-      color: #dbeafe;
-      background: rgba(59, 130, 246, 0.12);
-      border: 1px solid rgba(96, 165, 250, 0.16);
+      color: #FFFFFF;
+      background: rgba(255, 106, 0, 0.12);
+      border: 1px solid rgba(255, 106, 0, 0.16);
     }
 
     .progress-card {
@@ -359,7 +359,7 @@
     }
 
     .progress-topline span {
-      color: #cbd5e1;
+      color: #B8B8B8;
       font-size: 0.88rem;
       font-weight: 700;
     }
@@ -368,7 +368,7 @@
       width: 100%;
       height: 12px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.76);
+      background: rgba(17, 17, 17, 0.76);
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
@@ -377,7 +377,7 @@
       width: 0%;
       height: 100%;
       border-radius: 999px;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #22c55e);
+      background: linear-gradient(90deg, #ff6a00, #ff6a00, #ff6a00);
       transition: width 0.35s ease;
     }
 
@@ -385,7 +385,7 @@
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: #60a5fa;
+      color: #ff6a00;
       font-weight: 900;
       margin-bottom: 12px;
     }
@@ -454,19 +454,19 @@
     }
 
     .lesson-subtitle {
-      color: #94a3b8;
+      color: #B8B8B8;
       font-size: 0.82rem;
       line-height: 1.45;
     }
 
     .lesson.active {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(139, 92, 246, 0.14));
-      border-color: rgba(96, 165, 250, 0.18);
+      background: linear-gradient(135deg, rgba(255, 106, 0, 0.16), rgba(255, 106, 0, 0.14));
+      border-color: rgba(255, 106, 0, 0.18);
     }
 
     .lesson.completed {
-      background: linear-gradient(135deg, rgba(34, 197, 94, 0.14), rgba(16, 185, 129, 0.10));
-      border-color: rgba(74, 222, 128, 0.18);
+      background: linear-gradient(135deg, rgba(255, 106, 0, 0.14), rgba(255, 106, 0, 0.10));
+      border-color: rgba(255, 106, 0, 0.18);
     }
 
     .lesson.completed::after {
@@ -480,9 +480,9 @@
       display: grid;
       place-items: center;
       font-weight: 900;
-      color: #dcfce7;
-      background: rgba(34, 197, 94, 0.18);
-      border: 1px solid rgba(74, 222, 128, 0.18);
+      color: #FFFFFF;
+      background: rgba(255, 106, 0, 0.18);
+      border: 1px solid rgba(255, 106, 0, 0.18);
     }
 
     @media (max-width: 1100px) {
@@ -1001,5 +1001,6 @@
       atualizarTela();
     });
   </script>
+<script src="./i18n.js"></script>
 </body>
 </html>

@@ -1,137 +1,226 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loja - Zyro Run</title>
-  <link rel="stylesheet" href="loja.css">
-  <link rel="icon" type="image/png" href="./fotozyrorum/faviconzyrorum.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZyroDev — Loja</title>
+<link rel="icon" type="image/png" href="./fotos/zraposa.png">
+<style>
+:root{--bg:#050505;--panel:#0d0d0d;--orange:#ff6a00;--orange2:#ff9a4a;--muted:#8e8e8e;--line:rgba(255,255,255,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:#fff;background:radial-gradient(circle at 50% -5%,rgba(255,106,0,.22),transparent 34%),radial-gradient(circle at 0 60%,rgba(255,106,0,.07),transparent 30%),#050505;font-family:Inter,Arial,sans-serif}a{text-decoration:none;color:inherit}button{font:inherit}
+.nav{width:min(1160px,92%);margin:auto;padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:15px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--orange),var(--orange2));display:grid;place-items:center;color:#111;font-weight:1000}.brand b{font-size:20px}.brand small{display:block;color:#777;margin-top:2px}.nav-actions{display:flex;gap:8px;flex-wrap:wrap}.nav-btn{padding:10px 13px;border-radius:11px;background:#101010;border:1px solid var(--line);color:#bbb;font-size:12px;font-weight:800}.nav-btn.primary{background:linear-gradient(135deg,var(--orange),var(--orange2));color:#111;border:0}
+.hero{width:min(1160px,92%);margin:35px auto 0;text-align:center}.eyebrow{display:inline-flex;padding:7px 12px;border-radius:999px;color:var(--orange2);background:rgba(255,106,0,.08);border:1px solid rgba(255,106,0,.24);font-size:11px;font-weight:900;letter-spacing:.12em}.hero h1{font-size:clamp(38px,7vw,76px);line-height:.98;margin:20px auto 13px;letter-spacing:-.05em;max-width:850px}.hero h1 span{background:linear-gradient(90deg,#fff,var(--orange2));-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:680px;margin:auto;color:#8d8d8d;line-height:1.7;font-size:14px}
+.section{width:min(1160px,92%);margin:58px auto 0}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:18px}.section-head h2{margin:0;font-size:25px}.section-head p{margin:5px 0 0;color:#666;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:16px}.card{position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#151515,#0a0a0a);border-radius:22px;padding:15px;transition:.25s}.card:hover{transform:translateY(-5px);border-color:rgba(255,106,0,.4);box-shadow:0 22px 60px rgba(0,0,0,.4)}.visual{height:190px;border-radius:16px;background:radial-gradient(circle,rgba(255,106,0,.16),transparent 58%),#080808;border:1px solid rgba(255,255,255,.06);display:grid;place-items:center;overflow:hidden}.visual.frame img{width:160px;height:160px;object-fit:contain}.visual.banner img{width:100%;height:100%;object-fit:cover}.visual.avatar img{width:145px;height:145px;object-fit:cover;border-radius:50%}.tag{position:absolute;top:26px;left:26px;z-index:2;padding:6px 9px;border-radius:999px;background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.1);font-size:9px;font-weight:900;color:#72e6aa}.card-body{padding:15px 3px 2px}.card h3{margin:0 0 7px;font-size:19px}.card p{margin:0;color:#777;font-size:12px;line-height:1.55;min-height:38px}.free{font-size:24px;font-weight:1000;color:#67e8a5;margin:14px 0}.acquire{display:block;text-align:center;width:100%;padding:12px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--orange),var(--orange2));color:#111;font-weight:1000;cursor:pointer;transition:.2s}.acquire.owned{background:rgba(103,232,165,.12);color:#67e8a5;border:1px solid rgba(103,232,165,.28);cursor:default}.acquire:hover:not(.owned){filter:brightness(1.08);transform:translateY(-1px)}
+.info{margin-top:40px;padding:18px 20px;border:1px solid var(--line);background:#0b0b0b;border-radius:17px;color:#777;font-size:12px;line-height:1.7}.info b{color:#ddd}footer{width:min(1160px,92%);margin:45px auto 25px;text-align:center;color:#555;font-size:11px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:12px 16px;border-radius:12px;background:#111;border:1px solid rgba(255,106,0,.3);color:#fff;font-size:12px;font-weight:800;transition:.25s;z-index:20}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:650px){.nav{align-items:flex-start}.nav-actions{justify-content:flex-end}.hero h1{font-size:43px}.section-head{display:block}.section-head p{margin-top:6px}}
+</style>
 </head>
 <body>
+<header class="nav">
+  <a href="index.html" class="brand"><div class="logo">Z</div><div><b>ZyroDev</b><small data-i18n="storeName">Loja</small></div></a>
+  <div class="nav-actions"><a class="nav-btn" href="cursos.html" data-i18n="courses">Cursos</a><a class="nav-btn primary" href="perfil.html" data-i18n="myProfile">Meu perfil</a></div>
+</header>
 
-<div id="toastContainer" class="toast-container"></div>
+<section class="hero">
+  <div class="eyebrow" data-i18n="freeStoreEyebrow">ZYRODEV STORE</div>
+  <h1 data-i18n-html="freeStoreTitle">Personalize seu <span>perfil.</span></h1>
+  <p data-i18n="freeStoreDescription">Escolha molduras, banners e fotos de perfil gratuitas. Adquira com um clique e depois escolha tudo no Editar perfil.</p>
+</section>
 
-<div class="shop-container">
-  <h1>🛒 Loja do Jogo</h1>
+<section class="section" id="badges"><div class="section-head"><div><h2>Badges</h2><p>Todos os badges ficam visíveis na loja. Para receber qualquer um, é necessário solicitar e aguardar a análise de um administrador.</p></div></div><div class="grid" id="badgesGrid"></div></section>
 
-  <h2 class="categoria">🧍‍♂️ Bonecos</h2>
-  <div class="shop-grid">
+<section class="section" id="molduras">
+  <div class="section-head"><div><h2 data-i18n="framesTitle">Molduras</h2><p data-i18n="framesSubtitle">Todas gratuitas para usar no seu perfil.</p></div></div>
+  <div class="grid" id="framesGrid"></div>
+</section>
 
-    <div class="item" data-skin-id="rumagua">
-  <img src="fotosloja/rumaguaatualizado.png" alt="Rum água">
-  <h3>Rum água</h3>
-  <p>💰 250 moedas</p>
-  <button class="btn-comprar" onclick="comprarSkin('rumagua')">Comprar</button>
-  <button class="btn-equipar" onclick="equiparSkin('rumagua')">Equipar</button>
-</div>
+<section class="section" id="banners">
+  <div class="section-head"><div><h2 data-i18n="bannersTitle">Banners</h2><p data-i18n="bannersSubtitle">Fundos para deixar seu perfil com a sua identidade.</p></div></div>
+  <div class="grid" id="bannersGrid"></div>
+</section>
 
-    <div class="item" data-skin-id="rumanalck">
-      <img src="fotosloja/rumanalck-Photoroom.png" alt="Rum analck">
-      <h3>Rum analck</h3>
-      <p>💰 450 moedas</p>
-      <button class="btn-comprar" onclick="comprarSkin('rumanalck')">Comprar</button>
-      <button class="btn-equipar" onclick="equiparSkin('rumanalck')">Equipar</button>
-    </div>
+<section class="section" id="avatars">
+  <div class="section-head"><div><h2 data-i18n="avatarsTitle">Fotos de perfil</h2><p data-i18n="avatarsSubtitle">Avatares gratuitos para escolher no Editar perfil.</p></div></div>
+  <div class="grid" id="avatarsGrid"></div>
+</section>
 
-    <div class="item" data-skin-id="rumfogo">
-      <img src="fotosloja/rumfogo-Photoroom.png" alt="Rum fogo">
-      <h3>Rum fogo</h3>
-      <p>💰 550 moedas</p>
-      <button class="btn-comprar" onclick="comprarSkin('rumfogo')">Comprar</button>
-      <button class="btn-equipar" onclick="equiparSkin('rumfogo')">Equipar</button>
-    </div>
+<section class="section">
+  <div class="info"><b data-i18n="storeHowTitle">Como funciona:</b> <span data-i18n="storeHowText">clique em Adquirir gratuitamente, o item fica salvo na sua conta e aparece automaticamente no Editar perfil. A loja não possui pagamentos.</span></div>
+</section>
+<footer>ZyroDev © 2026 • <span data-i18n="freeStoreFooter">Loja gratuita de personalização</span></footer>
+<div id="toast" class="toast"></div>
 
-    <div class="item" data-skin-id="rumgelo">
-      <img src="fotosloja/rumgelo-Photoroom.png" alt="Rum gelo">
-      <h3>Rum gelo</h3>
-      <p>💰 950 moedas</p>
-      <button class="btn-comprar" onclick="comprarSkin('rumgelo')">Comprar</button>
-      <button class="btn-equipar" onclick="equiparSkin('rumgelo')">Equipar</button>
-    </div>
 
-    <div class="item" data-skin-id="rumprincipe">
-      <img src="fotosloja/rumprincipe-Photoroom.png" alt="Rum principe">
-      <h3>Rum principe</h3>
-      <p>💰 1200 moedas</p>
-      <button class="btn-comprar" onclick="comprarSkin('rumprincipe')">Comprar</button>
-      <button class="btn-equipar" onclick="equiparSkin('rumprincipe')">Equipar</button>
-    </div>
+<script>
+const PRODUCTS = [
+  {id:"moldura_fogo",type:"frame",name:"Moldura Fogo",description:"Energia e destaque para seu avatar.",url:"./fotosloja/moldura-fogo.svg"},
+  {id:"moldura_neon",type:"frame",name:"Moldura Neon",description:"Visual moderno com brilho neon.",url:"./fotosloja/moldura-neon.svg"},
+  {id:"moldura_diamante",type:"frame",name:"Moldura Diamante",description:"Acabamento brilhante.",url:"./fotosloja/moldura-diamante.svg"},
+  {id:"moldura_nova_era",type:"frame",name:"Moldura Nova Era",description:"Identidade ZyroDev.",url:"./fotosloja/moldura-nova-era.svg"},
+  {id:"moldura_galaxia",type:"frame",name:"Moldura Galáxia",description:"Estilo espacial.",url:"./fotosloja/moldura-galaxia.svg"},
+  {id:"banner_aurora",type:"banner",name:"Banner Aurora",description:"Gradiente espacial.",url:"./fotosloja/banner-aurora.svg"},
+  {id:"banner_neon",type:"banner",name:"Banner Neon",description:"Visual tecnológico.",url:"./fotosloja/banner-neon.svg"},
+  {id:"banner_space",type:"banner",name:"Banner Space",description:"Estilo espacial.",url:"./fotosloja/banner-space.svg"},
+  {id:"banner_sunset",type:"banner",name:"Banner Sunset",description:"Gradiente quente.",url:"./fotosloja/banner-sunset.svg"},
+  {id:"banner_circuit",type:"banner",name:"Banner Circuit",description:"Detalhes tecnológicos.",url:"./fotosloja/banner-circuit.svg"},
+  {id:"avatar_aurora",type:"avatar",name:"Avatar Aurora",description:"Avatar minimalista.",url:"./fotosloja/avatar-aurora.svg"},
+  {id:"avatar_neon",type:"avatar",name:"Avatar Neon",description:"Identidade neon.",url:"./fotosloja/avatar-neon.svg"},
+  {id:"avatar_space",type:"avatar",name:"Avatar Space",description:"Estilo espacial.",url:"./fotosloja/avatar-space.svg"},
+  {id:"avatar_flame",type:"avatar",name:"Avatar Flame",description:"Energia de fogo.",url:"./fotosloja/avatar-flame.svg"},
+  {id:"avatar_circuit",type:"avatar",name:"Avatar Circuit",description:"Avatar tecnológico.",url:"./fotosloja/avatar-circuit.svg"},
+  {id:"moldura_teste_plasma",type:"frame",name:"Moldura Plasma",description:"Moldura animada para teste.",url:"./fotosloja/frame-teste-plasma.svg"},
+  {id:"moldura_teste_orbita",type:"frame",name:"Moldura Órbita",description:"Moldura animada com órbita luminosa.",url:"./fotosloja/frame-teste-orbita.svg"},
+  {id:"moldura_teste_energia",type:"frame",name:"Moldura Energia",description:"Moldura animada pulsante.",url:"./fotosloja/frame-teste-energia.svg"},
+  {id:"banner_teste_plasma",type:"banner",name:"Banner Plasma",description:"Banner animado de teste.",url:"./fotosloja/banner-teste-plasma.svg"},
+  {id:"banner_teste_neon",type:"banner",name:"Banner Neon Vivo",description:"Banner animado com efeito neon.",url:"./fotosloja/banner-teste-neon.svg"},
+  {id:"banner_teste_orbita",type:"banner",name:"Banner Órbita",description:"Banner animado espacial.",url:"./fotosloja/banner-teste-orbita.svg"},
+  {id:"avatar_teste_plasma",type:"avatar",name:"Avatar Plasma",description:"Foto animada de teste.",url:"./fotosloja/avatar-teste-plasma.svg"},
+  {id:"avatar_teste_neon",type:"avatar",name:"Avatar Neon Vivo",description:"Foto animada com brilho.",url:"./fotosloja/avatar-teste-neon.svg"},
+  {id:"avatar_teste_orbita",type:"avatar",name:"Avatar Órbita",description:"Foto animada espacial.",url:"./fotosloja/avatar-teste-orbita.svg"},
+  {id:"moldura_admin_1",type:"frame",name:"Moldura Admin Dourado I",description:"Exclusiva para administradores.",url:"./fotosloja/moldura_admin_1.svg",role:"admin"},
+  {id:"moldura_admin_2",type:"frame",name:"Moldura Admin Dourado II",description:"Versão animada exclusiva para administradores.",url:"./fotosloja/moldura_admin_2.svg",role:"admin"},
+  {id:"moldura_patrocinador_1",type:"frame",name:"Moldura Patrocinador Azul I",description:"Exclusiva para patrocinadores aprovados.",url:"./fotosloja/moldura_patrocinador_1.svg",role:"patrocinador"},
+  {id:"moldura_patrocinador_2",type:"frame",name:"Moldura Patrocinador Azul II",description:"Exclusiva para patrocinadores aprovados.",url:"./fotosloja/moldura_patrocinador_2.svg",role:"patrocinador"},
+  {id:"moldura_criador_1",type:"frame",name:"Moldura Criador Roxo I",description:"Exclusiva para criadores aprovados.",url:"./fotosloja/moldura_criador_1.svg",role:"criador"},
+  {id:"moldura_criador_2",type:"frame",name:"Moldura Criador Roxo II",description:"Exclusiva para criadores aprovados.",url:"./fotosloja/moldura_criador_2.svg",role:"criador"},
+  {id:"moldura_primeira_temporada",type:"frame",name:"Moldura Primeira Temporada",description:"Item especial da Season 1.",url:"./fotosloja/moldura_primeira_temporada.svg",role:"season"},
+  {id:"banner_admin_1",type:"banner",name:"Banner Admin Dourado I",description:"Exclusivo para administradores.",url:"./fotosloja/banner_admin_1.svg",role:"admin"},
+  {id:"banner_admin_2",type:"banner",name:"Banner Admin Dourado II",description:"Exclusivo para administradores.",url:"./fotosloja/banner_admin_2.svg",role:"admin"},
+  {id:"banner_patrocinador_1",type:"banner",name:"Banner Patrocinador Azul I",description:"Exclusivo para patrocinadores aprovados.",url:"./fotosloja/banner_patrocinador_1.svg",role:"patrocinador"},
+  {id:"banner_patrocinador_2",type:"banner",name:"Banner Patrocinador Azul II",description:"Exclusivo para patrocinadores aprovados.",url:"./fotosloja/banner_patrocinador_2.svg",role:"patrocinador"},
+  {id:"banner_criador_1",type:"banner",name:"Banner Criador Roxo I",description:"Exclusivo para criadores aprovados.",url:"./fotosloja/banner_criador_1.svg",role:"criador"},
+  {id:"banner_criador_2",type:"banner",name:"Banner Criador Roxo II",description:"Exclusivo para criadores aprovados.",url:"./fotosloja/banner_criador_2.svg",role:"criador"},
+  {id:"banner_primeira_temporada",type:"banner",name:"Banner Primeira Temporada",description:"Banner especial da Season 1.",url:"./fotosloja/banner_primeira_temporada.svg",role:"season"},
+  {id:"avatar_admin_1",type:"avatar",name:"Foto Admin Dourado I",description:"Exclusiva para administradores.",url:"./fotosloja/avatar_admin_1.svg",role:"admin"},
+  {id:"avatar_admin_2",type:"avatar",name:"Foto Admin Dourado II",description:"Exclusiva para administradores.",url:"./fotosloja/avatar_admin_2.svg",role:"admin"},
+  {id:"avatar_patrocinador_1",type:"avatar",name:"Foto Patrocinador Azul I",description:"Exclusiva para patrocinadores aprovados.",url:"./fotosloja/avatar_patrocinador_1.svg",role:"patrocinador"},
+  {id:"avatar_patrocinador_2",type:"avatar",name:"Foto Patrocinador Azul II",description:"Exclusiva para patrocinadores aprovados.",url:"./fotosloja/avatar_patrocinador_2.svg",role:"patrocinador"},
+  {id:"avatar_criador_1",type:"avatar",name:"Foto Criador Roxo I",description:"Exclusiva para criadores aprovados.",url:"./fotosloja/avatar_criador_1.svg",role:"criador"},
+  {id:"avatar_criador_2",type:"avatar",name:"Foto Criador Roxo II",description:"Exclusiva para criadores aprovados.",url:"./fotosloja/avatar_criador_2.svg",role:"criador"},
+  {id:"avatar_primeira_temporada",type:"avatar",name:"Foto Primeira Temporada",description:"Foto especial da Season 1.",url:"./fotosloja/avatar_primeira_temporada.svg",role:"season"}
+];
+const BADGES = [
+  {id:"fundador",name:"Fundador",description:"Badge oficial de fundador.",url:"./fotosloja/badge-fundador.svg",role:"admin"},
+  {id:"socio",name:"Sócio",description:"Badge especial para parceiros/administradores.",url:"./fotosloja/badge-socio.svg",role:"patrocinador"},
+  {id:"patrocinador",name:"Patrocinador",description:"Badge para patrocinadores aprovados.",url:"./fotosloja/badge-patrocinador.svg",role:"patrocinador"},
+  {id:"criador",name:"Criador",description:"Badge para criadores aprovados.",url:"./fotosloja/badge-criador.svg",role:"criador"},
+  {id:"copa_do_mundo",name:"Copa do Mundo",description:"Badge especial da comunidade.",url:"./fotosloja/badge-copa.svg"},
+  {id:"primeira_temporada",name:"Primeira Temporada",description:"Badge vermelho especial da Season 1.",url:"./fotosloja/badge-primeira-temporada.svg"}
+];
+const zyroStoreLabels={frame:"framesGrid",banner:"bannersGrid",avatar:"avatarsGrid"};
+let zyroUser=null, zyroData={};
+function zyroList(type){
+ const k=type==="frame"?"moldurasDesbloqueadas":type==="banner"?"bannersDesbloqueados":"fotosDesbloqueadas";
+ return Array.isArray(zyroData[k])?zyroData[k]:[];
+}
+function zyroRole(role){
+ if(!role)return true;
+ if(role==="admin")return zyroData.admin===true;
+ if(role==="patrocinador")return zyroData.patrocinador===true;
+ if(role==="criador")return zyroData.criador===true;
+ if(role==="season")return Array.isArray(zyroData.badges)&&zyroData.badges.includes("primeira_temporada");
+ return false;
+}
+function zyroToast(msg){
+ const e=document.getElementById("toast"); if(!e)return;
+ e.textContent=msg; e.classList.add("show"); clearTimeout(window.__zt);
+ window.__zt=setTimeout(()=>e.classList.remove("show"),2600);
+}
+function zyroCard(p,owned,allowed){
+ const card=document.createElement("article"); card.className="card";
+ const visual=document.createElement("div"); visual.className="visual "+p.type;
+ const img=document.createElement("img"); img.src=p.url; img.alt=p.name; img.loading="lazy";
+ img.onerror=()=>{ img.style.display="none"; visual.insertAdjacentHTML("beforeend",'<span style="color:#777;font-size:12px">Imagem não encontrada</span>'); };
+ visual.appendChild(img);
+ const tag=document.createElement("span"); tag.className="tag";
+ tag.textContent=p.role==="admin"?"ADMIN":p.role==="patrocinador"?"PATROCINADOR":p.role==="criador"?"CRIADOR":p.role==="season"?"SEASON 1":"GRÁTIS";
+ card.append(tag,visual);
+ const body=document.createElement("div"); body.className="card-body";
+ body.innerHTML=`<h3>${p.name}</h3><p>${p.description}</p><div class="free">GRÁTIS</div>`;
+ const btn=document.createElement("button"); btn.className="acquire "+(owned?"owned":"");
+ if(owned){btn.textContent="Adquirido • Editar perfil";btn.onclick=()=>location.href="./editar-perfil.html";}
+ else if(!allowed){btn.textContent="Exclusivo • Solicite a badge";btn.disabled=true;}
+ else {btn.textContent="Adquirir gratuitamente";btn.dataset.product=p.id;}
+ body.appendChild(btn); card.appendChild(body); return {card,btn};
+}
+function renderStore(){
+ for(const type of ["frame","banner","avatar"]){
+   const grid=document.getElementById(zyroStoreLabels[type]); if(!grid)continue;
+   grid.innerHTML="";
+   PRODUCTS.filter(p=>p.type===type).forEach(p=>{
+      const {card,btn}=zyroCard(p,zyroList(type).includes(p.id),zyroRole(p.role));
+      if(btn.dataset.product) btn.addEventListener("click",()=>zyroAcquire(p));
+      grid.appendChild(card);
+   });
+ }
+ const grid=document.getElementById("badgesGrid");
+ if(grid){
+  grid.innerHTML="";
+  BADGES.forEach(b=>{
+    const owned=Array.isArray(zyroData.badges)&&zyroData.badges.includes(b.id);
+    const pending=Array.isArray(zyroData.solicitacoesBadges)&&zyroData.solicitacoesBadges.some(x=>x?.badgeId===b.id&&x?.status==="pendente");
+    const card=document.createElement("article");card.className="card";
+    const visual=document.createElement("div");visual.className="visual avatar";
+    const img=document.createElement("img");img.src=b.url;img.alt=b.name;img.loading="lazy";visual.appendChild(img);card.appendChild(visual);
+    const body=document.createElement("div");body.className="card-body";
+    body.innerHTML=`<h3>${b.name}</h3><p>${b.description}</p><div class="free">SOLICITAÇÃO</div>`;
+    const btn=document.createElement("button");btn.className="acquire "+(owned?"owned":"");btn.disabled=owned||pending;
+    btn.textContent=owned?"Já possui":pending?"Solicitação enviada":"Solicitar badge";
+    if(!owned&&!pending)btn.onclick=()=>zyroRequestBadge(b);
+    body.appendChild(btn);card.appendChild(body);grid.appendChild(card);
+  });
+ }
+}
+async function zyroAcquire(p){
+ if(!zyroUser){location.href="./login.html?redirect=loja.html";return;}
+ if(!zyroRole(p.role)){zyroToast("Você não possui a permissão necessária para este item.");return;}
+ try{
+  const {doc,getDoc,updateDoc,setDoc}=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+  const {db}=await import("./firebase.js");
+  const ref=doc(db,"usuarios",zyroUser.uid);
+  const key=p.type==="frame"?"moldurasDesbloqueadas":p.type==="banner"?"bannersDesbloqueados":"fotosDesbloqueadas";
+  const current=Array.isArray(zyroData[key])?[...zyroData[key]]:[];
+  if(current.includes(p.id))return;
+  current.push(p.id); await updateDoc(ref,{[key]:current}); zyroData[key]=current; renderStore(); zyroToast(p.name+" foi adicionado à sua conta.");
+ }catch(e){console.error(e);zyroToast("Não foi possível adquirir o item. Verifique o Firebase.");}
+}
+async function zyroRequestBadge(b){
+ if(!zyroUser){location.href="./login.html?redirect=loja.html";return;}
+ try{
+  const {doc,updateDoc}=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+  const {db}=await import("./firebase.js");
+  const ref=doc(db,"usuarios",zyroUser.uid);
+  const pedidos=Array.isArray(zyroData.solicitacoesBadges)?[...zyroData.solicitacoesBadges]:[];
+  pedidos.push({badgeId:b.id,nome:b.name,status:"pendente",solicitadoEm:new Date().toISOString()});
+  await updateDoc(ref,{solicitacoesBadges:pedidos}); zyroData.solicitacoesBadges=pedidos; renderStore(); zyroToast("Solicitação enviada.");
+ }catch(e){console.error(e);zyroToast("Não foi possível enviar a solicitação.");}
+}
+renderStore();
+</script>
 
-    <div class="item" data-skin-id="rumguardiao">
-      <img src="fotosloja/rumguardiao-Photoroom.png" alt="Rum guardião">
-      <h3>Rum guardião</h3>
-      <p>💰 1300 moedas</p>
-      <button class="btn-comprar" onclick="comprarSkin('rumguardiao')">Comprar</button>
-      <button class="btn-equipar" onclick="equiparSkin('rumguardiao')">Equipar</button>
-    </div>
-
-    <div class="item" data-skin-id="ruminterestelar">
-      <img src="fotosloja/ruminterestelar-Photoroom.png" alt="Rum interestelar">
-      <h3>Rum interestelar</h3>
-      <p>💰 1550 moedas</p>
-      <button class="btn-comprar" onclick="comprarSkin('ruminterestelar')">Comprar</button>
-      <button class="btn-equipar" onclick="equiparSkin('ruminterestelar')">Equipar</button>
-    </div>
-
-    <div class="item" data-skin-id="rumhack">
-      <img src="fotosloja/rumhack-Photoroom.png" alt="Rum hack">
-      <h3>Rum hack</h3>
-      <p>💰 1600 moedas</p>
-      <button class="btn-comprar" onclick="comprarSkin('rumhack')">Comprar</button>
-      <button class="btn-equipar" onclick="equiparSkin('rumhack')">Equipar</button>
-    </div>
-
-    <div class="item" data-skin-id="rumflash">
-      <img src="fotosloja/rumflash-Photoroom.png" alt="Rum flash">
-      <h3>Rum flash</h3>
-      <p>💰 2000 moedas</p>
-      <button class="btn-comprar" onclick="comprarSkin('rumflash')">Comprar</button>
-      <button class="btn-equipar" onclick="equiparSkin('rumflash')">Equipar</button>
-    </div>
-
-    <div class="item" data-skin-id="rumruby">
-      <img src="fotosloja/rumruby-Photoroom.png" alt="Rum ruby">
-      <h3>Rum ruby</h3>
-      <p>💰 2500 moedas</p>
-      <button class="btn-comprar" onclick="comprarSkin('rumruby')">Comprar</button>
-      <button class="btn-equipar" onclick="equiparSkin('rumruby')">Equipar</button>
-    </div>
-
-    <div class="item" data-skin-id="rumperolanegra">
-      <img src="fotosloja/rumperolanegra-Photoroom.png" alt="Rum perola negra">
-      <h3>Rum perola negra</h3>
-      <p>💰 3500 moedas</p>
-      <button class="btn-comprar" onclick="comprarSkin('rumperolanegra')">Comprar</button>
-      <button class="btn-equipar" onclick="equiparSkin('rumperolanegra')">Equipar</button>
-    </div>
-
-  </div>
-
-  <h2 class="categoria">💰 VIP</h2>
-<div class="shop-grid">
-  <div class="item vip">
-    <img src="fotosloja/vipzyrorum.png" alt="VIP Zyro">
-    <h3>VIP 30 dias</h3>
-    <p>💰 15000 moedas</p>
-    <button onclick="comprarVip()">Comprar</button>
-  </div>
-</div>
-
-  <h2 class="categoria">🎁 Misterioso</h2>
-  <div class="shop-grid">
-    <div class="item mystery">
-      <img src="fotosloja/misteriozyro.jfif">
-      <h3>Misterio zyro</h3>
-      <p>🎁 5000000 moedas</p>
-      <button onclick="comprarMisterioso('Misterioso', 5000000)">Comprar</button>
-    </div>
-  </div>
-
-  <div class="info">
-    💰 Suas moedas: <span id="coins">0</span>
-  </div>
-</div>
-
-<script type="module" src="loja.js"></script>
+<script type="module">
+try {
+ const {auth,db}=await import("./firebase.js");
+ const {onAuthStateChanged}=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
+ const {doc,getDoc,setDoc}=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+ onAuthStateChanged(auth, async u=>{
+   zyroUser=u||null;
+   if(!u){ zyroData={}; renderStore(); return; }
+   const ref=doc(db,"usuarios",u.uid); const snap=await getDoc(ref);
+   if(snap.exists()) zyroData=snap.data()||{};
+   else {
+     zyroData={uid:u.uid,nome:u.displayName||"Usuário",bio:"",foto:u.photoURL||"",banner:"",empresa:"",site:"",badges:[],admin:false,banido:false,moldurasDesbloqueadas:[],bannersDesbloqueados:[],fotosDesbloqueadas:[],solicitacoesBadges:[],patrocinador:false,criador:false,vipAtivo:false};
+     await setDoc(ref,zyroData);
+   }
+   renderStore();
+ });
+} catch(e) {
+ console.error("ZyroDev loja Firebase:",e);
+ renderStore();
+}
+</script>
+<script src="./i18n.js"></script>
 </body>
 </html>

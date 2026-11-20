@@ -1,0 +1,40 @@
+// Cole DENTRO de "match /databases/{database}/documents { ... }" das suas regras atuais.
+// (Se já existir "match /zyroPodepaMensagens/{id}", troque pelo bloco abaixo.)
+
+function podepaLogado() { return request.auth != null; }
+function podepaAdmin() {
+  return podepaLogado() &&
+    get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.admin == true;
+}
+function podepaLivre() {
+  let c = /databases/$(database)/documents/podepaCastigos/$(request.auth.uid);
+  return !exists(c) || get(c).data.castigoAte <= request.time;
+}
+
+match /zyroPodepaMensagens/{id} {
+  allow read: if podepaLogado();
+  allow create: if podepaLogado()
+                && request.resource.data.uid == request.auth.uid
+                && podepaLivre()                                   // bloqueia quem está de castigo
+                && request.resource.data.texto is string
+                && request.resource.data.texto.size() <= 2000
+                && request.resource.data.createdAt == request.time;
+  // qualquer logado pode reagir, mas só mexe no campo "reacoes"
+  allow update: if podepaLogado()
+                && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reacoes']);
+  // cada um apaga a própria mensagem; admin apaga qualquer uma
+  allow delete: if podepaLogado() && (resource.data.uid == request.auth.uid || podepaAdmin());
+}
+
+match /podepaCastigos/{uid} {
+  allow read: if podepaLogado() && (request.auth.uid == uid || podepaAdmin());
+  allow create: if podepaLogado() && request.auth.uid == uid
+                && request.resource.data.keys().hasOnly(['uid', 'castigoAte'])
+                && request.resource.data.castigoAte is timestamp
+                && request.resource.data.castigoAte > request.time + duration.value(20, 'm')
+                && request.resource.data.castigoAte <= request.time + duration.value(40, 'm');
+  allow update: if podepaLogado() && request.auth.uid == uid
+                && request.resource.data.castigoAte > resource.data.castigoAte
+                && request.resource.data.castigoAte <= request.time + duration.value(40, 'm');
+  allow delete: if podepaAdmin();   // admin perdoa o castigo
+}

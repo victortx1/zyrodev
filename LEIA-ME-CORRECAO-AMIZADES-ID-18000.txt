@@ -1,0 +1,20 @@
+CORREÇÃO ZYRODEV — ID 18000 E PEDIDOS DE AMIZADE
+
+O que foi corrigido:
+1. O ID público da ZyroDev agora é numérico e começa com 18000.
+2. IDs novos ficam na faixa 180000000 até 180009999.
+3. A busca de amigos aceita o ID Zyro numérico, sem usar o UID do Firebase como ID público.
+4. O botão Adicionar agora envia um PEDIDO DE AMIZADE.
+5. O destinatário recebe o pedido e pode ACEITAR ou RECUSAR.
+6. Ao aceitar, a amizade é criada e o chat privado fica disponível.
+7. O perfil passa a mostrar o ID Zyro numérico.
+8. As regras do Firestore foram atualizadas para as coleções pedidosAmizade e zyroIds.
+
+IMPORTANTE:
+Depois de substituir os arquivos no seu projeto, publique as regras novas do Firestore no Firebase Console:
+Firestore Database > Regras > cole o conteúdo de firestore.rules > Publicar.
+
+Também faça o deploy dos arquivos do site normalmente pela Vercel.
+
+Observação:
+Contas antigas que ainda não possuem idZyro recebem um novo ID automaticamente quando entrarem no perfil/amigos/login.

@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="./fotos/zraposa.png">
+  <title>Configurações Zyro</title>
+
+  <style>
+    :root {
+      --bg: #000000;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.09);
+      --text: #ffffff;
+      --muted: #b8b8b8;
+      --orange: #ff6a00;
+      --orange-soft: #ff8533;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(255, 106, 0, 0.18),
+          transparent 28%
+        ),
+        linear-gradient(135deg, #000000, #111111);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .topo h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      background: linear-gradient(
+        135deg,
+        var(--orange),
+        var(--orange-soft)
+      );
+      color: white;
+      padding: 11px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .settings-form {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(240px, 1fr)
+      );
+      gap: 16px;
+    }
+
+    .setting-group {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      min-height: 120px;
+    }
+
+    .setting-group h3 {
+      margin: 0 0 12px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      color: var(--orange-soft);
+      letter-spacing: 0.08em;
+    }
+
+    .setting-field {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .setting-field label {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .setting-field input,
+    .setting-field select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+    }
+
+    /* ==============================
+       CRÉDITOS E AVISO
+       ============================== */
+
+    .site-info {
+      margin-top: 22px;
+    }
+
+    .site-info-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,106,0,0.25);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .site-info-card h2 {
+      margin: 0 0 12px;
+      color: var(--orange);
+      font-size: 1.2rem;
+    }
+
+    .site-info-card p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 8px 0;
+    }
+
+    .site-info-card strong {
+      color: #ffffff;
+    }
+
+    .site-warning {
+      margin-top: 18px;
+      padding: 15px;
+      border-radius: 12px;
+      background: rgba(255,106,0,0.08);
+      border: 1px solid rgba(255,106,0,0.20);
+    }
+
+    .site-warning strong {
+      color: var(--orange-soft);
+    }
+
+    .site-credits {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .site-credits strong {
+      color: #ffffff;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 14px;
+      }
+
+      .topo {
+        align-items: flex-start;
+      }
+
+      .site-info-card {
+        padding: 18px;
+      }
+
+      .site-credits {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="topo">
+      <h1 data-i18n="siteSettingsTitle">
+        Configurações do Site
+      </h1>
+
+      <div class="actions">
+        <button
+          class="btn"
+          id="saveSiteConfig"
+          data-i18n="save"
+        >
+          Salvar
+        </button>
+
+        <button
+          class="btn secondary"
+          id="resetSiteConfig"
+          data-i18n="reset"
+        >
+          Resetar
+        </button>
+
+        <button class="btn secondary" id="btnPerfilDelar" type="button">
+          Perfil do Delar
+        </button>
+
+        <a
+          href="./index.html"
+          style="text-decoration:none;"
+        >
+          <button
+            class="btn secondary"
+            type="button"
+            data-i18n="backToSite"
+          >
+            Voltar ao site
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div
+        id="siteSettingsForm"
+        class="settings-form"
+      ></div>
+    </div>
+
+    <!-- GUIA ZYRODEV: rever / reiniciar o tutorial -->
+    <div class="card" id="zyroGuiaConfig" style="margin-top:22px;">
+      <h2 style="margin:0 0 8px;color:var(--orange);font-size:1.2rem;">Guia ZyroDev</h2>
+      <p style="color:var(--muted);line-height:1.6;margin:0 0 6px;">
+        O tutorial interativo com o robô Guia Zyro apresenta a plataforma passo a passo.
+      </p>
+      <p id="zyroGuiaStatus" style="color:#fff;margin:0 0 14px;font-weight:600;"></p>
+      <div class="actions">
+        <button class="btn" id="zyroGuiaIniciar" type="button">Iniciar o guia</button>
+        <button class="btn secondary" id="zyroGuiaReiniciar" type="button" hidden>Reiniciar do começo</button>
+      </div>
+    </div>
+
+    <!-- ==============================
+         CRÉDITOS E INFORMAÇÕES
+         ============================== -->
+
+    <div class="site-info">
+
+      <div class="site-info-card">
+
+        <h2>Sobre a ZyroDev</h2>
+
+        <p>
+          A <strong>ZyroDev</strong> é um projeto criado e desenvolvido
+          por <strong>Delarotaldev</strong>.
+        </p>
+
+        <p>
+          Todo o projeto, sistema, identidade e desenvolvimento da
+          plataforma são mantidos e atualizados pelo criador.
+        </p>
+
+        <div class="site-warning">
+
+          <strong>
+            ⚠️ Aviso importante
+          </strong>
+
+          <p>
+            A ZyroDev está em constante desenvolvimento.
+            Algumas funções, páginas, sistemas, aparência,
+            conteúdos e recursos podem ser alterados,
+            atualizados, removidos ou adicionados a qualquer
+            momento sem aviso prévio.
+          </p>
+
+        </div>
+
+        <div class="site-credits">
+
+          <span>
+            © 2026 ZyroDev
+          </span>
+
+          <span>
+            Desenvolvido por
+            <strong>Delarotaldev</strong>
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { db } from "./firebase.js";
+    import { collection, query, where, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    document.getElementById("btnPerfilDelar")?.addEventListener("click", async () => {
+      const btn = document.getElementById("btnPerfilDelar");
+      if (!btn) return;
+      btn.disabled = true;
+      btn.textContent = "Abrindo perfil...";
+      try {
+        const candidatos = ["Delar", "DELAR", "Delarotaldev", "delarotaldev"];
+        let encontrado = null;
+
+        for (const nome of candidatos) {
+          const q = query(collection(db, "usuarios"), where("nome", "==", nome), limit(1));
+          const snap = await getDocs(q);
+          if (!snap.empty) {
+            encontrado = snap.docs[0].id;
+            break;
+          }
+        }
+
+        if (!encontrado) {
+          const q = query(collection(db, "usuarios"), where("fundador", "==", true), limit(1));
+          const snap = await getDocs(q);
+          if (!snap.empty) encontrado = snap.docs[0].id;
+        }
+
+        if (!encontrado) throw new Error("Perfil do Delar não encontrado.");
+        window.location.href = "./perfil-publico.html?uid=" + encodeURIComponent(encontrado);
+      } catch (error) {
+        console.error(error);
+        alert("Não foi possível localizar o perfil do Delar agora.");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Perfil do Delar";
+      }
+    });
+  </script>
+  <script src="./config.js"></script>
+
+  <script>
+
+    const fields = [
+      {
+        category: 'APARÊNCIA',
+
+        fields: [
+
+          {
+            key: 'theme',
+            label: 'Tema',
+            type: 'select',
+            options: [
+              ['dark-orange', 'Preto + laranja'],
+              ['light', 'Branco'],
+              ['light-orange', 'Branco + laranja']
+            ]
+          },
+
+          {
+            key: 'language',
+            label: 'Idioma',
+            type: 'select',
+            options: [
+              ['pt-BR', 'Português'],
+              ['en', 'English']
+            ]
+          }
+
+        ]
+      }
+    ];
+
+
+    function getByPath(obj, path) {
+
+      return path
+        .split('.')
+        .reduce(
+          (acc, key) =>
+            acc && acc[key] !== undefined
+              ? acc[key]
+              : undefined,
+          obj
+        );
+
+    }
+
+
+    function setByPath(obj, path, value) {
+
+      const keys = path.split('.');
+
+      let cursor = obj;
+
+      for (
+        let i = 0;
+        i < keys.length - 1;
+        i += 1
+      ) {
+
+        const key = keys[i];
+
+        if (
+          !cursor[key] ||
+          typeof cursor[key] !== 'object'
+        ) {
+          cursor[key] = {};
+        }
+
+        cursor = cursor[key];
+
+      }
+
+      cursor[keys[keys.length - 1]] = value;
+
+    }
+
+
+    function renderForm() {
+
+      const form =
+        document.getElementById(
+          'siteSettingsForm'
+        );
+
+      const config =
+        window.ZyroConfigAPI
+          ? window.ZyroConfigAPI.getConfig()
+          : {};
+
+
+      form.innerHTML = fields
+        .map((group) => {
+
+          const inner = group.fields
+            .map((field) => {
+
+              const value =
+                getByPath(
+                  config,
+                  field.key
+                );
+
+              const checked =
+                value === true
+                  ? 'checked'
+                  : '';
+
+              const currentValue =
+                value ?? '';
+
+
+              const inputHtml =
+                field.type === 'checkbox'
+
+                  ? `<input
+                       data-config-key="${field.key}"
+                       type="checkbox"
+                       ${checked}
+                     >`
+
+                  : field.type === 'select'
+
+                    ? `<select
+                         data-config-key="${field.key}"
+                       >
+                         ${(field.options || [])
+                           .map(
+                             ([
+                               optionValue,
+                               optionLabel
+                             ]) =>
+                               `<option
+                                  value="${optionValue}"
+                                  ${
+                                    String(currentValue) ===
+                                    String(optionValue)
+                                      ? 'selected'
+                                      : ''
+                                  }
+                                >
+                                  ${optionLabel}
+                                </option>`
+                           )
+                           .join('')}
+                       </select>`
+
+                    : field.type === 'color'
+
+                      ? `<input
+                           data-config-key="${field.key}"
+                           type="color"
+                           value="${String(
+                             currentValue ||
+                             '#ff6a00'
+                           )}"
+                         >`
+
+                      : `<input
+                           data-config-key="${field.key}"
+                           type="${field.type}"
+                           value="${String(
+                             currentValue ?? ''
+                           )}"
+                         >`;
+
+
+              return `
+                <div class="setting-field">
+                  <label>${field.label}</label>
+                  ${inputHtml}
+                </div>
+              `;
+
+            })
+            .join('');
+
+
+          return `
+            <div class="setting-group">
+              <h3>${group.category}</h3>
+              ${inner}
+            </div>
+          `;
+
+        })
+        .join('');
+
+    }
+
+
+    function collectConfig() {
+
+      const next =
+        JSON.parse(
+          JSON.stringify(
+            window.ZyroConfigAPI
+              ? window.ZyroConfigAPI.getConfig()
+              : {}
+          )
+        );
+
+
+      document
+        .querySelectorAll(
+          '[data-config-key]'
+        )
+        .forEach((field) => {
+
+          const path =
+            field.dataset.configKey;
+
+          const value =
+            field.type === 'checkbox'
+              ? field.checked
+              : field.value;
+
+          setByPath(
+            next,
+            path,
+            value
+          );
+
+        });
+
+
+      return next;
+
+    }
+
+
+    function saveConfig() {
+
+      const next =
+        collectConfig();
+
+
+      if (
+        window.ZyroConfigAPI &&
+        typeof window.ZyroConfigAPI.saveConfig ===
+          'function'
+      ) {
+
+        window.ZyroConfigAPI.saveConfig(
+          next
+        );
+
+      }
+
+
+      if (
+        window.ZyroConfigAPI &&
+        typeof window.ZyroConfigAPI.apply ===
+          'function'
+      ) {
+
+        window.ZyroConfigAPI.apply();
+
+      }
+
+
+      window.location.href =
+        './index.html';
+
+    }
+
+
+    function resetConfig() {
+
+      const base =
+        JSON.parse(
+          JSON.stringify(
+            window.ZyroConfigAPI
+              ? window.ZyroConfigAPI.getConfig()
+              : {}
+          )
+        );
+
+
+      const reset = {
+
+        theme: 'dark-orange',
+
+        language: 'pt-BR',
+
+        site: {
+          name: 'ZyroDev',
+          shortName: 'ZyroDev',
+          title: 'ZyroDev',
+          description:
+            'Aprenda programação gratuitamente e evolua com a ZyroDev',
+          slogan:
+            'Aprenda a programar de graça',
+          copyright:
+            '© 2026 ZyroDev Temp 2',
+          url:
+            'https://zyrodev.com',
+          email:
+            'contato@zyrodev.com',
+          founderName:
+            'Delarotaldev'
+        },
+
+        visual: {
+          primary: '#ff6a00',
+          secondary: '#ff8533',
+          accent: '#ffb067',
+          text: '#f5f5f5',
+          textSecondary: '#b8b8b8',
+          background: '#000000',
+          cards: '#111111',
+          footer: '#0a0a0a',
+          navbar:
+            'rgba(10,14,25,0.85)'
+        },
+
+        socials: {
+          discord:
+            'https://discord.gg/AJkeUcN47e',
+
+          instagram:
+            'https://www.instagram.com/delarotaldev',
+
+          youtube:
+            'https://youtube.com/@delarotaldev',
+
+          github:
+            'https://github.com/victortx1'
+        },
+
+        features: {
+          showNavbar: true,
+          showHero: true,
+          showStats: true,
+          showCommunity: true,
+          showFooter: true,
+          showCookies: true,
+          showGooglePopup: true,
+          showPreloader: true,
+          showAnimations: true
+        },
+
+        animations: {
+          enabled: true
+        },
+
+        cookies: {
+          showCookieBanner: true,
+          cookieText:
+            '🍪 Este site utiliza cookies para melhorar sua experiência no ZyroDev.',
+          cookieButtonText:
+            'Aceitar'
+        },
+
+        seo: {
+          title: 'ZyroDev',
+          description:
+            'Aprenda programação gratuitamente e evolua com a ZyroDev'
+        },
+
+        navbar: {
+          links: [
+            {
+              label: 'Sobre',
+              href: '#sobre'
+            },
+            {
+              label: 'Créditos',
+              href: 'creditos.html'
+            },
+            {
+              label: 'Bate Papo',
+              href:
+                'https://discord.gg/AJkeUcN47e',
+              target: '_blank'
+            },
+            {
+              label: 'Login',
+              href: 'login.html'
+            }
+          ]
+        }
+
+      };
+
+
+      Object.assign(
+        base,
+        reset
+      );
+
+
+      if (
+        window.ZyroConfigAPI &&
+        typeof window.ZyroConfigAPI.saveConfig ===
+          'function'
+      ) {
+
+        window.ZyroConfigAPI.saveConfig(
+          base
+        );
+
+      }
+
+
+      if (
+        window.ZyroConfigAPI &&
+        typeof window.ZyroConfigAPI.apply ===
+          'function'
+      ) {
+
+        window.ZyroConfigAPI.apply();
+
+      }
+
+
+      renderForm();
+
+    }
+
+
+    document
+      .getElementById(
+        'saveSiteConfig'
+      )
+      ?.addEventListener(
+        'click',
+        saveConfig
+      );
+
+
+    document
+      .getElementById(
+        'resetSiteConfig'
+      )
+      ?.addEventListener(
+        'click',
+        resetConfig
+      );
+
+
+    renderForm();
+
+  </script>
+
+
+  <script src="./i18n.js">
+    (function(){
+
+      const extraTranslations = {
+
+        "siteSettingsTitle":
+          [
+            "Configurações do Site",
+            "Site Settings"
+          ],
+
+        "save":
+          [
+            "Salvar",
+            "Save"
+          ],
+
+        "reset":
+          [
+            "Resetar",
+            "Reset"
+          ],
+
+        "backToSite":
+          [
+            "Voltar ao site",
+            "Back to site"
+          ]
+
+      };
+
+
+      const applyConfigLabels = () => {
+
+        const lang =
+          localStorage.getItem(
+            "zyrodev_language"
+          ) || "pt-BR";
+
+        const isEn =
+          lang === "en";
+
+        document.documentElement.lang =
+          lang;
+
+
+        document
+          .querySelectorAll(
+            "[data-i18n]"
+          )
+          .forEach(el => {
+
+            const key =
+              el.dataset.i18n;
+
+            const pair =
+              extraTranslations[key];
+
+            if (pair) {
+
+              el.textContent =
+                isEn
+                  ? pair[1]
+                  : pair[0];
+
+            }
+
+          });
+
+      };
+
+
+      window.addEventListener(
+        "storage",
+        e => {
+
+          if (
+            e.key ===
+            "zyrodev_language"
+          ) {
+
+            applyConfigLabels();
+
+          }
+
+        }
+      );
+
+
+      document
+        .getElementById(
+          "siteSettingsForm"
+        )
+        ?.addEventListener(
+          "change",
+          e => {
+
+            if (
+              e.target?.dataset?.configKey ===
+              "language"
+            ) {
+
+              localStorage.setItem(
+                "zyrodev_language",
+                e.target.value
+              );
+
+              applyConfigLabels();
+
+            }
+
+          }
+        );
+
+
+      setTimeout(
+        applyConfigLabels,
+        30
+      );
+
+    })();
+
+  </script>
+
+<script src="./guia-zyro.js" defer></script>
+</body>
+</html>

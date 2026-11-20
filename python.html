@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZyroDev | Aula</title>
-  <link rel="icon" type="image/png" href="./fotos/favicon.png.png">
+  <link rel="icon" type="image/png" href="./fotos/zraposa.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,18 +13,18 @@
 
   <style>
     :root {
-      --bg: #020617;
-      --bg-soft: #0f172a;
-      --sidebar: rgba(7, 15, 30, 0.85);
+      --bg: #000000;
+      --bg-soft: #111111;
+      --sidebar: rgba(17, 17, 17, 0.85);
       --card: rgba(255, 255, 255, 0.05);
       --card-2: rgba(255, 255, 255, 0.04);
       --border: rgba(255, 255, 255, 0.08);
-      --text: #ffffff;
-      --muted: #94a3b8;
-      --blue: #2563eb;
-      --purple: #7c3aed;
-      --green: #16a34a;
-      --white: #ffffff;
+      --text: #FFFFFF;
+      --muted: #B8B8B8;
+      --orange: #ff6a00;
+      --orange: #ff6a00;
+      --orange-dark: #cc5200;
+      --white: #FFFFFF;
       --shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
       --radius-xl: 24px;
       --radius-lg: 18px;
@@ -47,9 +47,9 @@
       min-height: 100vh;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 24%),
-        radial-gradient(circle at top right, rgba(124, 58, 237, 0.12), transparent 26%),
-        linear-gradient(135deg, #020617, #081120 45%, #0f172a);
+        radial-gradient(circle at top left, rgba(255, 106, 0, 0.14), transparent 24%),
+        radial-gradient(circle at top right, rgba(255, 106, 0, 0.12), transparent 26%),
+        linear-gradient(135deg, #000000, #080808 45%, #111111);
       overflow-x: hidden;
     }
 
@@ -81,7 +81,7 @@
       font-size: 2rem;
       font-weight: 900;
       letter-spacing: -0.04em;
-      background: linear-gradient(90deg, #fff, #60a5fa, #a78bfa);
+      background: linear-gradient(90deg, #FFFFFF, #ff6a00, #ff6a00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -105,7 +105,7 @@
       align-items: center;
       gap: 12px;
       text-decoration: none;
-      color: #dbeafe;
+      color: #FFFFFF;
       padding: 14px;
       border-radius: 16px;
       background: rgba(255, 255, 255, 0.03);
@@ -116,7 +116,7 @@
     .nav a:hover {
       transform: translateY(-2px);
       background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(96, 165, 250, 0.18);
+      border-color: rgba(255, 106, 0, 0.18);
     }
 
     .nav-icon {
@@ -126,7 +126,7 @@
       place-items: center;
       border-radius: 12px;
       flex-shrink: 0;
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(124, 58, 237, 0.14));
+      background: linear-gradient(135deg, rgba(255, 106, 0, 0.16), rgba(255, 106, 0, 0.14));
       border: 1px solid rgba(255, 255, 255, 0.06);
       font-size: 1rem;
     }
@@ -183,23 +183,23 @@
       border-radius: 999px;
       font-size: 0.82rem;
       font-weight: 800;
-      color: #e2e8f0;
+      color: #E2E8F0;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .chip.blue {
-      background: rgba(37, 99, 235, 0.12);
-      color: #dbeafe;
+      background: rgba(255, 106, 0, 0.12);
+      color: #FFFFFF;
     }
 
     .chip.green {
-      background: rgba(22, 163, 74, 0.12);
-      color: #dcfce7;
+      background: rgba(204, 82, 0, 0.12);
+      color: #FFFFFF;
     }
 
     .eyebrow {
-      color: #60a5fa;
+      color: #ff6a00;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       font-weight: 800;
@@ -216,7 +216,7 @@
     }
 
     .course-subtitle {
-      color: #cbd5e1;
+      color: #B8B8B8;
       font-size: 0.95rem;
       line-height: 1.6;
       margin-bottom: 18px;
@@ -227,7 +227,7 @@
       overflow: hidden;
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      background: #000;
+      background: #000000;
       transition: 0.25s ease;
       position: relative;
     }
@@ -239,7 +239,7 @@
     .video-frame {
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: #000;
+      background: #000000;
       position: relative;
     }
 
@@ -263,11 +263,11 @@
       inset: 0;
       display: grid;
       place-items: center;
-      color: #cbd5e1;
+      color: #B8B8B8;
       font-weight: 700;
       background:
-        radial-gradient(circle at center, rgba(37, 99, 235, 0.10), transparent 45%),
-        #000;
+        radial-gradient(circle at center, rgba(255, 106, 0, 0.10), transparent 45%),
+        #000000;
       z-index: 1;
       transition: opacity 0.25s ease;
     }
@@ -303,17 +303,17 @@
       border: none;
       cursor: pointer;
       color: white;
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
-      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.22);
+      background: linear-gradient(135deg, #ff6a00, #ff6a00);
+      box-shadow: 0 12px 30px rgba(255, 106, 0, 0.22);
     }
 
     .complete-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 38px rgba(37, 99, 235, 0.28);
+      box-shadow: 0 18px 38px rgba(255, 106, 0, 0.28);
     }
 
     .ghost-button {
-      color: #dbeafe;
+      color: #FFFFFF;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -327,9 +327,9 @@
       margin-top: 14px;
       padding: 14px 15px;
       border-radius: 14px;
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(17, 17, 17, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      color: #e2e8f0;
+      color: #E2E8F0;
       font-size: 0.92rem;
       line-height: 1.6;
     }
@@ -358,9 +358,9 @@
       border-radius: 999px;
       font-size: 0.78rem;
       font-weight: 800;
-      color: #dbeafe;
-      background: rgba(37, 99, 235, 0.12);
-      border: 1px solid rgba(96, 165, 250, 0.16);
+      color: #FFFFFF;
+      background: rgba(255, 106, 0, 0.12);
+      border: 1px solid rgba(255, 106, 0, 0.16);
     }
 
     .progress-card {
@@ -384,7 +384,7 @@
     }
 
     .progress-topline span {
-      color: #cbd5e1;
+      color: #B8B8B8;
       font-size: 0.88rem;
       font-weight: 700;
     }
@@ -393,7 +393,7 @@
       width: 100%;
       height: 12px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.76);
+      background: rgba(17, 17, 17, 0.76);
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
@@ -402,7 +402,7 @@
       width: 0%;
       height: 100%;
       border-radius: 999px;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #22c55e);
+      background: linear-gradient(90deg, #ff6a00, #ff6a00, #ff6a00);
       transition: width 0.35s ease;
     }
 
@@ -410,7 +410,7 @@
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: #60a5fa;
+      color: #ff6a00;
       font-weight: 900;
       margin-bottom: 12px;
     }
@@ -474,18 +474,18 @@
       font-size: 0.92rem;
       font-weight: 800;
       line-height: 1.4;
-      color: #fff;
+      color: #FFFFFF;
       padding-right: 38px;
     }
 
     .lesson.active {
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(124, 58, 237, 0.14));
-      border-color: rgba(96, 165, 250, 0.18);
+      background: linear-gradient(135deg, rgba(255, 106, 0, 0.16), rgba(255, 106, 0, 0.14));
+      border-color: rgba(255, 106, 0, 0.18);
     }
 
     .lesson.completed {
-      background: linear-gradient(135deg, rgba(22, 163, 74, 0.16), rgba(34, 197, 94, 0.10));
-      border-color: rgba(74, 222, 128, 0.18);
+      background: linear-gradient(135deg, rgba(204, 82, 0, 0.16), rgba(255, 106, 0, 0.10));
+      border-color: rgba(255, 106, 0, 0.18);
     }
 
     .lesson.completed::after {
@@ -499,9 +499,9 @@
       display: grid;
       place-items: center;
       font-weight: 900;
-      color: #dcfce7;
-      background: rgba(34, 197, 94, 0.18);
-      border: 1px solid rgba(74, 222, 128, 0.18);
+      color: #FFFFFF;
+      background: rgba(255, 106, 0, 0.18);
+      border: 1px solid rgba(255, 106, 0, 0.18);
     }
 
     @media (max-width: 1100px) {
@@ -702,46 +702,46 @@
     { title: "Aula 04 - Curso Python #04 - Primeiros comandos em Python3", id: "31llNGKWDdo" },
     { title: "Aula 05 - Curso Python #05 - Instalando o PyCharm e o QPython3", id: "ElRd0cbXIv4" },
     { title: "Aula 06 - PyCharm mudou! Saiba como treinar Python no PC, celular e tablet", id: "XND4VeMMzqg" },
-    { title: "Aula 07 - Exercício Python #001 - Deixando tudo pronto", id: "nIHq1MtJaKs" },
-    { title: "Aula 08 - Exercício Python #002 - Respondendo ao Usuário", id: "FNqdV5Zb_5Q" },
+    { title: "Aula 07 - Exercício Python #111111 - Deixando tudo pronto", id: "nIHq1MtJaKs" },
+    { title: "Aula 08 - Exercício Python #111111 - Respondendo ao Usuário", id: "FNqdV5Zb_5Q" },
     { title: "Aula 09 - Curso Python #06 - Tipos Primitivos e Saída de Dados", id: "hdDHg1p3YVc" },
-    { title: "Aula 10 - Exercício Python #003 - Somando dois números", id: "PB254Cfjlyk" },
-    { title: "Aula 11 - Exercício Python #004 - Dissecando uma Variável", id: "tHYxjJxtJko" },
+    { title: "Aula 10 - Exercício Python #111111 - Somando dois números", id: "PB254Cfjlyk" },
+    { title: "Aula 11 - Exercício Python #111111 - Dissecando uma Variável", id: "tHYxjJxtJko" },
     { title: "Aula 12 - Curso Python #07 - Operadores Aritméticos", id: "Vw6gLypRKmY" },
-    { title: "Aula 13 - Exercício Python #005 - Antecessor e Sucessor", id: "664e0G_S9nU" },
-    { title: "Aula 14 - Exercício Python #006 - Dobro, Triplo, Raiz Quadrada", id: "mqcNw_dhl8I" },
-    { title: "Aula 15 - Exercício Python #007 - Média Aritmética", id: "_QfISzy0IKs" },
-    { title: "Aula 16 - Exercício Python #008 - Conversor de Medidas", id: "KjcdG05EAZc" },
-    { title: "Aula 17 - Exercício Python #009 - Tabuada", id: "qajq3SI0QQs" },
-    { title: "Aula 18 - Exercício Python #010 - Conversor de Moedas", id: "xM4AX3Lp2mo" },
-    { title: "Aula 19 - Exercício Python #011 - Pintando Parede", id: "mzSJpn9ldt4" },
-    { title: "Aula 20 - Exercício Python #012 - Calculando Descontos", id: "4MAmKOT9FeU" },
-    { title: "Aula 21 - Exercício Python #013 - Reajuste Salarial", id: "cTkivN8XcJ0" },
-    { title: "Aula 22 - Exercício Python #014 - Conversor de Temperaturas", id: "9l_Gay8BuAw" },
-    { title: "Aula 23 - Exercício Python #015 - Aluguel de Carros", id: "I4NYUeetLAc" },
+    { title: "Aula 13 - Exercício Python #111111 - Antecessor e Sucessor", id: "664e0G_S9nU" },
+    { title: "Aula 14 - Exercício Python #111111 - Dobro, Triplo, Raiz Quadrada", id: "mqcNw_dhl8I" },
+    { title: "Aula 15 - Exercício Python #111111 - Média Aritmética", id: "_QfISzy0IKs" },
+    { title: "Aula 16 - Exercício Python #111111 - Conversor de Medidas", id: "KjcdG05EAZc" },
+    { title: "Aula 17 - Exercício Python #111111 - Tabuada", id: "qajq3SI0QQs" },
+    { title: "Aula 18 - Exercício Python #111111 - Conversor de Moedas", id: "xM4AX3Lp2mo" },
+    { title: "Aula 19 - Exercício Python #111111 - Pintando Pa#cc5200e", id: "mzSJpn9ldt4" },
+    { title: "Aula 20 - Exercício Python #111111 - Calculando Descontos", id: "4MAmKOT9FeU" },
+    { title: "Aula 21 - Exercício Python #111111 - Reajuste Salarial", id: "cTkivN8XcJ0" },
+    { title: "Aula 22 - Exercício Python #111111 - Conversor de Temperaturas", id: "9l_Gay8BuAw" },
+    { title: "Aula 23 - Exercício Python #111111 - Aluguel de Carros", id: "I4NYUeetLAc" },
     { title: "Aula 24 - Curso Python #08 - Utilizando Módulos", id: "oOUyhGNib2Q" },
-    { title: "Aula 25 - Exercício Python #016 - Quebrando um número", id: "-iSbDpl5Jhw" },
-    { title: "Aula 26 - Exercício Python #017 - Catetos e Hipotenusa", id: "vmPW9iWsYkY" },
-    { title: "Aula 27 - Exercício Python #018 - Seno, Cosseno e Tangente", id: "9GvsphwW26k" },
-    { title: "Aula 28 - Exercício Python #019 - Sorteando um item na lista", id: "_Nk02-mfB5I" },
-    { title: "Aula 29 - Exercício Python #020 - Sorteando uma ordem na lista", id: "OPh0nngbBSY" },
-    { title: "Aula 30 - Exercício Python #021 - Tocando um MP3", id: "9FiEji_fzvk" },
+    { title: "Aula 25 - Exercício Python #111111 - Quebrando um número", id: "-iSbDpl5Jhw" },
+    { title: "Aula 26 - Exercício Python #111111 - Catetos e Hipotenusa", id: "vmPW9iWsYkY" },
+    { title: "Aula 27 - Exercício Python #111111 - Seno, Cosseno e Tangente", id: "9GvsphwW26k" },
+    { title: "Aula 28 - Exercício Python #111111 - Sorteando um item na lista", id: "_Nk02-mfB5I" },
+    { title: "Aula 29 - Exercício Python #111111 - Sorteando uma ordem na lista", id: "OPh0nngbBSY" },
+    { title: "Aula 30 - Exercício Python #111111 - Tocando um MP3", id: "9FiEji_fzvk" },
     { title: "Aula 31 - Curso Python #09 - Manipulando Texto", id: "a7DH88vk2Sk" },
-    { title: "Aula 32 - Exercício Python #022 - Analisador de Textos", id: "EQQt-6QqXOs" },
-    { title: "Aula 33 - Exercício Python #023 - Separando dígitos de um número", id: "wD2aerLMBWA" },
-    { title: "Aula 34 - Exercício Python #024 - Verificando as primeiras letras de um texto", id: "QroT8cZMRnc" },
-    { title: "Aula 35 - Exercício Python #025 - Procurando uma string dentro de outra", id: "WHWGz2Dy1ZU" },
-    { title: "Aula 36 - Exercício Python #026 - Primeira e última ocorrência de uma string", id: "23UOVEetNPY" },
-    { title: "Aula 37 - Exercício Python #027 - Primeiro e último nome de uma pessoa", id: "SifYYsXhLM8" },
+    { title: "Aula 32 - Exercício Python #111111 - Analisador de Textos", id: "EQQt-6QqXOs" },
+    { title: "Aula 33 - Exercício Python #111111 - Separando dígitos de um número", id: "wD2aerLMBWA" },
+    { title: "Aula 34 - Exercício Python #111111 - Verificando as primeiras letras de um texto", id: "QroT8cZMRnc" },
+    { title: "Aula 35 - Exercício Python #111111 - Procurando uma string dentro de outra", id: "WHWGz2Dy1ZU" },
+    { title: "Aula 36 - Exercício Python #111111 - Primeira e última ocorrência de uma string", id: "23UOVEetNPY" },
+    { title: "Aula 37 - Exercício Python #111111 - Primeiro e último nome de uma pessoa", id: "SifYYsXhLM8" },
     { title: "Aula 38 - Curso Python #10 - Condições (Parte 1)", id: "K10u3XIf1-Q" },
-    { title: "Aula 39 - Exercício Python #028 - Jogo da Adivinhação v.1.0", id: "kchC5KLZSZ4" },
-    { title: "Aula 40 - Exercício Python #029 - Radar eletrônico", id: "hgJ_ETNGSj8" },
-    { title: "Aula 41 - Exercício Python #030 - Par ou Ímpar?", id: "4vFCzKuHOn4" },
-    { title: "Aula 42 - Exercício Python #031 - Custo da Viagem", id: "PGqHyzWoagc" },
-    { title: "Aula 43 - Exercício Python #032 - Ano Bissexto", id: "cyGY_83m4Xw" },
-    { title: "Aula 44 - Exercício Python #033 - Maior e menor valores", id: "a_8FbW5oH6I" },
-    { title: "Aula 45 - Exercício Python #034 - Aumentos múltiplos", id: "Sfadj_AzKHw" },
-    { title: "Aula 46 - Exercício Python #035 - Analisando Triângulo v1.0", id: "NZiNphKkxhg" },
+    { title: "Aula 39 - Exercício Python #111111 - Jogo da Adivinhação v.1.0", id: "kchC5KLZSZ4" },
+    { title: "Aula 40 - Exercício Python #111111 - Radar eletrônico", id: "hgJ_ETNGSj8" },
+    { title: "Aula 41 - Exercício Python #111111 - Par ou Ímpar?", id: "4vFCzKuHOn4" },
+    { title: "Aula 42 - Exercício Python #111111 - Custo da Viagem", id: "PGqHyzWoagc" },
+    { title: "Aula 43 - Exercício Python #111111 - Ano Bissexto", id: "cyGY_83m4Xw" },
+    { title: "Aula 44 - Exercício Python #111111 - Maior e menor valores", id: "a_8FbW5oH6I" },
+    { title: "Aula 45 - Exercício Python #111111 - Aumentos múltiplos", id: "Sfadj_AzKHw" },
+    { title: "Aula 46 - Exercício Python #cc5200 - Analisando Triângulo v1.0", id: "NZiNphKkxhg" },
     { title: "Aula 47 - Curso Python #11 - Cores no Terminal", id: "0hBIhkcA8O8" }
   ];
 
@@ -1038,6 +1038,7 @@
   atualizarTela();
   tentarIniciarPlayer();
 </script>
+<script src="./i18n.js"></script>
 </body>
 
 </html>

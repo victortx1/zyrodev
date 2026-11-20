@@ -1,0 +1,33 @@
+ZYRODEV — LOGIN COMPLETO
+
+O login foi corrigido para:
+- Cadastro com nome + e-mail + senha.
+- Login com e-mail + senha.
+- Login com Google.
+- Persistência da sessão no navegador.
+- Criação automática de usuarios/{uid} no Firestore.
+- Preservação dos campos admin/VIP existentes.
+- Recuperação de senha.
+- Mensagens de erro do Firebase traduzidas.
+- Fallback para redirect quando o popup do Google for bloqueado.
+- Links funcionais para Instagram, GitHub, LinkedIn e YouTube.
+
+IMPORTANTE — FIREBASE
+No Firebase Console do projeto zyrodev-58fed:
+1. Authentication > Sign-in method:
+   - Ative Email/Password.
+   - Ative Google.
+2. Authentication > Settings > Authorized domains:
+   - Adicione o domínio exato do Vercel.
+   - Se usar domínio próprio, adicione também.
+3. Firestore Database:
+   - Publique as firestore.rules que já estão no projeto.
+
+OBSERVAÇÃO
+O link do LinkedIn foi deixado apontando para o LinkedIn oficial porque o ZIP não continha a URL do perfil do Delar. Se você tiver a URL exata do perfil, substitua no config.js.
+
+NÃO APAGAR:
+- firebase.js
+- firestore.rules
+- security-utils.js
+- temporada-service.js

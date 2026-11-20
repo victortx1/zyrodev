@@ -1,0 +1,304 @@
+/* ==========================================================================
+   GUIA ZYRODEV — estilos do tutorial interativo
+   Identidade: preto + laranja + branco (mesma paleta do site).
+   Tudo é prefixado com "zg-" para não colidir com nenhum CSS existente.
+   ========================================================================== */
+
+:root {
+  --zg-orange: #ff6a00;
+  --zg-orange-soft: #ff8533;
+  --zg-black: #0b0b0b;
+  --zg-panel: #141414;
+  --zg-line: rgba(255, 255, 255, 0.1);
+  --zg-text: #ffffff;
+  --zg-muted: #c4c4c4;
+  --zg-z: 2147483000;
+}
+
+/* --- Convivência com elementos que já existem no site ---------------------- */
+/* Evita o popup "Crie sua conta Google" brigar com a tela de boas-vindas. */
+html.zg-pending #googlePopup,
+body.zg-on #googlePopup { display: none !important; }
+
+/* Esconde (sem remover) avisos flutuantes enquanto o guia fala. */
+body.zg-on .cookie-box,
+body.zg-on .zyro-professor-notice { visibility: hidden !important; }
+
+/* O mini-tour antigo da página de cursos não pode aparecer junto com o guia. */
+body.zg-on #guiaOverlay { display: none !important; }
+
+/* --- Destaque (spotlight) -------------------------------------------------- */
+.zg-ring {
+  position: fixed;
+  z-index: var(--zg-z);
+  left: 0; top: 0; width: 0; height: 0;
+  border-radius: 16px;
+  border: 2px solid var(--zg-orange);
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.28), 0 0 26px rgba(255, 106, 0, 0.55);
+  pointer-events: none;           /* nunca bloqueia cliques no site */
+  opacity: 0;
+  transition: left .35s cubic-bezier(.2,.8,.2,1), top .35s cubic-bezier(.2,.8,.2,1),
+              width .35s cubic-bezier(.2,.8,.2,1), height .35s cubic-bezier(.2,.8,.2,1),
+              opacity .25s ease;
+}
+.zg-ring.zg-show { opacity: 1; animation: zg-pulse 2.2s ease-in-out infinite; }
+.zg-ring.zg-dim {
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.28), 0 0 26px rgba(255, 106, 0, 0.55),
+              0 0 0 100vmax rgba(0, 0, 0, 0.58);
+}
+@keyframes zg-pulse {
+  0%, 100% { border-color: var(--zg-orange); }
+  50%      { border-color: #ffd2a8; }
+}
+
+/* --- Caixa do guia (robô + diálogo) --------------------------------------- */
+.zg-dock {
+  position: fixed;
+  z-index: calc(var(--zg-z) + 1);
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  max-width: calc(100vw - 24px);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: var(--zg-text);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+.zg-dock.zg-show { opacity: 1; transform: none; }
+
+.zg-dock[data-pos="br"] { right: 18px; bottom: 18px; flex-direction: row; }
+.zg-dock[data-pos="bl"] { left: 18px;  bottom: 18px; flex-direction: row-reverse; }
+.zg-dock[data-pos="tr"] { right: 18px; top: 84px;    flex-direction: row; align-items: flex-start; }
+.zg-dock[data-pos="tl"] { left: 18px;  top: 84px;    flex-direction: row-reverse; align-items: flex-start; }
+.zg-dock[data-pos="c"]  { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.zg-dock[data-pos="c"].zg-show { transform: translate(-50%, -50%); }
+
+/* Robô */
+.zg-bot {
+  position: relative;
+  flex: 0 0 auto;
+  width: 84px;
+  height: 104px;
+  animation: zg-float 3.4s ease-in-out infinite;
+}
+@keyframes zg-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.zg-bot-antenna {
+  position: absolute; left: 50%; top: 0;
+  width: 3px; height: 16px; margin-left: -1.5px;
+  background: linear-gradient(#ff8533, #5a2a00);
+  border-radius: 2px;
+}
+.zg-bot-antenna::after {
+  content: ""; position: absolute; left: 50%; top: -7px;
+  width: 10px; height: 10px; margin-left: -5px; border-radius: 50%;
+  background: var(--zg-orange);
+  box-shadow: 0 0 12px 3px rgba(255, 106, 0, 0.85);
+  animation: zg-blink 1.8s ease-in-out infinite;
+}
+@keyframes zg-blink { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.zg-bot-head {
+  position: absolute; left: 0; right: 0; bottom: 14px; top: 14px;
+  border-radius: 24px;
+  background: radial-gradient(circle at 50% 35%, #232323, #0a0a0a 70%);
+  border: 2px solid var(--zg-orange);
+  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.18), 0 10px 26px rgba(0, 0, 0, 0.55),
+              inset 0 0 16px rgba(255, 106, 0, 0.18);
+  display: grid; place-items: center;
+  overflow: hidden;
+}
+.zg-bot-head img {
+  width: 82%; height: 82%; object-fit: contain; display: block;
+  filter: drop-shadow(0 0 6px rgba(255, 106, 0, 0.5));
+}
+.zg-bot-ear {
+  position: absolute; top: 46px; width: 8px; height: 22px;
+  background: linear-gradient(#ff8533, #b34700);
+  border-radius: 4px;
+}
+.zg-bot-ear.l { left: -6px; }
+.zg-bot-ear.r { right: -6px; }
+.zg-bot-foot {
+  position: absolute; left: 22px; right: 22px; bottom: 4px; height: 12px;
+  border-radius: 0 0 12px 12px;
+  background: #1a1a1a; border: 2px solid var(--zg-orange); border-top: 0;
+}
+.zg-bot.zg-talk .zg-bot-head { animation: zg-talk .5s ease 1; }
+@keyframes zg-talk { 0% { transform: scale(1); } 40% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+/* Diálogo */
+.zg-card {
+  position: relative;
+  width: min(380px, calc(100vw - 130px));
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  padding: 16px 16px 12px;
+  border-radius: 20px;
+  background: linear-gradient(160deg, #181818, #0c0c0c);
+  border: 1px solid rgba(255, 106, 0, 0.55);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 106, 0, 0.16);
+  scrollbar-width: thin;
+}
+/* rabinho do balão apontando para o robô */
+.zg-card::before {
+  content: ""; position: absolute; bottom: 26px;
+  width: 14px; height: 14px; background: #121212;
+  border: 1px solid rgba(255, 106, 0, 0.55);
+  transform: rotate(45deg);
+}
+.zg-dock[data-pos="br"] .zg-card::before,
+.zg-dock[data-pos="tr"] .zg-card::before { left: -8px; border-right: 0; border-top: 0; }
+.zg-dock[data-pos="bl"] .zg-card::before,
+.zg-dock[data-pos="tl"] .zg-card::before { right: -8px; border-left: 0; border-bottom: 0; }
+.zg-dock[data-pos="c"] .zg-card::before { display: none; }
+
+.zg-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  font-size: 12px; color: var(--zg-muted); margin-bottom: 8px;
+}
+.zg-name { font-weight: 800; color: var(--zg-orange-soft); font-size: 13px; }
+.zg-stage { font-weight: 600; }
+
+.zg-bar {
+  height: 6px; border-radius: 999px; background: rgba(255, 255, 255, 0.1);
+  overflow: hidden; margin-bottom: 12px;
+}
+.zg-bar i {
+  display: block; height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--zg-orange), #ffb067);
+  border-radius: 999px; transition: width .45s ease;
+}
+
+.zg-title { margin: 0 0 6px; font-size: 18px; line-height: 1.25; font-weight: 800; color: #fff; }
+.zg-text { font-size: 14px; line-height: 1.55; color: #e6e6e6; }
+.zg-text p { margin: 0 0 8px; }
+.zg-text p:last-child { margin-bottom: 0; }
+.zg-text ul { margin: 4px 0 8px; padding-left: 18px; }
+.zg-text li { margin: 3px 0; }
+.zg-text b { color: #ffb067; font-weight: 700; }
+.zg-wait {
+  margin-top: 10px; padding: 8px 10px; border-radius: 10px; font-size: 12.5px;
+  background: rgba(255, 106, 0, 0.1); border: 1px dashed rgba(255, 106, 0, 0.5); color: #ffd2a8;
+}
+
+/* Escolha de tecnologia */
+.zg-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.zg-choice {
+  appearance: none; cursor: pointer; text-align: left;
+  padding: 9px 10px; border-radius: 12px; font: inherit; font-size: 13px; font-weight: 700;
+  color: #fff; background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--zg-line);
+  transition: border-color .2s, background .2s, transform .15s;
+}
+.zg-choice small { display: block; font-weight: 500; color: var(--zg-muted); font-size: 11px; margin-top: 2px; }
+.zg-choice:hover { border-color: var(--zg-orange); transform: translateY(-1px); }
+.zg-choice[aria-pressed="true"] { background: rgba(255, 106, 0, 0.2); border-color: var(--zg-orange); }
+.zg-choice.zg-wide { grid-column: 1 / -1; }
+
+/* Botões */
+.zg-actions { display: flex; gap: 8px; margin-top: 14px; }
+.zg-btn {
+  appearance: none; border: 0; cursor: pointer; font: inherit;
+  padding: 10px 14px; border-radius: 12px; font-size: 14px; font-weight: 800;
+  transition: transform .15s, box-shadow .2s, opacity .2s, background .2s;
+}
+.zg-btn:active { transform: scale(0.97); }
+.zg-btn.zg-primary {
+  flex: 1; color: #0b0b0b;
+  background: linear-gradient(135deg, var(--zg-orange), var(--zg-orange-soft));
+  box-shadow: 0 8px 20px rgba(255, 106, 0, 0.28);
+}
+.zg-btn.zg-primary:hover { box-shadow: 0 10px 26px rgba(255, 106, 0, 0.45); }
+.zg-btn.zg-ghost { color: #fff; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--zg-line); }
+.zg-btn.zg-ghost:hover { background: rgba(255, 255, 255, 0.14); }
+.zg-btn[disabled] { opacity: .4; cursor: not-allowed; box-shadow: none; }
+.zg-btn[hidden] { display: none; }
+.zg-skip {
+  appearance: none; background: none; border: 0; cursor: pointer;
+  display: block; margin: 10px auto 0; padding: 4px 8px;
+  color: var(--zg-muted); font: inherit; font-size: 12px; text-decoration: underline;
+}
+.zg-skip:hover { color: #fff; }
+.zg-btn:focus-visible, .zg-skip:focus-visible, .zg-choice:focus-visible {
+  outline: 2px solid #fff; outline-offset: 2px;
+}
+
+/* --- Tela de boas-vindas / retomada --------------------------------------- */
+.zg-modal {
+  position: fixed; inset: 0; z-index: calc(var(--zg-z) + 2);
+  display: grid; place-items: center; padding: 16px;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 106, 0, 0.22), rgba(0, 0, 0, 0.9) 60%);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif; color: #fff;
+  opacity: 0; transition: opacity .35s ease;
+}
+.zg-modal.zg-show { opacity: 1; }
+.zg-modal-box {
+  position: relative; width: min(460px, 100%); text-align: center;
+  padding: 30px 24px 22px; border-radius: 26px;
+  background: linear-gradient(165deg, #1a1a1a, #090909);
+  border: 1px solid rgba(255, 106, 0, 0.6);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.8), 0 0 50px rgba(255, 106, 0, 0.2);
+  transform: translateY(18px) scale(.98); transition: transform .4s cubic-bezier(.2,.8,.2,1);
+  max-height: calc(100vh - 32px); overflow-y: auto;
+}
+.zg-modal.zg-show .zg-modal-box { transform: none; }
+.zg-modal-box .zg-bot { margin: 0 auto 14px; }
+.zg-modal-box h2 { margin: 0 0 8px; font-size: clamp(22px, 5.5vw, 28px); line-height: 1.15; font-weight: 800; }
+.zg-modal-box p { margin: 0 0 18px; color: #dcdcdc; font-size: 15px; line-height: 1.55; }
+.zg-modal-actions { display: grid; gap: 10px; }
+.zg-modal-actions .zg-btn { padding: 14px 16px; font-size: 15px; letter-spacing: .02em; }
+
+/* --- Celular --------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .zg-dock,
+  .zg-dock[data-pos] {
+    left: 8px; right: 8px; width: auto; max-width: none;
+    flex-direction: column; align-items: stretch; gap: 0;
+    transform: translateY(14px);
+  }
+  .zg-dock.zg-show,
+  .zg-dock[data-pos].zg-show { transform: none; }
+  .zg-dock[data-pos="br"], .zg-dock[data-pos="bl"], .zg-dock[data-pos="c"] {
+    top: auto; bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+  }
+  .zg-dock[data-pos="tr"], .zg-dock[data-pos="tl"] { bottom: auto; top: 78px; }
+
+  .zg-card {
+    width: auto; max-height: 56vh; padding: 12px 14px 10px; border-radius: 18px;
+    padding-left: 70px;               /* espaço para o robô compacto */
+  }
+  .zg-card::before { display: none; }
+  .zg-bot {
+    position: absolute; left: 8px; top: 8px; width: 54px; height: 66px; z-index: 2;
+    animation: none;
+  }
+  .zg-dock { position: fixed; }
+  .zg-dock .zg-bot { position: absolute; }
+  .zg-bot-antenna { height: 10px; }
+  .zg-bot-antenna::after { width: 8px; height: 8px; margin-left: -4px; top: -5px; }
+  .zg-bot-head { top: 9px; bottom: 9px; border-radius: 16px; }
+  .zg-bot-ear { top: 28px; height: 14px; width: 6px; }
+  .zg-bot-ear.l { left: -4px; } .zg-bot-ear.r { right: -4px; }
+  .zg-bot-foot { display: none; }
+  .zg-title { font-size: 16px; }
+  .zg-text { font-size: 13px; line-height: 1.5; }
+  .zg-choices { grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+  .zg-choice { padding: 7px 9px; font-size: 12.5px; }
+  .zg-choice small { display: none; }
+  .zg-actions { margin-top: 10px; }
+  .zg-modal-box .zg-bot { position: relative; left: auto; top: auto; width: 84px; height: 104px; }
+  .zg-modal-box .zg-bot-antenna { height: 16px; }
+  .zg-modal-box .zg-bot-antenna::after { width: 10px; height: 10px; margin-left: -5px; top: -7px; }
+  .zg-modal-box .zg-bot-head { top: 14px; bottom: 14px; border-radius: 24px; }
+  .zg-modal-box .zg-bot-ear { top: 46px; height: 22px; width: 8px; }
+  .zg-modal-box .zg-bot-foot { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zg-bot, .zg-bot-antenna::after, .zg-ring.zg-show, .zg-bot.zg-talk .zg-bot-head { animation: none !important; }
+  .zg-dock, .zg-ring, .zg-modal, .zg-modal-box, .zg-bar i { transition: none !important; }
+}

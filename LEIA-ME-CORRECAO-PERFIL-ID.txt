@@ -1,0 +1,31 @@
+ZYRODEV - CORRECAO FINAL DO PERFIL E ID ZYRO
+
+Esta versão corrige:
+- salvamento do Editar Perfil;
+- criação automática do ID Zyro numérico;
+- ID Zyro começando em 18000;
+- exibição do ID no perfil;
+- imagens do perfil/banners no Firebase Storage;
+- mensagens de erro de permissão do Firebase.
+
+IMPORTANTE:
+No Firebase Console, publique os arquivos firestore.rules e storage.rules que acompanham este projeto.
+
+Firestore:
+1. Firebase Console
+2. Firestore Database
+3. Regras
+4. Cole o conteúdo de firestore.rules
+5. Publicar
+
+Storage:
+1. Firebase Console
+2. Storage
+3. Rules/Regras
+4. Cole o conteúdo de storage.rules
+5. Publicar
+
+Depois, no navegador, pressione Ctrl + F5.
+
+O UID do Firebase continua sendo usado internamente, mas nunca é mostrado como ID para o usuário.
+O usuário verá algo como: ID Zyro: 18427.

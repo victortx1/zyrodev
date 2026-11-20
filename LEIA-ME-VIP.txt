@@ -1,0 +1,50 @@
+ZYRODEV — SISTEMA VIP NOVA ERA
+
+O que foi integrado:
+- Loja premium VIP + Molduras: loja-vip.html
+- VIP Nova Era: R$ 5,50 e vitalício
+- Chave PIX configurada: 73999599709
+- QR Code PIX com o valor do produto
+- VIP Nova Era no painel ADM
+- +500 likes aplicados uma única vez ao conceder o VIP
+- Badge VIP Nova Era
+- Nome com brilho
+- Cor especial do perfil
+- Moldura VIP Nova Era
+- Área de edição do perfil com seleção de molduras liberadas
+- Ativação/desativação da decoração e brilho do nome
+- Molduras Fogo, Neon, Diamante, Nova Era e VIP Nova Era
+- Liberação e remoção de molduras pelo painel ADM
+- Curso exclusivo curso-vip-nova-era.html
+- Curso VIP protegido por vipAtivo
+- cursos.html com acesso à loja e ao curso VIP
+- perfil.html e perfil-publico.html mostrando VIP, brilho e moldura
+
+COMO O ADM FUNCIONA
+1. Abra o painel administrativo.
+2. Localize o usuário.
+3. Clique em "Dar VIP Nova Era".
+4. O sistema ativa o VIP vitalício, libera a moldura VIP, ativa o brilho/cor e adiciona 500 likes uma única vez.
+5. Para molduras individuais, use "Liberar moldura" e informe:
+   fogo
+   neon
+   diamante
+   nova_era
+   vip_nova_era
+
+IMPORTANTE SOBRE O PIX
+A loja mostra o PIX e gera o QR Code, mas não confirma automaticamente o pagamento.
+Depois de conferir o comprovante, o ADM libera o produto.
+
+DEPENDÊNCIAS DO PROJETO ORIGINAL
+O ZIP enviado para esta integração não continha:
+- firebase.js
+- security-utils.js
+- config.js
+
+Eles foram preservados como dependências externas porque precisam conter a configuração Firebase e as funções do seu projeto original. Não foram inventados para evitar substituir sua configuração real.
+
+O arquivo temporada-service.js foi incluído porque perfil.js já dependia dele e ele não estava presente no ZIP enviado.
+
+IMPORTANTE
+O VIP foi considerado VITALÍCIO, já que a duração não foi definida na última solicitação.

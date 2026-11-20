@@ -1,0 +1,29 @@
+ZYRO PODEPA
+============
+
+Arquivos adicionados:
+- podepa.html
+- podepa.css
+- podepa.js
+- storage.rules
+
+Arquivos alterados:
+- firestore.rules
+- firebase.json
+- config.js (o link "Bate Papo" foi apontado para podepa.html)
+
+IMPORTANTE:
+O podepa.js importa ./firebase.js porque o restante do projeto já usa esse arquivo.
+O ZIP enviado originalmente não continha firebase.js. Portanto, mantenha o seu firebase.js real na mesma pasta.
+
+Firebase:
+1. Publique as Firestore Rules.
+2. Publique as Storage Rules.
+3. Verifique se o Firebase Storage está habilitado no projeto.
+4. O usuário precisa estar autenticado.
+
+Estrutura criada:
+- zyroPodepaMensagens/{messageId}
+- zyroPodepaConversas/{conversationId}/mensagens/{messageId}
+
+As conversas privadas usam um ID determinístico baseado nos dois UIDs, evitando duplicação de conversas.

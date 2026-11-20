@@ -1,307 +1,197 @@
 import { auth } from "./firebase.js";
-import {
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { buscarDadosUsuario, verificarEAtualizarVip } from "./temporada-service.js";
+import { usuarioEstaBanido, sanitizeMediaUrl } from "./security-utils.js";
 
 const perfilMediaWrap = document.getElementById("perfilMediaWrap");
 const nomePerfil = document.getElementById("nomePerfil");
-const emailPerfil = document.getElementById("emailPerfil");
 const bioPerfil = document.getElementById("bioPerfil");
 const badgesPerfil = document.getElementById("badgesPerfil");
+const empresaPerfil = document.getElementById("empresaPerfil");
+const sitePerfil = document.getElementById("sitePerfil");
+const bannerPerfil = document.getElementById("bannerPerfil");
 const btnSair = document.getElementById("btnSair");
+const btnPerfilPublico = document.getElementById("btnPerfilPublico");
 
 function normalizarBadges(badges) {
   if (Array.isArray(badges)) return badges;
-
-  if (badges && typeof badges === "object") {
-    return Object.keys(badges).filter((key) => badges[key] === true);
-  }
-
+  if (badges && typeof badges === "object") return Object.keys(badges).filter((key) => badges[key] === true);
   return [];
 }
 
 function criarBadge(src, className, title, alt) {
   const badge = document.createElement("img");
-  badge.src = src;
-  badge.className = className;
-  badge.title = title;
-  badge.alt = alt;
+  badge.src = src; badge.className = className; badge.title = title; badge.alt = alt;
   return badge;
-}
-
-function aplicarVideoFundoCopa() {
-  let videoFundo = document.getElementById("videoFundoCopa");
-
-  if (!videoFundo) {
-    videoFundo = document.createElement("video");
-    videoFundo.id = "videoFundoCopa";
-    videoFundo.src = "";
-    videoFundo.autoplay = true;
-    videoFundo.loop = true;
-    videoFundo.muted = true;
-    videoFundo.playsInline = true;
-    videoFundo.setAttribute("webkit-playsinline", "true");
-
-    videoFundo.style.cssText = `
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: 0;
-      opacity: 1;
-      pointer-events: none;
-    `;
-
-    document.body.prepend(videoFundo);
-  }
-}
-
-function removerVideoFundoCopa() {
-  const videoFundo = document.getElementById("videoFundoCopa");
-
-  if (videoFundo) {
-    videoFundo.remove();
-  }
 }
 
 function renderizarBadges(badges = []) {
   if (!badgesPerfil) return;
-
   badgesPerfil.innerHTML = "";
 
-  if (badges.includes("fundador")) {
-    badgesPerfil.appendChild(
-      criarBadge("./fotos/fundador.png", "badge-icon", "Fundador Zyro", "Badge Fundador")
-    );
-  }
+  const lista = [
+    ["fundador", "fotos/fundador.png", "Fundador Zyro", "Badge Fundador"],
+    ["copa_do_mundo", "fotos/copa_do_mundo.png", "Copa do Mundo", "Badge Copa do Mundo"],
+    ["primeira_temporada", "fotos/temporada1.png", "Conta da Primeira Temporada", "Badge Primeira Temporada"],
+    ["socio", "fotos/sociozyro.png", "Sócio Zyro", "Badge Sócio"],
+    ["patrocinador", "fotos/sponsor.png", "Patrocinador", "Badge Patrocinador"],
+    ["criador", "fotos/criadorzyro.png", "Criador", "Badge Criador"],
+  ];
 
-  if (badges.includes("copa_do_mundo")) {
-    badgesPerfil.appendChild(
-      criarBadge(
-        "./fotos/copa_do_mundo.png",
-        "badge-icon badge-copa",
-        "Copa do Mundo",
-        "Badge Copa do Mundo"
-      )
-    );
-  }
+  const badgesValidos = lista.filter(([id]) => badges.includes(id));
+  const limite = 5;
+  let expandido = false;
 
-  if (badges.includes("primeira_temporada")) {
-    badgesPerfil.appendChild(
-      criarBadge("./fotos/temporada1.png", "badge-icon", "Conta da Primeira Temporada", "Badge Primeira Temporada")
-    );
-  }
+  const desenhar = () => {
+    badgesPerfil.innerHTML = "";
+    const visiveis = expandido ? badgesValidos : badgesValidos.slice(0, limite);
 
-  if (badges.includes("socio")) {
-    badgesPerfil.appendChild(
-      criarBadge("./fotos/sociozyro.png", "badge-icon", "Sócio Zyro", "Badge Sócio")
-    );
-  }
-
-  if (badges.includes("vip")) {
-    badgesPerfil.appendChild(
-      criarBadge("./fotosloja/vipzyrorum.png", "badge-icon", "VIP ZYRORUM", "Badge VIP")
-    );
-  }
-
-  if (badges.includes("vip_perola_negra")) {
-    badgesPerfil.appendChild(
-      criarBadge("./fotosloja/vipperolanegra.png", "badge-icon", "VIP Pérola Negra", "Badge VIP Pérola Negra")
-    );
-  }
-}
-
-function aplicarTemaEspecial(dadosBanco = {}) {
-  const body = document.body;
-  const html = document.documentElement;
-  const card = document.querySelector(".perfil-card");
-  const titulo = document.querySelector(".perfil-info h1");
-  const botoes = document.querySelectorAll(".btn-primary");
-  const btnDanger = document.querySelector(".btn-danger");
-  const avatar = document.querySelector(".avatar-wrap");
-
-  body.classList.remove(
-    "tema-fundador",
-    "tema-copa-mundo",
-    "tema-socio",
-    "tema-vip-esmeralda",
-    "tema-vip-perola-negra"
-  );
-
-  html.classList.remove("tema-copa-mundo");
-  removerVideoFundoCopa();
-
-  body.style.background = "";
-
-  const badges = normalizarBadges(dadosBanco?.badges);
-  const vipAtivo = Boolean(dadosBanco?.vipAtivo);
-  const vipPagoAtivo = Boolean(dadosBanco?.vipPagoAtivo);
-
-  if (badges.includes("copa_do_mundo")) {
-    body.classList.add("tema-copa-mundo");
-    html.classList.add("tema-copa-mundo");
-
-    aplicarVideoFundoCopa();
-
-    body.style.background = "#020617";
-
-    if (card) {
-      card.style.background = "rgba(0, 35, 20, .78)";
-      card.style.border = "2px solid #ffdf00";
-      card.style.boxShadow = "0 0 40px rgba(255,223,0,.65), 0 0 90px rgba(0,156,59,.55)";
-    }
-
-    if (titulo) {
-      titulo.style.color = "#ffdf00";
-      titulo.style.textShadow = "0 0 12px rgba(255,223,0,.9), 0 0 22px rgba(0,156,59,.9)";
-    }
-
-    botoes.forEach((btn) => {
-      btn.style.background = "linear-gradient(135deg, #009c3b, #ffdf00)";
-      btn.style.color = "#001b0f";
-      btn.style.boxShadow = "0 0 18px rgba(255,223,0,.65)";
+    visiveis.forEach(([id, src, title, alt]) => {
+      badgesPerfil.appendChild(criarBadge(src, "badge-icon", title, alt));
     });
 
-    if (btnDanger) {
-      btnDanger.style.background = "rgba(0,156,59,.25)";
-      btnDanger.style.border = "1px solid #ffdf00";
-      btnDanger.style.color = "#fff";
+    const restantes = badgesValidos.length - limite;
+
+    if (!expandido && restantes > 0) {
+      const mais = document.createElement("button");
+      mais.type = "button";
+      mais.className = "badges-mais";
+      mais.textContent = `+${restantes}`;
+      mais.title = "Mostrar todos os badges";
+      mais.setAttribute("aria-label", `Mostrar todos os ${badgesValidos.length} badges`);
+      mais.addEventListener("click", () => {
+        expandido = true;
+        desenhar();
+      });
+      badgesPerfil.appendChild(mais);
     }
 
-    if (avatar) {
-      avatar.style.background = "linear-gradient(135deg, #ffdf00, #009c3b, #002776)";
-      avatar.style.boxShadow = "0 0 25px rgba(255,223,0,.95)";
+    if (expandido && badgesValidos.length > limite) {
+      const menos = document.createElement("button");
+      menos.type = "button";
+      menos.className = "badges-mais";
+      menos.textContent = "−";
+      menos.title = "Mostrar menos badges";
+      menos.setAttribute("aria-label", "Mostrar menos badges");
+      menos.addEventListener("click", () => {
+        expandido = false;
+        desenhar();
+      });
+      badgesPerfil.appendChild(menos);
     }
+  };
 
-    return;
-  }
-
-  if (badges.includes("fundador")) {
-    body.classList.add("tema-fundador");
-    return;
-  }
-
-  if (badges.includes("socio")) {
-    body.classList.add("tema-socio");
-    return;
-  }
-
-  if (vipPagoAtivo || badges.includes("vip_perola_negra")) {
-    body.classList.add("tema-vip-perola-negra");
-    return;
-  }
-
-  if (vipAtivo || badges.includes("vip")) {
-    body.classList.add("tema-vip-esmeralda");
-  }
+  desenhar();
 }
 
-function usuarioPodeUsarVideo(dadosBanco = {}) {
-  const badges = normalizarBadges(dadosBanco?.badges);
-
-  return (
-    dadosBanco?.vipAtivo === true ||
-    dadosBanco?.vipPagoAtivo === true ||
-    badges.includes("vip") ||
-    badges.includes("vip_perola_negra") ||
-    badges.includes("fundador") ||
-    badges.includes("socio")
-  );
+function usuarioPodeUsarVideo(dados = {}) {
+  const badges = normalizarBadges(dados.badges);
+  return badges.includes("fundador") || badges.includes("socio");
 }
 
-function renderizarMidiaPerfil(dadosBanco = {}, userAuth) {
+function renderizarMidiaPerfil(dados = {}, userAuth) {
   if (!perfilMediaWrap) return;
-
-  const fotoFinal =
-    dadosBanco?.foto && dadosBanco.foto.trim() !== ""
-      ? dadosBanco.foto
-      : userAuth?.photoURL || "https://via.placeholder.com/150";
-
-  const videoFinal =
-    dadosBanco?.videoPerfil && dadosBanco.videoPerfil.trim() !== ""
-      ? dadosBanco.videoPerfil
-      : "";
-
-  const podeUsarVideo = usuarioPodeUsarVideo(dadosBanco);
-
+  const fotoFinal = sanitizeMediaUrl(dados?.foto) || sanitizeMediaUrl(userAuth?.photoURL) || "https://via.placeholder.com/150";
+  const videoFinal = sanitizeMediaUrl(dados?.videoPerfil) || "";
   perfilMediaWrap.classList.remove("video-ativa");
   perfilMediaWrap.innerHTML = "";
 
-  if (podeUsarVideo && videoFinal) {
+  if (usuarioPodeUsarVideo(dados) && videoFinal) {
     perfilMediaWrap.classList.add("video-ativa");
-
     const video = document.createElement("video");
-    video.className = "video-perfil";
-    video.src = videoFinal;
-    video.autoplay = true;
-    video.loop = true;
-    video.muted = true;
-    video.playsInline = true;
-    video.setAttribute("webkit-playsinline", "true");
-
-    const selo = document.createElement("div");
-    selo.className = "video-badge";
-
-    const badges = normalizarBadges(dadosBanco?.badges);
-
-    if (dadosBanco?.vipPagoAtivo === true || badges.includes("vip_perola_negra")) {
-      selo.textContent = "VIP PAGO";
-    } else {
-      selo.textContent = "VIP";
-    }
-
+    video.className = "video-perfil"; video.src = videoFinal; video.autoplay = true; video.loop = true; video.muted = true; video.playsInline = true;
     perfilMediaWrap.appendChild(video);
-    perfilMediaWrap.appendChild(selo);
     return;
   }
 
+  const moldura = dados?.decoracaoAtiva === false
+    ? ""
+    : (sanitizeMediaUrl(dados?.molduraPerfil) || "");
+
   const img = document.createElement("img");
-  img.id = "fotoPerfil";
   img.className = "foto";
   img.src = fotoFinal;
   img.alt = "Foto do perfil";
-
   perfilMediaWrap.appendChild(img);
+
+  if (moldura) {
+    const frame = document.createElement("div");
+    frame.className = "avatar-frame-overlay";
+    frame.style.backgroundImage = `url("${moldura}")`;
+
+    const moldurasAnimadas = [
+      "moldura-fogo.svg",
+      "moldura-neon.svg",
+      "moldura-nova-era.svg",
+      "moldura-galaxia.svg"
+    ];
+    if (moldurasAnimadas.some(nome => moldura.includes(nome))) {
+      frame.classList.add("moldura-animada");
+    }
+
+    perfilMediaWrap.appendChild(frame);
+  }
 }
 
-function renderizarPerfil(dadosBanco = {}, userAuth) {
-  const nomeFinal =
-    dadosBanco?.nome && dadosBanco.nome.trim() !== ""
-      ? dadosBanco.nome
-      : userAuth?.displayName || "Usuário";
+function renderizarPerfil(dados = {}, userAuth) {
+  const nomeFinal = dados?.nome?.trim() ? dados.nome : userAuth?.displayName || "Usuário";
+  const bioFinal = dados?.bio?.trim() ? dados.bio : "Sem bio ainda.";
+  const banner = sanitizeMediaUrl(dados?.banner) || "";
+  const empresa = dados?.empresa?.trim() || "";
+  const site = dados?.site?.trim() || "";
 
-  const bioFinal =
-    dadosBanco?.bio && dadosBanco.bio.trim() !== ""
-      ? dadosBanco.bio
-      : "Sem bio ainda.";
+  if (bannerPerfil) {
+    bannerPerfil.style.setProperty("--banner-bg", banner ? `url("${banner}")` : "none");
+    bannerPerfil.classList.toggle("com-banner", !!banner);
+    bannerPerfil.classList.toggle("sem-banner", !banner);
+  }
 
-  const badges = normalizarBadges(dadosBanco?.badges);
-
-  console.log("DADOS DO BANCO:", dadosBanco);
-  console.log("BADGES NORMALIZADAS:", badges);
-
-  renderizarMidiaPerfil(dadosBanco, userAuth);
-
+  const bodyPerfil = document.getElementById("bodyPerfil");
+  if (bodyPerfil) {
+    bodyPerfil.style.setProperty("--profile-banner-bg", banner ? `url("${banner}")` : "none");
+  }
   if (nomePerfil) nomePerfil.textContent = nomeFinal;
   if (bioPerfil) bioPerfil.textContent = bioFinal;
-  if (emailPerfil) emailPerfil.textContent = userAuth?.email || "";
+  if (empresaPerfil) {
+    empresaPerfil.textContent = empresa ? `💼 ${empresa}` : "";
+    empresaPerfil.hidden = !empresa;
+  }
+  if (sitePerfil) {
+    sitePerfil.hidden = !site;
+    sitePerfil.href = site || "#";
+    sitePerfil.textContent = site ? "🌐 Visitar site" : "";
+  }
 
-  renderizarBadges(badges);
-  aplicarTemaEspecial({ ...dadosBanco, badges });
+  const corPerfil = dados?.admin === true ? "#f5c542" : dados?.patrocinador === true ? "#2563eb" : dados?.criador === true ? "#a855f7" : (dados?.perfilCor || "#ffffff");
+  const body = document.getElementById("bodyPerfil");
+  if (body) {
+    body.classList.remove("perfil-role-admin","perfil-role-sponsor","perfil-role-creator");
+    if (dados?.admin === true) body.classList.add("perfil-role-admin");
+    else if (dados?.patrocinador === true) body.classList.add("perfil-role-sponsor");
+    else if (dados?.criador === true) body.classList.add("perfil-role-creator");
+    body.style.setProperty("--profile-accent", corPerfil);
+    body.classList.remove("perfil-vip");
+  }
+  if (nomePerfil) {
+    nomePerfil.style.color = "";
+    nomePerfil.style.textShadow = corPerfil !== "#ffffff" ? `0 0 14px ${corPerfil}88` : "";
+    nomePerfil.style.fontWeight = corPerfil !== "#ffffff" ? "900" : "";
+  }
+
+  renderizarMidiaPerfil(dados, userAuth);
+  renderizarBadges(normalizarBadges(dados.badges));
 }
 
 onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    window.location.href = "./login.html";
-    return;
-  }
-
+  if (!user) { window.location.href = "./login.html"; return; }
   try {
+    if (btnPerfilPublico) {
+      btnPerfilPublico.href = `./perfil-publico.html?uid=${encodeURIComponent(user.uid)}`;
+    }
+
     await verificarEAtualizarVip(user.uid);
     const dados = await buscarDadosUsuario(user.uid);
+    if (usuarioEstaBanido(dados)) { await signOut(auth); window.location.href = "./login.html"; return; }
     renderizarPerfil(dados || {}, user);
   } catch (error) {
     console.error("Erro ao carregar perfil:", error);
@@ -310,11 +200,6 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 btnSair?.addEventListener("click", async () => {
-  try {
-    await signOut(auth);
-    window.location.href = "./login.html";
-  } catch (error) {
-    console.error("Erro ao sair:", error);
-    alert("Não foi possível sair da conta.");
-  }
+  try { await signOut(auth); window.location.href = "./login.html"; }
+  catch (error) { console.error(error); alert("Não foi possível sair da conta."); }
 });

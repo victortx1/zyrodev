@@ -8,10 +8,10 @@
 body{
   min-height:100vh;
   background:
-    radial-gradient(circle at top left, #2563eb 0%, transparent 28%),
-    radial-gradient(circle at bottom right, #7c3aed 0%, transparent 28%),
-    linear-gradient(135deg, #0f172a, #020617);
-  color:#fff;
+    radial-gradient(circle at top left, #ff6a00 0%, transparent 28%),
+    radial-gradient(circle at bottom right, #ff6a00 0%, transparent 28%),
+    linear-gradient(135deg, #111111, #000000);
+  color:#FFFFFF;
   overflow:hidden;
 }
 
@@ -26,13 +26,13 @@ body{
 }
 
 .shape-1{
-  background:#3b82f6;
+  background:#ff6a00;
   top:30px;
   left:20px;
 }
 
 .shape-2{
-  background:#8b5cf6;
+  background:#ff6a00;
   right:20px;
   bottom:30px;
   animation-delay:1.5s;
@@ -51,13 +51,13 @@ body{
 .perfil-card{
   width:100%;
   max-width:520px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255, 255, 255, .08);
+  border:1px solid rgba(255, 255, 255, .12);
   backdrop-filter:blur(16px);
   border-radius:28px;
   padding:34px 28px;
   text-align:center;
-  box-shadow:0 22px 60px rgba(0,0,0,.35);
+  box-shadow:0 22px 60px rgba(0, 0, 0, .35);
   animation:fadeUp .7s ease;
 }
 
@@ -71,8 +71,8 @@ body{
   margin:0 auto 14px;
   padding:4px;
   border-radius:50%;
-  background:linear-gradient(135deg, #2563eb, #7c3aed);
-  box-shadow:0 12px 32px rgba(37,99,235,.28);
+  background:linear-gradient(135deg, #ff6a00, #ff6a00);
+  box-shadow:0 12px 32px rgba(255, 106, 0, .28);
 }
 
 .avatar-wrap img{
@@ -81,7 +81,7 @@ body{
   object-fit:cover;
   border-radius:50%;
   display:block;
-  background:#111827;
+  background:#161616;
 }
 
 .badge-status{
@@ -89,9 +89,9 @@ body{
   padding:8px 14px;
   font-size:13px;
   border-radius:999px;
-  background:rgba(34,197,94,.15);
-  color:#86efac;
-  border:1px solid rgba(34,197,94,.25);
+  background:rgba(255, 106, 0, .15);
+  color:#ff8533;
+  border:1px solid rgba(255, 106, 0, .25);
 }
 
 .perfil-info h1{
@@ -100,16 +100,16 @@ body{
 }
 
 .email{
-  color:#93c5fd;
+  color:#ff6a00;
   margin-bottom:16px;
   word-break:break-word;
 }
 
 .bio{
-  color:#e2e8f0;
+  color:#E2E8F0;
   line-height:1.7;
-  background:rgba(15,23,42,.7);
-  border:1px solid rgba(255,255,255,.06);
+  background:rgba(17, 17, 17, .7);
+  border:1px solid rgba(255, 255, 255, .06);
   border-radius:18px;
   padding:18px;
   min-height:78px;
@@ -139,15 +139,15 @@ body{
 }
 
 .btn-primary{
-  background:linear-gradient(135deg, #2563eb, #7c3aed);
-  color:#fff;
-  box-shadow:0 10px 25px rgba(37,99,235,.25);
+  background:linear-gradient(135deg, #ff6a00, #ff6a00);
+  color:#FFFFFF;
+  box-shadow:0 10px 25px rgba(255, 106, 0, .25);
 }
 
 .btn-danger{
-  background:rgba(239,68,68,.16);
-  color:#fecaca;
-  border:1px solid rgba(239,68,68,.22);
+  background:rgba(204, 82, 0, .16);
+  color:#ff8533;
+  border:1px solid rgba(204, 82, 0, .22);
 }
 
 @keyframes float{
@@ -171,34 +171,34 @@ body{
 }
 
 body.tema-copa-mundo .perfil-card{
-  border:2px solid #ffdf00 !important;
-  background:rgba(0, 35, 22, .78) !important;
+  border:2px solid #ff6a00 !important;
+  background:rgba(17, 17, 17, .78) !important;
   box-shadow:
-    0 0 40px rgba(255,223,0,.55),
-    0 0 90px rgba(0,156,59,.45) !important;
+    0 0 40px rgba(255, 106, 0, .55),
+    0 0 90px rgba(255, 106, 0, .45) !important;
 }
 
 body.tema-copa-mundo .perfil-info h1{
-  color:#ffdf00 !important;
+  color:#ff6a00 !important;
   text-shadow:
-    0 0 12px rgba(255,223,0,.8),
-    0 0 22px rgba(0,156,59,.8);
+    0 0 12px rgba(255, 106, 0, .8),
+    0 0 22px rgba(255, 106, 0, .8);
 }
 
 body.tema-copa-mundo .btn-primary{
-  background:linear-gradient(135deg, #9c0000, #ffdf00) !important;
-  color:#001b0f !important;
+  background:linear-gradient(135deg, #111111, #ff6a00) !important;
+  color:#000000 !important;
 }
 
 body.tema-copa-mundo .btn-danger{
-  background:rgba(0,156,59,.25) !important;
-  border:1px solid #ffdf00 !important;
-  color:#fff !important;
+  background:rgba(255, 106, 0, .25) !important;
+  border:1px solid #ff6a00 !important;
+  color:#FFFFFF !important;
 }
 
 body.tema-copa-mundo .avatar-wrap{
-  background:linear-gradient(135deg, #ffdf00, #009c3b, #002776) !important;
-  box-shadow:0 0 25px rgba(255,223,0,.9) !important;
+  background:linear-gradient(135deg, #ff6a00, #ff6a00, #111111) !important;
+  box-shadow:0 0 25px rgba(255, 106, 0, .9) !important;
 }
 @keyframes brilhoCopa{
   0%{background-position:0% center;}
@@ -215,42 +215,42 @@ body.tema-copa-mundo .bg-shape{
 }
 
 body.tema-copa-mundo .perfil-card{
-  background:rgba(0, 35, 20, .78) !important;
-  border:2px solid #ffdf00 !important;
+  background:rgba(17, 17, 17, .78) !important;
+  border:2px solid #ff6a00 !important;
   box-shadow:
-    0 0 40px rgba(255,223,0,.65),
-    0 0 90px rgba(0,156,59,.55) !important;
+    0 0 40px rgba(255, 106, 0, .65),
+    0 0 90px rgba(255, 106, 0, .55) !important;
 }
 
 body.tema-copa-mundo .perfil-info h1{
-  color:#ffdf00 !important;
+  color:#ff6a00 !important;
   text-shadow:
-    0 0 12px rgba(255,223,0,.9),
-    0 0 22px rgba(0,156,59,.9) !important;
+    0 0 12px rgba(255, 106, 0, .9),
+    0 0 22px rgba(255, 106, 0, .9) !important;
 }
 
 body.tema-copa-mundo .btn-primary{
-  background:linear-gradient(135deg, #009c3b, #ffdf00) !important;
-  color:#001b0f !important;
-  box-shadow:0 0 18px rgba(255,223,0,.65) !important;
+  background:linear-gradient(135deg, #ff6a00, #ff6a00) !important;
+  color:#000000 !important;
+  box-shadow:0 0 18px rgba(255, 106, 0, .65) !important;
 }
 
 body.tema-copa-mundo .btn-danger{
-  background:rgba(0,156,59,.25) !important;
-  border:1px solid #ffdf00 !important;
-  color:#fff !important;
+  background:rgba(255, 106, 0, .25) !important;
+  border:1px solid #ff6a00 !important;
+  color:#FFFFFF !important;
 }
 
 body.tema-copa-mundo .avatar-wrap{
-  background:linear-gradient(135deg, #ffdf00, #009c3b, #002776) !important;
-  box-shadow:0 0 25px rgba(255,223,0,.95) !important;
+  background:linear-gradient(135deg, #ff6a00, #ff6a00, #111111) !important;
+  box-shadow:0 0 25px rgba(255, 106, 0, .95) !important;
 }
 
 body.tema-copa-mundo .badge-copa{
   animation:girarBadgeCopa 4s linear infinite;
   filter:
-    drop-shadow(0 0 8px rgba(255,223,0,.95))
-    drop-shadow(0 0 16px rgba(0,156,59,.9));
+    drop-shadow(0 0 8px rgba(255, 106, 0, .95))
+    drop-shadow(0 0 16px rgba(255, 106, 0, .9));
 }
 
 @keyframes girarBadgeCopa{
@@ -259,7 +259,7 @@ body.tema-copa-mundo .badge-copa{
 }
 html.tema-copa-mundo,
 body.tema-copa-mundo {
-  background: #020617 !important;
+  background: #000000 !important;
   overflow-x: hidden !important;
 }
 
